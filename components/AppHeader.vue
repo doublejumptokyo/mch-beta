@@ -19,11 +19,6 @@ header.appHeader
           @click.prevent.self="setLang(lang)"
         ) {{ $i18n.messages[lang].label }}
 
-  nuxt-link.appHeader__notificationsButton(to="/notifications")
-    span.fa-layers
-      fa-icon.fa-lg(:icon="['far', 'bell']")
-      span.fa-layers-counter 3
-
   .appHeader__userData.userData
     no-ssr
       button(v-if="!isLoggedIn" @click="login")
