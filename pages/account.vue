@@ -26,7 +26,22 @@
           fa-icon.links__icon(icon="info" fixed-width)
           span {{ $i18n.t('pages.terms') }}
           fa-icon.links__arrow(icon="angle-right")
+      li
+        button.links__item(@click="logout")
+          fa-icon.links__icon(icon="info" fixed-width)
+          span Clear cache
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$store.commit('DELETE_PRIVATE_KEYS')
+    }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .links {
