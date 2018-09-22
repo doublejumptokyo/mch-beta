@@ -15,6 +15,6 @@ yarn.lock
 build/*
 !/build/contracts
 /build/contracts/*
-!build/contracts/HeroPresale.json
-!build/contracts/HeroAsset.json
-!build/contracts/ERC20.json
+!build/contracts/HeroManager.json
+!build/contracts/Register.json
+!build/contracts/User.json
