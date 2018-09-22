@@ -9,7 +9,7 @@ import {
   LoomProvider
 } from 'loom-js'
 
-export default class DAppChainAccountManager {
+class DAppChainAccountManager {
   static async createAsync(
     { chainId, readClient, writeClient },
     privateKeyBase64
@@ -42,5 +42,16 @@ export default class DAppChainAccountManager {
   getContract(abi, contractAddress) {
     const from = this.from
     return new this.web3.eth.Contract(abi, contractAddress, { from })
+  }
+}
+
+export default async ({ store }, inject) => {
+  const key = await store.dispatch('checkLoggedIn')
+  if (key) {
+    const accountManager = await DAppChainAccountManager.createAsync(
+      store.state.env.dappsChain,
+      key
+    )
+    inject('dcWeb3', accountManager.web3)
   }
 }

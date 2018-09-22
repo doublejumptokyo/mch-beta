@@ -66,7 +66,8 @@ module.exports = {
     { src: '~/plugins/vue-cropper', ssr: false },
     { src: '~/plugins/vue-clipboard', ssr: false },
     { src: '~/plugins/eth-account-manager', ssr: false },
-    { src: '~/plugins/dc-key-manager', ssr: false }
+    { src: '~/plugins/dc-key-manager', ssr: false },
+    { src: '~/plugins/dc-account-manager', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules: [
