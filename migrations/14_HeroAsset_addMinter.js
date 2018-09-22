@@ -1,5 +1,5 @@
 var HeroAsset = artifacts.require('./HeroAsset.sol')
-var HeroManager = artifacts.require("HeroManager");
+var HeroManager = artifacts.require('./HeroManager.sol');
 
 module.exports = function (deployer) {
     deployer.then(function() {
