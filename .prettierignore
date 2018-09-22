@@ -1,0 +1,4 @@
+/contracts
+/build
+/migrations
+truffle-config.js

@@ -1,0 +1,53 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: mch-web
+  gather_facts: False
+  max_fail_percentage: 0
+  vars:
+    ansible_python_interpreter: python3
+    pkg: github.com/doublejumptokyo/mch-web
+    bucket: build.prod.mch.djty.co
+    app_name: mch-web
+    deploy_base: "/var/src/{{ app_name }}"
+    rundir: "/var/app/{{ app_name }}"
+    VERSION: master
+  tasks:
+    - name: "REVISIONを確認"
+      command: aws s3 cp s3://{{ bucket }}/{{ pkg }}/tree/{{ VERSION }}/current -
+      register: commit
+
+    - debug: var="commit.stdout"
+
+    - name: "ファイルを取得"
+      command: aws s3 cp s3://{{ bucket }}/{{ pkg }}/commit/{{ commit.stdout }}/dist.tgz /tmp/dist.tgz
+
+    - name: "srcディレクトリの作成"
+      file:
+        state: directory
+        dest: "{{ deploy_base }}/{{ commit.stdout }}"
+
+    - name: "展開"
+      unarchive:
+        src: /tmp/dist.tgz
+        dest: "{{ deploy_base }}/{{ commit.stdout }}/"
+        remote_src: yes
+
+    - name: "アプリケーションの切り替え {{ rundir }} -> {{ deploy_base }}/{{ commit.stdout }}/dist"
+      file: state=link src="{{ deploy_base }}/{{ commit.stdout }}/dist" dest="{{ rundir }}"
+
+    - name: "staticの切り替え"
+      file: state=link src="{{ rundir }}/statics/{{ ENV }}" dest="{{ rundir }}/static" force=yes
+
+    # - name: npm install
+    #   shell: "npm install"
+    #   environment:
+    #     NODE_ENV: production
+    #   args:
+    #     chdir: "{{ rundir }}"
+    #   #become: true
+
+    - name: "nuxtのrestart"
+      systemd: name={{ item }} state=restarted
+      become: yes
+      with_items:
+        - "{{ app_name }}.service"
