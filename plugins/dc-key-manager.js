@@ -100,7 +100,6 @@ class DAppChainKeyManager {
 
   async getTokenAsync() {
     const params = new NullMessage()
-    console.log(params)
     const result = await this.contract.staticCallAsync(
       'GetOneTimeToken',
       params,
@@ -168,6 +167,5 @@ export default async ({ store }, inject) => {
   const keyManager = await DAppChainKeyManager.createAsync(
     store.state.env.dappsChain
   )
-  console.log(keyManager)
   inject('keyManager', keyManager)
 }

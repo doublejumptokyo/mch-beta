@@ -9,13 +9,12 @@ import {
   LoomProvider
 } from 'loom-js'
 
-class DAppChainAccountManager {
+export default class DAppChainAccountManager {
   static async createAsync(
     { chainId, readClient, writeClient },
     privateKeyBase64
   ) {
     const privateKey = CryptoUtils.B64ToUint8Array(privateKeyBase64)
-    console.log(privateKey)
     const publicKey = CryptoUtils.publicKeyFromPrivateKey(privateKey)
     const from = LocalAddress.fromPublicKey(publicKey).toString()
     const client = new Client(chainId, writeClient, readClient)
@@ -44,14 +43,4 @@ class DAppChainAccountManager {
     const from = this.from
     return new this.web3.eth.Contract(abi, contractAddress, { from })
   }
-}
-
-export default async ({ store }, inject) => {
-  const privateKeyBase64 = store.state.dappsChainPrivateKeyBase64
-  const accountManager = await DAppChainAccountManager.createAsync(
-    store.state.env.dappsChain,
-    privateKeyBase64
-  )
-  console.log(accountManager)
-  inject('accountManager', accountManager)
 }
