@@ -1,33 +1,33 @@
-const should = require('chai').should();
+const should = require('chai').should()
 
-function inLogs (logs, eventName, eventArgs = {}) {
-  const event = logs.find(function (e) {
+function inLogs(logs, eventName, eventArgs = {}) {
+  const event = logs.find(function(e) {
     if (e.event === eventName) {
-      let matches = true;
+      let matches = true
 
       for (const [k, v] of Object.entries(eventArgs)) {
         if (e.args[k] !== v) {
-          matches = false;
+          matches = false
         }
       }
 
       if (matches) {
-        return true;
+        return true
       }
     }
-  });
+  })
 
-  should.exist(event);
+  should.exist(event)
 
-  return event;
+  return event
 }
 
-async function inTransaction (tx, eventName, eventArgs = {}) {
-  const { logs } = await tx;
-  return inLogs(logs, eventName, eventArgs);
+async function inTransaction(tx, eventName, eventArgs = {}) {
+  const { logs } = await tx
+  return inLogs(logs, eventName, eventArgs)
 }
 
 module.exports = {
   inLogs,
-  inTransaction,
-};
+  inTransaction
+}
