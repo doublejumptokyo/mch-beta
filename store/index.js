@@ -36,8 +36,9 @@ export const actions = {
     const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
     const key = window && window.localStorage.getItem(storageKeyName)
     commit('SET_PRIVATE_KEY', key)
+    return key
   },
-  async login({ state, commit }) {
+  async login({ state }) {
     const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
     const privateKey = state.dappsChainPrivateKeyBase64
     if (privateKey) return
@@ -48,7 +49,7 @@ export const actions = {
     const sig = await this.$ethManager.getSignatureAsync(dataToSign)
     const key = await this.$keyManager.loginAsync(ethAddress, sig, message)
     window && window.localStorage.setItem(storageKeyName, key)
-    commit('SET_PRIVATE_KEY', key)
+    window && window.location.reload()
   },
   async logout({ commit }) {
     Array.from(Array(window.localStorage.length).keys())
