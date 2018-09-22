@@ -1,4 +1,3 @@
-
 PKG=github.com/doublejumptokyo/mch-beta
 NAME=mch-beta
 APP_NAME=mch-beta

@@ -1,139 +1,128 @@
 importScripts('/static/workbox.3de3418b.js')
 
 const workboxSW = new self.WorkboxSW({
-  cacheId: 'mch-web',
-  clientsClaim: true,
-  directoryIndex: '/'
+  "cacheId": "mch-beta",
+  "clientsClaim": true,
+  "directoryIndex": "/"
 })
 
 workboxSW.precache([
   {
-    url: '/static/app.58f2e68432339d03dfe1.js',
-    revision: '142e240454b2c97264663cd983629b32'
+    "url": "/static/app.f250b1cafe8b9daae72a.js",
+    "revision": "eb6ab2bd3aa57153b3a318db9dc6aff0"
   },
   {
-    url: '/static/layouts/battle.5ffa0dd26cf4764dd782.js',
-    revision: '7586480fabc0821f25601f063bd8e745'
+    "url": "/static/layouts/battle.3601288ee8c2a46431e7.js",
+    "revision": "30f18035c45328da0cc55ea5431b9646"
   },
   {
-    url: '/static/layouts/default.2b467a23acdcaf566294.js',
-    revision: 'e9f880857496d9c0e750b067c1eb83db'
+    "url": "/static/layouts/default.f0a6b5a85b7fe337c1c1.js",
+    "revision": "2c0466fead9a440a18fc0168b55270d7"
   },
   {
-    url: '/static/manifest.8bc2b98cc76d93487266.js',
-    revision: '83d57f66c03046af1db0309b0aacff60'
+    "url": "/static/manifest.6a993c17eaf2f5454855.js",
+    "revision": "3631b759f63452bb024d8c5ece648f5a"
   },
   {
-    url: '/static/pages/account.0cb907844b079b9220b4.js',
-    revision: '9a31891464844d35a3cd97da2a89151e'
+    "url": "/static/pages/account.9b6ed4f2098c41cbfd33.js",
+    "revision": "01124127234cb7fa0f6ef662bc8755de"
   },
   {
-    url: '/static/pages/battles/_id.3fb5815f761764390987.js',
-    revision: '51d76709dc3524bf5b9837d5ea0cb264'
+    "url": "/static/pages/battles/_id.d5ed4d475086c5a00dba.js",
+    "revision": "00598e8132aae485d0a6dc9961bc87d3"
   },
   {
-    url: '/static/pages/battles/index.8aafb0ec6e2e685e2dfe.js',
-    revision: 'd7703fbf155a05e51ee1d3642095c355'
+    "url": "/static/pages/battles/index.d36faa434d7428a4dee1.js",
+    "revision": "21202945cb98eeb863e2e063d441cd47"
   },
   {
-    url: '/static/pages/dungeons/_id.ce008538c79b2e05ae55.js',
-    revision: '5e171b3e634c24ac07ab1ac60e793963'
+    "url": "/static/pages/dungeons/_id.c697405008d80198581c.js",
+    "revision": "641bfc8bfca3381f84f984d0cf736094"
   },
   {
-    url: '/static/pages/dungeons/index.3d1f952bb4db0055424a.js',
-    revision: 'f528bcdc90db5b4fde9391cc0ce7ee24'
+    "url": "/static/pages/dungeons/index.38b80fb5c55a029c8955.js",
+    "revision": "b262538b2fbdbcca9d0ad36d91c020ed"
   },
   {
-    url: '/static/pages/help.2aacfe4d7a96e854a6d4.js',
-    revision: '7a323dbec25041f19cd6b66b22c71a53'
+    "url": "/static/pages/help.2aacfe4d7a96e854a6d4.js",
+    "revision": "7a323dbec25041f19cd6b66b22c71a53"
   },
   {
-    url: '/static/pages/heroes/_id.bb01227383ef11d22949.js',
-    revision: '532b06b01a4df6f64b752aaf4e2c5040'
+    "url": "/static/pages/heroes/_id.97bb0b352392f9b269f3.js",
+    "revision": "d3d33a218f90f1cd4193025de1f30701"
   },
   {
-    url: '/static/pages/home.504442a153ffb8ccaacd.js',
-    revision: '916f784b1a7ab0f2477a5e6076c8a328'
+    "url": "/static/pages/home.445f98eb331c8d00a742.js",
+    "revision": "fb1193c90b85cdbd3acd758f52a9ed3d"
   },
   {
-    url: '/static/pages/index.6cdfb03a7ec554d774b8.js',
-    revision: '4e3367261befc1e391ebb632fb235810'
+    "url": "/static/pages/index.afa176ed5f051c13605c.js",
+    "revision": "57f2da54049bb1f9623fd88af459c5d0"
   },
   {
-    url: '/static/pages/inventory/index.cc576a90dbf4e83c0a77.js',
-    revision: 'b206612c870a4477f25745c449e2f620'
+    "url": "/static/pages/inventory/index.b1ef87ac3d9c4d412f8b.js",
+    "revision": "eb405acd543af8f9ed749c00af58eeca"
   },
   {
-    url: '/static/pages/inventory/index/heroes.67c4c10b394390beae42.js',
-    revision: '65d063e0b1fec4df6cd8cb58a385096b'
+    "url": "/static/pages/inventory/index/heroes.5ea5b6380399fef0f667.js",
+    "revision": "e6e6c3593ff15b1fa035ea364ff7ac8c"
   },
   {
-    url: '/static/pages/inventory/index/items.07fa9829baceb7df1395.js',
-    revision: '77303fd9ff9e493a86482fc2019fea95'
+    "url": "/static/pages/inventory/index/items.c0668daf85f406611f3c.js",
+    "revision": "506b944639f1327182dce9476b0aeb59"
   },
   {
-    url:
-      '/static/pages/inventory/parties/_partyId/positions/_positionId.c189c3abe5bbf7587d3c.js',
-    revision: '7eda8a72f5779de54a7fdab6e96fd736'
+    "url": "/static/pages/inventory/parties/_partyId/positions/_positionId.ae7d11f830caf92fd92f.js",
+    "revision": "78269fbf143e008c80ae3ed6a0ada544"
   },
   {
-    url: '/static/pages/inventory/parties/index.f301733fb8205ec63200.js',
-    revision: 'dcb162a65b115d12c5754eb2a7242038'
+    "url": "/static/pages/inventory/parties/index.97694c1abe54cd7d4ca3.js",
+    "revision": "79d45d796861cd94a597f7d980004302"
   },
   {
-    url: '/static/pages/items/_id.bf9cc96b329cf11cda71.js',
-    revision: '2ddabe448473533b952240c53c294901'
+    "url": "/static/pages/items/_id.3bc9959f55ee1ecc74e7.js",
+    "revision": "4c061a4ef3398633f86cbd939cb221fd"
   },
   {
-    url: '/static/pages/market/index.d37d727cfb5bc0103bed.js',
-    revision: 'cc84664a771dd92388dfa94707a36271'
+    "url": "/static/pages/market/index.d37d727cfb5bc0103bed.js",
+    "revision": "cc84664a771dd92388dfa94707a36271"
   },
   {
-    url: '/static/pages/market/shop.c7cd3b0313706862270b.js',
-    revision: '057233b23abb3dc1df9342c219663680'
+    "url": "/static/pages/market/shop.9829aff96f3b00512e10.js",
+    "revision": "37cb1531fe26075e662ceb4701397690"
   },
   {
-    url: '/static/pages/market/trade/index.66393ed090eeb50c9bde.js',
-    revision: 'b798f263001b0a127d1b12bcc5efc40b'
+    "url": "/static/pages/market/trade/index.7424256667e08cf7e2e3.js",
+    "revision": "9193f2acb35a7a99d6128264b3361f51"
   },
   {
-    url: '/static/pages/market/trade/index/heroes.2d61a39d75cb437a1ca0.js',
-    revision: 'a40b7994617e83b01a56d9224cbab630'
+    "url": "/static/pages/market/trade/index/heroes.cc13015a18ca47623b95.js",
+    "revision": "e249463bb2d62458d0103e82e339f4bb"
   },
   {
-    url: '/static/pages/market/trade/index/items.ebb86f92f2f9a0fab976.js',
-    revision: '17176a2e343aa583c7822bee0f305acf'
+    "url": "/static/pages/market/trade/index/items.8b82bea6053261189f90.js",
+    "revision": "68b2ff6e72db28297dbc84d27beb66f3"
   },
   {
-    url: '/static/pages/notifications.c1e461272e797cc279e9.js',
-    revision: 'cfdb554e8287a8c3df8b31552e32a791'
+    "url": "/static/pages/notifications.0a2a1a34d746988d0833.js",
+    "revision": "ad398d0b0473c611c15481b8fea648ab"
   },
   {
-    url: '/static/pages/pixelator.596ec7a4cfc97f056e70.js',
-    revision: '0b4efc522a16fad2fb89184ae3a36779'
+    "url": "/static/pages/pixelator.632cb3e32bd3f749520b.js",
+    "revision": "26954ee55a8f902b05aa43ef224406b9"
   },
   {
-    url: '/static/pages/terms.e54dc9792de6bc641d50.js',
-    revision: 'f80e73bcdbe46921faa8f47b708a260b'
+    "url": "/static/pages/terms.e54dc9792de6bc641d50.js",
+    "revision": "f80e73bcdbe46921faa8f47b708a260b"
   },
   {
-    url: '/static/pages/users/_id.8b445102b8748c1ca5a4.js',
-    revision: '968e8b75a2003d9556a11feb3532957d'
-  },
-  {
-    url: '/static/vendor.f4dfb25391dcf42f7895.js',
-    revision: '19dc6b53c81baab6a6c4129a0684b305'
+    "url": "/static/pages/users/_id.c37ada9d26bceab2303a.js",
+    "revision": "62b758c109badac4371bda6e27198ebc"
   }
 ])
 
-workboxSW.router.registerRoute(
-  new RegExp('/static/.*'),
-  workboxSW.strategies.cacheFirst({}),
-  'GET'
-)
 
-workboxSW.router.registerRoute(
-  new RegExp('/.*'),
-  workboxSW.strategies.networkFirst({}),
-  'GET'
-)
+workboxSW.router.registerRoute(new RegExp('/static/.*'), workboxSW.strategies.cacheFirst({}), 'GET')
+
+workboxSW.router.registerRoute(new RegExp('/.*'), workboxSW.strategies.networkFirst({}), 'GET')
+

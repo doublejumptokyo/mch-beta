@@ -1,13 +1,13 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: mch-web
+- hosts: mch-beta
   gather_facts: False
   max_fail_percentage: 0
   vars:
     ansible_python_interpreter: python3
-    pkg: github.com/doublejumptokyo/mch-web
+    pkg: github.com/doublejumptokyo/mch-beta
     bucket: build.prod.mch.djty.co
-    app_name: mch-web
+    app_name: mch-beta
     deploy_base: "/var/src/{{ app_name }}"
     rundir: "/var/app/{{ app_name }}"
     VERSION: master
