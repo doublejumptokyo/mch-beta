@@ -1,5 +1,5 @@
-var Migrations = artifacts.require('./Migrations.sol')
+var Hero = artifacts.require('./Hero.sol')
 
 module.exports = function(deployer) {
-  deployer.deploy(Migrations)
+  deployer.deploy(Hero)
 }
