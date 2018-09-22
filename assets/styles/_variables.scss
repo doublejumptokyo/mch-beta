@@ -1,0 +1,16 @@
+$breakpoint: 768px;
+
+$colors: (
+  white: #fff,
+  gray: #666,
+  primary: rgb(64, 189, 118),
+  brand1: rgb(251, 255, 180),
+  brand2: rgb(51, 9, 20),
+  brand3: rgb(92, 19, 13),
+  brand4: rgb(213, 148, 55),
+  battleUser1: #609da8,
+  battleUser2: #be6c65
+);
+
+$color-battle-user-1: map-get($colors, battleUser1);
+$color-battle-user-2: map-get($colors, battleUser2);

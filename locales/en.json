@@ -1,0 +1,15 @@
+{
+  "label": "English",
+  "pages": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "battles": "Battle",
+    "dungeons": "Quest",
+    "market": "Market",
+    "help": "Help",
+    "terms": "Terms"
+  },
+  "others": {
+    "other": "Others"
+  }
+}
