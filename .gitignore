@@ -15,6 +15,13 @@ yarn.lock
 build/*
 !/build/contracts
 /build/contracts/*
+!build/contracts/Hero.json
+!build/contracts/HeroAsset.json
 !build/contracts/HeroManager.json
+!build/contracts/Extension.json
+!build/contracts/ExtensionAsset.json
+!build/contracts/ExtensionManager.json
 !build/contracts/Register.json
 !build/contracts/User.json
+!build/contracts/DeckManager.json
+
