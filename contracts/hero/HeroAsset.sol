@@ -27,7 +27,7 @@ contract HeroAsset is ERC721Mintable, ERC721Pausable {
         return heroTypeToSupplyLimit[_heroType];
     }
 
-    function mintHeroAsset(address _owner, uint256 _tokenId) public onlyMinter {
+    function mintHeroAsset(address _owner, uint256 _tokenId) public {//onlyMinter {
         uint16 _heroType = uint16(_tokenId / HERO_TYPE_OFFSET);
         uint16 _heroTypeIndex = uint16(_tokenId % HERO_TYPE_OFFSET) - 1;
         require(_heroTypeIndex < heroTypeToSupplyLimit[_heroType], "supply over");
