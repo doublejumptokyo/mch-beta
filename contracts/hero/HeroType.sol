@@ -1,9 +1,9 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
 
-import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 
 
-contract HeroType is Ownable {
+contract HeroType is MinterRole {
 
     mapping(uint16 => HeroTypeData) public heroTypes;
 
@@ -31,7 +31,7 @@ contract HeroType is Ownable {
         uint16 _initalActiveSkillId,
         uint16 _passiveSkillId,
         uint16 _rarity
-    ) public onlyOwner {
+    ) public onlyMinter {
         HeroTypeData storage heroTypeData = heroTypes[_heroType];
         // require(!heroTypeData.exists);
         heroTypeData.heroName = bytes(_heroName);
