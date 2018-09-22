@@ -4,33 +4,33 @@ import "../lib/openzeppelin-solidity/contracts/token/ERC721/ERC721Mintable.sol";
 import "../lib/openzeppelin-solidity/contracts/token/ERC721/ERC721Pausable.sol";
 
 
-contract HeroAsset is ERC721Mintable, ERC721Pausable {
+contract ExtensionAsset is ERC721Mintable, ERC721Pausable {
 
-    uint16 public constant HERO_TYPE_OFFSET = 10000;
+    uint16 public constant EXTENSION_TYPE_OFFSET = 10000;
 
-    string public tokenURIPrefix = "https://www.mycryptoheroes.net/metadata/hero/";
-    mapping(uint16 => uint16) private heroTypeToSupplyLimit;
+    string public tokenURIPrefix = "https://www.mycryptoheroes.net/metadata/extension/";
+    mapping(uint16 => uint16) private extensionTypeToSupplyLimit;
 
-    constructor() public ERC721Full("MyCryptoHeroes:Hero", "MCHH") {}
+    constructor() public ERC721Full("MyCryptoHeroes:Extension", "MCHE") {}
 
-    function setSupplyLimit(uint16 _heroType, uint16 _supplyLimit) external onlyMinter {
-        require(heroTypeToSupplyLimit[_heroType] == 0 || _supplyLimit < heroTypeToSupplyLimit[_heroType],
+    function setSupplyLimit(uint16 _extensionType, uint16 _supplyLimit) external onlyMinter {
+        require(extensionTypeToSupplyLimit[_extensionType] == 0 || _supplyLimit < extensionTypeToSupplyLimit[_extensionType],
             "_supplyLimit is bigger");
-        heroTypeToSupplyLimit[_heroType] = _supplyLimit;
+        extensionTypeToSupplyLimit[_extensionType] = _supplyLimit;
     }
 
     function setTokenURIPrefix(string _tokenURIPrefix) external onlyMinter {
         tokenURIPrefix = _tokenURIPrefix;
     }
 
-    function getSupplyLimit(uint16 _heroType) public view returns (uint16) {
-        return heroTypeToSupplyLimit[_heroType];
+    function getSupplyLimit(uint16 _extensionType) public view returns (uint16) {
+        return extensionTypeToSupplyLimit[_extensionType];
     }
 
-    function mintHeroAsset(address _owner, uint256 _tokenId) public onlyMinter {
-        uint16 _heroType = uint16(_tokenId / HERO_TYPE_OFFSET);
-        uint16 _heroTypeIndex = uint16(_tokenId % HERO_TYPE_OFFSET) - 1;
-        require(_heroTypeIndex < heroTypeToSupplyLimit[_heroType], "supply over");
+    function mintExtensionAsset(address _owner, uint256 _tokenId) public onlyMinter {
+        uint16 _extensionType = uint16(_tokenId / EXTENSION_TYPE_OFFSET);
+        uint16 _extensionTypeIndex = uint16(_tokenId % EXTENSION_TYPE_OFFSET) - 1;
+        require(_extensionTypeIndex < extensionTypeToSupplyLimit[_extensionType], "supply over");
         _mint(_owner, _tokenId);
     }
 

@@ -1,6 +1,7 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
 
 import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+
 
 contract IpfsType is Ownable {
 
