@@ -33,9 +33,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
-  methods: mapActions(['logout'])
+  methods: {
+    async logout() {
+      await this.$store.dispatch('logout')
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
