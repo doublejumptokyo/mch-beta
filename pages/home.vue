@@ -1,8 +1,5 @@
 <template lang="pug">
 .homePage
-  nuxt-link.homePage__notification(to="/notifications")
-    fa-icon(icon="info-circle")
-    span There are 3 completed explorations
   .homePage__userData
     template(v-if="address")
       .userData
