@@ -33,12 +33,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  methods: {
-    logout() {
-      this.$store.commit('DELETE_PRIVATE_KEYS')
-    }
-  }
+  methods: mapActions(['logout'])
 }
 </script>
 
