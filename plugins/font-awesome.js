@@ -28,7 +28,9 @@ import {
   faArrowRight,
   faArrowLeft,
   faUpload,
-  faSpinner
+  faSpinner,
+  faSignInAlt,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faEdit,
@@ -76,6 +78,8 @@ library.add(
   faArrowLeft,
   faUpload,
   faSpinner,
+  faSignInAlt,
+  faSignOutAlt,
   faClock,
   faSadTear,
   faShareSquare,

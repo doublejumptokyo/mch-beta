@@ -28,17 +28,14 @@
           fa-icon.links__arrow(icon="angle-right")
       li
         button.links__item(@click="logout")
-          fa-icon.links__icon(icon="info" fixed-width)
-          span Clear cache
+          fa-icon.links__icon(icon="sign-out-alt" fixed-width)
+          span Sign out
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  methods: {
-    logout() {
-      this.$store.commit('DELETE_PRIVATE_KEYS')
-    }
-  }
+  methods: mapActions(['logout'])
 }
 </script>
 
@@ -59,9 +56,10 @@ export default {
     align-items: center;
     color: inherit;
     display: flex;
-    justify-content: space-between;
+    min-height: 40px;
     padding: 0.5rem 1rem;
     text-decoration: none;
+    width: 100%;
   }
 
   &__icon {
