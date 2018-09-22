@@ -1,13 +1,14 @@
+import Web3 from 'web3'
+
 export const state = () => ({
   env: {},
   ethAddress: '',
-  dappsChainPrivateKeyBase64: '0x'
+  dappsChainPrivateKeyBase64: null
 })
 
 export const getters = {
   isLoggedIn(state) {
-    const key = state.dappsChainPrivateKeyBase64
-    return key && key !== '0x'
+    return !!state.dappsChainPrivateKeyBase64
   }
 }
 
@@ -18,35 +19,11 @@ export const mutations = {
   SET_ETH_ADDRESS(state, address) {
     state.ethAddress = address
   },
-  SET_PRIVATE_KEY(state, key = null) {
-    const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
-    let newKey = null
-
-    // payload
-    if (key === null) {
-      let key = window && window.localStorage.getItem(storageKeyName)
-
-      // localStorage
-      if (!key || key === '0x') {
-        newKey = '0x'
-      } else {
-        newKey = key
-      }
-    } else {
-      newKey = key
-    }
-    state.dappsChainPrivateKeyBase64 = newKey
-    window && window.localStorage.setItem(storageKeyName, newKey)
+  SET_PRIVATE_KEY(state, key) {
+    state.dappsChainPrivateKeyBase64 = key
   },
   DELETE_PRIVATE_KEYS(state) {
-    Array.from(Array(window.localStorage.length).keys())
-      .map(index => window.localStorage.key(index))
-      .forEach(key => {
-        if (key.startsWith('mch-beta-')) {
-          window.localStorage.removeItem(key)
-        }
-      })
-    state.dappsChainPrivateKeyBase64 = '0x'
+    state.dappsChainPrivateKeyBase64 = null
   }
 }
 
@@ -54,5 +31,33 @@ export const actions = {
   async nuxtServerInit({ commit }) {
     const env = await this.$axios.$get('/config/env.json')
     commit('SET_ENV', env)
+  },
+  checkLoggedIn({ state, commit }) {
+    const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
+    const key = window && window.localStorage.getItem(storageKeyName)
+    commit('SET_PRIVATE_KEY', key)
+  },
+  async login({ state, commit }) {
+    const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
+    const privateKey = state.dappsChainPrivateKeyBase64
+    if (privateKey) return
+    const token = await this.$keyManager.getTokenAsync()
+    const ethAddress = await this.$ethManager.getCurrentAccountAsync()
+    const message = `MyCryptoHeroes\nLogin:${ethAddress}\nToken:${token}`
+    const dataToSign = Web3.utils.utf8ToHex(message)
+    const sig = await this.$ethManager.getSignatureAsync(dataToSign)
+    const key = await this.$keyManager.loginAsync(ethAddress, sig, message)
+    window && window.localStorage.setItem(storageKeyName, key)
+    commit('SET_PRIVATE_KEY', key)
+  },
+  logout({ commit }) {
+    Array.from(Array(window.localStorage.length).keys())
+      .map(index => window.localStorage.key(index))
+      .forEach(key => {
+        if (key.startsWith('mch-beta-')) {
+          window.localStorage.removeItem(key)
+        }
+      })
+    commit('DELETE_PRIVATE_KEYS')
   }
 }
