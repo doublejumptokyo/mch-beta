@@ -37,6 +37,16 @@ export const mutations = {
     }
     state.dappsChainPrivateKeyBase64 = newKey
     window && window.localStorage.setItem(storageKeyName, newKey)
+  },
+  DELETE_PRIVATE_KEYS(state) {
+    Array.from(Array(window.localStorage.length).keys())
+      .map(index => window.localStorage.key(index))
+      .forEach(key => {
+        if (key.startsWith('mch-beta-')) {
+          window.localStorage.removeItem(key)
+        }
+      })
+    state.dappsChainPrivateKeyBase64 = '0x'
   }
 }
 
