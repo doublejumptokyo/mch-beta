@@ -50,7 +50,7 @@ export const actions = {
     window && window.localStorage.setItem(storageKeyName, key)
     commit('SET_PRIVATE_KEY', key)
   },
-  logout({ commit }) {
+  async logout({ commit }) {
     Array.from(Array(window.localStorage.length).keys())
       .map(index => window.localStorage.key(index))
       .forEach(key => {
