@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
 
 import "./HeroType.sol";
 
@@ -9,7 +9,6 @@ contract Hero is HeroType {
 
     mapping(uint256 => HeroData) public heroes;
     mapping(uint16 => uint256[]) public heroTypeIds;
-    address public heroManagerAddress;
 
     struct HeroData {
         uint16 heroType;
@@ -22,44 +21,35 @@ contract Hero is HeroType {
         bytes  ipfs;
         bool   exists;
     }
-    
-    modifier onlyHeroManagerAddress() {
-        require(msg.sender == heroManagerAddress);
-        _;
+
+    function setIpfs(uint256 _heroId, string _ipfs, uint16 _activeSkillId) public onlyMinter {
+        HeroData storage data = heroes[_heroId];
+        require(data.exists);
+        data.ipfs = bytes(_ipfs);
+        data.activeSkillId = _activeSkillId;
     }
 
-    function setHeroManagerAddress(address _heroManagerAddress) public onlyOwner {
-        heroManagerAddress = _heroManagerAddress;
+    function setAliasName(uint256 _heroId, string _aliasName) public onlyMinter {
+        HeroData storage data = heroes[_heroId];
+        require(data.exists);
+        data.aliasName = bytes(_aliasName);
     }
 
-    function setIpfs(uint256 _heroId, string _ipfs, uint16 _activeSkillId) public onlyHeroManagerAddress() {
-        HeroData storage heroData = heroes[_heroId];
-        require(heroData.exists);
-        heroData.ipfs = bytes(_ipfs);
-        heroData.activeSkillId = _activeSkillId;
-    }
-
-    function setAliasName(uint256 _heroId, string _aliasName) public onlyHeroManagerAddress() {
-        HeroData storage heroData = heroes[_heroId];
-        require(heroData.exists);
-        heroData.aliasName = bytes(_aliasName);
-    }
-
-    function createHero(uint256 _heroId) public onlyHeroManagerAddress {
-        HeroData storage heroData = heroes[_heroId];
-        require(!heroData.exists);
+    function createHero(uint256 _heroId) public onlyMinter {
+        HeroData storage data = heroes[_heroId];
+        require(!data.exists);
         
         uint16 _heroType = uint16(_heroId / HERO_TYPE_OFFSET);
         HeroTypeData memory heroTypeData = heroTypes[_heroType];
         require(heroTypeData.exists);
 
-        heroData.heroType = _heroType;
-        heroData.hp = heroTypeData.hp;
-        heroData.phy = heroTypeData.phy;
-        heroData.intl = heroTypeData.intl;
-        heroData.agi = heroTypeData.agi;
-        heroData.ipfs = heroTypeData.ipfs;
-        heroData.activeSkillId = heroTypeData.initalActiveSkillId;
+        data.heroType = _heroType;
+        data.hp = heroTypeData.hp;
+        data.phy = heroTypeData.phy;
+        data.intl = heroTypeData.intl;
+        data.agi = heroTypeData.agi;
+        data.ipfs = heroTypeData.ipfs;
+        data.activeSkillId = heroTypeData.initalActiveSkillId;
         
         heroTypeIds[_heroType].push(_heroId);
     } 
@@ -75,18 +65,21 @@ contract Hero is HeroType {
         string  _aliasName,
         string  _ipfs
     ) {
-        HeroData memory heroData = heroes[_heroId];
-        require(heroData.exists);
-        HeroTypeData memory heroTypeData = heroTypes[heroData.heroType];
-        _heroType = heroData.heroType;
-        _hp = heroData.hp;
-        _phy = heroData.phy;
-        _intl = heroData.intl;
-        _agi = heroData.agi;
-        _activeSkillId = heroData.activeSkillId;
-        _passiveSkillId = heroTypeData.passiveSkillId;
-        _aliasName = string(heroData.aliasName);
-        _ipfs = string(heroData.ipfs);
+        HeroData memory data = heroes[_heroId];
+        require(data.exists);
+        HeroTypeData memory typeData = heroTypes[data.heroType];
+        _heroType = data.heroType;
+        _hp = data.hp;
+        _phy = data.phy;
+        _intl = data.intl;
+        _agi = data.agi;
+        _activeSkillId = data.activeSkillId;
+        _passiveSkillId = typeData.passiveSkillId;
+        _aliasName = string(data.aliasName);
+        _ipfs = string(data.ipfs);
     }
-
+    
+    function getHeroTypeLength(uint16 _heroType) public view returns (uint16) {
+        return uint16(heroTypeIds[_heroType].length);
+    }
 }
