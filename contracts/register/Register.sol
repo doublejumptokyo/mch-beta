@@ -6,7 +6,7 @@ import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract Register is Ownable {
 
-    mapping(address => bool) public isRegistered;
+    mapping(address => bool) private registrations;
 
     HeroManager public heroManager;
 
@@ -15,11 +15,15 @@ contract Register is Ownable {
     }
     
     function register() public {
-        if(!isRegistered[msg.sender]) {
+        if(!registrations[msg.sender]) {
             // heroManager.mintHero(msg.sender, defaultHeroId1);
             // heroManager.mintHero(msg.sender, defaultHeroId2);
-            isRegistered[msg.sender] = true;
+            registrations[msg.sender] = true;
         }
+    }
+    
+    function isRegistered() public view returns (bool) {
+        return registrations[msg.sender];
     }
 
 }
