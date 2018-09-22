@@ -74,9 +74,12 @@ class EthAccountManager {
   }
 }
 
-export default async (context, inject) => {
+export default async ({ store }, inject) => {
   const ethManager = await EthAccountManager.createAsync(
     window.web3.currentProvider
   )
+  const ethAddress = await ethManager.getCurrentAccountAsync()
+  store.commit('SET_ETH_ADDRESS', ethAddress)
+
   inject('ethManager', ethManager)
 }

@@ -17,3 +17,9 @@ dist
 /assets/types/*
 
 sw.js
+
+/test/*
+/migrations/*
+/contracts/*
+
+truffle-config.js
