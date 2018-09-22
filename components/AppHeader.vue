@@ -26,7 +26,9 @@ header.appHeader
 
   .appHeader__userData.userData
     no-ssr
-      button(v-if="!isLoggedIn" @click="login") Login
+      button(v-if="!isLoggedIn" @click="login")
+        fa-icon(icon="sign-in-alt")
+        | Login
       nuxt-link.userData__name(to="/account" v-else)
         fa-icon(icon="user")
         span {{ address }}

@@ -28,8 +28,8 @@
           fa-icon.links__arrow(icon="angle-right")
       li
         button.links__item(@click="logout")
-          fa-icon.links__icon(icon="info" fixed-width)
-          span Clear cache
+          fa-icon.links__icon(icon="sign-out-alt" fixed-width)
+          span Sign out
 </template>
 
 <script>
@@ -56,9 +56,10 @@ export default {
     align-items: center;
     color: inherit;
     display: flex;
-    justify-content: space-between;
+    min-height: 40px;
     padding: 0.5rem 1rem;
     text-decoration: none;
+    width: 100%;
   }
 
   &__icon {
