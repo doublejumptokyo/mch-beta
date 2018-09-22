@@ -67,9 +67,6 @@ export default {
       return this.$store.state.user.walletAddress
     }
   },
-  async beforeMount() {
-    this.$store.dispatch('checkLoggedIn')
-  },
   methods: {
     ...mapActions(['login']),
     toggleMenu() {
@@ -79,25 +76,6 @@ export default {
       this.$i18n.locale = lang
       this.isLangDropdownShown = false
     }
-    // async login() {
-    //   const privateKeyBase64 = this.$store.state.dappsChainPrivateKeyBase64
-
-    //   if (!privateKeyBase64 || privateKeyBase64 === '0x') {
-    //     const token = await this.$keyManager.getTokenAsync()
-    //     const ethAddress = await this.$ethManager.getCurrentAccountAsync()
-    //     const message = `MyCryptoHeroes\nLogin:${ethAddress}\nToken:${token}`
-    //     const dataToSign = Web3.utils.utf8ToHex(message)
-    //     const sig = await this.$ethManager.getSignatureAsync(dataToSign)
-    //     const key = await this.$keyManager.loginAsync(ethAddress, sig, message)
-    //     this.$store.commit('SET_PRIVATE_KEY', key)
-    //   }
-
-    //   // const accountManager = await DAppChainAccountManager.createAsync(
-    //   //   this.$store.state.env.dappsChain,
-    //   //   privateKeyBase64
-    //   // )
-    //   // console.log(accountManager)
-    // }
   }
 }
 </script>
