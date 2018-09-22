@@ -1,0 +1,20 @@
+keystore
+pass
+
+.idea/
+.nuxt/
+.envrc
+node_modules/
+dist/
+.env
+.DS_Store
+*.retry
+yarn.lock
+
+# Contract builds
+build/*
+!/build/contracts
+/build/contracts/*
+!build/contracts/HeroPresale.json
+!build/contracts/HeroAsset.json
+!build/contracts/ERC20.json

@@ -1,0 +1,15 @@
+{
+  "label": "日本語",
+  "pages": {
+    "home": "ホーム",
+    "inventory": "インベントリ",
+    "battles": "バトル",
+    "dungeons": "クエスト",
+    "market": "マーケット",
+    "help": "ヘルプ",
+    "terms": "利用規約"
+  },
+  "others": {
+    "other": "その他"
+  }
+}
