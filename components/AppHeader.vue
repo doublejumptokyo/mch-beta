@@ -25,10 +25,11 @@ header.appHeader
       span.fa-layers-counter 3
 
   .appHeader__userData.userData
-    nuxt-link.userData__name(to="/account" v-if="address")
-      fa-icon(icon="user")
-      span {{ address }}
-    div(v-else) No wallet.
+    button(v-if="!isLoggedIn" @click="login") Login
+    template(v-else)
+      nuxt-link.userData__name(to="/account" v-if="address")
+        fa-icon(icon="user")
+        span {{ address }}
 
   .appHeader__globalNavi
     ul
@@ -55,6 +56,8 @@ header.appHeader
 </template>
 
 <script>
+import Web3 from 'web3'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -63,9 +66,13 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isLoggedIn']),
     address() {
       return this.$store.state.user.walletAddress
     }
+  },
+  async beforeMount() {
+    this.$store.commit('SET_PRIVATE_KEY')
   },
   methods: {
     toggleMenu() {
@@ -74,6 +81,25 @@ export default {
     setLang(lang) {
       this.$i18n.locale = lang
       this.isLangDropdownShown = false
+    },
+    async login() {
+      const privateKeyBase64 = this.$store.state.dappsChainPrivateKeyBase64
+
+      if (!privateKeyBase64 || privateKeyBase64 === '0x') {
+        const token = await this.$keyManager.getTokenAsync()
+        const ethAddress = await this.$ethManager.getCurrentAccountAsync()
+        const message = `MyCryptoHeroes\nLogin:${ethAddress}\nToken:${token}`
+        const dataToSign = Web3.utils.utf8ToHex(message)
+        const sig = await this.$ethManager.getSignatureAsync(dataToSign)
+        const key = await this.$keyManager.loginAsync(ethAddress, sig, message)
+        this.$store.commit('SET_PRIVATE_KEY', key)
+      }
+
+      // const accountManager = await DAppChainAccountManager.createAsync(
+      //   this.$store.state.env.dappsChain,
+      //   privateKeyBase64
+      // )
+      // console.log(accountManager)
     }
   }
 }
