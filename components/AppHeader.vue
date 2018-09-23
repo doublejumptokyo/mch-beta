@@ -21,12 +21,13 @@ header.appHeader
 
   .appHeader__userData.userData
     no-ssr
-      button(v-if="!isLoggedIn" @click="login")
-        fa-icon(icon="sign-in-alt")
-        | Login
-      nuxt-link.userData__name(to="/account" v-else)
+      nuxt-link.userData__name(v-if="isLoggedIn" to="/account")
         fa-icon(icon="user")
         span {{ address }}
+      button(v-else-if="hasWallet" @click="login")
+        fa-icon(icon="sign-in-alt")
+        | Login
+      span(v-else) No wallet
 
   .appHeader__globalNavi
     ul
@@ -53,7 +54,7 @@ header.appHeader
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -62,6 +63,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['hasWallet']),
     ...mapGetters(['isLoggedIn']),
     address() {
       return this.$store.state.user.name
@@ -188,11 +190,17 @@ export default {
   }
 
   &__userData {
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
     margin-left: 1rem;
-    width: 5rem;
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: calc(0.375em - 1px);
+    max-width: 8rem;
 
     @media (min-width: $breakpoint) {
-      width: 10rem;
+      max-width: 16rem;
     }
   }
 }
