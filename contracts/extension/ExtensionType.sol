@@ -41,23 +41,23 @@ contract ExtensionType is MinterRole {
     }
 
     function getExtensionType(uint16 _type) public view returns (
-        string _name,
-        int16  _hp,
-        int16  _phy,
-        int16  _intl,
-        int16  _agi,
-        uint16 _activeSkillId,
-        uint16 _rarity
+        string name,
+        int16  hp,
+        int16  phy,
+        int16  intl,
+        int16  agi,
+        uint16 activeSkillId,
+        uint16 rarity
     ) {
         ExtensionTypeData memory data = extensionTypes[_type];
         require(data.exists);
-        _name = string(data.name);
-        _hp = data.hp;
-        _phy = data.phy;
-        _intl = data.intl;
-        _agi = data.agi;
-        _activeSkillId = data.activeSkillId;
-        _rarity = data.rarity;
+        name = string(data.name);
+        hp = data.hp;
+        phy = data.phy;
+        intl = data.intl;
+        agi = data.agi;
+        activeSkillId = data.activeSkillId;
+        rarity = data.rarity;
     }
 
 }

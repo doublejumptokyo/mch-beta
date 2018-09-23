@@ -47,27 +47,27 @@ contract HeroType is MinterRole {
     }
 
     function getHeroType(uint16 _heroType) public view returns (
-        string _heroName,
-        string _ipfs,
-        int16  _hp,
-        int16  _phy,
-        int16  _intl,
-        int16  _agi,
-        uint16 _initalActiveSkillId,
-        uint16 _passiveSkillId,
-        uint16 _rarity
+        string heroName,
+        string ipfs,
+        int16  hp,
+        int16  phy,
+        int16  intl,
+        int16  agi,
+        uint16 initalActiveSkillId,
+        uint16 passiveSkillId,
+        uint16 rarity
     ) {
         HeroTypeData memory heroTypeData = heroTypes[_heroType];
         require(heroTypeData.exists);
-        _heroName = string(heroTypeData.heroName);
-        _ipfs     = string(heroTypeData.ipfs);
-        _hp = heroTypeData.hp;
-        _phy = heroTypeData.phy;
-        _intl = heroTypeData.intl;
-        _agi = heroTypeData.agi;
-        _initalActiveSkillId = heroTypeData.initalActiveSkillId;
-        _passiveSkillId = heroTypeData.passiveSkillId;
-        _rarity = heroTypeData.rarity;
+        heroName = string(heroTypeData.heroName);
+        ipfs     = string(heroTypeData.ipfs);
+        hp = heroTypeData.hp;
+        phy = heroTypeData.phy;
+        intl = heroTypeData.intl;
+        agi = heroTypeData.agi;
+        initalActiveSkillId = heroTypeData.initalActiveSkillId;
+        passiveSkillId = heroTypeData.passiveSkillId;
+        rarity = heroTypeData.rarity;
     }
 
 }
