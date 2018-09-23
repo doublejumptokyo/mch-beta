@@ -36,7 +36,7 @@ header.appHeader
           fa-icon(icon="home")
           span {{ $i18n.t('pages.home') }}
       li
-        nuxt-link(to="/inventory")
+        nuxt-link(to="/team")
           fa-icon(:icon="['fas', 'users']")
           span {{ $i18n.t('pages.team') }}
       li
