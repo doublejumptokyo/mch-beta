@@ -42,6 +42,7 @@ contract Extension is ExtensionType {
         data.intl = typeData.intl;
         data.agi = typeData.agi;
         data.activeSkillId = typeData.activeSkillId;
+        data.exists = true;
         
         extensionTypeIds[_type].push(_extensionId);
     } 

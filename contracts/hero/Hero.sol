@@ -50,6 +50,7 @@ contract Hero is HeroType {
         data.agi = heroTypeData.agi;
         data.ipfs = heroTypeData.ipfs;
         data.activeSkillId = heroTypeData.initalActiveSkillId;
+        data.exists = true;
         
         heroTypeIds[_heroType].push(_heroId);
     } 
