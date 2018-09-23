@@ -164,6 +164,8 @@ class DAppChainKeyManager {
 }
 
 export default async ({ store }, inject) => {
+  if (!store.state.hasWallet) return
+
   const keyManager = await DAppChainKeyManager.createAsync(
     store.state.env.dappsChain
   )
