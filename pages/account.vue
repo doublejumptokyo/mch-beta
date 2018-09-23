@@ -1,18 +1,13 @@
 <template lang="pug">
 .accountPage
   .accountPage__userData
-    img(:src="require('~/assets/images/mary.png')")
     p
-      span {{ $store.state.user.name }}
-      button
+      input(v-model="userName" v-if="isRenaming")
+      span(v-else) {{ $store.state.user.name }}
+      button(@click="rename" v-if="isRenaming")
+        fa-icon(:icon="['fas', 'check']")
+      button(@click="isRenaming = true" v-else)
         fa-icon(:icon="['far', 'edit']")
-    .userData
-      .userData__ether
-        fa-icon(:icon="['fab', 'ethereum']")
-        | 999,999,999
-      .userData__gm
-        fa-icon(icon="coins")
-        | 999,999,999
   section.accountPage__links
     h2 {{ $i18n.t('others.other') }}
     ul.links
@@ -34,7 +29,26 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isRenaming: false
+    }
+  },
+  computed: {
+    userName: {
+      get() {
+        return this.$store.state.user.name
+      },
+      set(name) {
+        this.$store.commit('user/SET_NAME', name)
+      }
+    }
+  },
   methods: {
+    async rename() {
+      await this.$store.dispatch('user/rename', this.userName)
+      this.isRenaming = false
+    },
     async logout() {
       await this.$store.dispatch('logout')
       this.$router.push('/')
