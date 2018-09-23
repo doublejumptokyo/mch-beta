@@ -19,6 +19,16 @@ class Team {
     })
     return units
   }
+
+  async set(team) {
+    return new Promise((resolve, reject) => {
+      this.contract.methods
+        .setDeck(...team)
+        .send()
+        .on('receipt', resolve)
+        .on('error', reject)
+    })
+  }
 }
 
 export default async ({ app, store }, inject) => {
