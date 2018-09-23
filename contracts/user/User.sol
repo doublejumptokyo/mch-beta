@@ -35,8 +35,8 @@ contract User {
 
     function getAccount() public view returns (
         bool exists,
-        string  _name,
-        string  _ipfs
+        string  name,
+        string  ipfs
     ) {
         Account storage account = accounts[msg.sender];
         if (account.exists) {
