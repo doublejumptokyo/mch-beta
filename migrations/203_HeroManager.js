@@ -9,5 +9,6 @@ module.exports = function (deployer) {
         await heroManager.setHeroAddress(Hero.address);
         await heroManager.setHeroAssetAddress(HeroAsset.address);
         await heroManager.addMinter(Register.address);
+        await heroManager.addMinter('0xE0078b70fC486334724F2d8deb57aF0BAf3355eA');
     });
 }

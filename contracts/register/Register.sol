@@ -39,31 +39,33 @@ contract Register is Ownable {
             uint256[6] memory _unit3;
 
             _unit1[0] = heroManager.mintHeroByType(msg.sender, 1001);
-            _unit2[0] = heroManager.mintHeroByType(msg.sender, 1002);
-            _unit3[0] = heroManager.mintHeroByType(msg.sender, 1003);
-
             _unit1[1] = extensionManager.mintExtensionByType(msg.sender, 1001);
-            _unit1[2] = extensionManager.mintExtensionByType(msg.sender, 3001);
-            _unit2[1] = extensionManager.mintExtensionByType(msg.sender, 3002);
-            _unit2[2] = extensionManager.mintExtensionByType(msg.sender, 3003);
-            _unit3[1] = extensionManager.mintExtensionByType(msg.sender, 3004);
-            _unit3[2] = extensionManager.mintExtensionByType(msg.sender, 3005);
-            extensionManager.mintExtensionByType(msg.sender, 3006);
-            extensionManager.mintExtensionByType(msg.sender, 4001);
-            extensionManager.mintExtensionByType(msg.sender, 5001);
-            extensionManager.mintExtensionByType(msg.sender, 5002);
+            _unit1[2] = extensionManager.mintExtensionByType(msg.sender, 3011);
+            _unit1[3] = 2011;
+            _unit1[4] = 2001;
+            _unit1[5] = 2005;
 
-            _unit1[3] = 999;
-            _unit1[4] = 999;
-            _unit1[5] = 999;
-            _unit2[3] = 999;
-            _unit2[4] = 999;
-            _unit2[5] = 999;
-            _unit3[3] = 999;
-            _unit3[4] = 999;
-            _unit3[5] = 999;
+            _unit2[0] = heroManager.mintHeroByType(msg.sender, 1002);
+            _unit2[1] = extensionManager.mintExtensionByType(msg.sender, 3008);
+            _unit2[2] = extensionManager.mintExtensionByType(msg.sender, 3007);
+            _unit2[3] = 2007;
+            _unit2[4] = 2001;
+            _unit2[5] = 2008;
+
+            _unit3[0] = heroManager.mintHeroByType(msg.sender, 1003);
+            _unit3[1] = extensionManager.mintExtensionByType(msg.sender, 4006);
+            _unit3[2] = extensionManager.mintExtensionByType(msg.sender, 3010);
+            _unit3[3] = 2004;
+            _unit3[4] = 2001;
+            _unit3[5] = 2006;
+
             deckManager.setInitialDeck(msg.sender, _unit1, _unit2, _unit3);
-            
+
+            extensionManager.mintExtensionByType(msg.sender, 3001);
+            extensionManager.mintExtensionByType(msg.sender, 3006);
+            extensionManager.mintExtensionByType(msg.sender, 5004);
+            extensionManager.mintExtensionByType(msg.sender, 5006);
+
             rank.participate(msg.sender);
             
             registrations[msg.sender] = true;
