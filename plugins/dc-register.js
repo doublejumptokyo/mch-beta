@@ -43,9 +43,19 @@ class User {
   async get() {
     return await this.contract.methods.getAccount().call()
   }
+
+  async setName(name) {
+    return new Promise((resolve, reject) => {
+      this.contract.methods
+        .setName(name)
+        .send()
+        .on('receipt', resolve)
+        .on('error', reject)
+    })
+  }
 }
 
-export default async ({ app, store }) => {
+export default async ({ app, store }, inject) => {
   if (!store.getters.isLoggedIn) return
   const register = new Register(app.$accountManager)
   const user = new User(app.$accountManager)
@@ -59,4 +69,5 @@ export default async ({ app, store }) => {
     throw new Error('CreateUserError')
   }
   store.commit('user/SET_NAME', response._name)
+  inject('user', user)
 }
