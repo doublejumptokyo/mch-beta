@@ -7,3 +7,10 @@ export const mutations = {
     state.name = name
   }
 }
+
+export const actions = {
+  async rename({ commit }, name) {
+    await this.$user.setName(name)
+    commit('SET_NAME', name)
+  }
+}
