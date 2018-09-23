@@ -84,9 +84,9 @@ contract DeckManager is SignerRole {
         uint256[6] _unit2,
         uint256[6] _unit3
     ) public {
-        check(_unit1);
-        check(_unit2);
-        check(_unit3);
+        // check(_unit1);
+        // check(_unit2);
+        // check(_unit3);
 
         Deck storage deck = decks[msg.sender];
         require(deck.exists);
