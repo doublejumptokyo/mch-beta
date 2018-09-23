@@ -61,7 +61,11 @@ contract BattleTransaction {
         return toBattleId;
     }
 
-    function setUnit(uint8 position, int16 hp, int16 phy, int16 intl, int16 agi, uint16 activeId1, uint16 activeId2, uint16 activeId3, uint16 passiveId, uint32 heroId, uint32 itemId1, uint32 itemId2, uint32 battleId) public {
+    function setUnit(
+        uint8 position, int16 hp, int16 phy, int16 intl, int16 agi,
+        uint256 activeId1, uint256 activeId2, uint256 activeId3, uint256 passiveId,
+        uint256 heroId, uint256 itemId1, uint256 itemId2, uint32 battleId
+    ) public {
         BC.Battle storage battle = battles[battleId];
         require(battle.exists);
         
@@ -79,13 +83,13 @@ contract BattleTransaction {
                 unit.current.phy = phy;
                 unit.current.intl = intl;
                 unit.current.agi = agi;
-                unit.activeIds[0] = activeId1;
-                unit.activeIds[1] = activeId2;
-                unit.activeIds[2] = activeId3;
-                unit.passiveId = passiveId;
-                unit.heroId = heroId;
-                unit.itemId1 = itemId1;
-                unit.itemId2 = itemId2;
+                unit.activeIds[0] = uint16(activeId1);
+                unit.activeIds[1] = uint16(activeId2);
+                unit.activeIds[2] = uint16(activeId3);
+                unit.passiveId = uint16(passiveId);
+                unit.heroId = uint32(heroId);
+                unit.itemId1 = uint32(itemId1);
+                unit.itemId2 = uint32(itemId2);
                 unit.passiveEnabled = true;
                 return;
             }
