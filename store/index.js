@@ -2,6 +2,7 @@ import Web3 from 'web3'
 
 export const state = () => ({
   env: {},
+  hasWallet: false,
   ethAddress: '',
   dappsChainPrivateKeyBase64: null
 })
@@ -15,6 +16,9 @@ export const getters = {
 export const mutations = {
   SET_ENV(state, env) {
     state.env = env
+  },
+  SET_HAS_WALLET(state, hasWallet) {
+    state.hasWallet = hasWallet
   },
   SET_ETH_ADDRESS(state, address) {
     state.ethAddress = address
@@ -33,6 +37,9 @@ export const actions = {
     commit('SET_ENV', env)
   },
   checkLoggedIn({ state, commit }) {
+    if (!state.hasWallet) {
+      return false
+    }
     const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
     const key = window && window.localStorage.getItem(storageKeyName)
     commit('SET_PRIVATE_KEY', key)
