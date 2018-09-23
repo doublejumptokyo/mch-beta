@@ -8,6 +8,13 @@
         fa-icon(:icon="['fas', 'check']")
       button(@click="isRenaming = true" v-else)
         fa-icon(:icon="['far', 'edit']")
+    dl
+      dt Ether Address
+      dd
+        code {{ ethAddress }}
+      dt Loom Address
+      dd
+        code {{ loomAddress }}
   section.accountPage__links
     h2 {{ $i18n.t('others.other') }}
     ul.links
@@ -28,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -35,6 +43,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['ethAddress', 'loomAddress']),
     userName: {
       get() {
         return this.$store.state.user.name
@@ -151,6 +160,16 @@ export default {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         margin-left: 0.5rem;
         padding: 0.5rem;
+      }
+    }
+
+    dl {
+      dt {
+        font-weight: bold;
+      }
+
+      dd {
+        font-size: 0.5rem;
       }
     }
   }
