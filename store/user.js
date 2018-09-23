@@ -1,9 +1,9 @@
 export const state = () => ({
-  walletAddress: ''
+  name: ''
 })
 
 export const mutations = {
-  SET_ADDRESS(state, address) {
-    state.walletAddress = address
+  SET_NAME(state, name) {
+    state.name = name
   }
 }
