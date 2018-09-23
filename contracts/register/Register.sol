@@ -3,6 +3,7 @@ pragma solidity 0.4.24;
 import "../hero/HeroManager.sol";
 import "../extension/ExtensionManager.sol";
 import "../deck/DeckManager.sol";
+import "../match/Rank.sol";
 import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
@@ -13,6 +14,7 @@ contract Register is Ownable {
     HeroManager public heroManager;
     ExtensionManager public extensionManager;
     DeckManager public deckManager;
+    Rank public rank;
 
     function setHeroManagerAddress(address _heroManagerAddress) public onlyOwner {
         heroManager = HeroManager(_heroManagerAddress);
@@ -24,6 +26,10 @@ contract Register is Ownable {
 
     function setDeckManagerAddress(address _deckManagerAddress) public onlyOwner {
         deckManager = DeckManager(_deckManagerAddress);
+    }
+    
+    function setRankAddress(address _rankAddress) public onlyOwner {
+        rank = Rank(_rankAddress);
     }
     
     function register() public {
@@ -56,8 +62,10 @@ contract Register is Ownable {
             _unit3[3] = 999;
             _unit3[4] = 999;
             _unit3[5] = 999;
-
             deckManager.setInitialDeck(msg.sender, _unit1, _unit2, _unit3);
+            
+            rank.participate(msg.sender);
+            
             registrations[msg.sender] = true;
         }
     }

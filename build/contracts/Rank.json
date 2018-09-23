@@ -1,0 +1,4201 @@
+{
+  "contractName": "Rank",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "name": "rankToAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "participants",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isSigner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "addressToRank",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "SWAP_LIMIT",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceSigner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addSigner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "SignerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "SignerRemoved",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_participant",
+          "type": "address"
+        }
+      ],
+      "name": "participate",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "int16"
+        }
+      ],
+      "name": "list",
+      "outputs": [
+        {
+          "name": "results",
+          "type": "address[20]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "getRank",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_rank",
+          "type": "int16"
+        }
+      ],
+      "name": "getAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_address1",
+          "type": "address"
+        },
+        {
+          "name": "_address2",
+          "type": "address"
+        }
+      ],
+      "name": "swap",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405261001c60003364010000000061061c61002182021704565b61005b565b600160a060020a038116151561003657600080fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6106a28061006a6000396000f3006080604052600436106100b95763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631a9a12d881146100be578063548c0ef4146100f557806355ba753c1461012f5780636b76484e1461014a5780636c4470fb146101735780637df73e271461018857806385887756146101bd578063a43ef568146101de578063b91038c7146101f3578063d3fd3b7d14610214578063e5c8b03d14610268578063eb12d61e1461027d575b600080fd5b3480156100ca57600080fd5b506100d960043560010b61029e565b60408051600160a060020a039092168252519081900360200190f35b34801561010157600080fd5b50610116600160a060020a03600435166102c0565b60408051600192830b90920b8252519081900360200190f35b34801561013b57600080fd5b506100d960043560010b6102de565b34801561015657600080fd5b50610171600160a060020a03600435811690602435166102f9565b005b34801561017f57600080fd5b506101166103f5565b34801561019457600080fd5b506101a9600160a060020a03600435166103fe565b604080519115158252519081900360200190f35b3480156101c957600080fd5b50610116600160a060020a0360043516610416565b3480156101ea57600080fd5b5061011661042b565b3480156101ff57600080fd5b50610171600160a060020a0360043516610430565b34801561022057600080fd5b5061022f60043560010b6104c0565b604051808261028080838360005b8381101561025557818101518382015260200161023d565b5050505090500191505060405180910390f35b34801561027457600080fd5b5061017161053f565b34801561028957600080fd5b50610171600160a060020a0360043516610552565b600190810b900b600090815260026020526040902054600160a060020a031690565b600160a060020a031660009081526003602052604090205460010b90565b600260205260009081526040902054600160a060020a031681565b600080610305336103fe565b151561031057600080fd5b5050600160a060020a03808316600090815260036020526040808220549284168252902054600191820b9190810b9081810b9083900b13801561035c57506014820360010b8160010b12155b156103ef57600160a060020a0380851660008181526003602090815260408083208054600188810b61ffff81811661ffff1994851617909455978b1680875284872080548c840b95861694169390931790925596870b85526002909352818420805473ffffffffffffffffffffffffffffffffffffffff19908116909617905590940b8252929020805490911690911790555b50505050565b60018054900b81565b6000610410818363ffffffff6105ae16565b92915050565b60036020526000908152604090205460010b81565b601481565b610439336103fe565b151561044457600080fd5b6001805480820b8201820b61ffff90811661ffff1992831617808455830b830b830b60009081526002602090815260408083208054600160a060020a0390981673ffffffffffffffffffffffffffffffffffffffff1990981688179055855496835260039091529020805494840b90930b169216919091179055565b6104c8610656565b600060018360010b12156104db57600192505b5060005b601460ff821612156105395760ff8116838101600190810b900b600090815260026020526040902054600160a060020a03169083906014811061051e57fe5b600160a060020a0390921660209290920201526001016104df565b50919050565b61055060003363ffffffff6105e516565b565b61055b336103fe565b151561056657600080fd5b61057760008263ffffffff61061c16565b604051600160a060020a038216907f47d1c22a25bb3a5d4e481b9b1e6944c2eade3181a0a20b495ed61d35b5323f2490600090a250565b6000600160a060020a03821615156105c557600080fd5b50600160a060020a03166000908152602091909152604090205460ff1690565b600160a060020a03811615156105fa57600080fd5b600160a060020a0316600090815260209190915260409020805460ff19169055565b600160a060020a038116151561063157600080fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6102806040519081016040528060149060208202803883395091929150505600a165627a7a72305820de7fad9c809a01220cd4b8ebc2daa3e35f7c30f3a6d5cb0977a20ed5e9877a8e0029",
+  "deployedBytecode": "0x6080604052600436106100b95763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631a9a12d881146100be578063548c0ef4146100f557806355ba753c1461012f5780636b76484e1461014a5780636c4470fb146101735780637df73e271461018857806385887756146101bd578063a43ef568146101de578063b91038c7146101f3578063d3fd3b7d14610214578063e5c8b03d14610268578063eb12d61e1461027d575b600080fd5b3480156100ca57600080fd5b506100d960043560010b61029e565b60408051600160a060020a039092168252519081900360200190f35b34801561010157600080fd5b50610116600160a060020a03600435166102c0565b60408051600192830b90920b8252519081900360200190f35b34801561013b57600080fd5b506100d960043560010b6102de565b34801561015657600080fd5b50610171600160a060020a03600435811690602435166102f9565b005b34801561017f57600080fd5b506101166103f5565b34801561019457600080fd5b506101a9600160a060020a03600435166103fe565b604080519115158252519081900360200190f35b3480156101c957600080fd5b50610116600160a060020a0360043516610416565b3480156101ea57600080fd5b5061011661042b565b3480156101ff57600080fd5b50610171600160a060020a0360043516610430565b34801561022057600080fd5b5061022f60043560010b6104c0565b604051808261028080838360005b8381101561025557818101518382015260200161023d565b5050505090500191505060405180910390f35b34801561027457600080fd5b5061017161053f565b34801561028957600080fd5b50610171600160a060020a0360043516610552565b600190810b900b600090815260026020526040902054600160a060020a031690565b600160a060020a031660009081526003602052604090205460010b90565b600260205260009081526040902054600160a060020a031681565b600080610305336103fe565b151561031057600080fd5b5050600160a060020a03808316600090815260036020526040808220549284168252902054600191820b9190810b9081810b9083900b13801561035c57506014820360010b8160010b12155b156103ef57600160a060020a0380851660008181526003602090815260408083208054600188810b61ffff81811661ffff1994851617909455978b1680875284872080548c840b95861694169390931790925596870b85526002909352818420805473ffffffffffffffffffffffffffffffffffffffff19908116909617905590940b8252929020805490911690911790555b50505050565b60018054900b81565b6000610410818363ffffffff6105ae16565b92915050565b60036020526000908152604090205460010b81565b601481565b610439336103fe565b151561044457600080fd5b6001805480820b8201820b61ffff90811661ffff1992831617808455830b830b830b60009081526002602090815260408083208054600160a060020a0390981673ffffffffffffffffffffffffffffffffffffffff1990981688179055855496835260039091529020805494840b90930b169216919091179055565b6104c8610656565b600060018360010b12156104db57600192505b5060005b601460ff821612156105395760ff8116838101600190810b900b600090815260026020526040902054600160a060020a03169083906014811061051e57fe5b600160a060020a0390921660209290920201526001016104df565b50919050565b61055060003363ffffffff6105e516565b565b61055b336103fe565b151561056657600080fd5b61057760008263ffffffff61061c16565b604051600160a060020a038216907f47d1c22a25bb3a5d4e481b9b1e6944c2eade3181a0a20b495ed61d35b5323f2490600090a250565b6000600160a060020a03821615156105c557600080fd5b50600160a060020a03166000908152602091909152604090205460ff1690565b600160a060020a03811615156105fa57600080fd5b600160a060020a0316600090815260209190915260409020805460ff19169055565b600160a060020a038116151561063157600080fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6102806040519081016040528060149060208202803883395091929150505600a165627a7a72305820de7fad9c809a01220cd4b8ebc2daa3e35f7c30f3a6d5cb0977a20ed5e9877a8e0029",
+  "sourceMap": "104:1330:30:-;;;259:23:13;:7;271:10;259:11;;;;;;:23;:::i;:::-;104:1330:30;;245:132:10;-1:-1:-1;;;;;317:21:10;;;;309:30;;;;;;-1:-1:-1;;;;;345:20:10;:11;:20;;;;;;;;;;;:27;;-1:-1:-1;;345:27:10;368:4;345:27;;;245:132::o;104:1330:30:-;;;;;;;",
+  "deployedSourceMap": "104:1330:30:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;874:107;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;874:107:30;;;;;;;;;;;-1:-1:-1;;;;;874:107:30;;;;;;;;;;;;;;754:110;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;754:110:30;-1:-1:-1;;;;;754:110:30;;;;;;;;;;;;;;;;;;;;;;;;;;;214:44;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;214:44:30;;;;;;;987:445;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;987:445:30;-1:-1:-1;;;;;987:445:30;;;;;;;;;;;;183:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;183:25:30;;;;364:100:13;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;364:100:13;-1:-1:-1;;;;;364:100:13;;;;;;;;;;;;;;;;;;;;;;;264:44:30;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;264:44:30;-1:-1:-1;;;;;264:44:30;;;;;139:37;;8:9:-1;5:2;;;30:1;27;20:12;5:2;139:37:30;;;;315:196;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;315:196:30;-1:-1:-1;;;;;315:196:30;;;;;517:227;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;517:227:30;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;517:227:30;;;;;;;;;;;;;;;;588:70:13;;8:9:-1;5:2;;;30:1;27;20:12;5:2;588:70:13;;;;468:116;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;468:116:13;-1:-1:-1;;;;;468:116:13;;;;;874:107:30;954:20;;;;;;928:7;954:20;;;:13;:20;;;;;;-1:-1:-1;;;;;954:20:30;;874:107::o;754:110::-;-1:-1:-1;;;;;834:23:30;810:5;834:23;;;:13;:23;;;;;;;;;754:110::o;214:44::-;;;;;;;;;;;;-1:-1:-1;;;;;214:44:30;;:::o;987:445::-;1067:12;1116;327:20:13;336:10;327:8;:20::i;:::-;319:29;;;;;;;;-1:-1:-1;;;;;;;1082:24:30;;;;;;;:13;:24;;;;;;;1131;;;;;;;;1082;;;;;1131;;;;1177:15;;;;;;;;:48;;;;;174:2;1206:6;:19;1196:29;;:6;:29;;;;1177:48;1174:252;;;-1:-1:-1;;;;;1241:24:30;;;;;;;:13;:24;;;;;;;;:33;;;;;;;;;;-1:-1:-1;;1241:33:30;;;;;;;1288:24;;;;;;;;;:33;;;;;;;;;;;;;;;;;1335:21;;;;;:13;:21;;;;;;:33;;-1:-1:-1;;1335:33:30;;;;;;;;1382:21;;;;;;;;:33;;;;;;;;;;1174:252;987:445;;;;:::o;183:25::-;;;;;;;:::o;364:100:13:-;420:4;439:20;420:4;451:7;439:20;:11;:20;:::i;:::-;432:27;364:100;-1:-1:-1;;364:100:13:o;264:44:30:-;;;;;;;;;;;;;;;:::o;139:37::-;174:2;139:37;:::o;315:196::-;327:20:13;336:10;327:8;:20::i;:::-;319:29;;;;;;;;386:12:30;:14;;;;;;;;;;;;;-1:-1:-1;;386:14:30;;;;;;;424:12;;410:27;;;;386:12;410:27;;;:13;:27;;;;;;;;:42;;-1:-1:-1;;;;;410:42:30;;;-1:-1:-1;;410:42:30;;;;;;;492:12;;462:27;;;:13;:27;;;;;:42;;492:12;;;462:42;;;;;;;;;;;;315:196::o;517:227::-;565:27;;:::i;:::-;642:7;615:1;607:5;:9;;;604:23;;;626:1;618:9;;604:23;-1:-1:-1;652:1:30;637:101;174:2;655:14;;;;637:101;;;717:9;;;;;;703:24;;;;;;;;;;:13;:24;;;;;;-1:-1:-1;;;;;703:24:30;;690:7;;:10;;;;;;;-1:-1:-1;;;;;690:37:30;;;:10;;;;;;:37;671:3;;637:101;;;517:227;;;;:::o;588:70:13:-;627:26;:7;642:10;627:26;:14;:26;:::i;:::-;588:70::o;468:116::-;327:20;336:10;327:8;:20::i;:::-;319:29;;;;;;;;528:20;:7;540;528:20;:11;:20;:::i;:::-;559;;-1:-1:-1;;;;;559:20:13;;;;;;;;468:116;:::o;657:166:10:-;741:4;-1:-1:-1;;;;;763:21:10;;;;755:30;;;;;;-1:-1:-1;;;;;;798:20:10;:11;:20;;;;;;;;;;;;;;;657:166::o;443:136::-;-1:-1:-1;;;;;518:21:10;;;;510:30;;;;;;-1:-1:-1;;;;;546:20:10;569:5;546:20;;;;;;;;;;;:28;;-1:-1:-1;;546:28:10;;;443:136::o;245:132::-;-1:-1:-1;;;;;317:21:10;;;;309:30;;;;;;-1:-1:-1;;;;;345:20:10;:11;:20;;;;;;;;;;;:27;;-1:-1:-1;;345:27:10;368:4;345:27;;;245:132::o;104:1330:30:-;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;-1:-1;104:1330:30;;;-1:-1:-1;;104:1330:30:o",
+  "source": "pragma solidity 0.4.24;\n\nimport \"../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol\";\n\n\ncontract Rank is SignerRole {\n\n    int16 public constant SWAP_LIMIT = 20;\n\n    int16 public participants;\n    mapping(int16=>address) public rankToAddress;\n    mapping(address=>int16) public addressToRank;\n\n    function participate(address _participant) public onlySigner {\n        participants++;\n        rankToAddress[participants] = _participant;\n        addressToRank[_participant] = participants;\n    }\n\n    function list(int16 _from) public view returns (address[SWAP_LIMIT] results) {\n        if(_from < 1) _from = 1;\n        for (uint8 i = 0; i < SWAP_LIMIT; i++) {\n            results[i] = rankToAddress[_from + i];\n        }\n    }\n    \n    function getRank(address _address) public view returns (int16) {\n        return addressToRank[_address];\n    }\n    \n    function getAddress(int16 _rank) public view returns (address) {\n        return rankToAddress[_rank];\n    }\n\n    function swap(address _address1, address _address2) public onlySigner {\n        int16 _rank1 = addressToRank[_address1];\n        int16 _rank2 = addressToRank[_address2];\n        \n        if(_rank1 > _rank2 && _rank2 >= _rank1 - SWAP_LIMIT) {\n            addressToRank[_address1] = _rank2;\n            addressToRank[_address2] = _rank1;\n            rankToAddress[_rank2] = _address1;\n            rankToAddress[_rank1] = _address2;\n        }\n    }\n}",
+  "sourcePath": "/Users/hironobu/devs/mch-beta/contracts/match/Rank.sol",
+  "ast": {
+    "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/match/Rank.sol",
+    "exportedSymbols": {
+      "Rank": [
+        4912
+      ]
+    },
+    "id": 4913,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4751,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:30"
+      },
+      {
+        "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol",
+        "file": "../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol",
+        "id": 4752,
+        "nodeType": "ImportDirective",
+        "scope": 4913,
+        "sourceUnit": 3061,
+        "src": "25:76:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4753,
+              "name": "SignerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3060,
+              "src": "121:10:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignerRole_$3060",
+                "typeString": "contract SignerRole"
+              }
+            },
+            "id": 4754,
+            "nodeType": "InheritanceSpecifier",
+            "src": "121:10:30"
+          }
+        ],
+        "contractDependencies": [
+          3060
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4912,
+        "linearizedBaseContracts": [
+          4912,
+          3060
+        ],
+        "name": "Rank",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 4757,
+            "name": "SWAP_LIMIT",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "139:37:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int16",
+              "typeString": "int16"
+            },
+            "typeName": {
+              "id": 4755,
+              "name": "int16",
+              "nodeType": "ElementaryTypeName",
+              "src": "139:5:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int16",
+                "typeString": "int16"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "3230",
+              "id": 4756,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "174:2:30",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_20_by_1",
+                "typeString": "int_const 20"
+              },
+              "value": "20"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4759,
+            "name": "participants",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "183:25:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int16",
+              "typeString": "int16"
+            },
+            "typeName": {
+              "id": 4758,
+              "name": "int16",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:5:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int16",
+                "typeString": "int16"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4763,
+            "name": "rankToAddress",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "214:44:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+              "typeString": "mapping(int16 => address)"
+            },
+            "typeName": {
+              "id": 4762,
+              "keyType": {
+                "id": 4760,
+                "name": "int16",
+                "nodeType": "ElementaryTypeName",
+                "src": "222:5:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int16",
+                  "typeString": "int16"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "214:23:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                "typeString": "mapping(int16 => address)"
+              },
+              "valueType": {
+                "id": 4761,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "229:7:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4767,
+            "name": "addressToRank",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "264:44:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+              "typeString": "mapping(address => int16)"
+            },
+            "typeName": {
+              "id": 4766,
+              "keyType": {
+                "id": 4764,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "272:7:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "264:23:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                "typeString": "mapping(address => int16)"
+              },
+              "valueType": {
+                "id": 4765,
+                "name": "int16",
+                "nodeType": "ElementaryTypeName",
+                "src": "281:5:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int16",
+                  "typeString": "int16"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4789,
+              "nodeType": "Block",
+              "src": "376:135:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4775,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "386:14:30",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "id": 4774,
+                      "name": "participants",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4759,
+                      "src": "386:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "id": 4776,
+                  "nodeType": "ExpressionStatement",
+                  "src": "386:14:30"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4781,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 4777,
+                        "name": "rankToAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4763,
+                        "src": "410:13:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                          "typeString": "mapping(int16 => address)"
+                        }
+                      },
+                      "id": 4779,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 4778,
+                        "name": "participants",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4759,
+                        "src": "424:12:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "410:27:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 4780,
+                      "name": "_participant",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4769,
+                      "src": "440:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "410:42:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 4782,
+                  "nodeType": "ExpressionStatement",
+                  "src": "410:42:30"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4787,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 4783,
+                        "name": "addressToRank",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4767,
+                        "src": "462:13:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                          "typeString": "mapping(address => int16)"
+                        }
+                      },
+                      "id": 4785,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 4784,
+                        "name": "_participant",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4769,
+                        "src": "476:12:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "462:27:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 4786,
+                      "name": "participants",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4759,
+                      "src": "492:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "src": "462:42:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "id": 4788,
+                  "nodeType": "ExpressionStatement",
+                  "src": "462:42:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4790,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 4772,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 4771,
+                  "name": "onlySigner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 3001,
+                  "src": "365:10:30",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "365:10:30"
+              }
+            ],
+            "name": "participate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4770,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4769,
+                  "name": "_participant",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4790,
+                  "src": "336:20:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4768,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "336:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "335:22:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4773,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "376:0:30"
+            },
+            "scope": 4912,
+            "src": "315:196:30",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4829,
+              "nodeType": "Block",
+              "src": "594:150:30",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    },
+                    "id": 4801,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 4799,
+                      "name": "_from",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4792,
+                      "src": "607:5:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "31",
+                      "id": 4800,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "615:1:30",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "607:9:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 4806,
+                  "nodeType": "IfStatement",
+                  "src": "604:23:30",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 4804,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftHandSide": {
+                        "argumentTypes": null,
+                        "id": 4802,
+                        "name": "_from",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4792,
+                        "src": "618:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "Assignment",
+                      "operator": "=",
+                      "rightHandSide": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 4803,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "626:1:30",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "618:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "id": 4805,
+                    "nodeType": "ExpressionStatement",
+                    "src": "618:9:30"
+                  }
+                },
+                {
+                  "body": {
+                    "id": 4827,
+                    "nodeType": "Block",
+                    "src": "676:62:30",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4825,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4817,
+                              "name": "results",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4797,
+                              "src": "690:7:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$20_memory_ptr",
+                                "typeString": "address[20] memory"
+                              }
+                            },
+                            "id": 4819,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4818,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4808,
+                              "src": "698:1:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "690:10:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4820,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "703:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4824,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              },
+                              "id": 4823,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 4821,
+                                "name": "_from",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4792,
+                                "src": "717:5:30",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_int16",
+                                  "typeString": "int16"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "+",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "id": 4822,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4808,
+                                "src": "725:1:30",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "src": "717:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "703:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "690:37:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4826,
+                        "nodeType": "ExpressionStatement",
+                        "src": "690:37:30"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    },
+                    "id": 4813,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 4811,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4808,
+                      "src": "655:1:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 4812,
+                      "name": "SWAP_LIMIT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4757,
+                      "src": "659:10:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "src": "655:14:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 4828,
+                  "initializationExpression": {
+                    "assignments": [
+                      4808
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 4808,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 4830,
+                        "src": "642:7:30",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "typeName": {
+                          "id": 4807,
+                          "name": "uint8",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "642:5:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 4810,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 4809,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "652:1:30",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "642:11:30"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 4815,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "671:3:30",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 4814,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4808,
+                        "src": "671:1:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 4816,
+                    "nodeType": "ExpressionStatement",
+                    "src": "671:3:30"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "637:101:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4830,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "list",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4793,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4792,
+                  "name": "_from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4830,
+                  "src": "531:11:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4791,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "531:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "530:13:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4798,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4797,
+                  "name": "results",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4830,
+                  "src": "565:27:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$20_memory_ptr",
+                    "typeString": "address[20]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4794,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "565:7:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 4796,
+                    "length": {
+                      "argumentTypes": null,
+                      "id": 4795,
+                      "name": "SWAP_LIMIT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4757,
+                      "src": "573:10:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": null,
+                        "typeString": null
+                      }
+                    },
+                    "nodeType": "ArrayTypeName",
+                    "src": "565:19:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$20_storage_ptr",
+                      "typeString": "address[20]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "564:29:30"
+            },
+            "scope": 4912,
+            "src": "517:227:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4841,
+              "nodeType": "Block",
+              "src": "817:47:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4837,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "834:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4839,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4838,
+                      "name": "_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4832,
+                      "src": "848:8:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "834:23:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "functionReturnParameters": 4836,
+                  "id": 4840,
+                  "nodeType": "Return",
+                  "src": "827:30:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4842,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getRank",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4833,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4832,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4842,
+                  "src": "771:16:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4831,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "771:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "770:18:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4836,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4835,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4842,
+                  "src": "810:5:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4834,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "809:7:30"
+            },
+            "scope": 4912,
+            "src": "754:110:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4853,
+              "nodeType": "Block",
+              "src": "937:44:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4849,
+                      "name": "rankToAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4763,
+                      "src": "954:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                        "typeString": "mapping(int16 => address)"
+                      }
+                    },
+                    "id": 4851,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4850,
+                      "name": "_rank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4844,
+                      "src": "968:5:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "954:20:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 4848,
+                  "id": 4852,
+                  "nodeType": "Return",
+                  "src": "947:27:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4854,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4845,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4844,
+                  "name": "_rank",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4854,
+                  "src": "894:11:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4843,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "894:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "893:13:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4847,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4854,
+                  "src": "928:7:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4846,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "928:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "927:9:30"
+            },
+            "scope": 4912,
+            "src": "874:107:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4910,
+              "nodeType": "Block",
+              "src": "1057:375:30",
+              "statements": [
+                {
+                  "assignments": [
+                    4864
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4864,
+                      "name": "_rank1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4911,
+                      "src": "1067:12:30",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "typeName": {
+                        "id": 4863,
+                        "name": "int16",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1067:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4868,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4865,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "1082:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4867,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4866,
+                      "name": "_address1",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4856,
+                      "src": "1096:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1082:24:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1067:39:30"
+                },
+                {
+                  "assignments": [
+                    4870
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4870,
+                      "name": "_rank2",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4911,
+                      "src": "1116:12:30",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "typeName": {
+                        "id": 4869,
+                        "name": "int16",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1116:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4874,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4871,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "1131:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4873,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4872,
+                      "name": "_address2",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4858,
+                      "src": "1145:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1131:24:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1116:39:30"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 4883,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "id": 4877,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 4875,
+                        "name": "_rank1",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4864,
+                        "src": "1177:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "id": 4876,
+                        "name": "_rank2",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4870,
+                        "src": "1186:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "src": "1177:15:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "&&",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "id": 4882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 4878,
+                        "name": "_rank2",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4870,
+                        "src": "1196:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">=",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        },
+                        "id": 4881,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 4879,
+                          "name": "_rank1",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4864,
+                          "src": "1206:6:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 4880,
+                          "name": "SWAP_LIMIT",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4757,
+                          "src": "1215:10:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "src": "1206:19:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "src": "1196:29:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1177:48:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 4909,
+                  "nodeType": "IfStatement",
+                  "src": "1174:252:30",
+                  "trueBody": {
+                    "id": 4908,
+                    "nodeType": "Block",
+                    "src": "1227:199:30",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4888,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4884,
+                              "name": "addressToRank",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4767,
+                              "src": "1241:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                                "typeString": "mapping(address => int16)"
+                              }
+                            },
+                            "id": 4886,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4885,
+                              "name": "_address1",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4856,
+                              "src": "1255:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1241:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4887,
+                            "name": "_rank2",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4870,
+                            "src": "1268:6:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "src": "1241:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "id": 4889,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1241:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4894,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4890,
+                              "name": "addressToRank",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4767,
+                              "src": "1288:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                                "typeString": "mapping(address => int16)"
+                              }
+                            },
+                            "id": 4892,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4891,
+                              "name": "_address2",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4858,
+                              "src": "1302:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1288:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4893,
+                            "name": "_rank1",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4864,
+                            "src": "1315:6:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "src": "1288:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "id": 4895,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1288:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4900,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4896,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "1335:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4898,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4897,
+                              "name": "_rank2",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4870,
+                              "src": "1349:6:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1335:21:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4899,
+                            "name": "_address1",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4856,
+                            "src": "1359:9:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1335:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4901,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1335:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4906,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4902,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "1382:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4904,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4903,
+                              "name": "_rank1",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4864,
+                              "src": "1396:6:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1382:21:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4905,
+                            "name": "_address2",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4858,
+                            "src": "1406:9:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1382:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4907,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1382:33:30"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4911,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 4861,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 4860,
+                  "name": "onlySigner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 3001,
+                  "src": "1046:10:30",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1046:10:30"
+              }
+            ],
+            "name": "swap",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4856,
+                  "name": "_address1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4911,
+                  "src": "1001:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4855,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1001:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4858,
+                  "name": "_address2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4911,
+                  "src": "1020:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4857,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1020:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1000:38:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4862,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1057:0:30"
+            },
+            "scope": 4912,
+            "src": "987:445:30",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 4913,
+        "src": "104:1330:30"
+      }
+    ],
+    "src": "0:1434:30"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/match/Rank.sol",
+    "exportedSymbols": {
+      "Rank": [
+        4912
+      ]
+    },
+    "id": 4913,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4751,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:30"
+      },
+      {
+        "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol",
+        "file": "../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol",
+        "id": 4752,
+        "nodeType": "ImportDirective",
+        "scope": 4913,
+        "sourceUnit": 3061,
+        "src": "25:76:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4753,
+              "name": "SignerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 3060,
+              "src": "121:10:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SignerRole_$3060",
+                "typeString": "contract SignerRole"
+              }
+            },
+            "id": 4754,
+            "nodeType": "InheritanceSpecifier",
+            "src": "121:10:30"
+          }
+        ],
+        "contractDependencies": [
+          3060
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4912,
+        "linearizedBaseContracts": [
+          4912,
+          3060
+        ],
+        "name": "Rank",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 4757,
+            "name": "SWAP_LIMIT",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "139:37:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int16",
+              "typeString": "int16"
+            },
+            "typeName": {
+              "id": 4755,
+              "name": "int16",
+              "nodeType": "ElementaryTypeName",
+              "src": "139:5:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int16",
+                "typeString": "int16"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "3230",
+              "id": 4756,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "174:2:30",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_20_by_1",
+                "typeString": "int_const 20"
+              },
+              "value": "20"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4759,
+            "name": "participants",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "183:25:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int16",
+              "typeString": "int16"
+            },
+            "typeName": {
+              "id": 4758,
+              "name": "int16",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:5:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int16",
+                "typeString": "int16"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4763,
+            "name": "rankToAddress",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "214:44:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+              "typeString": "mapping(int16 => address)"
+            },
+            "typeName": {
+              "id": 4762,
+              "keyType": {
+                "id": 4760,
+                "name": "int16",
+                "nodeType": "ElementaryTypeName",
+                "src": "222:5:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int16",
+                  "typeString": "int16"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "214:23:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                "typeString": "mapping(int16 => address)"
+              },
+              "valueType": {
+                "id": 4761,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "229:7:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 4767,
+            "name": "addressToRank",
+            "nodeType": "VariableDeclaration",
+            "scope": 4912,
+            "src": "264:44:30",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+              "typeString": "mapping(address => int16)"
+            },
+            "typeName": {
+              "id": 4766,
+              "keyType": {
+                "id": 4764,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "272:7:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "264:23:30",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                "typeString": "mapping(address => int16)"
+              },
+              "valueType": {
+                "id": 4765,
+                "name": "int16",
+                "nodeType": "ElementaryTypeName",
+                "src": "281:5:30",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int16",
+                  "typeString": "int16"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4789,
+              "nodeType": "Block",
+              "src": "376:135:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4775,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "386:14:30",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "id": 4774,
+                      "name": "participants",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4759,
+                      "src": "386:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "id": 4776,
+                  "nodeType": "ExpressionStatement",
+                  "src": "386:14:30"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4781,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 4777,
+                        "name": "rankToAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4763,
+                        "src": "410:13:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                          "typeString": "mapping(int16 => address)"
+                        }
+                      },
+                      "id": 4779,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 4778,
+                        "name": "participants",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4759,
+                        "src": "424:12:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "410:27:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 4780,
+                      "name": "_participant",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4769,
+                      "src": "440:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "410:42:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 4782,
+                  "nodeType": "ExpressionStatement",
+                  "src": "410:42:30"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4787,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 4783,
+                        "name": "addressToRank",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4767,
+                        "src": "462:13:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                          "typeString": "mapping(address => int16)"
+                        }
+                      },
+                      "id": 4785,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 4784,
+                        "name": "_participant",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4769,
+                        "src": "476:12:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "462:27:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 4786,
+                      "name": "participants",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4759,
+                      "src": "492:12:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "src": "462:42:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "id": 4788,
+                  "nodeType": "ExpressionStatement",
+                  "src": "462:42:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4790,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 4772,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 4771,
+                  "name": "onlySigner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 3001,
+                  "src": "365:10:30",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "365:10:30"
+              }
+            ],
+            "name": "participate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4770,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4769,
+                  "name": "_participant",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4790,
+                  "src": "336:20:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4768,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "336:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "335:22:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4773,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "376:0:30"
+            },
+            "scope": 4912,
+            "src": "315:196:30",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4829,
+              "nodeType": "Block",
+              "src": "594:150:30",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    },
+                    "id": 4801,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 4799,
+                      "name": "_from",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4792,
+                      "src": "607:5:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "31",
+                      "id": 4800,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "615:1:30",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "607:9:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 4806,
+                  "nodeType": "IfStatement",
+                  "src": "604:23:30",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 4804,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftHandSide": {
+                        "argumentTypes": null,
+                        "id": 4802,
+                        "name": "_from",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4792,
+                        "src": "618:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "Assignment",
+                      "operator": "=",
+                      "rightHandSide": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 4803,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "626:1:30",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "618:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "id": 4805,
+                    "nodeType": "ExpressionStatement",
+                    "src": "618:9:30"
+                  }
+                },
+                {
+                  "body": {
+                    "id": 4827,
+                    "nodeType": "Block",
+                    "src": "676:62:30",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4825,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4817,
+                              "name": "results",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4797,
+                              "src": "690:7:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$20_memory_ptr",
+                                "typeString": "address[20] memory"
+                              }
+                            },
+                            "id": 4819,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4818,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4808,
+                              "src": "698:1:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "690:10:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4820,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "703:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4824,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              },
+                              "id": 4823,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 4821,
+                                "name": "_from",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4792,
+                                "src": "717:5:30",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_int16",
+                                  "typeString": "int16"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "+",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "id": 4822,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4808,
+                                "src": "725:1:30",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              "src": "717:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "703:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "690:37:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4826,
+                        "nodeType": "ExpressionStatement",
+                        "src": "690:37:30"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    },
+                    "id": 4813,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 4811,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4808,
+                      "src": "655:1:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 4812,
+                      "name": "SWAP_LIMIT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4757,
+                      "src": "659:10:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "src": "655:14:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 4828,
+                  "initializationExpression": {
+                    "assignments": [
+                      4808
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 4808,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 4830,
+                        "src": "642:7:30",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "typeName": {
+                          "id": 4807,
+                          "name": "uint8",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "642:5:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 4810,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 4809,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "652:1:30",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "642:11:30"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 4815,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "671:3:30",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 4814,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4808,
+                        "src": "671:1:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 4816,
+                    "nodeType": "ExpressionStatement",
+                    "src": "671:3:30"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "637:101:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4830,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "list",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4793,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4792,
+                  "name": "_from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4830,
+                  "src": "531:11:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4791,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "531:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "530:13:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4798,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4797,
+                  "name": "results",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4830,
+                  "src": "565:27:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$20_memory_ptr",
+                    "typeString": "address[20]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4794,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "565:7:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 4796,
+                    "length": {
+                      "argumentTypes": null,
+                      "id": 4795,
+                      "name": "SWAP_LIMIT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4757,
+                      "src": "573:10:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": null,
+                        "typeString": null
+                      }
+                    },
+                    "nodeType": "ArrayTypeName",
+                    "src": "565:19:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$20_storage_ptr",
+                      "typeString": "address[20]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "564:29:30"
+            },
+            "scope": 4912,
+            "src": "517:227:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4841,
+              "nodeType": "Block",
+              "src": "817:47:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4837,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "834:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4839,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4838,
+                      "name": "_address",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4832,
+                      "src": "848:8:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "834:23:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "functionReturnParameters": 4836,
+                  "id": 4840,
+                  "nodeType": "Return",
+                  "src": "827:30:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4842,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getRank",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4833,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4832,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4842,
+                  "src": "771:16:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4831,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "771:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "770:18:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4836,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4835,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4842,
+                  "src": "810:5:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4834,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "809:7:30"
+            },
+            "scope": 4912,
+            "src": "754:110:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4853,
+              "nodeType": "Block",
+              "src": "937:44:30",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4849,
+                      "name": "rankToAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4763,
+                      "src": "954:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                        "typeString": "mapping(int16 => address)"
+                      }
+                    },
+                    "id": 4851,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4850,
+                      "name": "_rank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4844,
+                      "src": "968:5:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "954:20:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 4848,
+                  "id": 4852,
+                  "nodeType": "Return",
+                  "src": "947:27:30"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4854,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4845,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4844,
+                  "name": "_rank",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4854,
+                  "src": "894:11:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int16",
+                    "typeString": "int16"
+                  },
+                  "typeName": {
+                    "id": 4843,
+                    "name": "int16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "894:5:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "893:13:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4847,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4854,
+                  "src": "928:7:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4846,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "928:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "927:9:30"
+            },
+            "scope": 4912,
+            "src": "874:107:30",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4910,
+              "nodeType": "Block",
+              "src": "1057:375:30",
+              "statements": [
+                {
+                  "assignments": [
+                    4864
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4864,
+                      "name": "_rank1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4911,
+                      "src": "1067:12:30",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "typeName": {
+                        "id": 4863,
+                        "name": "int16",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1067:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4868,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4865,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "1082:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4867,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4866,
+                      "name": "_address1",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4856,
+                      "src": "1096:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1082:24:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1067:39:30"
+                },
+                {
+                  "assignments": [
+                    4870
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4870,
+                      "name": "_rank2",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4911,
+                      "src": "1116:12:30",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "typeName": {
+                        "id": 4869,
+                        "name": "int16",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1116:5:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4874,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 4871,
+                      "name": "addressToRank",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4767,
+                      "src": "1131:13:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                        "typeString": "mapping(address => int16)"
+                      }
+                    },
+                    "id": 4873,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 4872,
+                      "name": "_address2",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4858,
+                      "src": "1145:9:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1131:24:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int16",
+                      "typeString": "int16"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1116:39:30"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 4883,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "id": 4877,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 4875,
+                        "name": "_rank1",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4864,
+                        "src": "1177:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "id": 4876,
+                        "name": "_rank2",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4870,
+                        "src": "1186:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "src": "1177:15:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "&&",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_int16",
+                        "typeString": "int16"
+                      },
+                      "id": 4882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 4878,
+                        "name": "_rank2",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4870,
+                        "src": "1196:6:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">=",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        },
+                        "id": 4881,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 4879,
+                          "name": "_rank1",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4864,
+                          "src": "1206:6:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 4880,
+                          "name": "SWAP_LIMIT",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4757,
+                          "src": "1215:10:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "src": "1206:19:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int16",
+                          "typeString": "int16"
+                        }
+                      },
+                      "src": "1196:29:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1177:48:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 4909,
+                  "nodeType": "IfStatement",
+                  "src": "1174:252:30",
+                  "trueBody": {
+                    "id": 4908,
+                    "nodeType": "Block",
+                    "src": "1227:199:30",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4888,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4884,
+                              "name": "addressToRank",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4767,
+                              "src": "1241:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                                "typeString": "mapping(address => int16)"
+                              }
+                            },
+                            "id": 4886,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4885,
+                              "name": "_address1",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4856,
+                              "src": "1255:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1241:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4887,
+                            "name": "_rank2",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4870,
+                            "src": "1268:6:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "src": "1241:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "id": 4889,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1241:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4894,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4890,
+                              "name": "addressToRank",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4767,
+                              "src": "1288:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_int16_$",
+                                "typeString": "mapping(address => int16)"
+                              }
+                            },
+                            "id": 4892,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4891,
+                              "name": "_address2",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4858,
+                              "src": "1302:9:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1288:24:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4893,
+                            "name": "_rank1",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4864,
+                            "src": "1315:6:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int16",
+                              "typeString": "int16"
+                            }
+                          },
+                          "src": "1288:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int16",
+                            "typeString": "int16"
+                          }
+                        },
+                        "id": 4895,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1288:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4900,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4896,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "1335:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4898,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4897,
+                              "name": "_rank2",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4870,
+                              "src": "1349:6:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1335:21:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4899,
+                            "name": "_address1",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4856,
+                            "src": "1359:9:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1335:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4901,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1335:33:30"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4906,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 4902,
+                              "name": "rankToAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4763,
+                              "src": "1382:13:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_int16_$_t_address_$",
+                                "typeString": "mapping(int16 => address)"
+                              }
+                            },
+                            "id": 4904,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 4903,
+                              "name": "_rank1",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4864,
+                              "src": "1396:6:30",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_int16",
+                                "typeString": "int16"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1382:21:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 4905,
+                            "name": "_address2",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4858,
+                            "src": "1406:9:30",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1382:33:30",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 4907,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1382:33:30"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4911,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 4861,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 4860,
+                  "name": "onlySigner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 3001,
+                  "src": "1046:10:30",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1046:10:30"
+              }
+            ],
+            "name": "swap",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4856,
+                  "name": "_address1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4911,
+                  "src": "1001:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4855,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1001:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4858,
+                  "name": "_address2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4911,
+                  "src": "1020:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4857,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1020:7:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1000:38:30"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 4862,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1057:0:30"
+            },
+            "scope": 4912,
+            "src": "987:445:30",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 4913,
+        "src": "104:1330:30"
+      }
+    ],
+    "src": "0:1434:30"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {
+    "default": {
+      "events": {
+        "0x47d1c22a25bb3a5d4e481b9b1e6944c2eade3181a0a20b495ed61d35b5323f24": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "SignerAdded",
+          "type": "event"
+        },
+        "0x3525e22824a8a7df2c9a6029941c824cf95b6447f1e13d5128fd3826d35afe8b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "SignerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x9c66ccb86c90b21e79189ff8e4b997f91b4e6992",
+      "transactionHash": "0xbf7c575ab931f825228f21caeac4b9eb8a1ccaf06eb037c466cda10ec1be0272"
+    }
+  },
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-09-23T07:17:49.032Z"
+}
