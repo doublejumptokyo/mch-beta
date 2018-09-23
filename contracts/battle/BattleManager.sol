@@ -45,8 +45,15 @@ contract BattleManager is Ownable {
         uint256[3] memory ids;
         int16[4] memory params;
         uint16[4] memory skills;
+        /*
 
         (ids, params, skills) = deckManager.getUnit(msg.sender, 0);
+        battleTransaction.setUnit(
+            0, params[0], params[1], params[2], params[3],
+            skills[0], skills[1], skills[2], skills[3],
+            ids[0], ids[1], ids[2], battleId
+        );
+
         
         
 /*
