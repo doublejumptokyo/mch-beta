@@ -139,32 +139,32 @@ contract DeckManager is SignerRole {
     }
 
     function getDeck(address _address) public view returns (
-        uint256[6] _unit1,
-        uint256[6] _unit2,
-        uint256[6] _unit3
+        uint256[6] unit1,
+        uint256[6] unit2,
+        uint256[6] unit3
     ) {
         Deck storage deck = decks[_address];
 
-        _unit1[0] = deck.units[0].hero;
-        _unit1[1] = deck.units[0].extension1;
-        _unit1[2] = deck.units[0].extension2;
-        _unit1[3] = deck.units[0].active1;
-        _unit1[4] = deck.units[0].active2;
-        _unit1[5] = deck.units[0].active3;
+        unit1[0] = deck.units[0].hero;
+        unit1[1] = deck.units[0].extension1;
+        unit1[2] = deck.units[0].extension2;
+        unit1[3] = deck.units[0].active1;
+        unit1[4] = deck.units[0].active2;
+        unit1[5] = deck.units[0].active3;
         
-        _unit2[0] = deck.units[1].hero;
-        _unit2[1] = deck.units[1].extension1;
-        _unit2[2] = deck.units[1].extension2;
-        _unit2[3] = deck.units[1].active1;
-        _unit2[4] = deck.units[1].active2;
-        _unit2[5] = deck.units[1].active3;
+        unit2[0] = deck.units[1].hero;
+        unit2[1] = deck.units[1].extension1;
+        unit2[2] = deck.units[1].extension2;
+        unit2[3] = deck.units[1].active1;
+        unit2[4] = deck.units[1].active2;
+        unit2[5] = deck.units[1].active3;
 
-        _unit3[0] = deck.units[2].hero;
-        _unit3[1] = deck.units[2].extension1;
-        _unit3[2] = deck.units[2].extension2;
-        _unit3[3] = deck.units[2].active1;
-        _unit3[4] = deck.units[2].active2;
-        _unit3[5] = deck.units[2].active3;
+        unit3[0] = deck.units[2].hero;
+        unit3[1] = deck.units[2].extension1;
+        unit3[2] = deck.units[2].extension2;
+        unit3[3] = deck.units[2].active1;
+        unit3[4] = deck.units[2].active2;
+        unit3[5] = deck.units[2].active3;
     }
 
     function getUnit(address _address, uint8 _index) public view returns (
