@@ -54,11 +54,8 @@ export const actions = {
   async logout({ commit }) {
     Array.from(Array(window.localStorage.length).keys())
       .map(index => window.localStorage.key(index))
-      .forEach(key => {
-        if (key.startsWith('mch-beta-')) {
-          window.localStorage.removeItem(key)
-        }
-      })
+      .filter(key => key.startsWith('mch-beta-'))
+      .forEach(key => window.localStorage.removeItem(key))
     commit('DELETE_PRIVATE_KEYS')
   }
 }
