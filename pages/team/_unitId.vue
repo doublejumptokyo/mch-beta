@@ -68,7 +68,7 @@
     h2.heroModal__header(slot="header") Change Hero
     .heroModal__body(slot="body")
       .heroSelector
-        .heroSelector__hero(v-for="hero in $store.state.heroes")
+        .heroSelector__hero(v-for="hero in $store.state.heroes" :class="{ 'heroSelector__hero--disabled': isDisabled(hero, 'hero') }")
           label
             input(type="radio" name="heroSelector" :value="hero" v-model="selectedHero")
             .heroSelector__heroInner
@@ -155,6 +155,7 @@ export default {
   computed: {
     ...mapState(['team']),
     ...mapGetters({
+      units: 'team/units',
       getHero: 'heroes/get',
       getExtension: 'extensions/get'
     }),
@@ -177,6 +178,15 @@ export default {
   methods: {
     getStatus(type) {
       return this.hero[type] + this.item1[type] + this.item2[type]
+    },
+    isDisabled(obj, type) {
+      return !!Object.values(this.team).find(unit => {
+        if (type === 'hero') {
+          return unit[0] === obj.id
+        } else if (type === 'item') {
+          return unit[1] === obj.id || unit[2] === obj.id
+        }
+      })
     },
     getActiveSkill(type) {
       switch (type) {
@@ -220,19 +230,17 @@ export default {
       this.selectedItem[type] = null
       this.isItemModalShown = false
     },
-    submit() {
-      this.$store.commit('teams/CHANGE_POSITION_CONTENT', {
-        team: this.team,
-        position: this.position,
-        hero: this.hero,
-        item1: this.item1,
-        item2: this.item2,
-        activeSkillOrder: this.activeSkillOrder
-      })
-      this.$router.push({
-        path: '/inventory/parties',
-        query: { team: this.team.id }
-      })
+    async submit() {
+      // this.$store.commit('teams/CHANGE_POSITION_CONTENT', {
+      //   team: this.team,
+      //   position: this.position,
+      //   hero: this.hero,
+      //   item1: this.item1,
+      //   item2: this.item2,
+      //   activeSkillOrder: this.activeSkillOrder
+      // })
+      await this.$team.set(this.units)
+      this.$router.push('/team')
     }
   }
 }

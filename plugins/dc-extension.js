@@ -1,6 +1,7 @@
 import ExtensionData from '~/build/contracts/Extension.json'
 import ExtensionAssetData from '~/build/contracts/ExtensionAsset.json'
 import extensionTypesData from '~/assets/data/extensionTypes.json'
+import skillsData from '~/assets/data/skills.json'
 
 class Extension {
   constructor(accountManager) {
@@ -23,6 +24,7 @@ class Extension {
       .filter(key => numberKeys.includes(key))
       .forEach(key => (ext[key] = Number(ext[key])))
     ext.id = id
+    ext.activeSkill = skillsData.find(skill => skill.id === ext.activeSkillId)
     return ext
   }
 
