@@ -41,7 +41,15 @@ contract BattleManager is Ownable {
     
     function battle(address _address) public {
         uint32 battleId = battleTransaction.init();
+        
+        uint256[3] memory ids;
+        int16[4] memory params;
+        uint16[4] memory skills;
 
+        (ids, params, skills) = deckManager.getUnit(msg.sender, 0);
+        
+        
+/*
         uint256[6][3] memory allyUnits;
         uint256[6][3] memory enemyUnits;
         (allyUnits[0], allyUnits[1], allyUnits[2]) = deckManager.getDeck(msg.sender);
