@@ -61,70 +61,33 @@ contract BattleTransaction {
         return toBattleId;
     }
 
-/*
     function setUnit(
-        uint8 position, int16[4] params, uint16[4] skills, uint256[3] ids, uint32 battleId
+        uint32 _battleId, uint8 _position, uint256[3] _ids, int16[4] _params, uint16[4] _skills
     ) public {
-        BC.Battle storage battle = battles[battleId];
+        BC.Battle storage battle = battles[_battleId];
         require(battle.exists);
         
         for (uint8 i = 0; i < 7; i++) {
             BC.Unit storage unit = battle.units[i];
-            require(!(unit.exists && unit.position == position));
+            require(!(unit.exists && unit.position == _position));
             if (!unit.exists) {
                 unit.exists = true;
-                unit.position = position;
-                unit.original.hp = hp;
-                unit.original.phy = phy;
-                unit.original.intl = intl;
-                unit.original.agi = agi;
-                unit.current.hp = hp;
-                unit.current.phy = phy;
-                unit.current.intl = intl;
-                unit.current.agi = agi;
-                unit.activeIds[0] = uint16(activeId1);
-                unit.activeIds[1] = uint16(activeId2);
-                unit.activeIds[2] = uint16(activeId3);
-                unit.passiveId = uint16(passiveId);
-                unit.heroId = uint32(heroId);
-                unit.itemId1 = uint32(itemId1);
-                unit.itemId2 = uint32(itemId2);
-                unit.passiveEnabled = true;
-                return;
-            }
-        }
-    }
-    */
-
-    function setUnit2(
-        uint8 position, int16 hp, int16 phy, int16 intl, int16 agi,
-        uint256 activeId1, uint256 activeId2, uint256 activeId3, uint256 passiveId,
-        uint256 heroId, uint256 itemId1, uint256 itemId2, uint32 battleId
-    ) public {
-        BC.Battle storage battle = battles[battleId];
-        require(battle.exists);
-        
-        for (uint8 i = 0; i < 7; i++) {
-            BC.Unit storage unit = battle.units[i];
-            require(!(unit.exists && unit.position == position));
-            if (!unit.exists) {
-                unit.exists = true;
-                unit.position = position;
-                unit.original.hp = hp;
-                unit.original.phy = phy;
-                unit.original.intl = intl;
-                unit.original.agi = agi;
-                unit.current.hp = hp;
-                unit.current.phy = phy;
-                unit.current.intl = intl;
-                unit.current.agi = agi;
-                unit.activeIds[0] = uint16(activeId1);
-                unit.activeIds[1] = uint16(activeId2);
-                unit.activeIds[2] = uint16(activeId3);
-                unit.passiveId = uint16(passiveId);
-                unit.heroId = uint32(heroId);
-                unit.itemId1 = uint32(itemId1);
-                unit.itemId2 = uint32(itemId2);
+                unit.position = _position;
+                unit.original.hp = _params[0];
+                unit.original.phy = _params[1];
+                unit.original.intl = _params[2];
+                unit.original.agi = _params[3];
+                unit.current.hp = _params[0];
+                unit.current.phy = _params[1];
+                unit.current.intl = _params[2];
+                unit.current.agi = _params[3];
+                unit.activeIds[0] = _skills[0];
+                unit.activeIds[1] = _skills[1];
+                unit.activeIds[2] = _skills[2];
+                unit.passiveId = _skills[3];
+                unit.heroId = uint32(_ids[0]);
+                unit.itemId1 = uint32(_ids[1]);
+                unit.itemId2 = uint32(_ids[2]);
                 unit.passiveEnabled = true;
                 return;
             }
@@ -146,12 +109,11 @@ contract BattleTransaction {
         delete battles[battleId];
     }
 
-    function next(uint32 battleId) public returns (bool) {
+    function next(uint32 battleId) public returns (BC.BattleState) {
         uint16 skillId;
 
         BC.Battle storage battle = battles[battleId];
         require(battle.exists);
-//        require(battle.transaction == Transaction$progress);
 
         bool occurePassiveSkill;
         do {
@@ -178,7 +140,7 @@ contract BattleTransaction {
             }
             incompleteIds[index] = incompleteIds[lastIndex];
             incompleteIds.length--;
-            return false;
+            return battle.state;
         }
 
         battle.charge();
@@ -192,14 +154,14 @@ contract BattleTransaction {
             battle.nextActionInit();
         }
         
-        return true;
+        return battle.state;
     }
 
-    function nexts(uint32 battleId, uint8 counts) public returns (bool) {
+    function nexts(uint32 battleId, uint8 counts) public returns (BC.BattleState result) {
         for (uint8 i = 0; i < counts; i++) {
-            if (!next(battleId)) return false;
+            result = next(battleId);
+            if (result != BC.BattleState.progress) return;
         }
-        return true;
     }
 
     function initSkill(uint16 id, uint8 condition, int16 rate) public {
