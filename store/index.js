@@ -4,6 +4,7 @@ export const state = () => ({
   env: {},
   hasWallet: false,
   ethAddress: '',
+  loomAddress: '',
   dappsChainPrivateKeyBase64: null
 })
 
@@ -22,6 +23,9 @@ export const mutations = {
   },
   SET_ETH_ADDRESS(state, address) {
     state.ethAddress = address
+  },
+  SET_LOOM_ADDRESS(state, address) {
+    state.loomAddress = address
   },
   SET_PRIVATE_KEY(state, key) {
     state.dappsChainPrivateKeyBase64 = key
