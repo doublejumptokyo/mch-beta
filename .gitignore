@@ -26,4 +26,5 @@ build/*
 !build/contracts/User.json
 !build/contracts/DeckManager.json
 !build/contracts/Rank.json
+!build/contracts/BattleManager.json
 
