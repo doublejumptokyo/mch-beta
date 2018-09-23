@@ -25,8 +25,8 @@
       // button(@click="selectTab('heroes')") Heroes
       nuxt-link(to="/inventory/heroes") Heroes
     li.tabItem
-      // button(@click="selectTab('items')") Items
-      nuxt-link(to="/inventory/items") Items
+      // button(@click="selectTab('extensions')") Extensions
+      nuxt-link(to="/inventory/extensions") Extensions
 
   nuxt-child
 </template>

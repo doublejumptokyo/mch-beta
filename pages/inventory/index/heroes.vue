@@ -8,18 +8,20 @@ section.section.section__heroList
       fa-icon(icon="sort-alpha-down" size="lg")
       fa-icon(icon="sort")
   .heroList
-    nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in $store.state.heroes" :key="hero.id")
-      img.heroItem__image(:src="require(`~/assets/images/${hero.imageFileName}`)")
-      p.heroItem__name {{ hero.name }}
+    nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in heroes" :key="hero.id")
+      img.heroItem__image(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+      p.heroItem__name {{ hero.name[$i18n.locale] }}
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       searchText: ''
     }
-  }
+  },
+  computed: mapState(['heroes'])
 }
 </script>
 
