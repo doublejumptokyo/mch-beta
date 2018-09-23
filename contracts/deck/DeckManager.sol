@@ -135,12 +135,12 @@ contract DeckManager is SignerRole {
         }
     }
 
-    function getDeck() public view returns (
+    function getDeck(address _address) public view returns (
         uint256[6] _unit1,
         uint256[6] _unit2,
-        uint256[6] _unit3          
+        uint256[6] _unit3
     ) {
-        Deck storage deck = decks[msg.sender];
+        Deck storage deck = decks[_address];
 
         _unit1[0] = deck.unit1.heroId;
         _unit1[1] = deck.unit1.extensionId1;
