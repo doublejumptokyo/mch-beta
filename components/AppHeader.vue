@@ -64,7 +64,7 @@ export default {
   computed: {
     ...mapGetters(['isLoggedIn']),
     address() {
-      return this.$store.state.user.walletAddress
+      return this.$store.state.user.name
     }
   },
   methods: {

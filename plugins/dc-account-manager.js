@@ -52,6 +52,6 @@ export default async ({ store }, inject) => {
       store.state.env.dappsChain,
       key
     )
-    inject('dcWeb3', accountManager.web3)
+    inject('accountManager', accountManager)
   }
 }

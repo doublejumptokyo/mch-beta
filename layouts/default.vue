@@ -17,22 +17,6 @@ export default {
     return {
       isFixedButtonShown: true
     }
-  },
-  mounted() {
-    this.$store.commit('user/SET_ADDRESS', this.getWalletAddress())
-  },
-  methods: {
-    getWalletAddress() {
-      if (
-        process.browser &&
-        window.web3 &&
-        window.web3.eth &&
-        window.web3.eth.defaultAccount
-      ) {
-        return window.web3.eth.defaultAccount
-      }
-      return ''
-    }
   }
 }
 </script>
