@@ -1,6 +1,7 @@
 import HeroData from '~/build/contracts/Hero.json'
 import HeroAssetData from '~/build/contracts/HeroAsset.json'
 import heroTypesData from '~/assets/data/heroTypes.json'
+import skillsData from '~/assets/data/skills.json'
 
 class Hero {
   constructor(accountManager) {
@@ -24,6 +25,10 @@ class Hero {
       .filter(key => numberKeys.includes(key))
       .forEach(key => (hero[key] = Number(hero[key])))
     hero.id = id
+    hero.activeSkill = skillsData.find(skill => skill.id === hero.activeSkillId)
+    hero.passiveSkill = skillsData.find(
+      skill => skill.id === hero.passiveSkillId
+    )
     return hero
   }
 
