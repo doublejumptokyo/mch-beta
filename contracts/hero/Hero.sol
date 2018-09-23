@@ -56,28 +56,28 @@ contract Hero is HeroType {
     } 
 
     function getHero(uint256 _heroId) public view returns (
-        uint16  _heroType,
-        int16   _hp,
-        int16   _phy,
-        int16   _intl,
-        int16   _agi,
-        uint16  _activeSkillId,
-        uint16  _passiveSkillId,
-        string  _aliasName,
-        string  _ipfs
+        uint16  heroType,
+        int16   hp,
+        int16   phy,
+        int16   intl,
+        int16   agi,
+        uint16  activeSkillId,
+        uint16  passiveSkillId,
+        string  aliasName,
+        string  ipfs
     ) {
         HeroData memory data = heroes[_heroId];
         require(data.exists);
         HeroTypeData memory typeData = heroTypes[data.heroType];
-        _heroType = data.heroType;
-        _hp = data.hp;
-        _phy = data.phy;
-        _intl = data.intl;
-        _agi = data.agi;
-        _activeSkillId = data.activeSkillId;
-        _passiveSkillId = typeData.passiveSkillId;
-        _aliasName = string(data.aliasName);
-        _ipfs = string(data.ipfs);
+        heroType = data.heroType;
+        hp = data.hp;
+        phy = data.phy;
+        intl = data.intl;
+        agi = data.agi;
+        activeSkillId = data.activeSkillId;
+        passiveSkillId = typeData.passiveSkillId;
+        aliasName = string(data.aliasName);
+        ipfs = string(data.ipfs);
     }
     
     function getHeroTypeLength(uint16 _heroType) public view returns (uint16) {
