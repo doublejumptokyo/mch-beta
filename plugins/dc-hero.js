@@ -23,6 +23,7 @@ class Hero {
     Object.keys(hero)
       .filter(key => numberKeys.includes(key))
       .forEach(key => (hero[key] = Number(hero[key])))
+    hero.id = id
     return hero
   }
 
