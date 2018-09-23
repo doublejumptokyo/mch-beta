@@ -416,3 +416,9 @@ export const state = () => [
       'https://ja.wikipedia.org/wiki/%E3%83%8A%E3%83%9D%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%BB%E3%83%9C%E3%83%8A%E3%83%91%E3%83%AB%E3%83%88'
   }
 ]
+
+export const mutations = {
+  SET_HERO(state, hero) {
+    state.push(hero)
+  }
+}
