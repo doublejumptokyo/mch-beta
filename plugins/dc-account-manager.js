@@ -52,6 +52,7 @@ export default async ({ store }, inject) => {
       store.state.env.dappsChain,
       key
     )
+    store.commit('SET_LOOM_ADDRESS', accountManager.from)
     inject('accountManager', accountManager)
   }
 }
