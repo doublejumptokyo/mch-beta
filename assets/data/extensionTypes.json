@@ -42,6 +42,12 @@
     "rarity": "Epic"
   },
   {
+    "type": 3006,
+    "name": { "en": "Wisdom Book", "ja": "ウィズダムブック" },
+    "fileName": "3006.png",
+    "rarity": "Epic"
+  },
+  {
     "type": 3001,
     "name": { "en": "Brave Blade", "ja": "ブレイブブレイド" },
     "fileName": "3001.png",
