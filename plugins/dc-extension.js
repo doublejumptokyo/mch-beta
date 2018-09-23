@@ -22,6 +22,7 @@ class Extension {
     Object.keys(ext)
       .filter(key => numberKeys.includes(key))
       .forEach(key => (ext[key] = Number(ext[key])))
+    ext.id = id
     return ext
   }
 
