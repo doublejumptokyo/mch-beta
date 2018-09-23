@@ -24,4 +24,5 @@ build/*
 !build/contracts/Register.json
 !build/contracts/User.json
 !build/contracts/DeckManager.json
+!build/contracts/Rank.json
 
