@@ -57,17 +57,23 @@ class User {
 
 export default async ({ app, store }, inject) => {
   if (!store.getters.isLoggedIn) return
+
   const register = new Register(app.$accountManager)
   const user = new User(app.$accountManager)
+
   const isRegistered = await register.isRegistered()
   if (!isRegistered) {
     await register.register()
-    await user.create()
   }
+
   const response = await user.get()
-  if (!+response._exists) {
-    throw new Error('CreateUserError')
+  if (response.exists) {
+    store.commit('user/SET_NAME', response.name)
+  } else {
+    await user.create()
+    const response = await user.get()
+    store.commit('user/SET_NAME', response.name)
   }
-  store.commit('user/SET_NAME', response._name)
+
   inject('user', user)
 }

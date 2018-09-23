@@ -68,7 +68,9 @@ module.exports = {
     { src: '~/plugins/eth-account-manager', ssr: false },
     { src: '~/plugins/dc-key-manager', ssr: false },
     { src: '~/plugins/dc-account-manager', ssr: false },
-    { src: '~/plugins/dc-register', ssr: false }
+    { src: '~/plugins/dc-register', ssr: false },
+    { src: '~/plugins/dc-hero', ssr: false },
+    { src: '~/plugins/dc-extension', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules: [
