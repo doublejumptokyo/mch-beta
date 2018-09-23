@@ -48,6 +48,7 @@ export default {
     async rename() {
       await this.$store.dispatch('user/rename', this.userName)
       this.isRenaming = false
+      this.$toast.show('Player name Changed.')
     },
     async logout() {
       await this.$store.dispatch('logout')
