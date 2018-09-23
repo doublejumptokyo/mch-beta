@@ -77,10 +77,14 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
     // '@nuxtjs/bulma',
+    '@nuxtjs/toast',
     ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
   ],
   proxy: {
     '/api': 'https://www.origin.sand.mch.djty.co',
     '/tmp': 'https://www.origin.sand.mch.djty.co'
+  },
+  toast: {
+    duration: 3000
   }
 }
