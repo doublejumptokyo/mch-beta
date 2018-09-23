@@ -34,13 +34,15 @@ contract User {
     }     
 
     function getAccount() public view returns (
-        uint8   _exists,
+        bool exists,
         string  _name,
         string  _ipfs
     ) {
         Account storage account = accounts[msg.sender];
-        require(account.exists);
-        return (1, account.name, account.ipfs);
+        if (account.exists) {
+            return (true, account.name, account.ipfs);
+        }
+        return (false, "", "");
     }
 
     function addressToString(address _address) public pure returns (string) {
