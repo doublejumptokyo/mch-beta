@@ -48,23 +48,23 @@ contract Extension is ExtensionType {
     } 
 
     function getExtension(uint256 _extensionId) public view returns (
-        uint16  _extensionType,
-        int16   _hp,
-        int16   _phy,
-        int16   _intl,
-        int16   _agi,
-        uint16  _activeSkillId,
-        string  _aliasName
+        uint16  extensionType,
+        int16   hp,
+        int16   phy,
+        int16   intl,
+        int16   agi,
+        uint16  activeSkillId,
+        string  aliasName
     ) {
         ExtensionData memory data = extensions[_extensionId];
         require(data.exists);
-        _extensionType = data.extensionType;
-        _hp = data.hp;
-        _phy = data.phy;
-        _intl = data.intl;
-        _agi = data.agi;
-        _activeSkillId = data.activeSkillId;
-        _aliasName = string(data.aliasName);
+        extensionType = data.extensionType;
+        hp = data.hp;
+        phy = data.phy;
+        intl = data.intl;
+        agi = data.agi;
+        activeSkillId = data.activeSkillId;
+        aliasName = string(data.aliasName);
     }
 
 
