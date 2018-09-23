@@ -3,7 +3,7 @@
   .accountPage__userData
     img(:src="require('~/assets/images/mary.png')")
     p
-      span {{ $store.state.user.walletAddress }}
+      span {{ $store.state.user.name }}
       button
         fa-icon(:icon="['far', 'edit']")
     .userData
