@@ -17,18 +17,17 @@ contract DeckManager is SignerRole {
     Extension extension;
 
     struct Deck {
-        Unit unit1;
-        Unit unit2;
-        Unit unit3;
+        Unit[3] units;
+        bool exists;
     }
 
     struct Unit {
-        uint256 heroId;
-        uint256 extensionId1;
-        uint256 extensionId2;
-        uint256 activeSkillId1;
-        uint256 activeSkillId2;
-        uint256 activeSkillId3;
+        uint256 hero;
+        uint256 extension1;
+        uint256 extension2;
+        uint256 active1;
+        uint256 active2;
+        uint256 active3;
     }
     
     function setHeroAssetAddress(address _heroAssetAddress) public onlySigner {
@@ -54,27 +53,30 @@ contract DeckManager is SignerRole {
         uint256[6] _unit3
     ) public onlySigner {
         Deck storage deck = decks[_address];
+        require(!deck.exists);
 
-        deck.unit1.heroId = _unit1[0];
-        deck.unit1.extensionId1 = _unit1[1];
-        deck.unit1.extensionId2 = _unit1[2];
-        deck.unit1.activeSkillId1 = _unit1[3];
-        deck.unit1.activeSkillId2 = _unit1[4];
-        deck.unit1.activeSkillId3 = _unit1[5];
+        deck.units[0].hero = _unit1[0];
+        deck.units[0].extension1 = _unit1[1];
+        deck.units[0].extension2 = _unit1[2];
+        deck.units[0].active1 = _unit1[3];
+        deck.units[0].active2 = _unit1[4];
+        deck.units[0].active3 = _unit1[5];
 
-        deck.unit2.heroId = _unit2[0];
-        deck.unit2.extensionId1 = _unit2[1];
-        deck.unit2.extensionId2 = _unit2[2];
-        deck.unit2.activeSkillId1 = _unit2[3];
-        deck.unit2.activeSkillId2 = _unit2[4];
-        deck.unit2.activeSkillId3 = _unit2[5];
+        deck.units[1].hero = _unit2[0];
+        deck.units[1].extension1 = _unit2[1];
+        deck.units[1].extension2 = _unit2[2];
+        deck.units[1].active1 = _unit2[3];
+        deck.units[1].active2 = _unit2[4];
+        deck.units[1].active3 = _unit2[5];
 
-        deck.unit3.heroId = _unit3[0];
-        deck.unit3.extensionId1 = _unit3[1];
-        deck.unit3.extensionId2 = _unit3[2];
-        deck.unit3.activeSkillId1 = _unit3[3];
-        deck.unit3.activeSkillId2 = _unit3[4];
-        deck.unit3.activeSkillId3 = _unit3[5];
+        deck.units[2].hero = _unit3[0];
+        deck.units[2].extension1 = _unit3[1];
+        deck.units[2].extension2 = _unit3[2];
+        deck.units[2].active1 = _unit3[3];
+        deck.units[2].active2 = _unit3[4];
+        deck.units[2].active3 = _unit3[5];
+
+        deck.exists = true;
     }
 
     function setDeck(
@@ -87,27 +89,28 @@ contract DeckManager is SignerRole {
         check(_unit3);
 
         Deck storage deck = decks[msg.sender];
+        require(deck.exists);
 
-        deck.unit1.heroId = _unit1[0];
-        deck.unit1.extensionId1 = _unit1[1];
-        deck.unit1.extensionId2 = _unit1[2];
-        deck.unit1.activeSkillId1 = _unit1[3];
-        deck.unit1.activeSkillId2 = _unit1[4];
-        deck.unit1.activeSkillId3 = _unit1[5];
+        deck.units[0].hero = _unit1[0];
+        deck.units[0].extension1 = _unit1[1];
+        deck.units[0].extension2 = _unit1[2];
+        deck.units[0].active1 = _unit1[3];
+        deck.units[0].active2 = _unit1[4];
+        deck.units[0].active3 = _unit1[5];
 
-        deck.unit2.heroId = _unit2[0];
-        deck.unit2.extensionId1 = _unit2[1];
-        deck.unit2.extensionId2 = _unit2[2];
-        deck.unit2.activeSkillId1 = _unit2[3];
-        deck.unit2.activeSkillId2 = _unit2[4];
-        deck.unit2.activeSkillId3 = _unit2[5];
+        deck.units[1].hero = _unit2[0];
+        deck.units[1].extension1 = _unit2[1];
+        deck.units[1].extension2 = _unit2[2];
+        deck.units[1].active1 = _unit2[3];
+        deck.units[1].active2 = _unit2[4];
+        deck.units[1].active3 = _unit2[5];
 
-        deck.unit3.heroId = _unit3[0];
-        deck.unit3.extensionId1 = _unit3[1];
-        deck.unit3.extensionId2 = _unit3[2];
-        deck.unit3.activeSkillId1 = _unit3[3];
-        deck.unit3.activeSkillId2 = _unit3[4];
-        deck.unit3.activeSkillId3 = _unit3[5];
+        deck.units[2].hero = _unit3[0];
+        deck.units[2].extension1 = _unit3[1];
+        deck.units[2].extension2 = _unit3[2];
+        deck.units[2].active1 = _unit3[3];
+        deck.units[2].active2 = _unit3[4];
+        deck.units[2].active3 = _unit3[5];
     }
 
     function check (
@@ -135,33 +138,58 @@ contract DeckManager is SignerRole {
         }
     }
 
-    function getDeck() public view returns (
+    function getDeck(address _address) public view returns (
         uint256[6] _unit1,
         uint256[6] _unit2,
-        uint256[6] _unit3          
+        uint256[6] _unit3
     ) {
-        Deck storage deck = decks[msg.sender];
+        Deck storage deck = decks[_address];
 
-        _unit1[0] = deck.unit1.heroId;
-        _unit1[1] = deck.unit1.extensionId1;
-        _unit1[2] = deck.unit1.extensionId2;
-        _unit1[3] = deck.unit1.activeSkillId1;
-        _unit1[4] = deck.unit1.activeSkillId2;
-        _unit1[5] = deck.unit1.activeSkillId3;
+        _unit1[0] = deck.units[0].hero;
+        _unit1[1] = deck.units[0].extension1;
+        _unit1[2] = deck.units[0].extension2;
+        _unit1[3] = deck.units[0].active1;
+        _unit1[4] = deck.units[0].active2;
+        _unit1[5] = deck.units[0].active3;
         
-        _unit2[0] = deck.unit2.heroId;
-        _unit2[1] = deck.unit2.extensionId1;
-        _unit2[2] = deck.unit2.extensionId2;
-        _unit2[3] = deck.unit2.activeSkillId1;
-        _unit2[4] = deck.unit2.activeSkillId2;
-        _unit2[5] = deck.unit2.activeSkillId3;
+        _unit2[0] = deck.units[1].hero;
+        _unit2[1] = deck.units[1].extension1;
+        _unit2[2] = deck.units[1].extension2;
+        _unit2[3] = deck.units[1].active1;
+        _unit2[4] = deck.units[1].active2;
+        _unit2[5] = deck.units[1].active3;
 
-        _unit3[0] = deck.unit3.heroId;
-        _unit3[1] = deck.unit3.extensionId1;
-        _unit3[2] = deck.unit3.extensionId2;
-        _unit3[3] = deck.unit3.activeSkillId1;
-        _unit3[4] = deck.unit3.activeSkillId2;
-        _unit3[5] = deck.unit3.activeSkillId3;
+        _unit3[0] = deck.units[2].hero;
+        _unit3[1] = deck.units[2].extension1;
+        _unit3[2] = deck.units[2].extension2;
+        _unit3[3] = deck.units[2].active1;
+        _unit3[4] = deck.units[2].active2;
+        _unit3[5] = deck.units[2].active3;
     }
 
+    function getUnit(address _address, uint8 _index) public view returns (
+        uint256[3] ids, int16[4] sumParams, uint16[4] skills
+    ) {
+        Deck storage deck = decks[_address];
+        require(deck.exists);
+
+        ids[0] = deck.units[_index].hero;
+        ids[1] = deck.units[_index].extension1;
+        ids[2] = deck.units[_index].extension2;
+
+        int16[4] memory params;
+
+        (,params[0],params[1],params[2],params[3],,skills[3],,) = hero.getHero(deck.units[_index].hero);
+        sumParams[0] += params[0]; sumParams[1] += params[1]; sumParams[2] += params[2]; sumParams[3] += params[3];
+
+        (,params[0],params[1],params[2],params[3],,) = extension.getExtension(deck.units[_index].extension1);
+        sumParams[0] += params[0]; sumParams[1] += params[1]; sumParams[2] += params[2]; sumParams[3] += params[3];
+
+        (,params[0],params[1],params[2],params[3],,) = extension.getExtension(deck.units[_index].extension2);
+        sumParams[0] += params[0]; sumParams[1] += params[1]; sumParams[2] += params[2]; sumParams[3] += params[3];
+        
+        skills[0] = uint16(deck.units[_index].active1);
+        skills[1] = uint16(deck.units[_index].active2);
+        skills[2] = uint16(deck.units[_index].active3);
+    }
 }
