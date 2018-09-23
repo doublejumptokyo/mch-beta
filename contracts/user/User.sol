@@ -1,73 +1,55 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
+
 
 contract User {
 
-    address coinManagerAddress; 
-    
-    mapping(address=>address) public etherAddressToLoomAddress;
-    mapping(address=>Account) public loomAccounts;
+    mapping(address=>Account) public accounts;
 
     struct Account {
-        address ownEthereumAddress;
-        address affiliateEthereumAddress;
-        bytes  name;
-        bytes  ipfs;
-        uint64  lastDailyBonusAt; 
-        bool    exists;
+        string name;
+        string ipfs;
+        bool   exists;
     }
 
-    modifier onlyCoinManagerAddress() {
-        require(msg.sender == coinManagerAddress);
-        _;
-    }
-
-    function createUserAccount(address _ownEthereumAddress) public {
-        Account storage account = loomAccounts[msg.sender];
+    function createUserAccount() public {
+        Account storage account = accounts[msg.sender];
         require(!account.exists);
-        etherAddressToLoomAddress[_ownEthereumAddress] = msg.sender;
-        account.ownEthereumAddress = _ownEthereumAddress;
         account.exists = true;
+        account.name = addressToString(msg.sender);
     }
 
     function setName(string _name) public {
-        Account storage account = loomAccounts[msg.sender];   
+        Account storage account = accounts[msg.sender];   
         require(account.exists);     
-        account.name = bytes(_name);        
+        account.name = _name;        
     } 
 
     function setIpfs(string _ipfs) public {
-        Account storage account = loomAccounts[msg.sender];   
+        Account storage account = accounts[msg.sender];   
         require(account.exists);     
-        account.ipfs = bytes(_ipfs);        
+        account.ipfs = _ipfs;
     }     
 
-    function setAffiliate(address _affiliateEthereumAddress) public {
-        Account storage account = loomAccounts[msg.sender];   
-        require(account.exists);     
-        account.affiliateEthereumAddress = _affiliateEthereumAddress;
-    }
-    
-    function getAccount(address _address) public returns (
-        address _ownEthereumAddress,
-        address _affiliateEthereumAAddress,
+    function getAccount() public view returns (
+        uint8   _exists,
         string  _name,
-        string  _ipfs,
-        uint64  _lastDailyBonusAt,
-        bool    _exists 
+        string  _ipfs
     ) {
-        Account memory _account = loomAccounts[_address];
-        _ownEthereumAddress = _account.ownEthereumAddress;
-        _affiliateEthereumAAddress = _account.affiliateEthereumAddress;
-        _name = string(_account.name);
-        _ipfs = string(_account.ipfs);
-        _lastDailyBonusAt = _account.lastDailyBonusAt;
-        _exists = _account.exists;
+        Account storage account = accounts[msg.sender];
+        require(account.exists);
+        return (1, account.name, account.ipfs);
     }
 
-    function updateLastDailyBonusAt(address _address, uint64 _at) public onlyCoinManagerAddress {
-        Account storage account = loomAccounts[_address];   
-        require(account.exists);     
-        account.lastDailyBonusAt = _at;        
+    function addressToString(address _address) public pure returns (string) {
+        bytes32 value = bytes32(uint256(_address));
+        bytes memory alphabet = "0123456789abcdef";
+        bytes memory str = new bytes(51);
+        str[0] = '0';
+        str[1] = 'x';
+        for (uint i = 0; i < 20; i++) {
+            str[2+i*2] = alphabet[uint(value[i + 12] >> 4)];
+            str[3+i*2] = alphabet[uint(value[i + 12] & 0x0f)];
+        }
+        return string(str);
     }
-
 }
