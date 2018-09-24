@@ -1,13 +1,11 @@
 #!/bin/sh
 
-file="js/hero_mint.js"
-
 split -l100 -d raw/mint.txt splited/mint_
 
 prefix=200
 
 for f in `ls splited`; do
-    file="js/${prefix}_$f.js"
+    file="../migrations/${prefix}_$f.js"
 
     echo -n "" > $file
     echo "let HeroManager = artifacts.require('HeroManager');" >> $file
