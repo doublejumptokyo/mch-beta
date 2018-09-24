@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss">
 .container {
-  background: #444;
+  background: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -58,7 +58,7 @@ export default {
 }
 
 .page {
-  background: #555;
+  background: #444;
   border-radius: 0 0 1rem 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
