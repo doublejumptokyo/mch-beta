@@ -138,6 +138,19 @@ contract DeckManager is SignerRole {
         }
     }
 
+    function checkDuplicate (
+        uint256[6] _unit1,
+        uint256[6] _unit2,
+        uint256[6] _unit3
+    ) internal view {
+        require(_unit1[0] != _unit2[0] && _unit2[0] != _unit3[0] && _unit3[0] != _unit1[0]);
+        require(_unit1[1] != _unit1[2] && _unit1[1] != _unit2[1] && _unit1[1] != _unit2[2] && _unit1[1] != _unit3[1] && _unit1[1] != _unit3[2]);
+        require(_unit1[2] != _unit2[1] && _unit1[2] != _unit2[2] && _unit1[2] != _unit3[1] && _unit1[2] != _unit3[2]);
+        require(_unit2[1] != _unit2[2] && _unit2[1] != _unit3[1] && _unit2[1] != _unit3[2]);
+        require(_unit2[2] != _unit3[1] && _unit2[2] != _unit3[2]);
+        require(_unit3[1] != _unit3[2]);
+    }    
+
     function getDeck(address _address) public view returns (
         uint256[6] unit1,
         uint256[6] unit2,
