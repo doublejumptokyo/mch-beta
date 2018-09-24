@@ -91,7 +91,7 @@ export default {
   align-items: center;
   background: #333;
   border-top: 4px solid map-get($colors, primary);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-wrap: wrap;
   font-size: 0.9rem;
@@ -105,14 +105,16 @@ export default {
 
   &__brand {
     a {
-      background: url('~/assets/images/mch_mark_128_w.png') no-repeat center center / contain;
+      background: url('~/assets/images/mch_mark_128_w.png') no-repeat center
+        center / contain;
       display: block;
       height: 32px;
       text-indent: -9999px;
       width: 32px;
 
       @media (min-width: $breakpoint) {
-        background: url('~/assets/images/mch_logo_yoko_w.png') no-repeat center center / contain;
+        background: url('~/assets/images/mch_logo_yoko_w.png') no-repeat center
+          center / contain;
         width: 135px;
       }
     }
