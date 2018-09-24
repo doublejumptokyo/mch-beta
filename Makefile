@@ -41,5 +41,8 @@ deploy:
 	cd deploy && \
 	./deploy.yml -e VERSION=$(CURRENT_VERSION) -e ENV=$(ENV) -e app_name=$(APP_NAME) -i $(ENV)
 
+minter:
+	truffle migrate --network loom_$(ENV) -f 51 --to 51
+
 migrate:
 	truffle migrate --network loom_$(ENV)$(KEY) -f $(TARGET) --to $(TARGET) > loom_$(ENV)$(KEY).log &
