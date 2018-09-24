@@ -6,7 +6,7 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
     li
       nuxt-link(to="/terms") 利用規約
     li
-      button(@click="logout") Cache out
+      button(@click="logout") CO
   p
     small &copy; {{ (new Date()).getFullYear() }} double jump.tokyo
 </template>
