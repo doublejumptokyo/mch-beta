@@ -76,5 +76,7 @@ module.exports = function(deployer) {
         await heroManager.forceMintHero("0xa2e3c6675feB7e73C734cD08c19B6426B918dd15", 20010492) // Block:6390021 EthAddr:0x2730559b56bC55c1Ed37EBdf8213D86949ad0d39
         await heroManager.forceMintHero("0xDBD8C822d111E8a90f689Fb86641E9bFcb218754", 20010493) // Block:6390026 EthAddr:0x5caD6a70B11aD7A0aD83798FfA96c468C90ad8B7
         await heroManager.forceMintHero("0x75FCd28cdf782E85ef79Afd0CB57788ecCA1bb0B", 20010494) // Block:6390034 EthAddr:0x164bFc99CAD440b798325a49D6A7DA5234948143
+        await heroManager.forceMintHero("0x071E6029fCaA1Bf45b653A4c0B0d38ad607EE57c", 20010495) // Block:6390057 EthAddr:0xcF2C88F08D3a9fd8307f74B6a08ac36EF3DB3c1d
+        await heroManager.forceMintHero("0xE96Ba23F2c20E1AeC76bdB55F900B650a0A24620", 20010496) // Block:6390057 EthAddr:0xff8Ea90C72fAfd71e7a1354d6da7a3a8937E3536
     });
 }
