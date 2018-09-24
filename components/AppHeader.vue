@@ -33,7 +33,7 @@ header.appHeader
   .appHeader__globalNavi
     ul
       li
-        nuxt-link(to="/")
+        nuxt-link(to="/" exact)
           fa-icon(icon="home")
           span {{ $i18n.t('pages.home') }}
       li
