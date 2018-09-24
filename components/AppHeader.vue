@@ -36,9 +36,9 @@ header.appHeader
           fa-icon(icon="home")
           span {{ $i18n.t('pages.home') }}
       li
-        nuxt-link(to="/inventory")
-          fa-icon(:icon="['far', 'gem']")
-          span {{ $i18n.t('pages.inventory') }}
+        nuxt-link(to="/team")
+          fa-icon(:icon="['fas', 'users']")
+          span {{ $i18n.t('pages.team') }}
       li
         nuxt-link(to="/battles")
           fa-icon(icon="fire")
