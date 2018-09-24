@@ -5,6 +5,8 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 
 contract ExtensionType is MinterRole {
 
+    event ExtensionTypeSetting (uint16 extensionType, string name, int16 hp, int16 phy, int16 intl, int16 agi, uint16 activeSkillId, uint16 rarity);
+
     mapping(uint16 => ExtensionTypeData) public extensionTypes;
 
     struct ExtensionTypeData {
@@ -38,6 +40,8 @@ contract ExtensionType is MinterRole {
         data.activeSkillId = _activeSkillId;
         data.rarity = _rarity;
         data.exists = true;
+        
+        emit ExtensionTypeSetting (_type, _name, _hp, _phy, _intl, _agi, _activeSkillId, _rarity);
     }
 
     function getExtensionType(uint16 _type) public view returns (

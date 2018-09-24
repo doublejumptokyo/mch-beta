@@ -9,6 +9,8 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol";
 
 contract DeckManager is SignerRole {
 
+    event DeckSetting (address indexed user, uint256[6] unit1, uint256[6] unit2, uint256[6] unit3);
+
     mapping(address => Deck) decks;
 
     HeroAsset heroAsset;
@@ -76,6 +78,8 @@ contract DeckManager is SignerRole {
         deck.units[2].skillOrder3 = _unit3[5];
 
         deck.exists = true;
+        
+        emit DeckSetting (_address, _unit1, _unit2, _unit3);
     }
 
     function setDeck(
@@ -111,6 +115,8 @@ contract DeckManager is SignerRole {
         deck.units[2].skillOrder1 = _unit3[3];
         deck.units[2].skillOrder2 = _unit3[4];
         deck.units[2].skillOrder3 = _unit3[5];
+
+        emit DeckSetting (msg.sender, _unit1, _unit2, _unit3);
     }
 
     function check (
