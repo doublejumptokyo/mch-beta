@@ -5,6 +5,8 @@
       img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
       button(v-if="isSellable")
         fa-icon(:icon="['far', 'edit']")
+    .assetPage__rarity
+      p {{ hero.rarity }}
     .assetPage__name
       h1 {{ hero.name[$i18n.locale] }}
       p {{ id }}
@@ -115,6 +117,8 @@ export default {
   }
 
   &__image {
+    margin-bottom: 1rem;
+
     img {
       image-rendering: pixelated;
       width: 100%;
@@ -131,8 +135,15 @@ export default {
     }
   }
 
+  &__rarity {
+    color: #ccc;
+    font-family: 'Merriweather Sans';
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
   &__name {
-    margin: 1rem 0;
+    margin: 0 0 1rem;
     text-align: center;
 
     div {
@@ -194,9 +205,10 @@ export default {
   }
 
   &__status {
-    background: #fff;
+    background: #777;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #fff;
     margin: 1rem 0 0 1rem;
     padding: 1rem;
     text-align: center;
@@ -234,9 +246,10 @@ export default {
 
   &__skill {
     align-items: center;
-    background: #fff;
+    background: #777;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #fff;
     display: flex;
     margin: 1rem 0 0 1rem;
     padding: 1rem;
