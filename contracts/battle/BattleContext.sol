@@ -13,6 +13,8 @@ library BattleContext {
     struct Battle {
         bool exists;
         uint32 id;
+        address attacker;
+        address defender;
         BattleState state;
         uint8 actionCounts;
         uint16 randomCounts;
