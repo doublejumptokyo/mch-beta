@@ -1,6 +1,6 @@
 <template lang="pug">
 section.section.section__heroList
-  header
+  //- header
     form.searchForm
       input.searchForm__input(type="search" v-model="searchText" placeholder="Your Hero Name")
       fa-icon(icon="search")
