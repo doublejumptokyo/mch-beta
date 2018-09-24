@@ -82,7 +82,11 @@ contract HeroManager is Ownable, MinterRole {
             forceTransferFrom(_from, _to, _heroId);
             tokenOwner[_heroId] = _to;
         }
-    } 
+    }
+    
+    function updateHero(uint256 _heroId) public onlyMinter {
+        hero.updateHero(_heroId);
+    }
 
     // function setIpfs(uint256 _heroId, string _ipfs) public {}
 

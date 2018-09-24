@@ -45,7 +45,6 @@ contract ExtensionManager is Ownable, MinterRole {
         extensionAsset.setSupplyLimit(_type, _supplyLimit);
     }
 
-
     function mintExtensionByType(address _owner, uint16 _extensionType) public onlyMinter returns (uint256) {
         uint16 current = extension.getExtensionTypeLength(_extensionType);
         current++;
@@ -62,6 +61,10 @@ contract ExtensionManager is Ownable, MinterRole {
     function setAliasName(uint256 _extensionId, string _aliasName) public {
         require(msg.sender == extensionAsset.ownerOf(_extensionId));
         extension.setAliasName(_extensionId, _aliasName);
+    }
+
+    function updateExtension(uint256 _extensionId) public onlyMinter {
+        extension.updateExtension(_extensionId);
     }
 
 }
