@@ -41,23 +41,23 @@ contract Register is Ownable {
             _unit1[0] = heroManager.mintHeroByType(msg.sender, 1001);
             _unit1[1] = extensionManager.mintExtensionByType(msg.sender, 1001);
             _unit1[2] = extensionManager.mintExtensionByType(msg.sender, 3011);
-            _unit1[3] = 2011;
-            _unit1[4] = 2001;
-            _unit1[5] = 2005;
+            _unit1[3] = 1;
+            _unit1[4] = 0;
+            _unit1[5] = 2;
 
             _unit2[0] = heroManager.mintHeroByType(msg.sender, 1002);
             _unit2[1] = extensionManager.mintExtensionByType(msg.sender, 3008);
             _unit2[2] = extensionManager.mintExtensionByType(msg.sender, 3007);
-            _unit2[3] = 2007;
-            _unit2[4] = 2001;
-            _unit2[5] = 2008;
+            _unit2[3] = 1;
+            _unit2[4] = 0;
+            _unit2[5] = 2;
 
             _unit3[0] = heroManager.mintHeroByType(msg.sender, 1003);
             _unit3[1] = extensionManager.mintExtensionByType(msg.sender, 4006);
             _unit3[2] = extensionManager.mintExtensionByType(msg.sender, 3010);
-            _unit3[3] = 2004;
-            _unit3[4] = 2001;
-            _unit3[5] = 2006;
+            _unit3[3] = 1;
+            _unit3[4] = 0;
+            _unit3[5] = 2;
 
             deckManager.setInitialDeck(msg.sender, _unit1, _unit2, _unit3);
 
