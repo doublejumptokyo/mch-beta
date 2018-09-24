@@ -12,5 +12,49 @@
   },
   "others": {
     "other": "Others"
+  },
+  "home": {
+    "howTo": [
+      {
+        "title": "Form teams",
+        "body": [
+          {
+            "title": "Choosing team members",
+            "body": "Assemble a team using your heroes.\nYou can include up to 3 heroes in your team."
+          },
+          {
+            "title": "Choosing Extensions (Equipment)",
+            "body": "Heroes can wear up to 2 extensions.\nHeroes are strengthened when wearing equipment."
+          },
+          {
+            "title": "Rearrange Active Skills",
+            "body": "Heroes act using Active Skills during their turns. Active Skills are automatically used in top-down order.\nRearrange their order according to your battle plan."
+          }
+        ]
+      },
+      {
+        "title": "Participate in Battle",
+        "body": [
+          {
+            "title": "Choosing opponents",
+            "body": "Ranks are an indication of the opponent's strength.\nThe higher the enemy's rank, the greater the potential rewards!"
+          },
+          {
+            "title": "Battle!",
+            "body": "Battles are autonomously fought by your team.\nCheer on your heroes and watch over the battle progression!"
+          },
+          {
+            "title": "Rank Rewards.",
+            "body": "Your rank will change based on battle results.\nRewards will be granted reflecting your Battle β Test rank once the game is launched."
+          }
+        ]
+      }
+    ],
+    "notice": [
+      "The heroes and extensions provided are for Battle β Test only.",
+      "Heroes purchased in the pre-sale may be used in Battle β Test, however their status and skills will differ after the game is in service.",
+      "Free-of-charge heroes and extensions will be withdrawn after Battle β Test ends.",
+      "Data from Battle β Test will not be carried over after the game's release."
+    ]
   }
 }
