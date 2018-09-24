@@ -92,8 +92,8 @@ export default {
   }
 
   &__statuses {
-    background: #666;
-    color: #666;
+    background: #555;
+    color: #555;
     display: flex;
     flex-wrap: wrap;
     margin: 1rem -1rem 1rem;
@@ -105,7 +105,7 @@ export default {
   }
 
   &__status {
-    background: #777;
+    background: #666;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     color: #fff;
@@ -146,7 +146,7 @@ export default {
 
   &__skill {
     align-items: center;
-    background: #777;
+    background: #666;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     color: #fff;

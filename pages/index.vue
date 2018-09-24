@@ -89,7 +89,7 @@ ul {
 }
 
 .update {
-  background: #666;
+  background: #555;
   border-radius: 1rem;
   padding: 1rem;
 }
