@@ -31,6 +31,10 @@ module.exports = function (deployer) {
         await deckManager.addSigner(Register.address)
         await battleManager.setDeckManagerAddress(DeckManager.address)
         await register.setDeckManagerAddress(DeckManager.address)
+        await deckManager.setHeroAssetAddress(HeroAsset.address)
+        await deckManager.setHeroAddress(Hero.address)
+        await deckManager.setExtensionAssetAddress(ExtensionAsset.address)
+        await deckManager.setExtensionAddress(Extension.address)
 
     });
 }
