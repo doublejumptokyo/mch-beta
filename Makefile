@@ -10,6 +10,10 @@ CURRENT_REVISION_SHORT = $(shell git rev-parse HEAD)
 
 export NODE_ENV=production
 
+KEY = 01
+ENV = sand
+TARGET = 200
+
 .PHONY: setup build upload deploy
 
 build:
@@ -36,3 +40,6 @@ setup:
 deploy:
 	cd deploy && \
 	./deploy.yml -e VERSION=$(CURRENT_VERSION) -e ENV=$(ENV) -e app_name=$(APP_NAME) -i $(ENV)
+
+migrate:
+	truffle migrate --network loom_$(ENV)$(KEY) -f $(TARGET) --to $(TARGET) > loom_$(ENV)$(KEY).log &
