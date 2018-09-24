@@ -3,7 +3,7 @@ header.appHeader
 
   .appHeader__brand
     nuxt-link(to="/")
-      img(:src="require('~/assets/images/mch_mark_128_b.png')")
+      img(:src="require('~/assets/images/mch_mark_128_w.png')")
 
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
@@ -90,7 +90,7 @@ export default {
 <style lang="scss" scoped>
 .appHeader {
   align-items: center;
-  background: map-get($colors, white);
+  background: #333;
   border-top: 4px solid map-get($colors, primary);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -118,6 +118,11 @@ export default {
     .dropdown-trigger .button,
     .dropdown-menu {
       font-size: 0.8rem;
+    }
+
+    .button {
+      background: transparent;
+      color: #dbdbdb;
     }
   }
 
@@ -149,6 +154,7 @@ export default {
 
     a {
       align-items: center;
+      color: #ccc;
       display: flex;
       flex-direction: column;
       font-size: 0.6rem;
@@ -165,10 +171,10 @@ export default {
       }
 
       &.nuxt-link-active {
-        color: map-get($colors, primary);
+        color: #fff;
 
         &::after {
-          background: map-get($colors, primary);
+          background: #fff;
           bottom: 0;
           content: '';
           height: 2px;
@@ -205,6 +211,10 @@ export default {
     padding-right: 0.75em;
     padding-top: calc(0.375em - 1px);
     max-width: 8rem;
+
+    a {
+      color: #dbdbdb;
+    }
 
     @media (min-width: $breakpoint) {
       max-width: 16rem;

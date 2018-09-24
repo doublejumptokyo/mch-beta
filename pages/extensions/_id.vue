@@ -1,10 +1,14 @@
 <template lang="pug">
 .assetPage
-  template(v-if="item")
+
+  .assetPage__left(v-if="item")
+
     .assetPage__image
       img(:src="require(`~/assets/images/extensions/${item.fileName}`)")
     .assetPage__name
       h1 {{ item.name[$i18n.locale] }}
+
+  .assetPage__right(v-if="item")
     .assetPage__statuses
       .assetPage__status
         h3
@@ -49,19 +53,24 @@ export default {
 
 <style lang="scss" scoped>
 .assetPage {
-  &__image {
-    height: 0;
-    margin: -1rem -1rem 1rem;
-    padding-top: calc(100% + 2rem);
-    position: relative;
+  @media (min-width: $breakpoint) {
+    // align-items: flex-end;
+    display: flex;
 
+    &__left {
+      flex: 2;
+      margin: 1rem;
+    }
+
+    &__right {
+      flex: 3;
+      margin: 1rem;
+    }
+  }
+
+  &__image {
     img {
-      height: 100%;
       image-rendering: pixelated;
-      left: 0;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
       width: 100%;
     }
   }
@@ -72,7 +81,8 @@ export default {
   }
 
   &__statuses {
-    background: #f9f9f9;
+    background: #666;
+    color: #666;
     display: flex;
     flex-wrap: wrap;
     margin: 1rem -1rem 1rem;
