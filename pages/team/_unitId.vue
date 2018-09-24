@@ -49,17 +49,17 @@
       .status
         img(:src="require('~/assets/images/icons/status/int.png')")
         p {{ computedStatus.int }}
-    //- .skills
+    .skills
       draggable(
         v-model="activeSkillOrder",
         element="ol",
         :options="{ animation: 300, handle: '.activeSkill__handle' }"
       )
-        li.skill.activeSkill(v-for="type in activeSkillOrder")
-          span {{ getActiveSkill(type).name }}
+        li.skill.activeSkill(v-for="index in activeSkillOrder")
+          span {{ getActiveSkill(index).name[$i18n.locale] }}
           .activeSkill__handle
             fa-icon(icon="bars")
-      p.skill.passiveSkill {{ hero.skill.passive.name }}
+      p.skill.passiveSkill(v-if="hero.passiveSkill") {{ hero.passiveSkill.name[$i18n.locale] }}
 
   footer.positionPage__footer
     button(@click="submit") OK
@@ -91,11 +91,11 @@
               .detailViewer__status
                 img(:src="require('~/assets/images/icons/status/int.png')")
                 span {{ selectedHero.intl }}
-            //- .detailViewer__skills
+            .detailViewer__skills
               .detailViewer__skill.detailViewer__activeSkill
-                span {{ selectedHero.skill.active.name }}
+                span {{ selectedHero.activeSkill.name[$i18n.locale] }}
               .detailViewer__skill.detailViewer__passiveSkill
-                span {{ selectedHero.skill.passive.name }}
+                span {{ selectedHero.passiveSkill.name[$i18n.locale] }}
     .heroModal__footer(slot="footer")
       button.heroModal__cancelButton(@click="heroModalCancel") Cancel
       button.heroModal__submitButton(@click="heroModalSubmit") OK
@@ -126,9 +126,9 @@
               .detailViewer__status
                 img(:src="require('~/assets/images/icons/status/int.png')")
                 span(:class="{ 'detailViewer__status--plus': selectedItem[isItemModalShown].intl > 0, 'detailViewer__status--minus': selectedItem[isItemModalShown].intl < 0, 'detailViewer__status--zero': selectedItem[isItemModalShown].intl === 0 }") {{ selectedItem[isItemModalShown].intl }}
-            //- .detailViewer__skills
+            .detailViewer__skills
               .detailViewer__skill.detailViewer__activeSkill
-                span {{ selectedItem[isItemModalShown].skill.name }}
+                span {{ selectedItem[isItemModalShown].activeSkill.name[$i18n.locale] }}
     .itemModal__footer(slot="footer")
       button.itemModal__cancelButton(@click="itemModalCancel(isItemModalShown)") Cancel
       button.itemModal__submitButton(@click="itemModalSubmit(isItemModalShown)") OK
@@ -155,9 +155,10 @@ export default {
   computed: {
     ...mapState(['team']),
     ...mapGetters({
-      units: 'team/units',
+      units: 'team/newUnits',
       getHero: 'heroes/get',
-      getExtension: 'extensions/get'
+      getExtension: 'extensions/get',
+      getSkill: 'team/getSkill'
     }),
     computedStatus() {
       return {
@@ -169,40 +170,37 @@ export default {
     }
   },
   mounted() {
-    this.position = this.team[this.$route.params.unitId]
+    this.positionIndex = Number(this.$route.params.unitId) - 1
+    this.position = this.units[this.positionIndex]
     this.hero = this.getHero(this.position[0])
     this.item1 = this.getExtension(this.position[1])
     this.item2 = this.getExtension(this.position[2])
-    this.activeSkillOrder = this.position.activeSkillOrder
+    this.activeSkillOrder = this.position.filter((num, index) => index > 2)
   },
   methods: {
     getStatus(type) {
       return this.hero[type] + this.item1[type] + this.item2[type]
     },
-    isDisabled(obj, type) {
-      return !!Object.values(this.team).find(unit => {
-        if (type === 'hero') {
-          return unit[0] === obj.id
-        } else if (type === 'item') {
-          return unit[1] === obj.id || unit[2] === obj.id
-        }
-      })
-    },
-    getActiveSkill(type) {
-      switch (type) {
-        case 'hero': {
-          return this.hero.skill.active
-        }
-        case 'item1': {
-          return this.item1.skill
-        }
-        case 'item2': {
-          return this.item2.skill
-        }
-        default: {
-          return { name: '' }
-        }
+    getActiveSkill(index) {
+      if (index === 0) {
+        return this.hero.activeSkill
       }
+      if (index === 1) {
+        return this.item1.activeSkill
+      }
+      if (index === 2) {
+        return this.item2.activeSkill
+      }
+    },
+    isDisabled() {
+      // return !!Object.values(this.team).find(unit => {
+      //   if (type === 'hero') {
+      //     return unit[0] === obj.id
+      //   } else if (type === 'item') {
+      //     return unit[1] === obj.id || unit[2] === obj.id
+      //   }
+      // })
+      return false
     },
     heroModalOpen() {
       this.selectedHero = this.hero
@@ -210,6 +208,7 @@ export default {
     },
     heroModalSubmit() {
       this.hero = this.selectedHero
+
       this.selectedHero = null
       this.isHeroModalShown = false
     },
@@ -231,15 +230,19 @@ export default {
       this.isItemModalShown = false
     },
     async submit() {
-      // this.$store.commit('teams/CHANGE_POSITION_CONTENT', {
-      //   team: this.team,
-      //   position: this.position,
-      //   hero: this.hero,
-      //   item1: this.item1,
-      //   item2: this.item2,
-      //   activeSkillOrder: this.activeSkillOrder
-      // })
-      await this.$team.set(this.units)
+      const heroId = this.hero.id
+      const extension1Id = this.item1.id
+      const extension2Id = this.item2.id
+      const activeSkillIds = this.activeSkillOrder
+      const newIds = [heroId, extension1Id, extension2Id, ...activeSkillIds]
+
+      this.$store.commit('team/SET_IDS', { index: this.positionIndex, newIds })
+
+      await this.$team.set(this.$store.state.team)
+      const newTeam = await this.$team.get(this.$store.state.loomAddress)
+      this.$store.commit('team/SET_TEAM', newTeam)
+
+      this.$toast.show('Success.')
       this.$router.push('/team')
     }
   }

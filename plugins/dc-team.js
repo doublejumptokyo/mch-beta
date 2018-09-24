@@ -12,12 +12,10 @@ class Team {
 
   async get(address) {
     const units = await this.contract.methods.getDeck(address).call()
-    Array.from(Array(3).keys()).forEach(index => {
-      units[`unit${index + 1}`] = units[`unit${index + 1}`].map(str =>
-        Number(str)
-      )
+    const newUnits = Array.from(Array(3).keys()).map(index => {
+      return units[index].map(str => Number(str))
     })
-    return units
+    return newUnits
   }
 
   async set(team) {
@@ -37,6 +35,7 @@ export default async ({ app, store }, inject) => {
 
   const address = store.state.loomAddress
   const units = await team.get(address)
+
   store.commit('team/SET_TEAM', units)
 
   inject('team', team)
