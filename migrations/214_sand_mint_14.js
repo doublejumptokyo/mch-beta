@@ -1,0 +1,26 @@
+let HeroManager = artifacts.require('HeroManager');
+
+module.exports = function(deployer) {
+    deployer.then(async function() {
+        let heroManager = await HeroManager.deployed();
+
+        await heroManager.forceMintHero("0xB5DE737A77B730c112ADC1110A39C7174A80bf76", 20010531) // Block:6390497 EthAddr:0xE4AEE1991c2D1572A6e084381941Be54448B85db
+        await heroManager.forceMintHero("0x0b43AE0a608aecb7e39F88c701C6bc7a6165e56E", 20010532) // Block:6390502 EthAddr:0x04acE15202E0A1cF291d4DaA54817B8d00100C0F
+        await heroManager.forceMintHero("0xbFACD4c0f1b381E14937D843670fbE0b18D821C9", 20010533) // Block:6390505 EthAddr:0x46D62E03eE3F22b8b28fAa524862d1820b540e1a
+        await heroManager.forceMintHero("0x95EC769f3597c3c387Aaaa02eDC18a01dcCF9dD1", 20010534) // Block:6390505 EthAddr:0xf36c8ebeb04544C309340D3618401D5e7DDdE067
+        await heroManager.forceMintHero("0x7a39F197050D9c0c96340e9fe32ec31DAB15d239", 20010535) // Block:6390505 EthAddr:0xaA95d3D8fE3EcFa4fcfCd1375Dfd069A8B867F50
+        await heroManager.forceMintHero("0xd9494E2fbFb3B3a138C57E90b87e6E0DB3805EE6", 20010536) // Block:6390510 EthAddr:0x78ADD68bbDc72aA47E493965b64FC1079254902A
+        await heroManager.forceMintHero("0xC68f12AE9C4c492D74F82Cd78d220166a02E1dcC", 20010537) // Block:6390520 EthAddr:0xCf0E9b4746cfB97bAE329FE5F696969F6564566a
+        await heroManager.forceMintHero("0x00af1830ce5d3D7Cd94462f53f80156235F876Da", 20010538) // Block:6390525 EthAddr:0x2B50f2bA175391E5bA75d933fE46D608C36f5409
+        await heroManager.forceMintHero("0xC68f12AE9C4c492D74F82Cd78d220166a02E1dcC", 30010107) // Block:6390533 EthAddr:0xCf0E9b4746cfB97bAE329FE5F696969F6564566a
+        await heroManager.forceMintHero("0x60EC7Fd74bF1f6C66509Fb9f6551447533cfc6FD", 20010539) // Block:6390537 EthAddr:0x83464F7970728D528Abab8E95d4236cA11fcBeD1
+        await heroManager.forceMintHero("0xdDbd33e257778eB61F2CF5E71d6eE372cd36E14c", 20010540) // Block:6390543 EthAddr:0x2E2BfB9d533EC40f32b2cA2feDddEbbdbBCAA40B
+        await heroManager.forceMintHero("0x295238cFA4898a0BdabE5F547a1cBB940d8d81bd", 20010541) // Block:6390545 EthAddr:0x7a7f1aCEA70731058D8D76a30D27405587c0e521
+        await heroManager.forceMintHero("0xC9D307ece2d4d567954e012C168711a0fE117bbe", 20010542) // Block:6390560 EthAddr:0x185d7cFcF4Eb88533cbC9aaD4F2A7c8F9250A289
+        await heroManager.forceMintHero("0x6BE761AE936F5193FAD21a2b3A6ebB791B56c243", 20010543) // Block:6390564 EthAddr:0xca86CeEC4d51b5552A052B27A8361fd53a7B9D11
+        await heroManager.forceMintHero("0x446565E69e597dC7aeE67fE6e7C73D2f2d777397", 20010544) // Block:6390564 EthAddr:0xa4e566c0Aa45680eD257eC95931bb67ADD699560
+        await heroManager.forceMintHero("0xdAe0085aFed90957DdEe2bE14807267330b004c9", 20010545) // Block:6390566 EthAddr:0x024B01A0Dd22bF4E6e68f1F1c6BB255784375aaa
+        await heroManager.forceMintHero("0x97CFb12920eD41d4A8E81215F151347041fdc558", 20010546) // Block:6390592 EthAddr:0xe15f65775Cc255fCD0E2169D89CE59D856D16ff6
+        await heroManager.forceMintHero("0x446565E69e597dC7aeE67fE6e7C73D2f2d777397", 40080067) // Block:6390619 EthAddr:0xa4e566c0Aa45680eD257eC95931bb67ADD699560
+    });
+}
