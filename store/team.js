@@ -1,3 +1,5 @@
+import skillsData from '~/assets/data/skills.json'
+
 export const state = () => ({
   unit1: null,
   unit2: null,
@@ -7,6 +9,9 @@ export const state = () => ({
 export const getters = {
   units(state) {
     return Array.from(Array(3).keys()).map(index => state[`unit${index + 1}`])
+  },
+  getSkill() {
+    return skillId => skillsData.find(skill => skill.id === skillId)
   }
 }
 
