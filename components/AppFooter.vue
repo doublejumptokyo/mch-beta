@@ -19,7 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .appFooter {
-  color: #fff;
   display: flex;
   font-size: 0.8rem;
   justify-content: space-between;
