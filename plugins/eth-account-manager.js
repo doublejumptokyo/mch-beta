@@ -76,7 +76,7 @@ class EthAccountManager {
 
 export default async ({ store }, inject) => {
   let hasWallet = !!window.web3
-  if (hasWallet) {
+  if (hasWallet && window.web3.currentProvider.hasOwnProperty('enable')) {
     const addresses = await window.web3.currentProvider.enable()
     hasWallet = !!addresses.length
   }
