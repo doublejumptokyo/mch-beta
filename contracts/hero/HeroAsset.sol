@@ -14,8 +14,11 @@ contract HeroAsset is ERC721Mintable, ERC721Pausable {
     constructor() public ERC721Full("MyCryptoHeroes:Hero", "MCHH") {}
 
     function setSupplyLimit(uint16 _heroType, uint16 _supplyLimit) external onlyMinter {
+        /*
+        for battle beta
         require(heroTypeToSupplyLimit[_heroType] == 0 || _supplyLimit < heroTypeToSupplyLimit[_heroType],
             "_supplyLimit is bigger");
+        */
         heroTypeToSupplyLimit[_heroType] = _supplyLimit;
     }
 
@@ -32,6 +35,20 @@ contract HeroAsset is ERC721Mintable, ERC721Pausable {
         uint16 _heroTypeIndex = uint16(_tokenId % HERO_TYPE_OFFSET) - 1;
         require(_heroTypeIndex < heroTypeToSupplyLimit[_heroType], "supply over");
         _mint(_owner, _tokenId);
+    }
+
+    //This is only for beta
+    function forceTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    )
+        public onlyMinter
+    {
+        _clearApproval(from, tokenId);
+        _removeTokenFrom(from, tokenId);
+        _addTokenTo(to, tokenId);
+        emit Transfer(from, to, tokenId);
     }
 
     function tokenURI(uint256 tokenId) public view returns (string) {
