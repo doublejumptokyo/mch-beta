@@ -2,7 +2,7 @@
 footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
   ul
     li
-      a(href="http://www.doublejump.tokyo/" target="_blank") 運営会社
+      a(href="http://www.doublejump.tokyo/") 運営会社
     li
       nuxt-link(to="/terms") 利用規約
     li

@@ -19,7 +19,7 @@
     h2 {{ $i18n.t('others.other') }}
     ul.links
       li
-        a.links__item(href="https://medium.com/mycryptoheroes" target="_blank")
+        a.links__item(href="https://medium.com/mycryptoheroes")
           fa-icon.links__icon(icon="question" fixed-width)
           span Official Medium
           fa-icon.links__arrow(icon="angle-right")
