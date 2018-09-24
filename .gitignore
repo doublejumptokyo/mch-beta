@@ -1,6 +1,9 @@
 keystore
 pass
 
+.keys/*
+!.keys/genkey.sh
+
 .idea/
 .nuxt/
 .envrc
