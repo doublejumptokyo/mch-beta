@@ -341,14 +341,14 @@
     "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/HeroManager.sol",
     "exportedSymbols": {
       "HeroManager": [
-        7182
+        7514
       ]
     },
-    "id": 7183,
+    "id": 7515,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7001,
+        "id": 7333,
         "literals": [
           "solidity",
           "0.4",
@@ -360,10 +360,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/Hero.sol",
         "file": "./Hero.sol",
-        "id": 7002,
+        "id": 7334,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 6751,
+        "scope": 7515,
+        "sourceUnit": 7083,
         "src": "25:20:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -371,10 +371,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/HeroAsset.sol",
         "file": "./HeroAsset.sol",
-        "id": 7003,
+        "id": 7335,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 7000,
+        "scope": 7515,
+        "sourceUnit": 7332,
         "src": "46:25:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -382,10 +382,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 7004,
+        "id": 7336,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 8124,
+        "scope": 7515,
+        "sourceUnit": 8456,
         "src": "72:70:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -393,10 +393,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
         "file": "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
-        "id": 7005,
+        "id": 7337,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 7570,
+        "scope": 7515,
+        "sourceUnit": 7902,
         "src": "143:76:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -407,17 +407,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7006,
+              "id": 7338,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 8123,
+              "referencedDeclaration": 8455,
               "src": "246:7:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$8123",
+                "typeIdentifier": "t_contract$_Ownable_$8455",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 7007,
+            "id": 7339,
             "nodeType": "InheritanceSpecifier",
             "src": "246:7:13"
           },
@@ -425,43 +425,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7008,
+              "id": 7340,
               "name": "MinterRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7569,
+              "referencedDeclaration": 7901,
               "src": "255:10:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MinterRole_$7569",
+                "typeIdentifier": "t_contract$_MinterRole_$7901",
                 "typeString": "contract MinterRole"
               }
             },
-            "id": 7009,
+            "id": 7341,
             "nodeType": "InheritanceSpecifier",
             "src": "255:10:13"
           }
         ],
         "contractDependencies": [
-          7569,
-          8123
+          7901,
+          8455
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 7182,
+        "id": 7514,
         "linearizedBaseContracts": [
-          7182,
-          7569,
-          8123
+          7514,
+          7901,
+          8455
         ],
         "name": "HeroManager",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 7012,
+            "id": 7344,
             "name": "HERO_TYPE_OFFSET",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "273:47:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -470,7 +470,7 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 7010,
+              "id": 7342,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
               "src": "273:6:13",
@@ -482,7 +482,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "3130303030",
-              "id": 7011,
+              "id": 7343,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -501,26 +501,26 @@
           },
           {
             "constant": false,
-            "id": 7014,
+            "id": 7346,
             "name": "hero",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "327:16:13",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Hero_$6750",
+              "typeIdentifier": "t_contract$_Hero_$7082",
               "typeString": "contract Hero"
             },
             "typeName": {
               "contractScope": null,
-              "id": 7013,
+              "id": 7345,
               "name": "Hero",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6750,
+              "referencedDeclaration": 7082,
               "src": "327:4:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Hero_$6750",
+                "typeIdentifier": "t_contract$_Hero_$7082",
                 "typeString": "contract Hero"
               }
             },
@@ -529,26 +529,26 @@
           },
           {
             "constant": false,
-            "id": 7016,
+            "id": 7348,
             "name": "heroAsset",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "349:26:13",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_HeroAsset_$6999",
+              "typeIdentifier": "t_contract$_HeroAsset_$7331",
               "typeString": "contract HeroAsset"
             },
             "typeName": {
               "contractScope": null,
-              "id": 7015,
+              "id": 7347,
               "name": "HeroAsset",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6999,
+              "referencedDeclaration": 7331,
               "src": "349:9:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                "typeIdentifier": "t_contract$_HeroAsset_$7331",
                 "typeString": "contract HeroAsset"
               }
             },
@@ -557,28 +557,28 @@
           },
           {
             "body": {
-              "id": 7029,
+              "id": 7361,
               "nodeType": "Block",
               "src": "445:42:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7027,
+                    "id": 7359,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 7023,
+                      "id": 7355,
                       "name": "hero",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7014,
+                      "referencedDeclaration": 7346,
                       "src": "455:4:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Hero_$6750",
+                        "typeIdentifier": "t_contract$_Hero_$7082",
                         "typeString": "contract Hero"
                       }
                     },
@@ -589,11 +589,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 7025,
+                          "id": 7357,
                           "name": "_heroAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7018,
+                          "referencedDeclaration": 7350,
                           "src": "467:12:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -608,18 +608,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7024,
+                        "id": 7356,
                         "name": "Hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6750,
+                        "referencedDeclaration": 7082,
                         "src": "462:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Hero_$6750_$",
+                          "typeIdentifier": "t_type$_t_contract$_Hero_$7082_$",
                           "typeString": "type(contract Hero)"
                         }
                       },
-                      "id": 7026,
+                      "id": 7358,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -629,38 +629,38 @@
                       "nodeType": "FunctionCall",
                       "src": "462:18:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Hero_$6750",
+                        "typeIdentifier": "t_contract$_Hero_$7082",
                         "typeString": "contract Hero"
                       }
                     },
                     "src": "455:25:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Hero_$6750",
+                      "typeIdentifier": "t_contract$_Hero_$7082",
                       "typeString": "contract Hero"
                     }
                   },
-                  "id": 7028,
+                  "id": 7360,
                   "nodeType": "ExpressionStatement",
                   "src": "455:25:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7030,
+            "id": 7362,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7021,
+                "id": 7353,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7020,
+                  "id": 7352,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 8060,
+                  "referencedDeclaration": 8392,
                   "src": "435:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -674,15 +674,15 @@
             "name": "setHeroAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7019,
+              "id": 7351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7018,
+                  "id": 7350,
                   "name": "_heroAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7030,
+                  "scope": 7362,
                   "src": "406:20:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -691,7 +691,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7017,
+                    "id": 7349,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "406:7:13",
@@ -708,12 +708,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7022,
+              "id": 7354,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "445:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "382:105:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -721,28 +721,28 @@
           },
           {
             "body": {
-              "id": 7043,
+              "id": 7375,
               "nodeType": "Block",
               "src": "566:57:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7041,
+                    "id": 7373,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 7037,
+                      "id": 7369,
                       "name": "heroAsset",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7016,
+                      "referencedDeclaration": 7348,
                       "src": "576:9:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                        "typeIdentifier": "t_contract$_HeroAsset_$7331",
                         "typeString": "contract HeroAsset"
                       }
                     },
@@ -753,11 +753,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 7039,
+                          "id": 7371,
                           "name": "_heroAssetAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7032,
+                          "referencedDeclaration": 7364,
                           "src": "598:17:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -772,18 +772,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7038,
+                        "id": 7370,
                         "name": "HeroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6999,
+                        "referencedDeclaration": 7331,
                         "src": "588:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_HeroAsset_$6999_$",
+                          "typeIdentifier": "t_type$_t_contract$_HeroAsset_$7331_$",
                           "typeString": "type(contract HeroAsset)"
                         }
                       },
-                      "id": 7040,
+                      "id": 7372,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -793,38 +793,38 @@
                       "nodeType": "FunctionCall",
                       "src": "588:28:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                        "typeIdentifier": "t_contract$_HeroAsset_$7331",
                         "typeString": "contract HeroAsset"
                       }
                     },
                     "src": "576:40:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                      "typeIdentifier": "t_contract$_HeroAsset_$7331",
                       "typeString": "contract HeroAsset"
                     }
                   },
-                  "id": 7042,
+                  "id": 7374,
                   "nodeType": "ExpressionStatement",
                   "src": "576:40:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7044,
+            "id": 7376,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7035,
+                "id": 7367,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7034,
+                  "id": 7366,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 8060,
+                  "referencedDeclaration": 8392,
                   "src": "556:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -838,15 +838,15 @@
             "name": "setHeroAssetAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7033,
+              "id": 7365,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7032,
+                  "id": 7364,
                   "name": "_heroAssetAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7044,
+                  "scope": 7376,
                   "src": "522:25:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -855,7 +855,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7031,
+                    "id": 7363,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "522:7:13",
@@ -872,12 +872,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7036,
+              "id": 7368,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "566:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "493:130:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -885,7 +885,7 @@
           },
           {
             "body": {
-              "id": 7093,
+              "id": 7425,
               "nodeType": "Block",
               "src": "954:323:13",
               "statements": [
@@ -895,11 +895,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7074,
+                        "id": 7406,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7046,
+                        "referencedDeclaration": 7378,
                         "src": "994:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -908,11 +908,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7075,
+                        "id": 7407,
                         "name": "_heroName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7048,
+                        "referencedDeclaration": 7380,
                         "src": "1017:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -921,11 +921,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7076,
+                        "id": 7408,
                         "name": "_ipfs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7050,
+                        "referencedDeclaration": 7382,
                         "src": "1040:5:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -934,11 +934,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7077,
+                        "id": 7409,
                         "name": "_hp",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7052,
+                        "referencedDeclaration": 7384,
                         "src": "1059:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -947,11 +947,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7078,
+                        "id": 7410,
                         "name": "_phy",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7054,
+                        "referencedDeclaration": 7386,
                         "src": "1076:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -960,11 +960,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7079,
+                        "id": 7411,
                         "name": "_intl",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7056,
+                        "referencedDeclaration": 7388,
                         "src": "1094:5:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -973,11 +973,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7080,
+                        "id": 7412,
                         "name": "_agi",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7058,
+                        "referencedDeclaration": 7390,
                         "src": "1113:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -986,11 +986,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7081,
+                        "id": 7413,
                         "name": "_initalActiveSkillId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7060,
+                        "referencedDeclaration": 7392,
                         "src": "1131:20:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -999,11 +999,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7082,
+                        "id": 7414,
                         "name": "_passiveSkillId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7062,
+                        "referencedDeclaration": 7394,
                         "src": "1165:15:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1012,11 +1012,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7083,
+                        "id": 7415,
                         "name": "_rarity",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7064,
+                        "referencedDeclaration": 7396,
                         "src": "1194:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1069,32 +1069,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7071,
+                        "id": 7403,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "964:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7073,
+                      "id": 7405,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setHeroType",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7308,
+                      "referencedDeclaration": 7640,
                       "src": "964:16:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint16_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_int16_$_t_int16_$_t_int16_$_t_int16_$_t_uint16_$_t_uint16_$_t_uint16_$returns$__$",
                         "typeString": "function (uint16,string memory,string memory,int16,int16,int16,int16,uint16,uint16,uint16) external"
                       }
                     },
-                    "id": 7084,
+                    "id": 7416,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1108,7 +1108,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7085,
+                  "id": 7417,
                   "nodeType": "ExpressionStatement",
                   "src": "964:247:13"
                 },
@@ -1118,11 +1118,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7089,
+                        "id": 7421,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7046,
+                        "referencedDeclaration": 7378,
                         "src": "1246:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1131,11 +1131,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7090,
+                        "id": 7422,
                         "name": "_supplyLimit",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7066,
+                        "referencedDeclaration": 7398,
                         "src": "1257:12:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1156,32 +1156,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7086,
+                        "id": 7418,
                         "name": "heroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7016,
+                        "referencedDeclaration": 7348,
                         "src": "1221:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                          "typeIdentifier": "t_contract$_HeroAsset_$7331",
                           "typeString": "contract HeroAsset"
                         }
                       },
-                      "id": 7088,
+                      "id": 7420,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setSupplyLimit",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6792,
+                      "referencedDeclaration": 7124,
                       "src": "1221:24:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint16_$_t_uint16_$returns$__$",
                         "typeString": "function (uint16,uint16) external"
                       }
                     },
-                    "id": 7091,
+                    "id": 7423,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1195,28 +1195,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7092,
+                  "id": 7424,
                   "nodeType": "ExpressionStatement",
                   "src": "1221:49:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7094,
+            "id": 7426,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7069,
+                "id": 7401,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7068,
+                  "id": 7400,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "943:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1230,15 +1230,15 @@
             "name": "setHeroType",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7067,
+              "id": 7399,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7046,
+                  "id": 7378,
                   "name": "_heroType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "659:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1247,7 +1247,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7045,
+                    "id": 7377,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "659:6:13",
@@ -1261,10 +1261,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7048,
+                  "id": 7380,
                   "name": "_heroName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "685:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1273,7 +1273,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7047,
+                    "id": 7379,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "685:6:13",
@@ -1287,10 +1287,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7050,
+                  "id": 7382,
                   "name": "_ipfs",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "711:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1299,7 +1299,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7049,
+                    "id": 7381,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "711:6:13",
@@ -1313,10 +1313,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7052,
+                  "id": 7384,
                   "name": "_hp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "733:10:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1325,7 +1325,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7051,
+                    "id": 7383,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "733:5:13",
@@ -1339,10 +1339,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7054,
+                  "id": 7386,
                   "name": "_phy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "753:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1351,7 +1351,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7053,
+                    "id": 7385,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "753:5:13",
@@ -1365,10 +1365,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7056,
+                  "id": 7388,
                   "name": "_intl",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "774:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1377,7 +1377,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7055,
+                    "id": 7387,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "774:5:13",
@@ -1391,10 +1391,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7058,
+                  "id": 7390,
                   "name": "_agi",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "796:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1403,7 +1403,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7057,
+                    "id": 7389,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "796:5:13",
@@ -1417,10 +1417,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7060,
+                  "id": 7392,
                   "name": "_initalActiveSkillId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "817:27:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1429,7 +1429,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7059,
+                    "id": 7391,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "817:6:13",
@@ -1443,10 +1443,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7062,
+                  "id": 7394,
                   "name": "_passiveSkillId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "854:22:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1455,7 +1455,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7061,
+                    "id": 7393,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "854:6:13",
@@ -1469,10 +1469,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7064,
+                  "id": 7396,
                   "name": "_rarity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "886:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1481,7 +1481,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7063,
+                    "id": 7395,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "886:6:13",
@@ -1495,10 +1495,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7066,
+                  "id": 7398,
                   "name": "_supplyLimit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "910:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1507,7 +1507,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7065,
+                    "id": 7397,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "910:6:13",
@@ -1524,12 +1524,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7070,
+              "id": 7402,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "954:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "629:648:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1537,21 +1537,21 @@
           },
           {
             "body": {
-              "id": 7132,
+              "id": 7464,
               "nodeType": "Block",
               "src": "1377:220:13",
               "statements": [
                 {
                   "assignments": [
-                    7106
+                    7438
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7106,
+                      "id": 7438,
                       "name": "current",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7133,
+                      "scope": 7465,
                       "src": "1387:14:13",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1560,7 +1560,7 @@
                         "typeString": "uint16"
                       },
                       "typeName": {
-                        "id": 7105,
+                        "id": 7437,
                         "name": "uint16",
                         "nodeType": "ElementaryTypeName",
                         "src": "1387:6:13",
@@ -1573,17 +1573,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7111,
+                  "id": 7443,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7109,
+                        "id": 7441,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7098,
+                        "referencedDeclaration": 7430,
                         "src": "1427:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1600,32 +1600,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7107,
+                        "id": 7439,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1404:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7108,
+                      "id": 7440,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "getHeroTypeLength",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6749,
+                      "referencedDeclaration": 7081,
                       "src": "1404:22:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_uint16_$returns$_t_uint16_$",
                         "typeString": "function (uint16) view external returns (uint16)"
                       }
                     },
-                    "id": 7110,
+                    "id": 7442,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1645,7 +1645,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7113,
+                    "id": 7445,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1656,11 +1656,11 @@
                     "src": "1447:9:13",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 7112,
+                      "id": 7444,
                       "name": "current",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7106,
+                      "referencedDeclaration": 7438,
                       "src": "1447:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
@@ -1672,21 +1672,21 @@
                       "typeString": "uint16"
                     }
                   },
-                  "id": 7114,
+                  "id": 7446,
                   "nodeType": "ExpressionStatement",
                   "src": "1447:9:13"
                 },
                 {
                   "assignments": [
-                    7116
+                    7448
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7116,
+                      "id": 7448,
                       "name": "_heroId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7133,
+                      "scope": 7465,
                       "src": "1466:15:13",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1695,7 +1695,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7115,
+                        "id": 7447,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "1466:7:13",
@@ -1708,14 +1708,14 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7124,
+                  "id": 7456,
                   "initialValue": {
                     "argumentTypes": null,
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7123,
+                    "id": 7455,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1726,7 +1726,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7121,
+                      "id": 7453,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1736,11 +1736,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 7118,
+                            "id": 7450,
                             "name": "_heroType",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7098,
+                            "referencedDeclaration": 7430,
                             "src": "1492:9:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -1755,7 +1755,7 @@
                               "typeString": "uint16"
                             }
                           ],
-                          "id": 7117,
+                          "id": 7449,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1768,7 +1768,7 @@
                           },
                           "typeName": "uint256"
                         },
-                        "id": 7119,
+                        "id": 7451,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1786,11 +1786,11 @@
                       "operator": "*",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 7120,
+                        "id": 7452,
                         "name": "HERO_TYPE_OFFSET",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7012,
+                        "referencedDeclaration": 7344,
                         "src": "1505:16:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -1807,11 +1807,11 @@
                     "operator": "+",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 7122,
+                      "id": 7454,
                       "name": "current",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7106,
+                      "referencedDeclaration": 7438,
                       "src": "1524:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
@@ -1833,11 +1833,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7126,
+                        "id": 7458,
                         "name": "_owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7096,
+                        "referencedDeclaration": 7428,
                         "src": "1550:6:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1846,11 +1846,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7127,
+                        "id": 7459,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7116,
+                        "referencedDeclaration": 7448,
                         "src": "1558:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1869,18 +1869,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 7125,
+                      "id": 7457,
                       "name": "mintHero",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7156,
+                      "referencedDeclaration": 7488,
                       "src": "1541:8:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 7128,
+                    "id": 7460,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1894,47 +1894,47 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7129,
+                  "id": 7461,
                   "nodeType": "ExpressionStatement",
                   "src": "1541:25:13"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7130,
+                    "id": 7462,
                     "name": "_heroId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7116,
+                    "referencedDeclaration": 7448,
                     "src": "1583:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 7104,
-                  "id": 7131,
+                  "functionReturnParameters": 7436,
+                  "id": 7463,
                   "nodeType": "Return",
                   "src": "1576:14:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7133,
+            "id": 7465,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7101,
+                "id": 7433,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7100,
+                  "id": 7432,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "1348:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1948,15 +1948,15 @@
             "name": "mintHeroByType",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7099,
+              "id": 7431,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7096,
+                  "id": 7428,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1307:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1965,7 +1965,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7095,
+                    "id": 7427,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1307:7:13",
@@ -1979,10 +1979,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7098,
+                  "id": 7430,
                   "name": "_heroType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1323:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1991,7 +1991,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7097,
+                    "id": 7429,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "1323:6:13",
@@ -2008,15 +2008,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7104,
+              "id": 7436,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7103,
+                  "id": 7435,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1368:7:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2025,7 +2025,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7102,
+                    "id": 7434,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1368:7:13",
@@ -2040,7 +2040,7 @@
               ],
               "src": "1367:9:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1283:314:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2048,7 +2048,7 @@
           },
           {
             "body": {
-              "id": 7155,
+              "id": 7487,
               "nodeType": "Block",
               "src": "1676:91:13",
               "statements": [
@@ -2058,11 +2058,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7145,
+                        "id": 7477,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7137,
+                        "referencedDeclaration": 7469,
                         "src": "1702:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2079,32 +2079,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7142,
+                        "id": 7474,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1686:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7144,
+                      "id": 7476,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "createHero",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6643,
+                      "referencedDeclaration": 6975,
                       "src": "1686:15:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256) external"
                       }
                     },
-                    "id": 7146,
+                    "id": 7478,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2118,7 +2118,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7147,
+                  "id": 7479,
                   "nodeType": "ExpressionStatement",
                   "src": "1686:24:13"
                 },
@@ -2128,11 +2128,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7151,
+                        "id": 7483,
                         "name": "_owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7135,
+                        "referencedDeclaration": 7467,
                         "src": "1744:6:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2141,11 +2141,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7152,
+                        "id": 7484,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7137,
+                        "referencedDeclaration": 7469,
                         "src": "1752:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2166,32 +2166,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7148,
+                        "id": 7480,
                         "name": "heroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7016,
+                        "referencedDeclaration": 7348,
                         "src": "1720:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                          "typeIdentifier": "t_contract$_HeroAsset_$7331",
                           "typeString": "contract HeroAsset"
                         }
                       },
-                      "id": 7150,
+                      "id": 7482,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "mintHeroAsset",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6856,
+                      "referencedDeclaration": 7188,
                       "src": "1720:23:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256) external"
                       }
                     },
-                    "id": 7153,
+                    "id": 7485,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2205,28 +2205,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7154,
+                  "id": 7486,
                   "nodeType": "ExpressionStatement",
                   "src": "1720:40:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7156,
+            "id": 7488,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7140,
+                "id": 7472,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7139,
+                  "id": 7471,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "1665:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2240,15 +2240,15 @@
             "name": "mintHero",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7138,
+              "id": 7470,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7135,
+                  "id": 7467,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7156,
+                  "scope": 7488,
                   "src": "1625:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2257,7 +2257,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7134,
+                    "id": 7466,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1625:7:13",
@@ -2271,10 +2271,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7137,
+                  "id": 7469,
                   "name": "_heroId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7156,
+                  "scope": 7488,
                   "src": "1641:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2283,7 +2283,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7136,
+                    "id": 7468,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1641:7:13",
@@ -2300,12 +2300,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7141,
+              "id": 7473,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1676:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1607:160:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2313,7 +2313,7 @@
           },
           {
             "body": {
-              "id": 7180,
+              "id": 7512,
               "nodeType": "Block",
               "src": "1842:114:13",
               "statements": [
@@ -2327,7 +2327,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7170,
+                        "id": 7502,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2336,18 +2336,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 7164,
+                            "id": 7496,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 9943,
+                            "referencedDeclaration": 10275,
                             "src": "1860:3:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 7165,
+                          "id": 7497,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2368,11 +2368,11 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 7168,
+                              "id": 7500,
                               "name": "_heroId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7158,
+                              "referencedDeclaration": 7490,
                               "src": "1892:7:13",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -2389,32 +2389,32 @@
                             ],
                             "expression": {
                               "argumentTypes": null,
-                              "id": 7166,
+                              "id": 7498,
                               "name": "heroAsset",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7016,
+                              "referencedDeclaration": 7348,
                               "src": "1874:9:13",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                                "typeIdentifier": "t_contract$_HeroAsset_$7331",
                                 "typeString": "contract HeroAsset"
                               }
                             },
-                            "id": 7167,
+                            "id": 7499,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "ownerOf",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 8216,
+                            "referencedDeclaration": 8548,
                             "src": "1874:17:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_address_$",
                               "typeString": "function (uint256) view external returns (address)"
                             }
                           },
-                          "id": 7169,
+                          "id": 7501,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2442,21 +2442,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 7163,
+                      "id": 7495,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        9946,
-                        9947
+                        10278,
+                        10279
                       ],
-                      "referencedDeclaration": 9946,
+                      "referencedDeclaration": 10278,
                       "src": "1852:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 7171,
+                    "id": 7503,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2470,7 +2470,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7172,
+                  "id": 7504,
                   "nodeType": "ExpressionStatement",
                   "src": "1852:49:13"
                 },
@@ -2480,11 +2480,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7176,
+                        "id": 7508,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7158,
+                        "referencedDeclaration": 7490,
                         "src": "1929:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2493,11 +2493,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7177,
+                        "id": 7509,
                         "name": "_aliasName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7160,
+                        "referencedDeclaration": 7492,
                         "src": "1938:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -2518,32 +2518,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7173,
+                        "id": 7505,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1911:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7175,
+                      "id": 7507,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setAliasName",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6543,
+                      "referencedDeclaration": 6875,
                       "src": "1911:17:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (uint256,string memory) external"
                       }
                     },
-                    "id": 7178,
+                    "id": 7510,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2557,14 +2557,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7179,
+                  "id": 7511,
                   "nodeType": "ExpressionStatement",
                   "src": "1911:38:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7181,
+            "id": 7513,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -2572,15 +2572,15 @@
             "name": "setAliasName",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7161,
+              "id": 7493,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7158,
+                  "id": 7490,
                   "name": "_heroId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7181,
+                  "scope": 7513,
                   "src": "1799:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2589,7 +2589,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7157,
+                    "id": 7489,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1799:7:13",
@@ -2603,10 +2603,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7160,
+                  "id": 7492,
                   "name": "_aliasName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7181,
+                  "scope": 7513,
                   "src": "1816:17:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2615,7 +2615,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7159,
+                    "id": 7491,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1816:6:13",
@@ -2632,19 +2632,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7162,
+              "id": 7494,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1842:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1777:179:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7183,
+        "scope": 7515,
         "src": "222:1803:13"
       }
     ],
@@ -2654,14 +2654,14 @@
     "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/HeroManager.sol",
     "exportedSymbols": {
       "HeroManager": [
-        7182
+        7514
       ]
     },
-    "id": 7183,
+    "id": 7515,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7001,
+        "id": 7333,
         "literals": [
           "solidity",
           "0.4",
@@ -2673,10 +2673,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/Hero.sol",
         "file": "./Hero.sol",
-        "id": 7002,
+        "id": 7334,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 6751,
+        "scope": 7515,
+        "sourceUnit": 7083,
         "src": "25:20:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2684,10 +2684,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/hero/HeroAsset.sol",
         "file": "./HeroAsset.sol",
-        "id": 7003,
+        "id": 7335,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 7000,
+        "scope": 7515,
+        "sourceUnit": 7332,
         "src": "46:25:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2695,10 +2695,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 7004,
+        "id": 7336,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 8124,
+        "scope": 7515,
+        "sourceUnit": 8456,
         "src": "72:70:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2706,10 +2706,10 @@
       {
         "absolutePath": "/Users/hironobu/devs/mch-beta/contracts/lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
         "file": "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
-        "id": 7005,
+        "id": 7337,
         "nodeType": "ImportDirective",
-        "scope": 7183,
-        "sourceUnit": 7570,
+        "scope": 7515,
+        "sourceUnit": 7902,
         "src": "143:76:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2720,17 +2720,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7006,
+              "id": 7338,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 8123,
+              "referencedDeclaration": 8455,
               "src": "246:7:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$8123",
+                "typeIdentifier": "t_contract$_Ownable_$8455",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 7007,
+            "id": 7339,
             "nodeType": "InheritanceSpecifier",
             "src": "246:7:13"
           },
@@ -2738,43 +2738,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7008,
+              "id": 7340,
               "name": "MinterRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7569,
+              "referencedDeclaration": 7901,
               "src": "255:10:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MinterRole_$7569",
+                "typeIdentifier": "t_contract$_MinterRole_$7901",
                 "typeString": "contract MinterRole"
               }
             },
-            "id": 7009,
+            "id": 7341,
             "nodeType": "InheritanceSpecifier",
             "src": "255:10:13"
           }
         ],
         "contractDependencies": [
-          7569,
-          8123
+          7901,
+          8455
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 7182,
+        "id": 7514,
         "linearizedBaseContracts": [
-          7182,
-          7569,
-          8123
+          7514,
+          7901,
+          8455
         ],
         "name": "HeroManager",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 7012,
+            "id": 7344,
             "name": "HERO_TYPE_OFFSET",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "273:47:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2783,7 +2783,7 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 7010,
+              "id": 7342,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
               "src": "273:6:13",
@@ -2795,7 +2795,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "3130303030",
-              "id": 7011,
+              "id": 7343,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -2814,26 +2814,26 @@
           },
           {
             "constant": false,
-            "id": 7014,
+            "id": 7346,
             "name": "hero",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "327:16:13",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Hero_$6750",
+              "typeIdentifier": "t_contract$_Hero_$7082",
               "typeString": "contract Hero"
             },
             "typeName": {
               "contractScope": null,
-              "id": 7013,
+              "id": 7345,
               "name": "Hero",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6750,
+              "referencedDeclaration": 7082,
               "src": "327:4:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Hero_$6750",
+                "typeIdentifier": "t_contract$_Hero_$7082",
                 "typeString": "contract Hero"
               }
             },
@@ -2842,26 +2842,26 @@
           },
           {
             "constant": false,
-            "id": 7016,
+            "id": 7348,
             "name": "heroAsset",
             "nodeType": "VariableDeclaration",
-            "scope": 7182,
+            "scope": 7514,
             "src": "349:26:13",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_HeroAsset_$6999",
+              "typeIdentifier": "t_contract$_HeroAsset_$7331",
               "typeString": "contract HeroAsset"
             },
             "typeName": {
               "contractScope": null,
-              "id": 7015,
+              "id": 7347,
               "name": "HeroAsset",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6999,
+              "referencedDeclaration": 7331,
               "src": "349:9:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                "typeIdentifier": "t_contract$_HeroAsset_$7331",
                 "typeString": "contract HeroAsset"
               }
             },
@@ -2870,28 +2870,28 @@
           },
           {
             "body": {
-              "id": 7029,
+              "id": 7361,
               "nodeType": "Block",
               "src": "445:42:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7027,
+                    "id": 7359,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 7023,
+                      "id": 7355,
                       "name": "hero",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7014,
+                      "referencedDeclaration": 7346,
                       "src": "455:4:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Hero_$6750",
+                        "typeIdentifier": "t_contract$_Hero_$7082",
                         "typeString": "contract Hero"
                       }
                     },
@@ -2902,11 +2902,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 7025,
+                          "id": 7357,
                           "name": "_heroAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7018,
+                          "referencedDeclaration": 7350,
                           "src": "467:12:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2921,18 +2921,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7024,
+                        "id": 7356,
                         "name": "Hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6750,
+                        "referencedDeclaration": 7082,
                         "src": "462:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Hero_$6750_$",
+                          "typeIdentifier": "t_type$_t_contract$_Hero_$7082_$",
                           "typeString": "type(contract Hero)"
                         }
                       },
-                      "id": 7026,
+                      "id": 7358,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2942,38 +2942,38 @@
                       "nodeType": "FunctionCall",
                       "src": "462:18:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Hero_$6750",
+                        "typeIdentifier": "t_contract$_Hero_$7082",
                         "typeString": "contract Hero"
                       }
                     },
                     "src": "455:25:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Hero_$6750",
+                      "typeIdentifier": "t_contract$_Hero_$7082",
                       "typeString": "contract Hero"
                     }
                   },
-                  "id": 7028,
+                  "id": 7360,
                   "nodeType": "ExpressionStatement",
                   "src": "455:25:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7030,
+            "id": 7362,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7021,
+                "id": 7353,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7020,
+                  "id": 7352,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 8060,
+                  "referencedDeclaration": 8392,
                   "src": "435:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2987,15 +2987,15 @@
             "name": "setHeroAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7019,
+              "id": 7351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7018,
+                  "id": 7350,
                   "name": "_heroAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7030,
+                  "scope": 7362,
                   "src": "406:20:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3004,7 +3004,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7017,
+                    "id": 7349,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "406:7:13",
@@ -3021,12 +3021,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7022,
+              "id": 7354,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "445:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "382:105:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3034,28 +3034,28 @@
           },
           {
             "body": {
-              "id": 7043,
+              "id": 7375,
               "nodeType": "Block",
               "src": "566:57:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7041,
+                    "id": 7373,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 7037,
+                      "id": 7369,
                       "name": "heroAsset",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7016,
+                      "referencedDeclaration": 7348,
                       "src": "576:9:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                        "typeIdentifier": "t_contract$_HeroAsset_$7331",
                         "typeString": "contract HeroAsset"
                       }
                     },
@@ -3066,11 +3066,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 7039,
+                          "id": 7371,
                           "name": "_heroAssetAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7032,
+                          "referencedDeclaration": 7364,
                           "src": "598:17:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -3085,18 +3085,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7038,
+                        "id": 7370,
                         "name": "HeroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6999,
+                        "referencedDeclaration": 7331,
                         "src": "588:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_HeroAsset_$6999_$",
+                          "typeIdentifier": "t_type$_t_contract$_HeroAsset_$7331_$",
                           "typeString": "type(contract HeroAsset)"
                         }
                       },
-                      "id": 7040,
+                      "id": 7372,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3106,38 +3106,38 @@
                       "nodeType": "FunctionCall",
                       "src": "588:28:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                        "typeIdentifier": "t_contract$_HeroAsset_$7331",
                         "typeString": "contract HeroAsset"
                       }
                     },
                     "src": "576:40:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                      "typeIdentifier": "t_contract$_HeroAsset_$7331",
                       "typeString": "contract HeroAsset"
                     }
                   },
-                  "id": 7042,
+                  "id": 7374,
                   "nodeType": "ExpressionStatement",
                   "src": "576:40:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7044,
+            "id": 7376,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7035,
+                "id": 7367,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7034,
+                  "id": 7366,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 8060,
+                  "referencedDeclaration": 8392,
                   "src": "556:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3151,15 +3151,15 @@
             "name": "setHeroAssetAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7033,
+              "id": 7365,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7032,
+                  "id": 7364,
                   "name": "_heroAssetAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7044,
+                  "scope": 7376,
                   "src": "522:25:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3168,7 +3168,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7031,
+                    "id": 7363,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "522:7:13",
@@ -3185,12 +3185,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7036,
+              "id": 7368,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "566:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "493:130:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3198,7 +3198,7 @@
           },
           {
             "body": {
-              "id": 7093,
+              "id": 7425,
               "nodeType": "Block",
               "src": "954:323:13",
               "statements": [
@@ -3208,11 +3208,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7074,
+                        "id": 7406,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7046,
+                        "referencedDeclaration": 7378,
                         "src": "994:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3221,11 +3221,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7075,
+                        "id": 7407,
                         "name": "_heroName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7048,
+                        "referencedDeclaration": 7380,
                         "src": "1017:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -3234,11 +3234,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7076,
+                        "id": 7408,
                         "name": "_ipfs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7050,
+                        "referencedDeclaration": 7382,
                         "src": "1040:5:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -3247,11 +3247,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7077,
+                        "id": 7409,
                         "name": "_hp",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7052,
+                        "referencedDeclaration": 7384,
                         "src": "1059:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -3260,11 +3260,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7078,
+                        "id": 7410,
                         "name": "_phy",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7054,
+                        "referencedDeclaration": 7386,
                         "src": "1076:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -3273,11 +3273,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7079,
+                        "id": 7411,
                         "name": "_intl",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7056,
+                        "referencedDeclaration": 7388,
                         "src": "1094:5:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -3286,11 +3286,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7080,
+                        "id": 7412,
                         "name": "_agi",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7058,
+                        "referencedDeclaration": 7390,
                         "src": "1113:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int16",
@@ -3299,11 +3299,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7081,
+                        "id": 7413,
                         "name": "_initalActiveSkillId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7060,
+                        "referencedDeclaration": 7392,
                         "src": "1131:20:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3312,11 +3312,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7082,
+                        "id": 7414,
                         "name": "_passiveSkillId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7062,
+                        "referencedDeclaration": 7394,
                         "src": "1165:15:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3325,11 +3325,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7083,
+                        "id": 7415,
                         "name": "_rarity",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7064,
+                        "referencedDeclaration": 7396,
                         "src": "1194:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3382,32 +3382,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7071,
+                        "id": 7403,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "964:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7073,
+                      "id": 7405,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setHeroType",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 7308,
+                      "referencedDeclaration": 7640,
                       "src": "964:16:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint16_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_int16_$_t_int16_$_t_int16_$_t_int16_$_t_uint16_$_t_uint16_$_t_uint16_$returns$__$",
                         "typeString": "function (uint16,string memory,string memory,int16,int16,int16,int16,uint16,uint16,uint16) external"
                       }
                     },
-                    "id": 7084,
+                    "id": 7416,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3421,7 +3421,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7085,
+                  "id": 7417,
                   "nodeType": "ExpressionStatement",
                   "src": "964:247:13"
                 },
@@ -3431,11 +3431,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7089,
+                        "id": 7421,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7046,
+                        "referencedDeclaration": 7378,
                         "src": "1246:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3444,11 +3444,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7090,
+                        "id": 7422,
                         "name": "_supplyLimit",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7066,
+                        "referencedDeclaration": 7398,
                         "src": "1257:12:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3469,32 +3469,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7086,
+                        "id": 7418,
                         "name": "heroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7016,
+                        "referencedDeclaration": 7348,
                         "src": "1221:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                          "typeIdentifier": "t_contract$_HeroAsset_$7331",
                           "typeString": "contract HeroAsset"
                         }
                       },
-                      "id": 7088,
+                      "id": 7420,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setSupplyLimit",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6792,
+                      "referencedDeclaration": 7124,
                       "src": "1221:24:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint16_$_t_uint16_$returns$__$",
                         "typeString": "function (uint16,uint16) external"
                       }
                     },
-                    "id": 7091,
+                    "id": 7423,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3508,28 +3508,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7092,
+                  "id": 7424,
                   "nodeType": "ExpressionStatement",
                   "src": "1221:49:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7094,
+            "id": 7426,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7069,
+                "id": 7401,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7068,
+                  "id": 7400,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "943:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3543,15 +3543,15 @@
             "name": "setHeroType",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7067,
+              "id": 7399,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7046,
+                  "id": 7378,
                   "name": "_heroType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "659:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3560,7 +3560,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7045,
+                    "id": 7377,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "659:6:13",
@@ -3574,10 +3574,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7048,
+                  "id": 7380,
                   "name": "_heroName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "685:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3586,7 +3586,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7047,
+                    "id": 7379,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "685:6:13",
@@ -3600,10 +3600,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7050,
+                  "id": 7382,
                   "name": "_ipfs",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "711:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3612,7 +3612,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7049,
+                    "id": 7381,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "711:6:13",
@@ -3626,10 +3626,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7052,
+                  "id": 7384,
                   "name": "_hp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "733:10:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3638,7 +3638,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7051,
+                    "id": 7383,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "733:5:13",
@@ -3652,10 +3652,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7054,
+                  "id": 7386,
                   "name": "_phy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "753:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3664,7 +3664,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7053,
+                    "id": 7385,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "753:5:13",
@@ -3678,10 +3678,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7056,
+                  "id": 7388,
                   "name": "_intl",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "774:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3690,7 +3690,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7055,
+                    "id": 7387,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "774:5:13",
@@ -3704,10 +3704,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7058,
+                  "id": 7390,
                   "name": "_agi",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "796:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3716,7 +3716,7 @@
                     "typeString": "int16"
                   },
                   "typeName": {
-                    "id": 7057,
+                    "id": 7389,
                     "name": "int16",
                     "nodeType": "ElementaryTypeName",
                     "src": "796:5:13",
@@ -3730,10 +3730,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7060,
+                  "id": 7392,
                   "name": "_initalActiveSkillId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "817:27:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3742,7 +3742,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7059,
+                    "id": 7391,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "817:6:13",
@@ -3756,10 +3756,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7062,
+                  "id": 7394,
                   "name": "_passiveSkillId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "854:22:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3768,7 +3768,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7061,
+                    "id": 7393,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "854:6:13",
@@ -3782,10 +3782,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7064,
+                  "id": 7396,
                   "name": "_rarity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "886:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3794,7 +3794,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7063,
+                    "id": 7395,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "886:6:13",
@@ -3808,10 +3808,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7066,
+                  "id": 7398,
                   "name": "_supplyLimit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7094,
+                  "scope": 7426,
                   "src": "910:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3820,7 +3820,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7065,
+                    "id": 7397,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "910:6:13",
@@ -3837,12 +3837,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7070,
+              "id": 7402,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "954:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "629:648:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3850,21 +3850,21 @@
           },
           {
             "body": {
-              "id": 7132,
+              "id": 7464,
               "nodeType": "Block",
               "src": "1377:220:13",
               "statements": [
                 {
                   "assignments": [
-                    7106
+                    7438
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7106,
+                      "id": 7438,
                       "name": "current",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7133,
+                      "scope": 7465,
                       "src": "1387:14:13",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -3873,7 +3873,7 @@
                         "typeString": "uint16"
                       },
                       "typeName": {
-                        "id": 7105,
+                        "id": 7437,
                         "name": "uint16",
                         "nodeType": "ElementaryTypeName",
                         "src": "1387:6:13",
@@ -3886,17 +3886,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7111,
+                  "id": 7443,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7109,
+                        "id": 7441,
                         "name": "_heroType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7098,
+                        "referencedDeclaration": 7430,
                         "src": "1427:9:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -3913,32 +3913,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7107,
+                        "id": 7439,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1404:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7108,
+                      "id": 7440,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "getHeroTypeLength",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6749,
+                      "referencedDeclaration": 7081,
                       "src": "1404:22:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_uint16_$returns$_t_uint16_$",
                         "typeString": "function (uint16) view external returns (uint16)"
                       }
                     },
-                    "id": 7110,
+                    "id": 7442,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3958,7 +3958,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7113,
+                    "id": 7445,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3969,11 +3969,11 @@
                     "src": "1447:9:13",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 7112,
+                      "id": 7444,
                       "name": "current",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7106,
+                      "referencedDeclaration": 7438,
                       "src": "1447:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
@@ -3985,21 +3985,21 @@
                       "typeString": "uint16"
                     }
                   },
-                  "id": 7114,
+                  "id": 7446,
                   "nodeType": "ExpressionStatement",
                   "src": "1447:9:13"
                 },
                 {
                   "assignments": [
-                    7116
+                    7448
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7116,
+                      "id": 7448,
                       "name": "_heroId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7133,
+                      "scope": 7465,
                       "src": "1466:15:13",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -4008,7 +4008,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7115,
+                        "id": 7447,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "1466:7:13",
@@ -4021,14 +4021,14 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7124,
+                  "id": 7456,
                   "initialValue": {
                     "argumentTypes": null,
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7123,
+                    "id": 7455,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4039,7 +4039,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 7121,
+                      "id": 7453,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -4049,11 +4049,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 7118,
+                            "id": 7450,
                             "name": "_heroType",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 7098,
+                            "referencedDeclaration": 7430,
                             "src": "1492:9:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -4068,7 +4068,7 @@
                               "typeString": "uint16"
                             }
                           ],
-                          "id": 7117,
+                          "id": 7449,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4081,7 +4081,7 @@
                           },
                           "typeName": "uint256"
                         },
-                        "id": 7119,
+                        "id": 7451,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4099,11 +4099,11 @@
                       "operator": "*",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 7120,
+                        "id": 7452,
                         "name": "HERO_TYPE_OFFSET",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7012,
+                        "referencedDeclaration": 7344,
                         "src": "1505:16:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint16",
@@ -4120,11 +4120,11 @@
                     "operator": "+",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 7122,
+                      "id": 7454,
                       "name": "current",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7106,
+                      "referencedDeclaration": 7438,
                       "src": "1524:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
@@ -4146,11 +4146,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7126,
+                        "id": 7458,
                         "name": "_owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7096,
+                        "referencedDeclaration": 7428,
                         "src": "1550:6:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4159,11 +4159,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7127,
+                        "id": 7459,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7116,
+                        "referencedDeclaration": 7448,
                         "src": "1558:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4182,18 +4182,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 7125,
+                      "id": 7457,
                       "name": "mintHero",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7156,
+                      "referencedDeclaration": 7488,
                       "src": "1541:8:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 7128,
+                    "id": 7460,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4207,47 +4207,47 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7129,
+                  "id": 7461,
                   "nodeType": "ExpressionStatement",
                   "src": "1541:25:13"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 7130,
+                    "id": 7462,
                     "name": "_heroId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7116,
+                    "referencedDeclaration": 7448,
                     "src": "1583:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 7104,
-                  "id": 7131,
+                  "functionReturnParameters": 7436,
+                  "id": 7463,
                   "nodeType": "Return",
                   "src": "1576:14:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7133,
+            "id": 7465,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7101,
+                "id": 7433,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7100,
+                  "id": 7432,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "1348:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4261,15 +4261,15 @@
             "name": "mintHeroByType",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7099,
+              "id": 7431,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7096,
+                  "id": 7428,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1307:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4278,7 +4278,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7095,
+                    "id": 7427,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1307:7:13",
@@ -4292,10 +4292,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7098,
+                  "id": 7430,
                   "name": "_heroType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1323:16:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4304,7 +4304,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 7097,
+                    "id": 7429,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "1323:6:13",
@@ -4321,15 +4321,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7104,
+              "id": 7436,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7103,
+                  "id": 7435,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7133,
+                  "scope": 7465,
                   "src": "1368:7:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4338,7 +4338,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7102,
+                    "id": 7434,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1368:7:13",
@@ -4353,7 +4353,7 @@
               ],
               "src": "1367:9:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1283:314:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4361,7 +4361,7 @@
           },
           {
             "body": {
-              "id": 7155,
+              "id": 7487,
               "nodeType": "Block",
               "src": "1676:91:13",
               "statements": [
@@ -4371,11 +4371,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7145,
+                        "id": 7477,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7137,
+                        "referencedDeclaration": 7469,
                         "src": "1702:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4392,32 +4392,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7142,
+                        "id": 7474,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1686:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7144,
+                      "id": 7476,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "createHero",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6643,
+                      "referencedDeclaration": 6975,
                       "src": "1686:15:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256) external"
                       }
                     },
-                    "id": 7146,
+                    "id": 7478,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4431,7 +4431,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7147,
+                  "id": 7479,
                   "nodeType": "ExpressionStatement",
                   "src": "1686:24:13"
                 },
@@ -4441,11 +4441,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7151,
+                        "id": 7483,
                         "name": "_owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7135,
+                        "referencedDeclaration": 7467,
                         "src": "1744:6:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4454,11 +4454,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7152,
+                        "id": 7484,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7137,
+                        "referencedDeclaration": 7469,
                         "src": "1752:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4479,32 +4479,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7148,
+                        "id": 7480,
                         "name": "heroAsset",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7016,
+                        "referencedDeclaration": 7348,
                         "src": "1720:9:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                          "typeIdentifier": "t_contract$_HeroAsset_$7331",
                           "typeString": "contract HeroAsset"
                         }
                       },
-                      "id": 7150,
+                      "id": 7482,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "mintHeroAsset",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6856,
+                      "referencedDeclaration": 7188,
                       "src": "1720:23:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256) external"
                       }
                     },
-                    "id": 7153,
+                    "id": 7485,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4518,28 +4518,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7154,
+                  "id": 7486,
                   "nodeType": "ExpressionStatement",
                   "src": "1720:40:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7156,
+            "id": 7488,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 7140,
+                "id": 7472,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 7139,
+                  "id": 7471,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 7510,
+                  "referencedDeclaration": 7842,
                   "src": "1665:10:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4553,15 +4553,15 @@
             "name": "mintHero",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7138,
+              "id": 7470,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7135,
+                  "id": 7467,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7156,
+                  "scope": 7488,
                   "src": "1625:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4570,7 +4570,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7134,
+                    "id": 7466,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1625:7:13",
@@ -4584,10 +4584,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7137,
+                  "id": 7469,
                   "name": "_heroId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7156,
+                  "scope": 7488,
                   "src": "1641:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4596,7 +4596,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7136,
+                    "id": 7468,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1641:7:13",
@@ -4613,12 +4613,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7141,
+              "id": 7473,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1676:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1607:160:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4626,7 +4626,7 @@
           },
           {
             "body": {
-              "id": 7180,
+              "id": 7512,
               "nodeType": "Block",
               "src": "1842:114:13",
               "statements": [
@@ -4640,7 +4640,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7170,
+                        "id": 7502,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4649,18 +4649,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 7164,
+                            "id": 7496,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 9943,
+                            "referencedDeclaration": 10275,
                             "src": "1860:3:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 7165,
+                          "id": 7497,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -4681,11 +4681,11 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 7168,
+                              "id": 7500,
                               "name": "_heroId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7158,
+                              "referencedDeclaration": 7490,
                               "src": "1892:7:13",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -4702,32 +4702,32 @@
                             ],
                             "expression": {
                               "argumentTypes": null,
-                              "id": 7166,
+                              "id": 7498,
                               "name": "heroAsset",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7016,
+                              "referencedDeclaration": 7348,
                               "src": "1874:9:13",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_HeroAsset_$6999",
+                                "typeIdentifier": "t_contract$_HeroAsset_$7331",
                                 "typeString": "contract HeroAsset"
                               }
                             },
-                            "id": 7167,
+                            "id": 7499,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "ownerOf",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 8216,
+                            "referencedDeclaration": 8548,
                             "src": "1874:17:13",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_address_$",
                               "typeString": "function (uint256) view external returns (address)"
                             }
                           },
-                          "id": 7169,
+                          "id": 7501,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -4755,21 +4755,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 7163,
+                      "id": 7495,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        9946,
-                        9947
+                        10278,
+                        10279
                       ],
-                      "referencedDeclaration": 9946,
+                      "referencedDeclaration": 10278,
                       "src": "1852:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 7171,
+                    "id": 7503,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4783,7 +4783,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7172,
+                  "id": 7504,
                   "nodeType": "ExpressionStatement",
                   "src": "1852:49:13"
                 },
@@ -4793,11 +4793,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 7176,
+                        "id": 7508,
                         "name": "_heroId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7158,
+                        "referencedDeclaration": 7490,
                         "src": "1929:7:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4806,11 +4806,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 7177,
+                        "id": 7509,
                         "name": "_aliasName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7160,
+                        "referencedDeclaration": 7492,
                         "src": "1938:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -4831,32 +4831,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 7173,
+                        "id": 7505,
                         "name": "hero",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7014,
+                        "referencedDeclaration": 7346,
                         "src": "1911:4:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Hero_$6750",
+                          "typeIdentifier": "t_contract$_Hero_$7082",
                           "typeString": "contract Hero"
                         }
                       },
-                      "id": 7175,
+                      "id": 7507,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "setAliasName",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6543,
+                      "referencedDeclaration": 6875,
                       "src": "1911:17:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (uint256,string memory) external"
                       }
                     },
-                    "id": 7178,
+                    "id": 7510,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4870,14 +4870,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7179,
+                  "id": 7511,
                   "nodeType": "ExpressionStatement",
                   "src": "1911:38:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 7181,
+            "id": 7513,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -4885,15 +4885,15 @@
             "name": "setAliasName",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7161,
+              "id": 7493,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7158,
+                  "id": 7490,
                   "name": "_heroId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7181,
+                  "scope": 7513,
                   "src": "1799:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4902,7 +4902,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7157,
+                    "id": 7489,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1799:7:13",
@@ -4916,10 +4916,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 7160,
+                  "id": 7492,
                   "name": "_aliasName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7181,
+                  "scope": 7513,
                   "src": "1816:17:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4928,7 +4928,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 7159,
+                    "id": 7491,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1816:6:13",
@@ -4945,19 +4945,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 7162,
+              "id": 7494,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1842:0:13"
             },
-            "scope": 7182,
+            "scope": 7514,
             "src": "1777:179:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7183,
+        "scope": 7515,
         "src": "222:1803:13"
       }
     ],
@@ -5030,5 +5030,5 @@
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-24T07:30:30.811Z"
+  "updatedAt": "2018-09-24T08:58:05.967Z"
 }
