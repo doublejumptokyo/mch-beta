@@ -16,45 +16,45 @@
   "home": {
     "howTo": [
       {
-        "title": "チームを組もう",
+        "title": "Form teams",
         "body": [
           {
-            "title": "チームメンバーの選択",
-            "body": "あなたのヒーローでチームを結成しましょう。\nヒーローは最大3人、チームに参加させることができます。"
+            "title": "Choosing team members",
+            "body": "Assemble a team using your heroes.\nYou can include up to 3 heroes in your team."
           },
           {
-            "title": "エクステンション（装備品）の選択",
-            "body": "ヒーローは最大2つのエクステンション（装備品）を装着できます。\nチームに参加しているヒーローにエクステンションを装備させ、ヒーローたちを強化しましょう。"
+            "title": "Choosing Extensions (Equipment)",
+            "body": "Heroes can wear up to 2 extensions.\nHeroes are strengthened when wearing equipment."
           },
           {
-            "title": "アクティブスキルを並べ替えよう",
-            "body": "ヒーローは出番が来るたびに「アクティブスキル」を使って行動します。\nアクティブスキルは上から順番に自動的に使用されるので、あなたの作戦通りにヒーローたちが行動するようにアクティブスキルを並べ替えましょう。"
+            "title": "Rearrange Active Skills",
+            "body": "Heroes act using Active Skills during their turns. Active Skills are automatically used in top-down order.\nRearrange their order according to your battle plan."
           }
         ]
       },
       {
-        "title": "バトルに参加しよう",
+        "title": "Participate in Battle",
         "body": [
           {
-            "title": "対戦相手の選択",
-            "body": "対戦相手を選びましょう。\nランクは対戦相手の強さの目安になります。\nあなたよりもランクの高い対戦相手を倒すことで、より高い報酬を獲得することができます。"
+            "title": "Choosing opponents",
+            "body": "Ranks are an indication of the opponent's strength.\nThe higher the enemy's rank, the greater the potential rewards!"
           },
           {
-            "title": "バトル！",
-            "body": "バトルはあなたが結成したチームが自律的に戦います。\nヒーローたちを信じてバトルの経過を見守りましょう。"
+            "title": "Battle!",
+            "body": "Battles are autonomously fought by your team.\nCheer on your heroes and watch over the battle progression!"
           },
           {
-            "title": "ランク報酬",
-            "body": "バトル結果に応じてあなたのランクが変動します。\nバトルβ終了時点のランクに応じて、正式サービスイン後に報酬を獲得することができます。"
+            "title": "Rank Rewards.",
+            "body": "Your rank will change based on battle results.\nRewards will be granted reflecting your Battle β Test rank once the game is launched."
           }
         ]
       }
     ],
     "notice": [
-      "提供されているヒーローおよびエクステンションはバトルβ専用です。",
-      "プレセールにて購入したヒーローもバトルβで使用可能ですが、正式サービス版とはステータスやスキルが異なります。",
-      "無料提供のヒーローおよびエクステンションはバトルβ終了後、回収します。",
-      "バトルβでの状態は正式サービスには引き継がれません。"
+      "The heroes and extensions provided are for Battle β Test only.",
+      "Heroes purchased in the pre-sale may be used in Battle β Test, however their status and skills will differ after the game is in service.",
+      "Free-of-charge heroes and extensions will be withdrawn after Battle β Test ends.",
+      "Data from Battle β Test will not be carried over after the game's release."
     ]
   }
 }
