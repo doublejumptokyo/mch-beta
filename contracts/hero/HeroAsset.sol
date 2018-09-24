@@ -34,6 +34,20 @@ contract HeroAsset is ERC721Mintable, ERC721Pausable {
         _mint(_owner, _tokenId);
     }
 
+    //This is only for beta
+    function forceTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    )
+        public onlyMinter
+    {
+        _clearApproval(from, tokenId);
+        _removeTokenFrom(from, tokenId);
+        _addTokenTo(to, tokenId);
+        emit Transfer(from, to, tokenId);
+    }
+
     function tokenURI(uint256 tokenId) public view returns (string) {
         bytes32 tokenIdBytes;
         if (tokenId == 0) {
