@@ -5,6 +5,8 @@
 
     .assetPage__image
       img(:src="require(`~/assets/images/extensions/${item.fileName}`)")
+    .assetPage__rarity
+      p {{ item.rarity }}
     .assetPage__name
       h1 {{ item.name[$i18n.locale] }}
 
@@ -69,6 +71,8 @@ export default {
   }
 
   &__image {
+    margin-bottom: 1rem;
+
     img {
       image-rendering: pixelated;
       width: 100%;
@@ -76,7 +80,14 @@ export default {
   }
 
   &__name {
-    margin: 1rem 0;
+    margin: 0 0 1rem;
+    text-align: center;
+  }
+
+  &__rarity {
+    color: #ccc;
+    font-family: 'Merriweather Sans';
+    font-size: 1.2rem;
     text-align: center;
   }
 
