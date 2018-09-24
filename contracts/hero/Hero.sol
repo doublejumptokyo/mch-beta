@@ -5,6 +5,8 @@ import "./HeroType.sol";
 
 contract Hero is HeroType {
 
+    event HeroSetting (uint256 heroId, string name, string ipfs);
+
     uint16 public constant HERO_TYPE_OFFSET = 10000;
 
     mapping(uint256 => HeroData) public heroes;
@@ -17,22 +19,26 @@ contract Hero is HeroType {
         int16 intl;
         int16 agi;
         uint16 activeSkillId;
-        bytes  aliasName;
-        bytes  ipfs;
-        bool   exists;
+        string aliasName;
+        string ipfs;
+        bool exists;
     }
 
     function setIpfs(uint256 _heroId, string _ipfs, uint16 _activeSkillId) public onlyMinter {
         HeroData storage data = heroes[_heroId];
         require(data.exists);
-        data.ipfs = bytes(_ipfs);
+        data.ipfs = _ipfs;
         data.activeSkillId = _activeSkillId;
+        
+        emit HeroSetting (_heroId, data.aliasName, data.ipfs);
     }
 
     function setAliasName(uint256 _heroId, string _aliasName) public onlyMinter {
         HeroData storage data = heroes[_heroId];
         require(data.exists);
-        data.aliasName = bytes(_aliasName);
+        data.aliasName = _aliasName;
+
+        emit HeroSetting (_heroId, data.aliasName, data.ipfs);
     }
 
     function createHero(uint256 _heroId) public onlyMinter {

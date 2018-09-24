@@ -74,6 +74,7 @@ contract BattleManager is Ownable {
 
         if (battleMatch.state == 0) {
             battleTransaction.start(battleMatch.battleId);
+            return;
         } else if (battleMatch.state != 1) {
             return;
         }

@@ -8,6 +8,8 @@ import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
 contract Register is Ownable {
+    
+    event Registration (address indexed user);
 
     mapping(address => bool) private registrations;
 
@@ -69,6 +71,8 @@ contract Register is Ownable {
             rank.participate(msg.sender);
 
             registrations[msg.sender] = true;
+            
+            emit Registration(msg.sender);
         }
     }
     

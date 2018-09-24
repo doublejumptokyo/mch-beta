@@ -5,6 +5,8 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol";
 
 contract Rank is SignerRole {
 
+    event RankChange (address indexed user, int16 indexed current, int16 indexed prev);
+
     int16 public constant SWAP_LIMIT = 20;
 
     int16 public participants;
@@ -15,6 +17,8 @@ contract Rank is SignerRole {
         participants++;
         rankToAddress[participants] = _participant;
         addressToRank[_participant] = participants;
+        
+        emit RankChange (_participant, participants, -1);
     }
 
     function list(int16 _from) public view returns (address[SWAP_LIMIT] results) {
@@ -41,6 +45,9 @@ contract Rank is SignerRole {
             addressToRank[_address2] = _rank1;
             rankToAddress[_rank2] = _address1;
             rankToAddress[_rank1] = _address2;
+            emit RankChange (_address1, _rank2, _rank1);
+            emit RankChange (_address2, _rank1, _rank2);
         }
+        
     }
 }

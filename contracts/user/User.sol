@@ -3,6 +3,8 @@ pragma solidity 0.4.24;
 
 contract User {
 
+    event UserSetting (address indexed user, string name, string ipfs);
+
     string public constant DEFAULT_NAME = "beta player";
 
     mapping(address=>Account) public accounts;
@@ -19,18 +21,24 @@ contract User {
         account.exists = true;
         // account.name = addressToString(msg.sender);
         account.name = DEFAULT_NAME;
+        
+        emit UserSetting (msg.sender, account.name, account.ipfs);
     }
 
     function setName(string _name) public {
         Account storage account = accounts[msg.sender];   
         require(account.exists);     
         account.name = _name;
+
+        emit UserSetting (msg.sender, account.name, account.ipfs);
     } 
 
     function setIpfs(string _ipfs) public {
         Account storage account = accounts[msg.sender];   
         require(account.exists);     
         account.ipfs = _ipfs;
+
+        emit UserSetting (msg.sender, account.name, account.ipfs);
     }     
 
     function getAccount() public view returns (
