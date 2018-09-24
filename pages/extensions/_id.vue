@@ -10,22 +10,27 @@
         h3
           img(:src="require('~/assets/images/icons/status/hp.png')")
           | HP
-        p {{ item.hp }}
+        p + {{ item.hp }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/agi.png')")
           | AGI
-        p {{ item.agi }}
+        p + {{ item.agi }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/atk.png')")
           | PHY
-        p {{ item.phy }}
+        p + {{ item.phy }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/int.png')")
           | INT
-        p {{ item.intl }}
+        p + {{ item.intl }}
+      .assetPage__skill.assetPage__activeSkill
+        img(:src="require(`~/assets/images/icons/skill/${item.activeSkill.iconFileName}`)")
+        div
+          p {{ item.activeSkill.name[$i18n.locale] }}
+          p {{ item.activeSkill.description[$i18n.locale] }}
   div(v-else)
     p Loading ...
 </template>
@@ -113,6 +118,29 @@ export default {
 
       @media (min-width: $breakpoint) {
         font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__skill {
+    align-items: center;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin: 1rem 0 0 1rem;
+    padding: 1rem;
+    width: 100%;
+
+    img {
+      height: auto;
+      margin-right: 1rem;
+      width: 2rem;
+    }
+
+    p {
+      &:first-of-type {
+        font-weight: bold;
       }
     }
   }
