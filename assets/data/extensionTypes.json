@@ -1,0 +1,62 @@
+[
+  {
+    "type": 5006,
+    "name": { "en": "Codex Atlanticus", "ja": "アトランティコ手稿" },
+    "fileName": "5006.png",
+    "rarity": "Legendary"
+  },
+  {
+    "type": 5004,
+    "name": { "en": "Heshikiri Hasebe", "ja": "へし切長谷部" },
+    "fileName": "5004.png",
+    "rarity": "Legendary"
+  },
+  {
+    "type": 4006,
+    "name": { "en": "Crime and Punishment", "ja": "罪と罰" },
+    "fileName": "4006.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3011,
+    "name": { "en": "Brave Shield", "ja": "ブレイブシールド" },
+    "fileName": "3011.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3010,
+    "name": { "en": "Brave Armor", "ja": "ブレイブアーマー" },
+    "fileName": "3010.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3008,
+    "name": { "en": "Brave Musket", "ja": "ブレイブマスケット" },
+    "fileName": "3008.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3007,
+    "name": { "en": "Wisdom Quill", "ja": "ウィズダムクィルペン" },
+    "fileName": "3007.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3006,
+    "name": { "en": "Wisdom Book", "ja": "ウィズダムブック" },
+    "fileName": "3006.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3001,
+    "name": { "en": "Brave Blade", "ja": "ブレイブブレイド" },
+    "fileName": "3001.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 1001,
+    "name": { "en": "Novice Blade", "ja": "ノービスブレイド" },
+    "fileName": "1001.png",
+    "rarity": "Common"
+  }
+]

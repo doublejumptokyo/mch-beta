@@ -3,6 +3,7 @@
   "pages": {
     "home": "Home",
     "inventory": "Inventory",
+    "team": "Team",
     "battles": "Battle",
     "dungeons": "Quest",
     "market": "Market",

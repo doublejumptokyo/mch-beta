@@ -1,31 +1,33 @@
 <template lang="pug">
-section.section.section__itemList
+section.section.section__extensionList
   header
     form.searchForm
-      input.searchForm__input(type="search" v-model="searchText.item" placeholder="Your Item Name")
+      input.searchForm__input(type="search" v-model="searchText.extension" placeholder="Your extension Name")
       fa-icon(icon="search")
     button.sortButton
       fa-icon(icon="sort-alpha-down" size="lg")
       fa-icon(icon="sort")
-  .itemList
-    nuxt-link.itemItem(:to="`/items/${item.id}`" v-for="item in $store.state.items" :key="item.id")
-      img.itemItem__image(:src="require(`~/assets/images/${item.imageFileName}`)")
-      p.itemItem__name {{ item.name }}
+  .extensionList
+    nuxt-link.extensionExtension(:to="`/extensions/${extension.id}`" v-for="extension in extensions" :key="extension.id")
+      img.extensionExtension__image(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
+      p.extensionExtension__name {{ extension.name[$i18n.locale] }}
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       searchText: ''
     }
-  }
+  },
+  computed: mapState(['extensions'])
 }
 </script>
 
 <style lang="scss" scoped>
 .section {
-  &__itemList {
+  &__extensionList {
     background: #f9f9f9;
     margin: 1rem -1rem;
     padding: 1rem;
@@ -73,13 +75,13 @@ export default {
   padding: 0.5rem;
 }
 
-.itemList {
+.extensionList {
   display: flex;
   flex-wrap: wrap;
   margin: 1rem 0 1rem -1rem;
 }
 
-.itemItem {
+.extensionExtension {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -98,7 +100,7 @@ export default {
   }
 }
 
-.itemItem {
+.extensionExtension {
   width: calc((100% - 3rem) / 3);
 
   @media (min-width: $breakpoint) {
