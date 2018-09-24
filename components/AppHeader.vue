@@ -2,7 +2,7 @@
 header.appHeader
 
   .appHeader__brand
-    a(href="https://www.mycryptoheroes.net/" target="_blank") mycryptoheroes
+    a(href="https://www.mycryptoheroes.net/") mycryptoheroes
 
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
