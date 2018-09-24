@@ -13,4 +13,5 @@ make migrate ENV=$ENV TARGET=207 KEY=07
 make migrate ENV=$ENV TARGET=208 KEY=08
 make migrate ENV=$ENV TARGET=209 KEY=09
 
+tail -f loom_${ENV}*.log
 # make migrate ENV=$ENV TARGET=210 KEY=01
