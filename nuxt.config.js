@@ -52,8 +52,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['~/plugins/ks-vue-scrollmagic', 'vue-cropper'],
-    publicPath: '/static/'
+    vendor: ['ks-vue-scrollmagic', 'vue-cropper', 'web3', 'loom-js', 'lodash']
   },
   plugins: [
     '~/plugins/axios',
