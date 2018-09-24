@@ -5,6 +5,8 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
       a(href="http://www.doublejump.tokyo/" target="_blank") 運営会社
     li
       nuxt-link(to="/terms") 利用規約
+    li(v-if="$store.getters.isLoggedIn")
+      button(@click="logout") Cache out
   p
     small &copy; {{ (new Date()).getFullYear() }} double jump.tokyo
 </template>
@@ -13,6 +15,13 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
 export default {
   props: {
     isFixedButtonShown: { type: Boolean, default: false }
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch('logout')
+      await this.$router.push('/')
+      window.location.reload()
+    }
   }
 }
 </script>
