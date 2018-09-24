@@ -67,6 +67,10 @@ contract HeroManager is Ownable, MinterRole {
         hero.setAliasName(_heroId, _aliasName);
     }
 
+    function forceTransferFrom( address _from, address _to, uint256 _tokenId) public onlyMinter {
+        heroAsset.forceTransferFrom(_from, _to, _tokenId);
+    }    
+
     // function setIpfs(uint256 _heroId, string _ipfs) public {}
 
 }
