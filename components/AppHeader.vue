@@ -2,8 +2,7 @@
 header.appHeader
 
   .appHeader__brand
-    nuxt-link(to="/")
-      img(:src="require('~/assets/images/mch_mark_128_w.png')")
+    a(href="https://www.mycryptoheroes.net/" target="_blank") mycryptoheroes
 
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
@@ -105,10 +104,17 @@ export default {
   }
 
   &__brand {
-    img {
+    a {
+      background: url('~/assets/images/mch_mark_128_w.png') no-repeat center center / contain;
+      display: block;
       height: 32px;
-      opacity: 0.8;
-      width: auto;
+      text-indent: -9999px;
+      width: 32px;
+
+      @media (min-width: $breakpoint) {
+        background: url('~/assets/images/mch_logo_yoko_w.png') no-repeat center center / contain;
+        width: 135px;
+      }
     }
   }
 
