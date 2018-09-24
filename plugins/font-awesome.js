@@ -46,7 +46,8 @@ import {
 import {
   faEthereum,
   faDiscord,
-  faTwitter
+  faTwitter,
+  faMedium
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -92,7 +93,8 @@ library.add(
   faBell,
   faEthereum,
   faDiscord,
-  faTwitter
+  faTwitter,
+  faMedium
 )
 
 config.searchPseudoElements = true
