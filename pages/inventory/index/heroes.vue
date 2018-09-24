@@ -78,7 +78,12 @@ export default {
 .heroList {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem 0 1rem -1rem;
+  margin: -1rem 0 0 -1rem;
+
+  @media (min-width: $breakpoint) {
+    margin: -2rem 0 0 -2rem;
+    padding: 1rem;
+  }
 }
 
 .heroItem {
@@ -90,6 +95,10 @@ export default {
   padding: 1rem;
   text-align: center;
   text-decoration: none;
+
+  @media (min-width: $breakpoint) {
+    margin: 2rem 0 0 2rem;
+  }
 
   &__image {
     border-radius: 1rem;
@@ -103,7 +112,7 @@ export default {
   width: calc((100% - 2rem) / 2);
 
   @media (min-width: $breakpoint) {
-    width: calc((100% - 4rem) / 4);
+    width: calc((100% - 8rem) / 4);
   }
 }
 </style>
