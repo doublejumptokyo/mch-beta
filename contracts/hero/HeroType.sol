@@ -5,11 +5,13 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 
 contract HeroType is MinterRole {
 
+    event HeroTypeSetting (uint16 heroType, string name, string ipfs, int16 hp, int16 phy, int16 intl, int16 agi, uint16 initialActiveSkillId, uint16 passiveSkillId, uint16 rarity);
+
     mapping(uint16 => HeroTypeData) public heroTypes;
 
     struct HeroTypeData {
-        bytes  heroName;
-        bytes  ipfs;
+        string  heroName;
+        string  ipfs;
         int16  hp;
         int16  phy;
         int16  intl;
@@ -34,8 +36,8 @@ contract HeroType is MinterRole {
     ) public onlyMinter {
         HeroTypeData storage heroTypeData = heroTypes[_heroType];
         // require(!heroTypeData.exists);
-        heroTypeData.heroName = bytes(_heroName);
-        heroTypeData.ipfs    = bytes(_ipfs);
+        heroTypeData.heroName = _heroName;
+        heroTypeData.ipfs = _ipfs;
         heroTypeData.hp = _hp;
         heroTypeData.phy = _phy;
         heroTypeData.intl = _intl;
@@ -44,6 +46,8 @@ contract HeroType is MinterRole {
         heroTypeData.passiveSkillId = _passiveSkillId;
         heroTypeData.rarity = _rarity;
         heroTypeData.exists = true;
+        
+        emit HeroTypeSetting (_heroType, _heroName, _ipfs, _hp, _phy, _intl, _agi, _initalActiveSkillId, _passiveSkillId, _rarity);
     }
 
     function getHeroType(uint16 _heroType) public view returns (
@@ -59,8 +63,8 @@ contract HeroType is MinterRole {
     ) {
         HeroTypeData memory heroTypeData = heroTypes[_heroType];
         require(heroTypeData.exists);
-        heroName = string(heroTypeData.heroName);
-        ipfs     = string(heroTypeData.ipfs);
+        heroName = heroTypeData.heroName;
+        ipfs     = heroTypeData.ipfs;
         hp = heroTypeData.hp;
         phy = heroTypeData.phy;
         intl = heroTypeData.intl;

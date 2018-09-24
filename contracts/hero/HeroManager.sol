@@ -84,11 +84,6 @@ contract HeroManager is Ownable, MinterRole {
         }
     } 
 
-    function forceTest(address _to, uint256 _heroId) returns (bool){
-        address _from = tokenOwner[_heroId];
-        return _from == address(0x0);
-    }
-
     // function setIpfs(uint256 _heroId, string _ipfs) public {}
 
 }
