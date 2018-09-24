@@ -8,6 +8,11 @@
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af") Update schedule
   section.indexPage__section
+    .update
+      p {{ $t('home.login') }}
+      p
+        a(href="https://medium.com/mycryptoheroes/betabattle-loomnetwork-e0c170927b64") Details
+  section.indexPage__section
     h2 How to play "Beta Battle"
     section(v-for="(section, index) in $i18n.messages[$i18n.locale].home.howTo")
       h3 {{ index + 1 }}. {{ section.title }}
