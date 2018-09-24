@@ -33,12 +33,22 @@
   &__section {
     margin-bottom: 1rem;
 
+    @media (min-width: $breakpoint) {
+      margin: 2rem;
+    }
+
     h2 {
-      border-bottom: 2px solid map-get($colors, primary);
+      border-bottom: 2px solid #ccc;
     }
 
     h4 {
+      color: #eee;
       margin-bottom: 0.5rem;
+    }
+
+    p,
+    ul {
+      color: #ccc;
     }
 
     section {
@@ -79,8 +89,7 @@ ul {
 }
 
 .update {
-  background: #f9f9f9;
-  border: 1px solid #eee;
+  background: #666;
   border-radius: 1rem;
   padding: 1rem;
 }

@@ -115,18 +115,8 @@ export default {
   }
 
   &__image {
-    height: 0;
-    margin: -1rem -1rem 1rem;
-    padding-top: calc(100% + 2rem);
-    position: relative;
-
     img {
-      height: 100%;
       image-rendering: pixelated;
-      left: 0;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
       width: 100%;
     }
 
@@ -142,6 +132,7 @@ export default {
   }
 
   &__name {
+    margin: 1rem 0;
     text-align: center;
 
     div {
@@ -190,7 +181,8 @@ export default {
   }
 
   &__statuses {
-    background: #f9f9f9;
+    background: #666;
+    color: #666;
     display: flex;
     flex-wrap: wrap;
     margin: 1rem -1rem 1rem;
