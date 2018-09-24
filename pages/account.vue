@@ -19,9 +19,9 @@
     h2 {{ $i18n.t('others.other') }}
     ul.links
       li
-        nuxt-link.links__item(to="/help")
+        a.links__item(href="https://medium.com/mycryptoheroes" target="_blank")
           fa-icon.links__icon(icon="question" fixed-width)
-          span {{ $i18n.t('pages.help') }}
+          span Official Medium
           fa-icon.links__arrow(icon="angle-right")
       li
         nuxt-link.links__item(to="/terms")
@@ -32,6 +32,7 @@
         button.links__item(@click="logout")
           fa-icon.links__icon(icon="sign-out-alt" fixed-width)
           span Sign out
+          fa-icon.links__arrow(icon="angle-right")
 </template>
 
 <script>
