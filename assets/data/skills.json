@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1001,
+    "name": { "en": "Rule the Empire by Force", "ja": "天下布武" },
+    "description": { "en": "150% PHY damage to a single unit", "ja": "単体に150%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 1002,
+    "name": { "en": "The Demon of Corsica", "ja": "コルシカの悪魔" },
+    "description": { "en": "150% INT damage to a single unit", "ja": "単体に150%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1003,
+    "name": { "en": "A Cunning Hero in Chaotic Times", "ja": "乱世の奸雄" },
+    "description": { "en": "Own HP recovers by 10% of applied damage", "ja": "与ダメージの10%自分のHP回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 1004,
+    "name": { "en": "First President", "ja": "1stプレジデント" },
+    "description": { "en": "30% increase to all allies' INT and AGI", "ja": "味方全体のintを30%アップ&味方全体のagiを30%アップ" },
+    "iconFileName": "BUF_int.png",
+    "effectId": 4
+  },
+  {
+    "id": 1005,
+    "name": { "en": "Mona Lisa", "ja": "モナリザ" },
+    "description": { "en": "80% INT damage to all enemies", "ja": "敵全体に80%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1006,
+    "name": { "en": "A Match for a Thousand Foes", "ja": "一騎当千" },
+    "description": { "en": "Resurrect with 30% HP", "ja": "hp30%で復活" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 1007,
+    "name": { "en": "Angel in White", "ja": "白衣の天使" },
+    "description": { "en": "Recovers all allies to 100%", "ja": "味方全体のHPを100%回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 1008,
+    "name": { "en": "Ode to Joy", "ja": "歓喜の歌" },
+    "description": { "en": "25% decrease to all enemies' PHY, INT and AGI", "ja": "敵全体のphyを25%ダウン&敵全体のintを25%ダウン&敵全体のagiを25%ダウン" },
+    "iconFileName": "DEBUF_phy.png",
+    "effectId": 5
+  },
+  {
+    "id": 1009,
+    "name": { "en": "Swallow's Blade", "ja": "燕返し" },
+    "description": { "en": "10% AGI increase", "ja": "agiが10%アップ" },
+    "iconFileName": "BUF_agi.png",
+    "effectId": 4
+  },
+  {
+    "id": 1010,
+    "name": { "en": "Bloodless Capture", "ja": "無血開城" },
+    "description": { "en": "30% increase to all allies' PHY and INT", "ja": "味方全体のphyを30%アップ&味方全体のphyを30%アップ" },
+    "iconFileName": "BUF_phy.png",
+    "effectId": 4
+  },
+  {
+    "id": 1011,
+    "name": { "en": "Bullseye", "ja": "ワンホールショット" },
+    "description": { "en": "30% INT damage to a single unit", "ja": "単体に威力30%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1012,
+    "name": { "en": "Edison Effect", "ja": "エジソン・エフェクト" },
+    "description": { "en": "30% INT increase to all allies", "ja": "味方全体のintを30%アップ" },
+    "iconFileName": "BUF_int.png",
+    "effectId": 4
+  },
+  {
+    "id": 1013,
+    "name": { "en": "The Travels of Marco Polo", "ja": "東方見聞録" },
+    "description": { "en": "Recovers all allies by 70%", "ja": "味方全体を70%回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 1014,
+    "name": { "en": "One-Eyed Dragon of Ōshu", "ja": "独眼竜" },
+    "description": { "en": "140% INT damage to a single unit", "ja": "単体に140%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1015,
+    "name": { "en": "KyariSlash", "ja": "キャリスラッシュ" },
+    "description": { "en": "50% PHY damage to a single unit", "ja": "単体に50%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 1016,
+    "name": { "en": "Wright Flyer", "ja": "ライトフライヤー号" },
+    "description": { "en": "10% increase to all allies' AGI", "ja": "味方全体のagiを10%アップ" },
+    "iconFileName": "BUF_agi.png",
+    "effectId": 4
+  },
+  {
+    "id": 1033,
+    "name": { "en": "CryptoSlash", "ja": "クリプトスラッシュ" },
+    "description": { "en": "120% INT damage to a single unit", "ja": "単体に120%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 1034,
+    "name": { "en": "CryptoTactics", "ja": "クリプトタクティクス" },
+    "description": { "en": "120% PHY damage to a single unit", "ja": "単体に120%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1035,
+    "name": { "en": "CryptoArt", "ja": "クリプトアート" },
+    "description": { "en": "Recovers all allies by 70%", "ja": "味方全体を70%回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 2001,
+    "name": { "en": "Hit", "ja": "殴る" },
+    "description": { "en": "40% PHY damage to a single unit", "ja": "単体に40%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 2002,
+    "name": { "en": "Forceful Blade", "ja": "圧斬り" },
+    "description": { "en": "55~80% PHY damage to a single unit", "ja": "単体に55～80%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 2003,
+    "name": { "en": "The Polymath's Remains", "ja": "万能人の遺蹟" },
+    "description": { "en": "60~70% INT damage to a single unit", "ja": "単体に60～70%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 2004,
+    "name": { "en": "Modern Prophecy", "ja": "現代の予言書" },
+    "description": { "en": "Recovers ally with lowest HP by 120%", "ja": "最もHPの低い味方を120%回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 2005,
+    "name": { "en": "Holy Light", "ja": "ホーリーライト" },
+    "description": { "en": "20~40% INT damage to a single unit&Confuse 30%", "ja": "敵単体に20～40%のintダメージ&混乱30%" },
+    "iconFileName": "confused.png",
+    "effectId": 5
+  },
+  {
+    "id": 2006,
+    "name": { "en": "Fury Charge", "ja": "フューリーチャージ" },
+    "description": { "en": "50~60% PHY damage to a single unit", "ja": "単体に50～60%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 2007,
+    "name": { "en": "Brave Protection", "ja": "ブレイブプロテクション" },
+    "description": { "en": "20% own PHY increase", "ja": "自分のphyを20%アップ" },
+    "iconFileName": "DEBUF_phy.png",
+    "effectId": 5
+  },
+  {
+    "id": 2008,
+    "name": { "en": "Snipe", "ja": "スナイプ" },
+    "description": { "en": "60~70% INT damage to a single unit", "ja": "単体に45～50%のintダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 2009,
+    "name": { "en": "Shield Bash", "ja": "シールドバッシュ" },
+    "description": { "en": "25~30% PHY damage to a single unit & increases own PHY by 10%", "ja": "単体に20～30%のphyダメージ&自分のphy10%アップ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 2010,
+    "name": { "en": "Restoration", "ja": "レストレーション" },
+    "description": { "en": "Recovers ally with lowest HP by 70%", "ja": "最もHPの低い味方を70%回復" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 2011,
+    "name": { "en": "Slash", "ja": "スラッシュ" },
+    "description": { "en": "Between 40-50% PHY damage to a single unit", "ja": "単体に40～50%のphyダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  }
+]
