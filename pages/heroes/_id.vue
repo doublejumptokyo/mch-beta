@@ -1,19 +1,15 @@
 <template lang="pug">
 .assetPage
-  .assetPage__left
+  .assetPage__left(v-if="hero")
     .assetPage__image
-      img(:src="require(`~/assets/images/${hero.imageFileName}`)")
+      img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
       button(v-if="isSellable")
         fa-icon(:icon="['far', 'edit']")
     .assetPage__name
-      div
-        p {{ hero.anotherName }}
-        button(v-if="isSellable")
-          fa-icon(:icon="['far', 'edit']")
-      h1 {{ hero.name }}
+      h1 {{ hero.name[$i18n.locale] }}
       p {{ id }}
 
-  .assetPage__right
+  .assetPage__right(v-if="hero")
 
     .assetPage__actionButton(v-if="isSellable")
       button(@click="isActionsShown = true")
@@ -31,145 +27,40 @@
         h3
           img(:src="require('~/assets/images/icons/status/hp.png')")
           | HP
-        p {{ hero.status.hp }}
+        p {{ hero.hp }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/agi.png')")
           | AGI
-        p {{ hero.status.agi }}
+        p {{ hero.agi }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/atk.png')")
           | PHY
-        p {{ hero.status.phy }}
+        p {{ hero.phy }}
       .assetPage__status
         h3
           img(:src="require('~/assets/images/icons/status/int.png')")
           | INT
-        p {{ hero.status.int }}
-
-    template(v-if="isBuyable")
-      .assetPage__chart
-        no-ssr
-          vue-highcharts(:options="chartOptions" :highcharts="highcharts" ref="chart" v-observe-visibility="loadChart")
-      .assetPage__chartSummary
-        .assetPage__chartSummaryOpening
-          h4 Start
-          span 0.8594
-        .assetPage__chartSummaryClosing
-          h4 Final
-          span 0.8339
-        .assetPage__chartSummaryRemain
-          h4 Time Remaining
-          span 00:30:00
-      button.assetPage__buyButton(@click="isModalShown = true")
-        span Buy for
-        span 0.8339
-        span NovCoin
+        p {{ hero.intl }}
 
     button(@click="isWikiModalShown = true") Wikipedia
 
     modal.wikiModal(type="bottom" v-if="isWikiModalShown" @modal-close="isWikiModalShown = false")
       h2(slot="header") Wikipedia
       .wikiModal__body(slot="body")
-        iframe(:src="hero.wikipediaUrl")
-
-    modal.buyModal(v-if="isModalShown" @modal-close="isModalShown = false")
-      h2(slot="header") Buy Hero
-      .buyModal__body(slot="body")
-        table
-          tbody
-            tr
-              th In Hand
-              td 999,999,999
-            tr
-              th Consume
-              td -9,999
-            tr
-              td(colspan="2") 999,990,000
-      .buyModal__footer(slot="footer")
-        button.buyModal__cancelButton(@click="isModalShown = false") Cancel
-        button.buyModal__buyButton(@click="isModalShown = false") Buy
+        iframe(:src="hero.wikipediaUrl[$i18n.locale]")
 </template>
 
 <script>
 import Modal from '~/components/Modal'
-import Highcharts from 'highcharts'
 export default {
   components: { Modal },
   data() {
     return {
       isModalShown: false,
       isActionsShown: false,
-      isWikiModalShown: false,
-      highcharts: Highcharts,
-      chartOptions: {
-        title: { text: '' },
-        xAxis: { type: 'datetime' },
-        yAxis: {
-          title: { text: 'Price' },
-          labels: {
-            formatter: function() {
-              return this.value + ' NovCoin'
-            }
-          }
-        },
-        legend: { enabled: false },
-        plotOptions: {
-          series: { color: 'rgb(64, 189, 118)' },
-          area: { lineWidth: 1, threshold: null }
-        },
-        series: []
-      },
-      asyncData: {
-        name: 'Price',
-        type: 'area',
-        fillOpacity: 0.25,
-        data: [
-          [1509408000000, 0.8594],
-          [1509494400000, 0.8613],
-          [1509580800000, 0.8588],
-          [1509667200000, 0.858],
-          [1509926400000, 0.8629],
-          [1510012800000, 0.865],
-          [1510099200000, 0.8629],
-          [1510185600000, 0.8599],
-          [1510272000000, 0.8582],
-          [1510531200000, 0.858],
-          [1510617600000, 0.8515],
-          [1510704000000, 0.8447],
-          [1510790400000, 0.8496],
-          [1510876800000, 0.8479],
-          [1511136000000, 0.8489],
-          [1511222400000, 0.8535],
-          [1511308800000, 0.8512],
-          [1511395200000, 0.8441],
-          [1511481600000, 0.8421],
-          [1511740800000, 0.8368],
-          [1511827200000, 0.8413],
-          [1511913600000, 0.8456],
-          [1512000000000, 0.8441],
-          [1512086400000, 0.8415],
-          [1512345600000, 0.8429],
-          [1512432000000, 0.8442],
-          [1512518400000, 0.8463],
-          [1512604800000, 0.8486],
-          [1512691200000, 0.8517],
-          [1512950400000, 0.8478],
-          [1513036800000, 0.85],
-          [1513123200000, 0.8522],
-          [1513209600000, 0.8443],
-          [1513296000000, 0.8471],
-          [1513555200000, 0.8479],
-          [1513641600000, 0.8459],
-          [1513728000000, 0.8443],
-          [1513814400000, 0.8433],
-          [1513900800000, 0.8438],
-          [1514332800000, 0.8408],
-          [1514419200000, 0.838],
-          [1514505600000, 0.8339]
-        ]
-      }
+      isWikiModalShown: false
     }
   },
   computed: {
@@ -191,16 +82,6 @@ export default {
   methods: {
     zeroPadding(num, length) {
       return ('0000000000' + num).slice(-length)
-    },
-    loadChart(isVisible) {
-      if (!isVisible) {
-        return
-      }
-      const chart = this.$refs.chart
-      if (chart.$data.chart.series.length >= 1) {
-        return
-      }
-      chart.addSeries(this.asyncData)
     }
   }
 }

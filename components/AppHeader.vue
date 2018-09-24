@@ -36,18 +36,18 @@ header.appHeader
           fa-icon(icon="home")
           span {{ $i18n.t('pages.home') }}
       li
-        nuxt-link(to="/team")
-          fa-icon(:icon="['fas', 'users']")
-          span {{ $i18n.t('pages.team') }}
+        nuxt-link(to="/inventory")
+          fa-icon(:icon="['far', 'gem']")
+          span {{ $i18n.t('pages.inventory') }}
       li
-        nuxt-link(to="/battles")
+        nuxt-link.disabled(to="/battles")
           fa-icon(icon="fire")
           span {{ $i18n.t('pages.battles') }}
-      li
+      //- li
         nuxt-link.disabled(to="/dungeons")
           fa-icon(:icon="['far', 'compass']")
           span {{ $i18n.t('pages.dungeons') }}
-      li
+      //- li
         nuxt-link.disabled(to="/market")
           fa-icon(icon="store")
           span {{ $i18n.t('pages.market') }}
@@ -137,7 +137,7 @@ export default {
     }
 
     li {
-      width: calc(100% / 5);
+      width: calc(100% / 3);
     }
 
     a {
