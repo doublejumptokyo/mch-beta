@@ -33,7 +33,7 @@ contract Register is Ownable {
     }
     
     function register() public {
-//        if(!registrations[msg.sender]) {
+        if(!registrations[msg.sender]) {
             uint256[6] memory _unit1;
             uint256[6] memory _unit2;
             uint256[6] memory _unit3;
@@ -66,10 +66,10 @@ contract Register is Ownable {
             extensionManager.mintExtensionByType(msg.sender, 5004);
             extensionManager.mintExtensionByType(msg.sender, 5006);
 
-            // rank.participate(msg.sender);
+            rank.participate(msg.sender);
 
             registrations[msg.sender] = true;
-//        }
+        }
     }
     
     function isRegistered() public view returns (bool) {
