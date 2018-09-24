@@ -1,33 +1,41 @@
 <template lang="pug">
 .assetPage
-  .assetPage__image
-    img(:src="require(`~/assets/images/${item.imageFileName}`)")
-  .assetPage__name
-    h1 {{ item.name }}
-  .assetPage__statuses
-    .assetPage__status
-      h3
-        img(:src="require('~/assets/images/icons/status/agi.png')")
-        | AGI
-      p {{ item.status.agi }}
-    .assetPage__status
-      h3
-        img(:src="require('~/assets/images/icons/status/atk.png')")
-        | PHY
-      p {{ item.status.phy }}
-    .assetPage__status
-      h3
-        img(:src="require('~/assets/images/icons/status/int.png')")
-        | INT
-      p {{ item.status.int }}
+  template(v-if="item")
+    .assetPage__image
+      img(:src="require(`~/assets/images/extensions/${item.fileName}`)")
+    .assetPage__name
+      h1 {{ item.name[$i18n.locale] }}
+    .assetPage__statuses
+      .assetPage__status
+        h3
+          img(:src="require('~/assets/images/icons/status/hp.png')")
+          | HP
+        p {{ item.hp }}
+      .assetPage__status
+        h3
+          img(:src="require('~/assets/images/icons/status/agi.png')")
+          | AGI
+        p {{ item.agi }}
+      .assetPage__status
+        h3
+          img(:src="require('~/assets/images/icons/status/atk.png')")
+          | PHY
+        p {{ item.phy }}
+      .assetPage__status
+        h3
+          img(:src="require('~/assets/images/icons/status/int.png')")
+          | INT
+        p {{ item.intl }}
+  div(v-else)
+    p Loading ...
 </template>
 
 <script>
 export default {
   computed: {
     item() {
-      return this.$store.state.items.find(
-        item => item.id === Number(this.$route.params.id)
+      return this.$store.state.extensions.find(
+        extension => extension.id === Number(this.$route.params.id)
       )
     }
   }
@@ -77,7 +85,7 @@ export default {
     margin: 1rem 0 0 1rem;
     padding: 1rem;
     text-align: center;
-    width: calc((100% - 3rem) / 3);
+    width: calc((100% - 4rem) / 4);
 
     h3 {
       align-items: center;

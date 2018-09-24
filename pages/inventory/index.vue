@@ -14,7 +14,7 @@
           a.dropdown-item(href="#") loom
           a.dropdown-item(href="#") ETH
 
-  .inventoryPage__partyLink
+  //- .inventoryPage__partyLink
     nuxt-link.inventoryPage__partyLink__item(to="/inventory/parties")
       fa-icon.inventoryPage__partyLink__icon(icon="users")
       span Show / Edit Parties
@@ -22,10 +22,8 @@
 
   ul.tabList
     li.tabItem
-      // button(@click="selectTab('heroes')") Heroes
       nuxt-link(to="/inventory/heroes") Heroes
     li.tabItem
-      // button(@click="selectTab('extensions')") Extensions
       nuxt-link(to="/inventory/extensions") Extensions
 
   nuxt-child
