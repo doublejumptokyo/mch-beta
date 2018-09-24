@@ -13,6 +13,8 @@ contract HeroManager is Ownable, MinterRole {
     Hero public hero;
     HeroAsset public heroAsset;
 
+    mapping (uint256 => address) public tokenOwner;
+
     function setHeroAddress(address _heroAddress) public onlyOwner {
         hero = Hero(_heroAddress);
     }
@@ -60,6 +62,7 @@ contract HeroManager is Ownable, MinterRole {
     function mintHero(address _owner, uint256 _heroId) public onlyMinter {
         hero.createHero(_heroId);
         heroAsset.mintHeroAsset(_owner, _heroId);
+        tokenOwner[_heroId] = _owner;
     }    
 
     function setAliasName(uint256 _heroId, string _aliasName) public {
@@ -67,18 +70,24 @@ contract HeroManager is Ownable, MinterRole {
         hero.setAliasName(_heroId, _aliasName);
     }
 
-    function forceTransferFrom( address _from, address _to, uint256 _tokenId) public onlyMinter {
+    function forceTransferFrom(address _from, address _to, uint256 _tokenId) public onlyMinter {
         heroAsset.forceTransferFrom(_from, _to, _tokenId);
     }    
 
     function forceMintHero(address _to, uint256 _heroId) public onlyMinter {
-        address _from = heroAsset.ownerOf(_heroId);
+        address _from = tokenOwner[_heroId];
         if(_from == address(0x0)){
             mintHero(_to, _heroId);          
         } else {
             forceTransferFrom(_from, _to, _heroId);
+            tokenOwner[_heroId] = _to;
         }
     } 
+
+    function forceTest(address _to, uint256 _heroId) returns (bool){
+        address _from = tokenOwner[_heroId];
+        return _from == address(0x0);
+    }
 
     // function setIpfs(uint256 _heroId, string _ipfs) public {}
 
