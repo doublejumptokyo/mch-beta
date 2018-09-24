@@ -75,7 +75,12 @@ class EthAccountManager {
 }
 
 export default async ({ store }, inject) => {
-  store.commit('SET_HAS_WALLET', !!window.web3)
+  let hasWallet = !!window.web3
+  if (hasWallet) {
+    const addresses = await window.web3.currentProvider.enable()
+    hasWallet = !!addresses.length
+  }
+  store.commit('SET_HAS_WALLET', hasWallet)
 
   if (!store.state.hasWallet) return
 
