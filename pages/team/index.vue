@@ -22,45 +22,6 @@
           :unit="getUnit(unit)"
           :skillOrder="getSkillOrder(unit)"
         )
-      //- nuxt-link(
-      //-   :to="`/team/${index + 1}`"
-      //-   tag="li"
-      //-   v-for="(unit, index) in units"
-      //-   :key="index"
-      //- )
-        template(v-if="unit")
-          .team__heroItems
-            .team__orderIcon
-            .team__hero
-              img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
-            .team__items
-              .team__item(v-for="extension in unit.extensions")
-                img(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
-          .team__statuses
-            .team__status
-              img(:src="require('~/assets/images/icons/status/hp.png')")
-              p {{ unit.hp }}
-            .team__status
-              img(:src="require('~/assets/images/icons/status/agi.png')")
-              p {{ unit.agi }}
-            .team__status
-              img(:src="require('~/assets/images/icons/status/atk.png')")
-              p {{ unit.phy }}
-            .team__status
-              img(:src="require('~/assets/images/icons/status/int.png')")
-              p {{ unit.intl }}
-          .team__skills
-            ol
-              li(v-for="skill in unit.skills.active")
-                img(:src="require(`~/assets/images/icons/skill/${skill.iconFileName}`)")
-                span {{ skill.name[$i18n.locale] }}
-            p
-              img(:src="require(`~/assets/images/icons/skill/${unit.skills.passive.iconFileName}`)")
-              span {{ unit.skills.passive.name[$i18n.locale] }}
-          .partyItem__handle(v-if="isChangingOrder[`team${team.id}`]")
-            fa-icon.partyItem__bars(icon="bars")
-          .partyItem__handle(v-else)
-            fa-icon.partyItem__arrow(icon="angle-right")
 </template>
 
 <script>
