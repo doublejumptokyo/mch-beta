@@ -1,60 +1,43 @@
 <template lang="pug">
 .indexPage
   .indexPage__keyVisual
-    img(:src="require('~/assets/images/key_visual.jpg')")
+    img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
-    h2 What's My Crypto Heroes
-    .indexPage__features
-      .indexPage__feature
-        fa-icon(icon="award" size="6x")
-        h3 Proof of Play
-        p 基本無料のゲームをプレイしてブロックチェーンアセットを獲得！
-      .indexPage__feature
-        fa-icon(icon="trophy" size="6x")
-        h3 Proof of Victory
-        p プレイヤー同士の対戦に勝利してブロックチェーンアセットを獲得！
-      .indexPage__feature
-        fa-icon(icon="exchange-alt" size="6x")
-        h3 Trading Asset
-        p 獲得したブロックチェーンアセットをトレードして自軍を増強！
-      .indexPage__feature
-        fa-icon(icon="pen-nib" size="6x")
-        h3 Editable Asset
-        p ブロックチェーンアセットの価値を自ら創造！
+    h2 How to play "Beta Battle"
+    section(v-for="(section, index) in $i18n.messages[$i18n.locale].home.howTo")
+      h3 {{ index + 1 }}. {{ section.title }}
+      section(v-for="body in section.body")
+        h4 {{ body.title }}
+        p {{ body.body }}
+  section.indexPage__section
+    h2 Notice
+    ul
+      li(v-for="notice in $i18n.messages[$i18n.locale].home.notice") {{ notice }}
 </template>
 
 <style lang="scss" scoped>
 .indexPage {
   &__keyVisual {
-    height: 0;
     margin: -1rem -1rem 1rem;
-    padding-top: 100%;
-    position: relative;
-
-    @media (min-width: $breakpoint) {
-      height: auto;
-      padding-top: 0;
-      position: static;
-    }
 
     img {
-      left: 0;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
       width: 100%;
-
-      @media (min-width: $breakpoint) {
-        object-fit: inherit;
-        position: static;
-      }
     }
   }
 
   &__section {
+    margin-bottom: 1rem;
+
     h2 {
       border-bottom: 2px solid map-get($colors, primary);
+    }
+
+    h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    section {
+      margin: 1rem 0 2rem;
     }
   }
 

@@ -2,7 +2,8 @@
 header.appHeader
 
   .appHeader__brand
-    nuxt-link(to="/") MCH
+    nuxt-link(to="/")
+      img(:src="require('~/assets/images/mch_mark_128_b.png')")
 
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
@@ -32,7 +33,7 @@ header.appHeader
   .appHeader__globalNavi
     ul
       li
-        nuxt-link(to="/home")
+        nuxt-link(to="/")
           fa-icon(icon="home")
           span {{ $i18n.t('pages.home') }}
       li
@@ -100,9 +101,11 @@ export default {
   }
 
   &__brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1;
+    img {
+      height: 32px;
+      opacity: 0.8;
+      width: auto;
+    }
   }
 
   &__lang {
