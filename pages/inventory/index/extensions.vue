@@ -1,6 +1,6 @@
 <template lang="pug">
 section.section.section__extensionList
-  header
+  //- header
     form.searchForm
       input.searchForm__input(type="search" v-model="searchText.extension" placeholder="Your extension Name")
       fa-icon(icon="search")

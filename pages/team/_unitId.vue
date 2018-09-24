@@ -9,7 +9,8 @@
         span {{ hero.name[$i18n.locale] }}
     .hero.hero--empty(v-else @click="heroModalOpen")
       .hero__image.hero__image--empty
-        fa-icon(icon="plus")
+        no-ssr
+          fa-icon(icon="plus")
       .hero__name.hero__name--empty
         span No Hero
 
@@ -20,7 +21,8 @@
         span {{ item1.name[$i18n.locale] }}
     .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
       .item__image.item__image--empty
-        fa-icon(icon="plus")
+        no-ssr
+          fa-icon(icon="plus")
       .item__name.item__name--empty
         span No Item
 
@@ -31,7 +33,8 @@
         span {{ item2.name[$i18n.locale] }}
     .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
       .item__image.item__image--empty
-        fa-icon(icon="plus")
+        no-ssr
+          fa-icon(icon="plus")
       .item__name.item__name--empty
         span No Item
 
@@ -142,11 +145,9 @@ export default {
   components: { draggable, Modal },
   data() {
     return {
+      position: null,
       isHeroModalShown: false,
       isItemModalShown: false,
-      hero: {},
-      item1: {},
-      item2: {},
       activeSkillOrder: [],
       selectedHero: null,
       selectedItem: { item1: null, item2: null }
@@ -160,6 +161,18 @@ export default {
       getExtension: 'extensions/get',
       getSkill: 'team/getSkill'
     }),
+    hero() {
+      if (!this.position) return {}
+      return this.getHero(this.position[0])
+    },
+    item1() {
+      if (!this.position) return {}
+      return this.getExtension(this.position[1])
+    },
+    item2() {
+      if (!this.position) return {}
+      return this.getExtension(this.position[2])
+    },
     computedStatus() {
       return {
         hp: this.getStatus('hp'),
@@ -169,12 +182,9 @@ export default {
       }
     }
   },
-  mounted() {
+  beforeMount() {
     this.positionIndex = Number(this.$route.params.unitId) - 1
     this.position = this.units[this.positionIndex]
-    this.hero = this.getHero(this.position[0])
-    this.item1 = this.getExtension(this.position[1])
-    this.item2 = this.getExtension(this.position[2])
     this.activeSkillOrder = this.position.filter((num, index) => index > 2)
   },
   methods: {
@@ -208,7 +218,7 @@ export default {
     },
     heroModalSubmit() {
       this.hero = this.selectedHero
-
+      this.position[0] = this.selectedHero.id
       this.selectedHero = null
       this.isHeroModalShown = false
     },
@@ -222,6 +232,7 @@ export default {
     },
     itemModalSubmit(type) {
       this[type] = this.selectedItem[type]
+      this.position[type === 'item1' ? 1 : 2] = this.selectedItem[type].id
       this.selectedItem[type] = null
       this.isItemModalShown = false
     },
