@@ -13,14 +13,18 @@
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-loomnetwork-e0c170927b64") Details
   section.indexPage__section
-    h2 How to play "Beta Battle"
+    h2
+      fa-icon(icon="question" size="sm" fixed-width)
+      span How to play "Beta Battle"
     section(v-for="(section, index) in $i18n.messages[$i18n.locale].home.howTo")
       h3 {{ index + 1 }}. {{ section.title }}
       section(v-for="body in section.body")
         h4 {{ body.title }}
         p {{ body.body }}
   section.indexPage__section
-    h2 Notice
+    h2
+      fa-icon(icon="exclamation-circle" size="sm" fixed-width)
+      span Notice
     ul
       li(v-for="notice in $i18n.messages[$i18n.locale].home.notice") {{ notice }}
 </template>
@@ -43,7 +47,17 @@
     }
 
     h2 {
+      align-items: center;
       border-bottom: 2px solid #ccc;
+      display: flex;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+
+      span {
+        flex: 1;
+      }
     }
 
     h4 {
