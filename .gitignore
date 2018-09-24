@@ -1,6 +1,7 @@
 keystore
 pass
 
+*.log
 # .keys/*
 # !.keys/genkey.sh
 
