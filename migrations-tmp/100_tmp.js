@@ -13,6 +13,8 @@ let BattleManager = artifacts.require('BattleManager')
 
 module.exports = function (deployer) {
     deployer.then(async function() {
+        await deployer.deploy(Register)
+
         let register = await Register.deployed()
         let user = await User.deployed()
         let heroAsset = await HeroAsset.deployed()
@@ -26,25 +28,13 @@ module.exports = function (deployer) {
         let battleTransaction = await BattleTransaction.deployed()
         let battleManager = await BattleManager.deployed()
 
-        await heroAsset.addMinter(HeroManager.address)
-        await hero.addMinter(HeroManager.address)
-        await heroManager.setHeroAssetAddress(HeroAsset.address)
-        await heroManager.setHeroAddress(Hero.address)
         await heroManager.addMinter(Register.address)
-        await extensionAsset.addMinter(ExtensionManager.address)
-        await extension.addMinter(ExtensionManager.address)
-        await extensionManager.setExtensionAssetAddress(ExtensionAsset.address)
-        await extensionManager.setExtensionAddress(Extension.address)
         await extensionManager.addMinter(Register.address)
+        await deckManager.addSigner(Register.address)
+        await rank.addSigner(Register.address)
         await register.setHeroManagerAddress(HeroManager.address)
         await register.setExtensionManagerAddress(ExtensionManager.address)
         await register.setDeckManagerAddress(DeckManager.address)
         await register.setRankAddress(Rank.address)
-        await deckManager.addSigner(Register.address)
-        await rank.addSigner(Register.address)
-        await rank.addSigner(BattleManager.address)
-        await battleManager.setRankAddress(Rank.address)
-        await battleManager.setBattleTransactionAddress(BattleTransaction.address)
-        await battleManager.setDeckManagerAddress(DeckManager.address)
     });
 }
