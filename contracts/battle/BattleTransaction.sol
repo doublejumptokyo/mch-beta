@@ -8,15 +8,15 @@ import "./BattleUtil.sol";
 
 contract BattleTransaction {
 
-    event BattleStart(uint32 indexed battleId, uint256[7] data);
+    event BattleStart(uint32 indexed battleId, address indexed attacker, address indexed defender, uint256[7] data);
     event BattleAction(uint32 indexed battleId, uint8 actionCounts, uint16 skillId, uint8 actionPosition, bool[7] effectPositions, int16 poisonDamage, uint128[7] data);
-    event BattleEnd(uint32 indexed battleId, uint8 result);
+    event BattleEnd(uint32 indexed battleId, address indexed attacker, address indexed defender, uint8 result);
 
     using BattleCharge for BC.Battle;
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
-    uint32 public currentId = 1000000;
+    uint32 public currentId = 100;
     uint32[] public incompleteIds;
     mapping(uint32 => BC.Battle) internal battles;
     mapping(uint16 => BC.Skill) internal skills;
@@ -26,11 +26,13 @@ contract BattleTransaction {
         addSkillEffect(1, uint8(BC.EffectTarget.random), uint8(BC.EffectParam.hp), uint8(BC.EffectCalc.myPhy), 100, 100, true);
     }
 
-    function init() public returns (uint32) {
+    function init(address _attacker, address _defender) public returns (uint32) {
         currentId++;
         BC.Battle storage battle = battles[currentId];
         battle.exists = true;
         battle.id = currentId;
+        battle.attacker = _attacker;
+        battle.defender = _defender;
         battle.actionCounts = 1;
         battle.state = BC.BattleState.init;
         incompleteIds.push(currentId);
@@ -42,7 +44,7 @@ contract BattleTransaction {
         require(fromBattle.exists);
         require(fromBattle.state != BC.BattleState.init && fromBattle.state != BC.BattleState.progress);
 
-        uint32 toBattleId = init();
+        uint32 toBattleId = init(fromBattle.attacker, fromBattle.defender);
         uint8 unitIndex = 0;
         for (uint8 i = 0; i < 7; i++) {
             BC.Unit storage unit = fromBattle.units[i];
@@ -97,7 +99,7 @@ contract BattleTransaction {
     function start(uint32 battleId) public {
         BC.Battle storage battle = battles[battleId];
         require(battle.exists);
-        emit BattleStart(battle.id, battle.getInitialUnitData());
+        emit BattleStart(battle.id, battle.attacker, battle.defender, battle.getInitialUnitData());
         battle.state = BC.BattleState.progress;
     }
 
@@ -133,7 +135,7 @@ contract BattleTransaction {
         battle.passiveLoop = 0;
 
         if (battle.checkEnd()) {
-            emit BattleEnd(battle.id, uint8(battle.state));
+            emit BattleEnd(battle.id, battle.attacker, battle.defender, uint8(battle.state));
             uint lastIndex = incompleteIds.length - 1;
             for (uint index = 0; index < incompleteIds.length; index++) {
                 if (incompleteIds[index] == battleId) break;

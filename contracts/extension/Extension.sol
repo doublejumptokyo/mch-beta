@@ -47,6 +47,22 @@ contract Extension is ExtensionType {
         extensionTypeIds[_type].push(_extensionId);
     } 
 
+    function updateExtension(uint256 _extensionId) public onlyMinter {
+        ExtensionData storage data = extensions[_extensionId];
+        require(data.exists);
+        
+        uint16 _type = uint16(_extensionId / EXTENSION_TYPE_OFFSET);
+        ExtensionTypeData memory typeData = extensionTypes[_type];
+        require(typeData.exists);
+
+        data.extensionType = _type;
+        data.hp = typeData.hp;
+        data.phy = typeData.phy;
+        data.intl = typeData.intl;
+        data.agi = typeData.agi;
+        data.activeSkillId = typeData.activeSkillId;
+    } 
+
     function getExtension(uint256 _extensionId) public view returns (
         uint16  extensionType,
         int16   hp,
@@ -66,7 +82,6 @@ contract Extension is ExtensionType {
         activeSkillId = data.activeSkillId;
         aliasName = string(data.aliasName);
     }
-
 
     function getExtensionTypeLength(uint16 _extensionType) public view returns (uint16) {
         return uint16(extensionTypeIds[_extensionType].length);

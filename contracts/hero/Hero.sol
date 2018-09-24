@@ -61,6 +61,23 @@ contract Hero is HeroType {
         heroTypeIds[_heroType].push(_heroId);
     } 
 
+    function updateHero(uint256 _heroId) public onlyMinter {
+        HeroData storage data = heroes[_heroId];
+        require(data.exists);
+        
+        uint16 _heroType = uint16(_heroId / HERO_TYPE_OFFSET);
+        HeroTypeData memory heroTypeData = heroTypes[_heroType];
+        require(heroTypeData.exists);
+
+        data.heroType = _heroType;
+        data.hp = heroTypeData.hp;
+        data.phy = heroTypeData.phy;
+        data.intl = heroTypeData.intl;
+        data.agi = heroTypeData.agi;
+        data.ipfs = heroTypeData.ipfs;
+        data.activeSkillId = heroTypeData.initalActiveSkillId;
+    }
+
     function getHero(uint256 _heroId) public view returns (
         uint16  heroType,
         int16   hp,
