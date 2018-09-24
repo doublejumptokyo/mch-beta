@@ -44,15 +44,14 @@
             .team__status
               img(:src="require('~/assets/images/icons/status/int.png')")
               p {{ getStatus(unit, 'intl') }}
-          //- .partyItem__skills
+          .team__skills
             ol
-              li(v-for="skill in getActiveSkills(position)")
-                img(:src="require('~/assets/images/icons/skill/phy.png')")
-                img(:src="require('~/assets/images/icons/skill/poison.png')")
-                span {{ skill.name }}
+              li(v-for="index in [3, 4, 5]")
+                img(:src="require(`~/assets/images/icons/skill/${getSkill(unit[index]).iconFileName}`)")
+                span {{ getSkill(unit[index]).name[$i18n.locale] }}
             p
-              img(:src="require('~/assets/images/icons/skill/int.png')")
-              span {{ getHero(position).skill.passive.name }}
+              img(:src="require(`~/assets/images/icons/skill/${getHero(unit[0]).passiveSkill.iconFileName}`)")
+              span {{ getHero(unit[0]).passiveSkill.name[$i18n.locale] }}
           //- .partyItem__handle(v-if="isChangingOrder[`team${team.id}`]")
             fa-icon.partyItem__bars(icon="bars")
           //- .partyItem__handle(v-else)
@@ -67,7 +66,8 @@ export default {
   computed: mapGetters({
     units: 'team/units',
     getHero: 'heroes/get',
-    getExtension: 'extensions/get'
+    getExtension: 'extensions/get',
+    getSkill: 'team/getSkill'
   }),
   methods: {
     getStatus(unit, type) {
@@ -280,7 +280,6 @@ export default {
     }
 
     img {
-      filter: invert(90%);
       margin-right: 0.25rem;
       width: 1.25rem;
     }
