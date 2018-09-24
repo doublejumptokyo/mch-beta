@@ -3,6 +3,11 @@
   .indexPage__keyVisual
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
+    .update
+      p {{ $t('home.update') }}
+      p
+        a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af" target="_blank") Update schedule
+  section.indexPage__section
     h2 How to play "Beta Battle"
     section(v-for="(section, index) in $i18n.messages[$i18n.locale].home.howTo")
       h3 {{ index + 1 }}. {{ section.title }}
@@ -71,5 +76,12 @@
 h1,
 ul {
   margin: 1rem 0;
+}
+
+.update {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 </style>
