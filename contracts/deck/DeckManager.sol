@@ -86,6 +86,7 @@ contract DeckManager is SignerRole {
         check(msg.sender, _unit1);
         check(msg.sender, _unit2);
         check(msg.sender, _unit3);
+        checkDuplicate(_unit1, _unit2, _unit3);
 
         Deck storage deck = decks[msg.sender];
         require(deck.exists);
@@ -126,7 +127,7 @@ contract DeckManager is SignerRole {
         uint256[6] _unit1,
         uint256[6] _unit2,
         uint256[6] _unit3
-    ) internal view {
+    ) internal pure {
         require(_unit1[0] != _unit2[0] && _unit2[0] != _unit3[0] && _unit3[0] != _unit1[0]);
         require(_unit1[1] != _unit1[2] && _unit1[1] != _unit2[1] && _unit1[1] != _unit2[2] && _unit1[1] != _unit3[1] && _unit1[1] != _unit3[2]);
         require(_unit1[2] != _unit2[1] && _unit1[2] != _unit2[2] && _unit1[2] != _unit3[1] && _unit1[2] != _unit3[2]);
@@ -191,65 +192,4 @@ contract DeckManager is SignerRole {
         skills[2] = activeSkills[deck.units[_index].skillOrder3];
     }
 
-    function getUnit10(address _address, uint8 _index) public view returns (
-        uint256[3]
-    ) {
-        Deck storage deck = decks[_address];
-//        require(deck.exists);
-
-        uint256[3] memory ids;
-        ids[0] = deck.units[_index].hero;
-        return(ids);
-    }
-
-
-    function getUnit9(address _address, uint8 _index) public view returns (
-        uint256[3] ids, int16[4] sumParams, uint16[4] skills
-    ) {
-        Deck memory deck = decks[_address];
-//        require(deck.exists);
-
-        ids[0] = deck.units[_index].hero;
-    }
-
-    function getUnit0(address _address, uint8 _index) public view returns (
-        uint256[3] ids, int16[4] sumParams, uint16[4] skills
-    ) {
-        Deck storage deck = decks[_address];
-//        require(deck.exists);
-
-        ids[0] = deck.units[_index].hero;
-    }
-    
-    function getUnit1(address _address, uint8 _index) public view returns (
-        uint256[3] ids, int16[4] sumParams, uint16[4] skills
-    ) {
-        Deck storage deck = decks[_address];
-//        require(deck.exists);
-
-        ids[0] = deck.units[_index].hero;
-        ids[1] = deck.units[_index].extension1;
-        ids[2] = deck.units[_index].extension2;
-    }
-    
-    function getUnit2(address _address, uint8 _index) public view returns (
-        uint256[3] ids, int16[4] sumParams, uint16[4] skills
-    ) {
-        Deck storage deck = decks[_address];
-        require(deck.exists);
-
-        ids[0] = deck.units[_index].hero;
-        ids[1] = deck.units[_index].extension1;
-        ids[2] = deck.units[_index].extension2;
-
-        int16[4] memory params;
-        uint16[3] memory activeSkills;
-
-        (,params[0],params[1],params[2],params[3],activeSkills[0],skills[3],,) = hero.getHero(deck.units[_index].hero);
-        sumParams[0] += params[0]; sumParams[1] += params[1]; sumParams[2] += params[2]; sumParams[3] += params[3];
-    }
-
-    
-    
-    
 }
