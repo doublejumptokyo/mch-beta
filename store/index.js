@@ -5,7 +5,7 @@ export const state = () => ({
   hasWallet: false,
   ethAddress: '',
   loomAddress: '',
-  dappsChainPrivateKeyBase64: null
+  dappsChainPrivateKeyBase64: ''
 })
 
 export const getters = {
