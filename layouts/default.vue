@@ -23,11 +23,7 @@ export default {
 
 <style lang="scss">
 .container {
-  background: linear-gradient(
-    to top right,
-    map-get($colors, primary),
-    map-get($colors, brand1)
-  );
+  background: #f2f2f2;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
