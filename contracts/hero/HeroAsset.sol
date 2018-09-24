@@ -14,8 +14,11 @@ contract HeroAsset is ERC721Mintable, ERC721Pausable {
     constructor() public ERC721Full("MyCryptoHeroes:Hero", "MCHH") {}
 
     function setSupplyLimit(uint16 _heroType, uint16 _supplyLimit) external onlyMinter {
+        /*
+        for battle beta
         require(heroTypeToSupplyLimit[_heroType] == 0 || _supplyLimit < heroTypeToSupplyLimit[_heroType],
             "_supplyLimit is bigger");
+        */
         heroTypeToSupplyLimit[_heroType] = _supplyLimit;
     }
 

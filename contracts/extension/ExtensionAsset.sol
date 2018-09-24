@@ -14,8 +14,12 @@ contract ExtensionAsset is ERC721Mintable, ERC721Pausable {
     constructor() public ERC721Full("MyCryptoHeroes:Extension", "MCHE") {}
 
     function setSupplyLimit(uint16 _extensionType, uint16 _supplyLimit) external onlyMinter {
+        /*
+        for battle beta
+
         require(extensionTypeToSupplyLimit[_extensionType] == 0 || _supplyLimit < extensionTypeToSupplyLimit[_extensionType],
             "_supplyLimit is bigger");
+        */
         extensionTypeToSupplyLimit[_extensionType] = _supplyLimit;
     }
 
