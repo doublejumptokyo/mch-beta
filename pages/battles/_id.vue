@@ -415,7 +415,7 @@ export default {
     padding: 0;
 
     .username {
-      background: #555;
+      background: #444;
       font-size: 3rem;
       font-weight: bold;
       padding: 1rem;

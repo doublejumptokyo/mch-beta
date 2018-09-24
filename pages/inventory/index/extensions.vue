@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .section {
   &__extensionList {
-    background: #666;
+    background: #555;
     margin: 1rem -1rem;
     padding: 1rem;
 
@@ -82,7 +82,7 @@ export default {
 }
 
 .extensionExtension {
-  background: #777;
+  background: #666;
   border-radius: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: #fff;
