@@ -194,9 +194,10 @@ export default {
   }
 
   &__status {
-    background: #fff;
+    background: #777;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #fff;
     margin: 1rem 0 0 1rem;
     padding: 1rem;
     text-align: center;
@@ -234,9 +235,10 @@ export default {
 
   &__skill {
     align-items: center;
-    background: #fff;
+    background: #777;
     border-radius: 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #fff;
     display: flex;
     margin: 1rem 0 0 1rem;
     padding: 1rem;
