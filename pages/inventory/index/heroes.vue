@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .section {
   &__heroList {
-    background: #666;
+    background: #555;
     margin: 1rem -1rem;
     padding: 1rem;
 
