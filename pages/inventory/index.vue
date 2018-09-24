@@ -125,7 +125,7 @@ export default {
     width: 100%;
 
     &.nuxt-link-active {
-      border-bottom: 2px solid map-get($colors, primary);
+      border-bottom: 2px solid #ccc;
     }
   }
 }

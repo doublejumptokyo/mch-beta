@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .section {
   &__heroList {
-    background: #f9f9f9;
+    background: #666;
     margin: 1rem -1rem;
     padding: 1rem;
 
@@ -82,21 +82,20 @@ export default {
 }
 
 .heroItem {
-  background: #fff;
+  background: #777;
   border-radius: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  color: inherit;
+  color: #fff;
   margin: 1rem 0 0 1rem;
   padding: 1rem;
   text-align: center;
   text-decoration: none;
 
   &__image {
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 1rem;
     image-rendering: pixelated;
-    margin: -1rem -1rem 0;
-    max-width: calc(100% + 2rem);
-    width: calc(100% + 2rem);
+    margin-bottom: 1rem;
+    width: 100%;
   }
 }
 

@@ -71,14 +71,14 @@ export default {
 
 <style lang="scss" scoped>
 .links {
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: #666;
+  border-bottom: 1px solid #777;
   list-style-type: none;
   margin: 1rem -1rem;
   padding: 0;
 
   li {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #777;
   }
 
   &__item {
@@ -119,7 +119,7 @@ export default {
 }
 
 .accountPage {
-  background: #f9f9f9;
+  background: #555;
 
   h2 {
     font-size: 0.9rem;
@@ -128,8 +128,8 @@ export default {
   }
 
   &__userData {
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    background: #666;
+    border-bottom: 1px solid #666;
     margin: -1rem -1rem 1rem;
     padding: 1rem;
 
@@ -156,7 +156,7 @@ export default {
       }
 
       button {
-        background: #eee;
+        background: #777;
         border-radius: 9999px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         margin-left: 0.5rem;
