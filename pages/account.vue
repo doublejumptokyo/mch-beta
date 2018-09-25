@@ -19,8 +19,13 @@
     h2 {{ $i18n.t('others.other') }}
     ul.links
       li
+        a.links__item(href="https://discord.gg/")
+          fa-icon.links__icon(:icon="['fab', 'discord']" fixed-width)
+          span Official Discord
+          fa-icon.links__arrow(icon="angle-right")
+      li
         a.links__item(href="https://medium.com/mycryptoheroes")
-          fa-icon.links__icon(icon="question" fixed-width)
+          fa-icon.links__icon(:icon="['fab', 'medium']" fixed-width)
           span Official Medium
           fa-icon.links__arrow(icon="angle-right")
       li

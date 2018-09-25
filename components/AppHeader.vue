@@ -190,6 +190,10 @@ export default {
           position: absolute;
           width: 100%;
         }
+
+        svg {
+          opacity: 1;
+        }
       }
 
       &.disabled {

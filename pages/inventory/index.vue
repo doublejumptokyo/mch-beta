@@ -119,7 +119,7 @@ export default {
     font-size: 0.9rem;
     margin: 0;
     outline: none;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     text-decoration: none;
     width: 100%;
