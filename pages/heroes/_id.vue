@@ -46,13 +46,17 @@
           | INT
         p {{ hero.intl }}
       .assetPage__skill.assetPage__activeSkill
-        img(:src="require(`~/assets/images/icons/skill/${hero.activeSkill.iconFileName}`)")
-        div
+        .assetPage__skill--left
+          span Acctive
+          img(:src="require(`~/assets/images/icons/skill/${hero.activeSkill.iconFileName}`)")
+        .assetPage__skill--right
           p {{ hero.activeSkill.name[$i18n.locale] }}
           p {{ hero.activeSkill.description[$i18n.locale] }}
       .assetPage__skill.assetPage__passiveSkill
-        img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
-        div
+        .assetPage__skill--left
+          span Passive
+          img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
+        .assetPage__skill--right
           p {{ hero.passiveSkill.name[$i18n.locale] }}
           p {{ hero.passiveSkill.description[$i18n.locale] }}
 
@@ -255,10 +259,26 @@ export default {
     padding: 1rem;
     width: 100%;
 
-    img {
-      height: auto;
+    &--left {
       margin-right: 1rem;
+      text-align: center;
+    }
+
+    img {
+      display: inline-block;
+      height: auto;
       width: 2rem;
+    }
+
+    span {
+      border: 1px solid #999;
+      border-radius: 0.5rem;
+      color: #999;
+      display: block;
+      font-family: 'Merriweather Sans';
+      font-size: 0.7rem;
+      margin-bottom: 0.5rem;
+      padding: 0.25rem 0.5rem;
     }
 
     p {
