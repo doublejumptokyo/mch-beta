@@ -260,7 +260,9 @@ export default {
     width: 100%;
 
     &--left {
+      flex: 0 0 auto;
       margin-right: 1rem;
+      min-width: 58px;
       text-align: center;
     }
 
