@@ -17,5 +17,6 @@ module.exports = function(deployer) {
         await heroManager.forceMintHero("0x8820aBBA1598D89F9750A79AB0Acba580872cFa7", 30010007) // Block:6390665 EthAddr:0xA3aD2389F8666aDF188F61Bc59b553f4524AE102
         await heroManager.forceMintHero("0x849B10E978dbA9daaBE03eAD735f405a48e9378A", 40070024) // Block:6390774 EthAddr:0xd63DE3EE4197fDA5040d6045A3d4202c3b80f4DD
         await heroManager.forceMintHero("0x740821Ef4f5Bb4571e655811B901fAa52b56977c", 40090019) // Block:6391813 EthAddr:0x2Fef65e4D69a38bf0dd074079f367CDF176eC0De
+        await heroManager.forceMintHero("0x88bA1F8951BF9E6018D2a2Ba7D703319FD919CF4", 40080001) // Block:6393721 EthAddr:0x62b8B7B7Af7CB5847Dd7335e0B6B4229CD1B7d48
     });
 }
