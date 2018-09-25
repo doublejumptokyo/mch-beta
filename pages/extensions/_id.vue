@@ -34,7 +34,7 @@
         p + {{ item.intl }}
       .assetPage__skill.assetPage__activeSkill
         .assetPage__skill--left
-          span Acctive
+          span Active
           img(:src="require(`~/assets/images/icons/skill/${item.activeSkill.iconFileName}`)")
         .assetPage__skill--right
           p {{ item.activeSkill.name[$i18n.locale] }}
