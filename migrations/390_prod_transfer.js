@@ -18,5 +18,6 @@ module.exports = function(deployer) {
         await heroManager.forceMintHero("0x849B10E978dbA9daaBE03eAD735f405a48e9378A", 40070024) // Block:6390774 EthAddr:0xd63DE3EE4197fDA5040d6045A3d4202c3b80f4DD
         await heroManager.forceMintHero("0x740821Ef4f5Bb4571e655811B901fAa52b56977c", 40090019) // Block:6391813 EthAddr:0x2Fef65e4D69a38bf0dd074079f367CDF176eC0De
         await heroManager.forceMintHero("0x88bA1F8951BF9E6018D2a2Ba7D703319FD919CF4", 40080001) // Block:6393721 EthAddr:0x62b8B7B7Af7CB5847Dd7335e0B6B4229CD1B7d48
+        await heroManager.forceMintHero("0x76d0EBF5bE3176E7D05E0681415a54b99ca8f2eA", 40050021) // Block:6395735 EthAddr:0x813074b9A3c964C51AC66b841C2577A3Ce1062F6
     });
 }
