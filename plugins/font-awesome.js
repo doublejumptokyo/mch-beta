@@ -30,7 +30,8 @@ import {
   faUpload,
   faSpinner,
   faSignInAlt,
-  faSignOutAlt
+  faSignOutAlt,
+  faExclamationCircle
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faEdit,
@@ -45,7 +46,8 @@ import {
 import {
   faEthereum,
   faDiscord,
-  faTwitter
+  faTwitter,
+  faMedium
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -80,6 +82,7 @@ library.add(
   faSpinner,
   faSignInAlt,
   faSignOutAlt,
+  faExclamationCircle,
   faClock,
   faSadTear,
   faShareSquare,
@@ -90,7 +93,8 @@ library.add(
   faBell,
   faEthereum,
   faDiscord,
-  faTwitter
+  faTwitter,
+  faMedium
 )
 
 config.searchPseudoElements = true
