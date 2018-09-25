@@ -1,5 +1,11 @@
 {
   "label": "English",
+  "common": {
+    "meta": {
+      "title": "My Crypto Heroes | Crypto Game",
+      "description": "‘My Crypto Heroes’(MCH) is a quick and casual worker-placement Blockchain RPG. Collect and train historical Heroes of the world , get special and legendary items into your to equip, compose the ultimate unbeatable team formations and challenge epic battles to conquer the crypto world !"
+    }
+  },
   "pages": {
     "home": "Home",
     "inventory": "Inventory",
