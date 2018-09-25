@@ -1,7 +1,10 @@
 const SITE_INFO = {
-  url: 'http://tanaka.djty.co',
   title: 'My Crypto Heroes',
-  description: 'My Crypto Heroes'
+  description:
+    'In the near future...\nRecords of past heroes have all vanished into the Crypto World.\n\nIt is your job as a data miner to dive into the depth of the Crypto World\nto battle enemies and restore the heroes back to their finest forms.\nCollect and strengthen your heroes through battles and trades to stay ahead of the other miners!\n\nMy Crypto Heroes\nWhere you can find the best heroes imaginable...',
+  faviconPath: '/favicon.png',
+  gaTrackingId: 'UA-119742974-1',
+  primaryColor: '#444'
 }
 
 module.exports = {
@@ -13,17 +16,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: SITE_INFO.description
-      },
-      { property: 'og:title', content: SITE_INFO.title },
-      // { property: 'og:image', content: require('~/assets/images/key_visual.jpg') },
-      { property: 'og:description', content: SITE_INFO.description },
-      { name: 'robots', content: 'noindex' },
-      { name: 'googlebot', content: 'noindex' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -41,13 +34,23 @@ module.exports = {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&amp;subset=cyrillic,latin-ext,vietnamese'
+      },
+      {
+        rel: 'alternate',
+        hreflang: 'en',
+        href: 'https://beta.mycryptoheroes.net/'
+      },
+      {
+        rel: 'alternate',
+        hreflang: 'ja',
+        href: 'https://beta.mycryptoheroes.net/'
       }
     ]
   },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: SITE_INFO.primaryColor },
   /*
   ** Build configuration
   */
@@ -80,6 +83,7 @@ module.exports = {
     '@nuxtjs/proxy',
     // '@nuxtjs/bulma',
     '@nuxtjs/toast',
+    ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
     ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
   ],
   proxy: {
