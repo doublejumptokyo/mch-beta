@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
@@ -8,13 +7,11 @@ export default ({ app, req }) => {
   let locale = 'en'
   if (process.client) {
     // browserから取る場合はnavigator経由で取得
-    const navigator = _.get(window, 'navigator', {})
-    locale = (
-      _.head(navigator.languages) ||
-      navigator.language ||
-      navigator.browserLanguage ||
-      navigator.userLanguage
-    ).substr(0, 2)
+    locale =
+      window.navigator.language &&
+      window.navigator.language.substr(0, 2) === 'ja'
+        ? 'ja'
+        : 'en'
   } else if (req) {
     // ssrの場合はrequestから取得)
     locale = req.headers['accept-language']
@@ -23,6 +20,7 @@ export default ({ app, req }) => {
           .toLocaleLowerCase()
           .substr(0, 2)
       : 'en'
+    locale = locale === 'ja' ? 'ja' : 'en'
   }
   app.i18n = new VueI18n({
     locale: locale || 'en',
