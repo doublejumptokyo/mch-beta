@@ -61,7 +61,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 97px;
+  padding-top: 98px;
   position: relative;
 
   @media (min-width: $breakpoint) {
