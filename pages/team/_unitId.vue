@@ -227,10 +227,7 @@ export default {
       this.isHeroModalShown = true
     },
     heroModalSubmit() {
-      this.$store.commit('team/UPDATE_HERO', {
-        index: this.positionIndex,
-        id: this.selectedHero.id
-      })
+      this.$set(this.position, 0, this.selectedHero.id)
       this.selectedHero = null
       this.isHeroModalShown = false
     },
