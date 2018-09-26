@@ -12,14 +12,15 @@
       //- button.button__change(@click="startChangingOrder(team)" v-else)
         fa-icon(:icon="['fas', 'sort']")
         span Change Order
-    ol
-      template(v-for="(unit, index) in units")
-        unit-list-item(
-          v-if="unit"
-          :to="`/team/${index + 1}`"
-          :unit="getUnit(unit)"
-          :skillOrder="getSkillOrder(unit)"
-        )
+    no-ssr
+      ol
+        template(v-for="(unit, index) in units")
+          unit-list-item(
+            v-if="unit"
+            :to="`/team/${index + 1}`"
+            :unit="getUnit(unit)"
+            :skillOrder="getSkillOrder(unit)"
+          )
 </template>
 
 <script>
