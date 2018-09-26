@@ -12,9 +12,7 @@
       //- button.button__change(@click="startChangingOrder(team)" v-else)
         fa-icon(:icon="['fas', 'sort']")
         span Change Order
-    draggable(
-      element="ol"
-    )
+    ol
       template(v-for="(unit, index) in units")
         unit-list-item(
           v-if="unit"
@@ -101,16 +99,16 @@ export default {
   }
 }
 
-.swiper-container {
-  -webkit-tap-highlight-color: transparent;
-}
+// .swiper-container {
+//   -webkit-tap-highlight-color: transparent;
+// }
 
-.swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: auto;
-  top: 0;
+// .swiper-container-horizontal > .swiper-pagination-bullets {
+//   bottom: auto;
+//   top: 0;
 
-  /deep/ .swiper-pagination-bullet-active {
-    background: map-get($colors, primary);
-  }
-}
+//   /deep/ .swiper-pagination-bullet-active {
+//     background: map-get($colors, primary);
+//   }
+// }
 </style>
