@@ -116,6 +116,10 @@ export default {
     /deep/ button {
       line-height: 1;
       padding: 0.5rem 1rem;
+
+      @media (min-width: $breakpoint) {
+        padding: 1rem 2rem;
+      }
     }
   }
 
