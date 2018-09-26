@@ -22,5 +22,6 @@ sw.js
 /migrations/*
 /migrations-tmp/*
 /contracts/*
+/tmp/*
 
 truffle-config.js

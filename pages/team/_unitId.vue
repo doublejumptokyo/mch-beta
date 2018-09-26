@@ -4,6 +4,7 @@
     .positionPage__editArea
 
       .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
+        fa-icon(icon="sync")
         .hero__image
           img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
         //- .hero__name
@@ -16,6 +17,7 @@
         //-   span No Hero
 
       .item.item1(v-if="item1.name && item1.fileName" @click="itemModalOpen('item1')")
+        fa-icon(icon="sync")
         .item__image
           img(:src="require(`~/assets/images/extensions/${item1.fileName}`)")
         //- .item__name
@@ -28,6 +30,7 @@
         //-   span No Item
 
       .item.item2(v-if="item2.name && item2.fileName" @click="itemModalOpen('item2')")
+        fa-icon(icon="sync")
         .item__image
           img(:src="require(`~/assets/images/extensions/${item2.fileName}`)")
         //- .item__name
@@ -322,12 +325,29 @@ export default {
 .item {
   background: #666;
   border-radius: 1rem;
+  cursor: pointer;
   margin-left: 1rem;
-  padding: 1rem;
+  padding: 2.5rem 1rem 1rem;
 
   @media (min-width: $breakpoint) {
     margin-left: 2rem;
-    padding: 2rem;
+    padding: 2.5rem 2rem 2rem;
+  }
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  svg {
+    display: block;
+    float: right;
+    font-size: 1.2rem;
+    margin: -1.75rem -0.25rem 0 0;
+    opacity: 0.25;
+
+    @media (min-width: $breakpoint) {
+      margin: -1.75rem -1.25rem 0 0;
+    }
   }
 
   &__image {
