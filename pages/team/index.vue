@@ -3,7 +3,7 @@
   .page__title
     h1 {{ $i18n.t('pages.team') }}
   .teamPage__team.team
-    header.team__header
+    //- header.team__header
       //- div(v-if="isChangingOrder[`team${team.id}`]")
         button.button__cancel(@click="cancelChangingOrder(team)")
           fa-icon(:icon="['fas', 'times']")
@@ -12,9 +12,7 @@
       //- button.button__change(@click="startChangingOrder(team)" v-else)
         fa-icon(:icon="['fas', 'sort']")
         span Change Order
-    draggable(
-      element="ol"
-    )
+    ol
       template(v-for="(unit, index) in units")
         unit-list-item(
           v-if="unit"
@@ -59,8 +57,11 @@ export default {
 }
 
 .team {
-  background: #fff;
   font-size: 0.8rem;
+
+  @media (min-width: $breakpoint) {
+    font-size: 1rem;
+  }
 
   &__header {
     display: flex;
@@ -87,10 +88,10 @@ export default {
   }
 
   > ol {
-    background: #f9f9f9;
+    background: #555;
     list-style-type: none;
     margin: 0;
-    padding: 1rem;
+    padding: 0;
 
     * {
       user-select: none;
@@ -98,16 +99,16 @@ export default {
   }
 }
 
-.swiper-container {
-  -webkit-tap-highlight-color: transparent;
-}
+// .swiper-container {
+//   -webkit-tap-highlight-color: transparent;
+// }
 
-.swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: auto;
-  top: 0;
+// .swiper-container-horizontal > .swiper-pagination-bullets {
+//   bottom: auto;
+//   top: 0;
 
-  /deep/ .swiper-pagination-bullet-active {
-    background: map-get($colors, primary);
-  }
-}
+//   /deep/ .swiper-pagination-bullet-active {
+//     background: map-get($colors, primary);
+//   }
+// }
 </style>
