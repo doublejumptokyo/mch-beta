@@ -521,7 +521,6 @@ export default {
 
     button {
       border-radius: 1rem;
-      padding: 1rem;
     }
   }
 
@@ -577,6 +576,8 @@ export default {
 
     img {
       border-radius: 0.5rem;
+      image-rendering: pixelated;
+      width: 100%;
     }
   }
 }
@@ -596,6 +597,11 @@ export default {
   > img {
     border-radius: 0.5rem;
     margin-right: 1rem;
+
+    @media (min-width: $breakpoint) {
+      image-rendering: pixelated;
+      width: 128px;
+    }
   }
 
   &__data {
@@ -605,6 +611,10 @@ export default {
     h3 {
       font-size: 1rem;
       line-height: 1;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.5rem;
+      }
     }
 
     h4 {
@@ -620,19 +630,32 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 0.5rem;
+
+    @media (min-width: $breakpoint) {
+      margin-top: 1rem;
+    }
   }
 
   &__status {
     align-items: center;
     display: flex;
     font-family: Oswald;
-    font-size: 4vw;
+    font-size: 0.9rem;
     font-weight: bold;
     line-height: 1;
 
+    @media (min-width: $breakpoint) {
+      font-size: 1.5rem;
+    }
+
     img {
-      margin-right: 1vw;
-      width: 6vw;
+      margin-right: 0.25rem;
+      width: 1.2rem;
+
+      @media (min-width: $breakpoint) {
+        margin-right: 0.5rem;
+        width: 2.4rem;
+      }
     }
 
     &--plus {
@@ -652,6 +675,10 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 0.5rem;
+
+    @media (min-width: $breakpoint) {
+      margin-top: 1rem;
+    }
   }
 
   &__skill {
@@ -661,6 +688,10 @@ export default {
     margin-left: 1rem;
     min-width: 0;
     padding: 0.25rem 1rem;
+
+    @media (min-width: $breakpoint) {
+      padding: 1rem;
+    }
 
     &:first-of-type {
       margin-left: 0;
@@ -673,6 +704,10 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+      }
     }
   }
 }
