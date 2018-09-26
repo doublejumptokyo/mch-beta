@@ -261,12 +261,18 @@ export default {
 
       this.$store.commit('team/SET_IDS', { index: this.positionIndex, newIds })
 
-      await this.$team.set(this.$store.state.team)
-      const newTeam = await this.$team.get(this.$store.state.loomAddress)
-      this.$store.commit('team/SET_TEAM', newTeam)
+      try {
+        await this.$team.set(this.$store.state.team)
+        const newTeam = await this.$team.get(this.$store.state.loomAddress)
+        this.$store.commit('team/SET_TEAM', newTeam)
 
-      this.$toast.show('Success.')
-      this.$router.push('/team')
+        this.$toast.show('Success.')
+        this.$router.push('/team')
+      } catch (e) {
+        const newTeam = await this.$team.get(this.$store.state.loomAddress)
+        this.$store.commit('team/SET_TEAM', newTeam)
+        this.$toast.error('Error.')
+      }
     }
   }
 }
