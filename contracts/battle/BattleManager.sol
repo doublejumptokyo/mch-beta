@@ -11,7 +11,7 @@ import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract BattleManager is Ownable {
 
-    uint8 public constant TURN_COUNTS = 20;
+    uint8 public constant TURN_COUNTS = 10;
 
     DeckManager public deckManager;
     BattleTransaction public battleTransaction;
@@ -20,11 +20,13 @@ contract BattleManager is Ownable {
     mapping(address=>BattleInfo) public addressToBattleInfo;
     mapping(address=>BattleInfo) public addressToBattleInfoDev;
     
+    enum State {progress, win, lose, timeUp, finished}
+    
     struct BattleInfo {
         uint32 battleId;
-        int16 rank;
-        address opponent;
-        uint8 state; // 0:none, 1:progress, 2:win, 3:lose, 4:timeup
+        address attacker;
+        address defender;
+        State state;
         bool rankBattle;
         bool exists;
     }
@@ -41,7 +43,7 @@ contract BattleManager is Ownable {
         rank = Rank(_rankAddress);
     }
 
-    function battle(address _address, bool _rankBattle) public {
+    function start(address _address, bool _rankBattle) public {
         uint32 battleId = battleTransaction.init(msg.sender, _address);
         
         uint256[3] memory ids;
@@ -66,40 +68,45 @@ contract BattleManager is Ownable {
         (ids, params, skills) = deckManager.getUnit(_address, 2);
         battleTransaction.setUnit(battleId, 5, ids, params, skills);
 
-        int16 _rank = rank.getRank(msg.sender);
-        addressToBattleInfo[msg.sender] = BattleInfo(battleId, _rank, _address, 0, _rankBattle, true);
+        battleTransaction.start(battleId);
+
+        addressToBattleInfo[msg.sender] = BattleInfo(battleId, msg.sender, _address, State.progress, _rankBattle, true);
     }
     
     function next() public {
         BattleInfo storage battleInfo = addressToBattleInfo[msg.sender];
         require(battleInfo.exists);
 
-        if (battleInfo.state == 0) {
-            battleTransaction.start(battleInfo.battleId);
-            return;
-        } else if (battleInfo.state != 1) {
-            return;
-        }
+        if (battleInfo.state != State.progress) return;
         
         BattleContext.BattleState result = battleTransaction.nexts(battleInfo.battleId, TURN_COUNTS);
+
         if (result == BattleContext.BattleState.win) {
-            battleInfo.state = 2;
-            if (battleInfo.rankBattle) {
-                rank.swap(msg.sender, battleInfo.opponent);
-                battleInfo.rank = rank.getRank(msg.sender);
-            }
+            battleInfo.state = State.win;
         } else if (result == BattleContext.BattleState.lose) {
-            battleInfo.state = 3;
+            battleInfo.state = State.lose;
         } else if (result == BattleContext.BattleState.timeUp) {
-            battleInfo.state = 4;
+            battleInfo.state = State.timeUp;
         }
     }
-
-    function getState() public view returns (bool, uint32, address, uint8, bool) {
+    
+    function end() public {
         BattleInfo storage battleInfo = addressToBattleInfo[msg.sender];
         require(battleInfo.exists);
-        bool hasNext = battleInfo.state < 2;
-        return (hasNext, battleInfo.battleId, battleInfo.opponent, battleInfo.state, battleInfo.rankBattle);
+        
+        if(battleInfo.state == State.progress || battleInfo.state == State.finished) return;
+
+        battleTransaction.end(battleInfo.battleId);
+        
+        if (battleInfo.rankBattle && battleInfo.state == State.win) {
+            rank.swap(msg.sender, battleInfo.defender);
+        }
+        battleInfo.state = State.finished;
+    }
+
+    function hasNext() public view returns (bool) {
+        BattleInfo storage battleInfo = addressToBattleInfo[msg.sender];
+        return battleInfo.exists && battleInfo.state == State.progress;
     }
 
     // ----- dev
@@ -129,40 +136,45 @@ contract BattleManager is Ownable {
         (ids, params, skills) = deckManager.getUnit(_defender, 2);
         battleTransaction.setUnit(battleId, 5, ids, params, skills);
 
-        int16 _rank = rank.getRank(_attacker);
-        addressToBattleInfoDev[_attacker] = BattleInfo(battleId, _rank, _defender, 0, false, true);
+        battleTransaction.start(battleId);
+
+        addressToBattleInfoDev[_attacker] = BattleInfo(battleId, _attacker, _defender, State.progress, false, true);
     }
     
     function nextDev(address _attacker) public {
-        BattleInfo storage battleInfo = addressToBattleInfoDev[_attacker];
+        BattleInfo storage battleInfo = addressToBattleInfo[_attacker];
         require(battleInfo.exists);
 
-        if (battleInfo.state == 0) {
-            battleTransaction.start(battleInfo.battleId);
-            return;
-        } else if (battleInfo.state != 1) {
-            return;
-        }
+        if (battleInfo.state != State.progress) return;
         
         BattleContext.BattleState result = battleTransaction.nexts(battleInfo.battleId, TURN_COUNTS);
+
         if (result == BattleContext.BattleState.win) {
-            battleInfo.state = 2;
-            if (battleInfo.rankBattle) {
-                rank.swap(_attacker, battleInfo.opponent);
-                battleInfo.rank = rank.getRank(_attacker);
-            }
+            battleInfo.state = State.win;
         } else if (result == BattleContext.BattleState.lose) {
-            battleInfo.state = 3;
+            battleInfo.state = State.lose;
         } else if (result == BattleContext.BattleState.timeUp) {
-            battleInfo.state = 4;
+            battleInfo.state = State.timeUp;
         }
     }
 
-    function getStateDev(address _attacker) public view returns (bool, uint32, address, uint8, bool) {
-        BattleInfo storage battleInfo = addressToBattleInfoDev[_attacker];
+    function endDev(address _attacker) public {
+        BattleInfo storage battleInfo = addressToBattleInfo[_attacker];
         require(battleInfo.exists);
-        bool hasNext = battleInfo.state < 2;
-        return (hasNext, battleInfo.battleId, battleInfo.opponent, battleInfo.state, battleInfo.rankBattle);
+        
+        if(battleInfo.state == State.progress || battleInfo.state == State.finished) return;
+
+        battleTransaction.end(battleInfo.battleId);
+        
+        if (battleInfo.rankBattle && battleInfo.state == State.win) {
+            rank.swap(battleInfo.attacker, battleInfo.defender);
+        }
+        battleInfo.state = State.finished;
+    }
+
+    function hasNextDev(address _attacker) public view returns (bool) {
+        BattleInfo storage battleInfo = addressToBattleInfo[_attacker];
+        return battleInfo.exists && battleInfo.state == State.progress;
     }
 
 }
