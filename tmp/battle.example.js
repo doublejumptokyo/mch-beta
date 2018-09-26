@@ -530,6 +530,14 @@ function encodeBattleAction(rawData) {
     }
     return units;
 }
+
+function encodeEffectPositions(positions) {
+    let results = [];
+    for(let i in positions) {
+        if(positions[i]) results.push(i);
+    }
+    return results;
+}
     
 let battleManager = $nuxt.$accountManager.getContract(C_ABI_BattleManager, C_ADDRESS_BattleManager);
     
@@ -561,6 +569,7 @@ let rawEvent;
             rawEvent.topics.shift();
             let action = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleAction, rawEvent.data, rawEvent.topics);
             action.units = encodeBattleAction(action.data);
+            action.effectPositions = encodeEffectPositions(action.effectPositions);
             actions.push(action);
         }
         hasNext = await battleManager.methods.hasNext().call();
