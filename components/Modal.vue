@@ -73,9 +73,9 @@ export default {
   }
 
   &__container {
-    background-color: #fff;
+    background-color: #444;
     border-radius: 1rem;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     max-height: 100%;
@@ -147,12 +147,12 @@ export default {
     }
 
     .modal__header {
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #666;
     }
 
     .modal__footer {
-      background: #f9f9f9;
-      border-top: 1px solid #eee;
+      background: #555;
+      border-top: 1px solid #666;
     }
   }
 }
