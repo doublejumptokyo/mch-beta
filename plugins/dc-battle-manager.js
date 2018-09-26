@@ -101,11 +101,13 @@ class BattleManager {
       .send()
     const rawEvent = res.events[0].raw
     rawEvent.topics.shift()
-    return this.accountManager.web3.eth.abi.decodeLog(
+    const start = this.accountManager.web3.eth.abi.decodeLog(
       E_ABI_BattleStart,
       rawEvent.data,
       rawEvent.topics
     )
+    start.units = this.encodeBattleStart(start.data)
+    return start
   }
 
   async next() {
