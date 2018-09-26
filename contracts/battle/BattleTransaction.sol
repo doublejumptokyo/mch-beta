@@ -108,6 +108,17 @@ contract BattleTransaction {
         require(battle.exists);
         require(battle.state != BC.BattleState.init && battle.state != BC.BattleState.progress);
         
+        if(battle.state == BC.BattleState.finished) return;
+        
+        emit BattleEnd(battle.id, battle.attacker, battle.defender, uint8(battle.state));
+        battle.state = BC.BattleState.finished;
+    }
+    
+    function cleanUp(uint32 battleId) public {
+        BC.Battle storage battle = battles[battleId];
+        require(battle.exists);
+        require(battle.state == BC.BattleState.finished);
+        
         delete battles[battleId];
     }
 
@@ -135,7 +146,6 @@ contract BattleTransaction {
         battle.passiveLoop = 0;
 
         if (battle.checkEnd()) {
-            emit BattleEnd(battle.id, battle.attacker, battle.defender, uint8(battle.state));
             uint lastIndex = incompleteIds.length - 1;
             for (uint index = 0; index < incompleteIds.length; index++) {
                 if (incompleteIds[index] == battleId) break;
