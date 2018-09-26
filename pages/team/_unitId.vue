@@ -5,38 +5,38 @@
     .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
       .hero__image
         img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
-      .hero__name
-        span {{ hero.name[$i18n.locale] }}
-    .hero.hero--empty(v-else @click="heroModalOpen")
+      //- .hero__name
+      //-   span {{ hero.name[$i18n.locale] }}
+    //- .hero.hero--empty(v-else @click="heroModalOpen")
       .hero__image.hero__image--empty
         no-ssr
           fa-icon(icon="plus")
-      .hero__name.hero__name--empty
-        span No Hero
+      //- .hero__name.hero__name--empty
+      //-   span No Hero
 
     .item.item1(v-if="item1.name && item1.fileName" @click="itemModalOpen('item1')")
       .item__image
         img(:src="require(`~/assets/images/extensions/${item1.fileName}`)")
-      .item__name
-        span {{ item1.name[$i18n.locale] }}
-    .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
+      //- .item__name
+      //-   span {{ item1.name[$i18n.locale] }}
+    //- .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
       .item__image.item__image--empty
         no-ssr
           fa-icon(icon="plus")
-      .item__name.item__name--empty
-        span No Item
+      //- .item__name.item__name--empty
+      //-   span No Item
 
     .item.item2(v-if="item2.name && item2.fileName" @click="itemModalOpen('item2')")
       .item__image
         img(:src="require(`~/assets/images/extensions/${item2.fileName}`)")
-      .item__name
-        span {{ item2.name[$i18n.locale] }}
-    .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
+      //- .item__name
+      //-   span {{ item2.name[$i18n.locale] }}
+    //- .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
       .item__image.item__image--empty
         no-ssr
           fa-icon(icon="plus")
-      .item__name.item__name--empty
-        span No Item
+      //- .item__name.item__name--empty
+      //-   span No Item
 
   .positionPage__resultArea
     .statuses
@@ -53,16 +53,21 @@
         img(:src="require('~/assets/images/icons/status/int.png')")
         p {{ computedStatus.int }}
     .skills
+      h3 Active
       draggable(
         v-model="activeSkillOrder",
         element="ol",
         :options="{ animation: 300, handle: '.activeSkill__handle' }"
       )
         li.skill.activeSkill(v-for="index in activeSkillOrder")
+          img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
           span {{ getActiveSkill(index).name[$i18n.locale] }}
           .activeSkill__handle
             fa-icon(icon="bars")
-      p.skill.passiveSkill(v-if="hero.passiveSkill") {{ hero.passiveSkill.name[$i18n.locale] }}
+      h3 Passive
+      p.skill.passiveSkill(v-if="hero.passiveSkill")
+        img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
+        span {{ hero.passiveSkill.name[$i18n.locale] }}
 
   footer.positionPage__footer
     button(@click="submit") OK
@@ -145,7 +150,7 @@ export default {
   components: { draggable, Modal },
   data() {
     return {
-      position: null,
+      // position: null,
       isHeroModalShown: false,
       isItemModalShown: false,
       activeSkillOrder: [],
@@ -161,6 +166,9 @@ export default {
       getExtension: 'extensions/get',
       getSkill: 'team/getSkill'
     }),
+    position() {
+      return this.units[this.positionIndex]
+    },
     hero() {
       if (!this.position) return {}
       return this.getHero(this.position[0])
@@ -184,7 +192,7 @@ export default {
   },
   beforeMount() {
     this.positionIndex = Number(this.$route.params.unitId) - 1
-    this.position = this.units[this.positionIndex]
+    // this.position = this.units[this.positionIndex]
     this.activeSkillOrder = this.position.filter((num, index) => index > 2)
   },
   methods: {
@@ -217,8 +225,10 @@ export default {
       this.isHeroModalShown = true
     },
     heroModalSubmit() {
-      this.hero = this.selectedHero
-      this.position[0] = this.selectedHero.id
+      this.$store.commit('team/UPDATE_HERO', {
+        index: this.positionIndex,
+        id: this.selectedHero.id
+      })
       this.selectedHero = null
       this.isHeroModalShown = false
     },
@@ -231,8 +241,11 @@ export default {
       this.isItemModalShown = type
     },
     itemModalSubmit(type) {
-      this[type] = this.selectedItem[type]
-      this.position[type === 'item1' ? 1 : 2] = this.selectedItem[type].id
+      this.$set(
+        this.position,
+        type === 'item1' ? 1 : 2,
+        this.selectedItem[type].id
+      )
       this.selectedItem[type] = null
       this.isItemModalShown = false
     },
@@ -262,13 +275,25 @@ export default {
 
 <style lang="scss" scoped>
 .positionPage {
+  color: #ccc;
+
+  @media (min-width: $breakpoint) {
+    padding: 2rem;
+  }
+
   &__editArea {
     align-items: center;
-    background: #f9f9f9;
+    background: #555;
     display: flex;
     font-size: 0.8rem;
+    justify-content: center;
     margin: -1rem -1rem 1rem;
     padding: 1rem;
+
+    @media (min-width: $breakpoint) {
+      margin: -2rem -2rem 2rem;
+      padding: 2rem;
+    }
   }
 
   &__resultArea {
@@ -276,13 +301,15 @@ export default {
   }
 
   &__footer {
-    margin: 1rem 0;
+    margin: 2rem 0 1rem;
 
     button {
-      background: map-get($colors, primary);
+      background: #f1c40f;
       border-radius: 1rem;
-      color: #fff;
+      color: #444;
       display: block;
+      margin: 0 auto;
+      max-width: 640px;
       padding: 1rem;
       width: 100%;
     }
@@ -291,11 +318,15 @@ export default {
 
 .hero,
 .item {
-  background: #fff;
-  border: 2px dashed #eee;
+  background: #666;
   border-radius: 1rem;
   margin-left: 1rem;
   padding: 1rem;
+
+  @media (min-width: $breakpoint) {
+    margin-left: 2rem;
+    padding: 2rem;
+  }
 
   &__image {
     height: 0;
@@ -342,12 +373,14 @@ export default {
 
 .hero {
   flex: 3;
+  max-width: 256px;
   order: 2;
   width: 60%;
 }
 
 .item {
   flex: 1;
+  max-width: 128px;
   width: 20%;
 }
 
@@ -372,20 +405,43 @@ export default {
 .statuses {
   display: flex;
   margin: 1rem 0;
+
+  @media (min-width: $breakpoint) {
+    margin: 2rem 0;
+  }
 }
 
 .status {
+  flex: 1;
   font-family: Oswald;
+  font-size: 1.3rem;
+  font-weight: bold;
   text-align: center;
-  width: 50%;
+
+  @media (min-width: $breakpoint) {
+    align-items: center;
+    display: flex;
+    font-size: 1.8rem;
+    justify-content: center;
+  }
 
   img {
-    width: 50%;
+    width: 2.5rem;
+
+    @media (min-width: $breakpoint) {
+      margin-right: 1rem;
+      width: 3rem;
+    }
   }
 }
 
 .skills {
   margin: 1rem 0;
+
+  h3 {
+    color: #666;
+    margin: 1rem 0 0.5rem;
+  }
 
   ol {
     list-style-type: none;
@@ -395,15 +451,35 @@ export default {
     li {
       align-items: center;
       display: flex;
-      justify-content: space-between;
 
       &:first-of-type {
         margin-top: 0;
       }
 
+      img {
+        margin-right: 0.5rem;
+        width: 1.2rem;
+      }
+
+      span {
+        flex: 1;
+      }
+
       .svg-inline--fa {
         color: #ccc;
+        // margin-left: auto;
       }
+    }
+  }
+
+  p {
+    img {
+      margin-right: 0.5rem;
+      width: 1.2rem;
+    }
+
+    span {
+      flex: 1;
     }
   }
 
@@ -412,29 +488,21 @@ export default {
   }
 
   .sortable-drag {
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    // background: #fff;
+    // border-bottom: 1px solid #eee;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
     opacity: 1 !important;
   }
 }
 
 .skill {
-  border: 1px solid #eee;
+  border: 1px solid #666;
   border-radius: 0.5rem;
   margin-top: 0.5rem;
   overflow: hidden;
   padding: 0.5rem 1rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  &.activeSkill {
-    border-color: map-get($colors, primary);
-  }
-
-  &.passiveSkill {
-    border-color: map-get($colors, brand4);
-  }
 }
 
 .heroModal,
@@ -515,12 +583,12 @@ export default {
 
 .detailViewer {
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
+  background: #555;
   bottom: -1px;
   box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   left: 0;
-  margin: 0 -1rem;
+  margin: 1rem -1rem 0;
   padding: 1rem;
   position: sticky;
   width: calc(100% + 2rem);
@@ -587,7 +655,7 @@ export default {
   }
 
   &__skill {
-    border: 1px solid;
+    border: 1px solid #ccc;
     border-radius: 1rem;
     flex: 1;
     margin-left: 1rem;
@@ -606,14 +674,6 @@ export default {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-  }
-
-  &__activeSkill {
-    border-color: map-get($colors, primary);
-  }
-
-  &__passiveSkill {
-    border-color: map-get($colors, brand4);
   }
 }
 </style>

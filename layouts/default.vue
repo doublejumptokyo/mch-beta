@@ -61,12 +61,12 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 102px;
+  padding-top: 98px;
   position: relative;
 
   @media (min-width: $breakpoint) {
     align-items: center;
-    padding-top: 109px;
+    padding-top: 104px;
   }
 
   &--modalShown {

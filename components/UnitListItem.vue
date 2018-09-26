@@ -321,15 +321,15 @@ export default {
     }
   }
 
-  .sortable-ghost {
-    visibility: hidden;
-  }
+  // .sortable-ghost {
+  //   visibility: hidden;
+  // }
 
-  .sortable-drag {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
-    opacity: 1 !important;
-  }
+  // .sortable-drag {
+  //   background: #fff;
+  //   border-bottom: 1px solid #eee;
+  //   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+  //   opacity: 1 !important;
+  // }
 }
 </style>
