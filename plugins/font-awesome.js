@@ -31,7 +31,8 @@ import {
   faSpinner,
   faSignInAlt,
   faSignOutAlt,
-  faExclamationCircle
+  faExclamationCircle,
+  faSync
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faEdit,
@@ -83,6 +84,7 @@ library.add(
   faSignInAlt,
   faSignOutAlt,
   faExclamationCircle,
+  faSync,
   faClock,
   faSadTear,
   faShareSquare,
