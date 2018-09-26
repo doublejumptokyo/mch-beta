@@ -65,3 +65,14 @@ button {
 table {
   border-collapse: collapse;
 }
+
+.toasted {
+  &.primary {
+    background: map-get($colors, primary);
+    color: #444;
+  }
+
+  &.error {
+    color: #fff;
+  }
+}

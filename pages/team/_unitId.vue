@@ -78,7 +78,7 @@
     h2.heroModal__header(slot="header") Change Hero
     .heroModal__body(slot="body")
       .heroSelector
-        .heroSelector__hero(v-for="hero in $store.state.heroes" :class="{ 'heroSelector__hero--disabled': isDisabled(hero, 'hero') }")
+        .heroSelector__hero(v-for="hero in $store.state.heroes" :class="{ 'heroSelector__hero--disabled': isDisabled(hero.id, 'hero') }")
           label
             input(type="radio" name="heroSelector" :value="hero" v-model="selectedHero")
             .heroSelector__heroInner
@@ -114,7 +114,7 @@
     h2.itemModal__header(slot="header") Change Item
     .itemModal__body(slot="body")
       .itemSelector
-        .itemSelector__item(v-for="item in $store.state.extensions")
+        .itemSelector__item(v-for="item in $store.state.extensions" :class="{ 'itemSelector__item--disabled': isDisabled(item.id, 'item') }")
           label
             input(type="radio" name="itemSelector" :value="item" v-model="selectedItem[isItemModalShown]")
             .itemSelector__itemInner
@@ -212,25 +212,19 @@ export default {
         return this.item2.activeSkill
       }
     },
-    isDisabled() {
-      // return !!Object.values(this.team).find(unit => {
-      //   if (type === 'hero') {
-      //     return unit[0] === obj.id
-      //   } else if (type === 'item') {
-      //     return unit[1] === obj.id || unit[2] === obj.id
-      //   }
-      // })
-      return false
+    isDisabled(id, type) {
+      if (type === 'hero') {
+        return !!this.units.find(unit => unit[0] === id)
+      } else if (type === 'item') {
+        return !!this.units.find(unit => unit[1] === id || unit[2] === id)
+      }
     },
     heroModalOpen() {
       this.selectedHero = this.hero
       this.isHeroModalShown = true
     },
     heroModalSubmit() {
-      this.$store.commit('team/UPDATE_HERO', {
-        index: this.positionIndex,
-        id: this.selectedHero.id
-      })
+      this.$set(this.position, 0, this.selectedHero.id)
       this.selectedHero = null
       this.isHeroModalShown = false
     },
@@ -264,12 +258,18 @@ export default {
 
       this.$store.commit('team/SET_IDS', { index: this.positionIndex, newIds })
 
-      await this.$team.set(this.$store.state.team)
-      const newTeam = await this.$team.get(this.$store.state.loomAddress)
-      this.$store.commit('team/SET_TEAM', newTeam)
+      try {
+        await this.$team.set(this.$store.state.team.units)
+        const newTeam = await this.$team.get(this.$store.state.loomAddress)
+        this.$store.commit('team/SET_TEAM', newTeam)
 
-      this.$toast.show('Success.')
-      this.$router.push('/team')
+        this.$toast.show('Success.')
+        this.$router.push('/team')
+      } catch (e) {
+        const newTeam = await this.$team.get(this.$store.state.loomAddress)
+        this.$store.commit('team/SET_TEAM', newTeam)
+        this.$toast.error('Error.')
+      }
     }
   }
 }
@@ -562,6 +562,11 @@ export default {
       &:checked + .itemSelector__itemInner {
         border-color: map-get($colors, primary);
       }
+    }
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 0.15;
     }
   }
 
