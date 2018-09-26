@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 
 library BattleContext {
 
-    enum BattleState {init, progress, win, lose, timeUp}
+    enum BattleState {init, progress, win, lose, timeUp, finished}
     enum UnitState {normal, poison, sleep, confusion}
     enum SkillCondition {none, active, opning, counter, selfHp, allyHp, death, every}
     enum EffectTarget {self, enemyFirst, enemyAll, allyFirst, allyAll, allyLowestHp, random}
