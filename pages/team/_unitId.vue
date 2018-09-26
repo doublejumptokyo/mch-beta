@@ -1,73 +1,75 @@
 <template lang="pug">
 .positionPage
-  .positionPage__editArea
+  no-ssr
+    .positionPage__editArea
 
-    .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
-      .hero__image
-        img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
-      //- .hero__name
-      //-   span {{ hero.name[$i18n.locale] }}
-    //- .hero.hero--empty(v-else @click="heroModalOpen")
-      .hero__image.hero__image--empty
-        no-ssr
-          fa-icon(icon="plus")
-      //- .hero__name.hero__name--empty
-      //-   span No Hero
+      .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
+        .hero__image
+          img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+        //- .hero__name
+        //-   span {{ hero.name[$i18n.locale] }}
+      //- .hero.hero--empty(v-else @click="heroModalOpen")
+        .hero__image.hero__image--empty
+          no-ssr
+            fa-icon(icon="plus")
+        //- .hero__name.hero__name--empty
+        //-   span No Hero
 
-    .item.item1(v-if="item1.name && item1.fileName" @click="itemModalOpen('item1')")
-      .item__image
-        img(:src="require(`~/assets/images/extensions/${item1.fileName}`)")
-      //- .item__name
-      //-   span {{ item1.name[$i18n.locale] }}
-    //- .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
-      .item__image.item__image--empty
-        no-ssr
-          fa-icon(icon="plus")
-      //- .item__name.item__name--empty
-      //-   span No Item
+      .item.item1(v-if="item1.name && item1.fileName" @click="itemModalOpen('item1')")
+        .item__image
+          img(:src="require(`~/assets/images/extensions/${item1.fileName}`)")
+        //- .item__name
+        //-   span {{ item1.name[$i18n.locale] }}
+      //- .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
+        .item__image.item__image--empty
+          no-ssr
+            fa-icon(icon="plus")
+        //- .item__name.item__name--empty
+        //-   span No Item
 
-    .item.item2(v-if="item2.name && item2.fileName" @click="itemModalOpen('item2')")
-      .item__image
-        img(:src="require(`~/assets/images/extensions/${item2.fileName}`)")
-      //- .item__name
-      //-   span {{ item2.name[$i18n.locale] }}
-    //- .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
-      .item__image.item__image--empty
-        no-ssr
-          fa-icon(icon="plus")
-      //- .item__name.item__name--empty
-      //-   span No Item
+      .item.item2(v-if="item2.name && item2.fileName" @click="itemModalOpen('item2')")
+        .item__image
+          img(:src="require(`~/assets/images/extensions/${item2.fileName}`)")
+        //- .item__name
+        //-   span {{ item2.name[$i18n.locale] }}
+      //- .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
+        .item__image.item__image--empty
+          no-ssr
+            fa-icon(icon="plus")
+        //- .item__name.item__name--empty
+        //-   span No Item
 
-  .positionPage__resultArea
-    .statuses
-      .status
-        img(:src="require('~/assets/images/icons/status/hp.png')")
-        p {{ computedStatus.hp }}
-      .status
-        img(:src="require('~/assets/images/icons/status/agi.png')")
-        p {{ computedStatus.agi }}
-      .status
-        img(:src="require('~/assets/images/icons/status/atk.png')")
-        p {{ computedStatus.phy }}
-      .status
-        img(:src="require('~/assets/images/icons/status/int.png')")
-        p {{ computedStatus.int }}
-    .skills
-      h3 Active
-      draggable(
-        v-model="activeSkillOrder",
-        element="ol",
-        :options="{ animation: 300, handle: '.activeSkill__handle' }"
-      )
-        li.skill.activeSkill(v-for="index in activeSkillOrder")
-          img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
-          span {{ getActiveSkill(index).name[$i18n.locale] }}
-          .activeSkill__handle
-            fa-icon(icon="bars")
-      h3 Passive
-      p.skill.passiveSkill(v-if="hero.passiveSkill")
-        img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
-        span {{ hero.passiveSkill.name[$i18n.locale] }}
+  no-ssr
+    .positionPage__resultArea
+      .statuses
+        .status
+          img(:src="require('~/assets/images/icons/status/hp.png')")
+          p {{ computedStatus.hp }}
+        .status
+          img(:src="require('~/assets/images/icons/status/agi.png')")
+          p {{ computedStatus.agi }}
+        .status
+          img(:src="require('~/assets/images/icons/status/atk.png')")
+          p {{ computedStatus.phy }}
+        .status
+          img(:src="require('~/assets/images/icons/status/int.png')")
+          p {{ computedStatus.int }}
+      .skills
+        h3 Active
+        draggable(
+          v-model="activeSkillOrder",
+          element="ol",
+          :options="{ animation: 300, handle: '.activeSkill__handle' }"
+        )
+          li.skill.activeSkill(v-for="index in activeSkillOrder")
+            img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
+            span {{ getActiveSkill(index).name[$i18n.locale] }}
+            .activeSkill__handle
+              fa-icon(icon="bars")
+        h3 Passive
+        p.skill.passiveSkill(v-if="hero.passiveSkill")
+          img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
+          span {{ hero.passiveSkill.name[$i18n.locale] }}
 
   footer.positionPage__footer
     button(@click="submit") OK
