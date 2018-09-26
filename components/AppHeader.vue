@@ -90,7 +90,6 @@ export default {
 .appHeader {
   align-items: center;
   background: #333;
-  border-top: 4px solid map-get($colors, primary);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-wrap: wrap;
@@ -182,6 +181,7 @@ export default {
         color: #fff;
 
         &::after {
+          // background: map-get($colors, primary);
           background: #fff;
           bottom: 0;
           content: '';
