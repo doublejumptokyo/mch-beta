@@ -262,7 +262,7 @@ export default {
       this.$store.commit('team/SET_IDS', { index: this.positionIndex, newIds })
 
       try {
-        await this.$team.set(this.$store.state.team)
+        await this.$team.set(this.$store.state.team.units)
         const newTeam = await this.$team.get(this.$store.state.loomAddress)
         this.$store.commit('team/SET_TEAM', newTeam)
 
