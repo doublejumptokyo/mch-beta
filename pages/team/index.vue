@@ -3,7 +3,7 @@
   .page__title
     h1 {{ $i18n.t('pages.team') }}
   .teamPage__team.team
-    header.team__header
+    //- header.team__header
       //- div(v-if="isChangingOrder[`team${team.id}`]")
         button.button__cancel(@click="cancelChangingOrder(team)")
           fa-icon(:icon="['fas', 'times']")
@@ -59,8 +59,11 @@ export default {
 }
 
 .team {
-  background: #fff;
   font-size: 0.8rem;
+
+  @media (min-width: $breakpoint) {
+    font-size: 1rem;
+  }
 
   &__header {
     display: flex;
@@ -87,10 +90,10 @@ export default {
   }
 
   > ol {
-    background: #f9f9f9;
+    background: #555;
     list-style-type: none;
     margin: 0;
-    padding: 1rem;
+    padding: 0;
 
     * {
       user-select: none;

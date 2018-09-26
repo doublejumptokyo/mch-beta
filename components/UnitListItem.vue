@@ -33,10 +33,8 @@ nuxt-link.team(
     p
       img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
       span {{ hero.passiveSkill.name[$i18n.locale] }}
-  //- .partyItem__handle(v-if="isChangingOrder[`team${team.id}`]")
-    fa-icon.partyItem__bars(icon="bars")
-  //- .partyItem__handle(v-else)
-    fa-icon.partyItem__arrow(icon="angle-right")
+  .team__handle
+    fa-icon.team__arrow(icon="angle-right")
 </template>
 
 <script>
@@ -112,12 +110,18 @@ export default {
 <style lang="scss" scoped>
 .team {
   &__orderIcon {
-    border: 1px solid #eee;
+    border: 1px solid #999;
     border-radius: 1rem;
-    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+    color: #999;
     font-family: Oswald;
     height: 1.75rem;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
+
+    @media (min-width: $breakpoint) {
+      height: auto;
+      margin-bottom: 1rem;
+    }
 
     &::before {
       background: no-repeat 0.5rem center / auto 70%;
@@ -128,22 +132,31 @@ export default {
       line-height: 1.25rem;
       padding: 0.25rem 0.5rem 0.25rem 2rem;
       width: 100%;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+        padding: 0.5rem 1rem 0.5rem 3rem;
+      }
     }
   }
 
   > ol {
     > li {
       align-items: center;
-      background: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+      background: #555;
+      border-top: 1px solid #666;
       display: flex;
       justify-content: space-between;
-      margin: 0 0 1rem;
       padding: 0.75rem;
       position: relative;
 
+      @media (min-width: $breakpoint) {
+        padding: 2rem;
+      }
+
       &:nth-of-type(1) {
+        border-top: none;
+
         .team__orderIcon {
           &::before {
             background-image: url('~/assets/images/icons/order/front.png');
@@ -171,10 +184,13 @@ export default {
       }
 
       > * {
-        margin-left: 1rem;
+        margin-left: 0.75rem;
 
-        &:nth-of-type(1),
-        &:last-of-type {
+        @media (min-width: $breakpoint) {
+          margin-left: 1rem;
+        }
+
+        &:nth-of-type(1) {
           margin-left: 0;
         }
       }
@@ -182,17 +198,19 @@ export default {
   }
 
   &__heroItems {
-    flex: 1.5;
     position: relative;
     padding-bottom: 0.75rem;
   }
 
   &__hero {
     img {
-      border: 1px solid #fff;
       border-radius: 0.5rem;
       image-rendering: pixelated;
       width: 100%;
+
+      @media (min-width: $breakpoint) {
+        width: 192px;
+      }
     }
   }
 
@@ -201,19 +219,21 @@ export default {
     display: flex;
     justify-content: space-between;
     left: 0;
-    margin-top: 0.5rem;
     position: absolute;
     width: 100%;
   }
 
   &__item {
+    background: #666;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     width: 40%;
 
+    @media (min-width: $breakpoint) {
+      padding: 0.5rem;
+    }
+
     img {
-      background: #fff;
-      border: 1px solid #fff;
-      border-radius: 0.5rem;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       image-rendering: pixelated;
     }
   }
@@ -223,26 +243,43 @@ export default {
     display: flex;
 
     img {
+      margin-right: 0.25rem;
       width: 1.5rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        width: 2rem;
+      }
     }
 
     p {
-      color: #666;
+      color: #ccc;
       font-family: Oswald;
       font-weight: bold;
       white-space: nowrap;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.5rem;
+      }
     }
   }
 
   &__skills {
-    flex: 3;
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+    }
 
     > ol {
-      border: 1px solid #eee;
+      border: 1px solid #777;
       border-radius: 0.5rem;
       list-style-type: none;
       margin: 0;
       padding: 0.25rem;
+
+      @media (min-width: $breakpoint) {
+        padding: 0.5rem;
+      }
     }
 
     li,
@@ -253,29 +290,35 @@ export default {
     }
 
     p {
-      border: 1px solid #eee;
+      border: 1px solid #777;
       border-radius: 0.5rem;
       margin-top: 0.5rem;
       padding: 0.25rem;
+
+      @media (min-width: $breakpoint) {
+        margin-top: 1rem;
+        padding: 0.5rem;
+      }
     }
 
     img {
       margin-right: 0.25rem;
       width: 1.25rem;
+
+      @media (min-width: $breakpoint) {
+        margin-right: 0.5rem;
+        width: 2rem;
+      }
     }
   }
 
   &__handle {
-    display: none;
-    text-align: right;
-    width: 1.5rem;
-  }
+    color: #777;
+    font-size: 1.2rem;
 
-  &__bars,
-  &__arrow {
-    color: #ccc;
-    font-size: 1.5rem;
-    margin-left: auto;
+    @media (min-width: $breakpoint) {
+      font-size: 2rem;
+    }
   }
 
   .sortable-ghost {
