@@ -21,7 +21,7 @@
       .team.myTeam(v-if="!isLoading")
         template(v-for="(unit, index) in statuses.myTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
-            img(:src="require(`~/assets/images/${unit.hero.imageFileName}`)")
+            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -31,7 +31,7 @@
       .team.opponentTeam(v-if="!isLoading")
         template(v-for="(unit, index) in statuses.opponentTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
-            img(:src="require(`~/assets/images/${unit.hero.imageFileName}`)")
+            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -54,13 +54,13 @@
       )
         .action__label
           h3 Action {{ action.actionCounts }}
-          p {{ getSkill(action.skillId).name }}
+          p {{ getSkill(action.skillId).name[$i18n.locale] }}
         .action__actor
-          img(:src="require(`~/assets/images/${getUnit(action.actionPosition).hero.imageFileName}`)")
+          img(:src="require(`~/assets/images/heroes/${getUnit(action.actionPosition).hero.fileName}`)")
         .action__type
-          img(:src="require(`~/assets/images/${getSkill(action.skillId).type}`)")
+          img(:src="require(`~/assets/images/icons/skill/${getSkill(action.skillId).iconFileName}`)")
         .action__reactor(v-for="effectPosition in action.effectPositions")
-          img(:src="require(`~/assets/images/${getUnit(effectPosition).hero.imageFileName}`)")
+          img(:src="require(`~/assets/images/heroes/${getUnit(effectPosition).hero.fileName}`)")
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
             :class="{ 'damage--minus': getDamage(action, effectPosition) >= 0, 'damage--plus': getDamage(action, effectPosition) < 0 }"
@@ -78,10 +78,10 @@
             span Next
 
   modal.statusModal(v-if="isStatusModalShown" type="bottom" @modal-close="closeStatusModal")
-    h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name }}
+    h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name[i18n.locale] }}
     .statusModal__body.unit(slot="body")
       p.unit__image
-        img(:src="require(`~/assets/images/${currentUnitStatus.hero.imageFileName}`)")
+        img(:src="require(`~/assets/images/${currentUnitStatus.hero.fileName}`)")
       h3 Status
       ul.unit__statuses
         li
@@ -99,9 +99,9 @@
       h3 Skills
       .unit__skills
         ol
-          li {{ getSkill(currentUnitStatus.active1).name }}
-          li {{ getSkill(currentUnitStatus.active2).name }}
-          li {{ getSkill(currentUnitStatus.active3).name }}
+          li {{ getSkill(currentUnitStatus.active1).name[$i18n.locale] }}
+          li {{ getSkill(currentUnitStatus.active2).name[$i18n.locale] }}
+          li {{ getSkill(currentUnitStatus.active3).name[$i18n.locale] }}
         p {{ getSkill(currentUnitStatus.passive) }}
 
   modal.shareModal(v-if="isShareModalShown" type="bottom" @modal-close="closeShareModal")
@@ -126,7 +126,7 @@ import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import { mapState } from 'vuex'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
-import { start, actions } from '~/assets/data/battle-test'
+// import { start, actions } from '~/assets/data/battle-test'
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
@@ -168,19 +168,51 @@ export default {
       return window.location.href
     }
   },
-  mounted() {
+  watch: {
+    initialUnits(units) {
+      this.setStatuses(units)
+
+      this.fetchActions()
+
+      this.isLoading = false
+      setTimeout(() => this.initAction(), 1000)
+    }
+  },
+  async beforeMount() {
+    const battleStart = await this.$battleManager.start(
+      '0x3b107eba53c13d6cad7e338a6bc9f6436eb41559'
+    )
+
+    this.initialUnits = await Promise.all(
+      battleStart.units.map(async (unit, index) => {
+        if (index < 3) {
+          return unit
+        }
+        let hero = await this.$hero.get(unit.heroId)
+        hero = Object.assign(
+          hero,
+          this.$hero.getHeroType(Number(hero.heroType))
+        )
+        unit.hero = hero
+        this.$store.commit('heroes/SET_HERO', hero)
+        return unit
+      })
+    )
+  },
+  async mounted() {
     if (!this.isNativeSupportScrollSnap()) {
       this.setScrollSnap()
     }
-    this.initialUnits = start.units
-    this.setStatuses(start.units)
-    this.actions = actions
-    setTimeout(() => {
-      this.isLoading = false
-      setTimeout(() => this.initAction(), 1000)
-    }, 3000)
   },
   methods: {
+    async fetchActions() {
+      let isFetchFinished = true
+      do {
+        const { actions, hasNext } = await this.$battleManager.next()
+        actions.forEach(action => this.actions.push(action))
+        isFetchFinished = !hasNext
+      } while (!isFetchFinished)
+    },
     onCountUpReady(instance) {
       const hpElem = instance.d.parentElement.parentElement
       const teamElem = hpElem.parentElement
@@ -200,7 +232,7 @@ export default {
       }
     },
     setStatuses(units) {
-      units.forEach(unit => {
+      units.forEach(async unit => {
         if (!unit.heroId) return
         unit.hero = this.getHero(unit.heroId)
       })
@@ -347,13 +379,13 @@ export default {
       tick()
     },
     getUnit(position) {
-      return this.initialUnits.find(unit => unit.position === position)
+      return this.initialUnits.find(unit => unit.position === Number(position))
     },
     getHero(heroId) {
-      return this.$store.state.heroes.find(hero => hero.id === heroId)
+      return this.$store.state.heroes.find(hero => hero.id === Number(heroId))
     },
     getSkill(skillId) {
-      return this.$store.state.skills.find(skill => skill.id === skillId)
+      return this.$store.getters['team/getSkill'](Number(skillId))
     },
     getDamage(action, position) {
       const prevUnits =
@@ -365,7 +397,6 @@ export default {
       return prevHp - currentHp
     },
     openStatusModal(unit) {
-      console.log(unit)
       this.currentUnitStatus = unit
     },
     closeStatusModal() {
@@ -854,8 +885,6 @@ export default {
     width: 100%;
 
     img {
-      filter: invert(100%);
-      opacity: 0.25;
       width: 2rem;
     }
   }
