@@ -143,6 +143,7 @@ export default {
       emitLine: 0,
       initialUnits: [],
       actions: [],
+      end: null,
       statuses: { myTeam: [], opponentTeam: [] },
       counters: {},
       currentUnitStatus: {},
@@ -155,7 +156,9 @@ export default {
     ...mapState('battle', ['myTeam', 'opponentTeam']),
 
     result() {
-      if (this.statuses['myTeam'].every(unit => unit.hp === 0)) {
+      if (this.currentAction >= 100) {
+        return 'time up!'
+      } else if (this.statuses['myTeam'].every(unit => unit.hp === 0)) {
         return 'lose...'
       } else if (this.statuses['opponentTeam'].every(unit => unit.hp === 0)) {
         return 'win!!'
@@ -231,6 +234,7 @@ export default {
         actions.forEach(action => this.actions.push(action))
         isFetchFinished = !hasNext
       } while (!isFetchFinished)
+      this.end = await this.$battleManager.end()
 
       window.actions = this.actions
     },
