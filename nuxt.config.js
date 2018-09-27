@@ -74,6 +74,7 @@ module.exports = {
     { src: '~/plugins/dc-hero', ssr: false },
     { src: '~/plugins/dc-extension', ssr: false },
     { src: '~/plugins/dc-team', ssr: false },
+    { src: '~/plugins/dc-rank', ssr: false },
     { src: '~/plugins/dc-battle-manager', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
