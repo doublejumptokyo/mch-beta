@@ -3,16 +3,16 @@
   header.header(:class="{ 'header--opening': isLoading }")
     template(v-if="isLoading")
       .username.username1
-        span Nobu
+        span {{ $store.state.user.name }}
       .versus vs
       .username.username2
-        span 0x65f899e41a38724dc1b857ed114c9820affb462c
+        span {{ opponentLoomAddress }}
     template(v-else)
       img.header__logo(:src="require('~/assets/images/logo.png')")
       .header__battleUsers
-        span Nobu
+        span {{ $store.state.user.name }}
         span vs
-        span 0x65f899e41a38724dc1b857ed114c9820affb462c
+        span {{ opponentLoomAddress }}
       nuxt-link.header__close(to="/" tag="button")
         fa-icon(icon="times")
 
@@ -231,6 +231,8 @@ export default {
         actions.forEach(action => this.actions.push(action))
         isFetchFinished = !hasNext
       } while (!isFetchFinished)
+
+      window.actions = this.actions
     },
 
     onCountUpReady(instance) {
