@@ -21,7 +21,7 @@
       .team.myTeam(v-if="!isLoading")
         template(v-for="(unit, index) in statuses.myTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
-            img(:src="require(`~/assets/images/${unit.hero.imageFileName}`)")
+            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -31,7 +31,7 @@
       .team.opponentTeam(v-if="!isLoading")
         template(v-for="(unit, index) in statuses.opponentTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
-            img(:src="require(`~/assets/images/${unit.hero.imageFileName}`)")
+            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -48,23 +48,22 @@
 
     template(v-for="(action, index) in actions")
       .action(
-        v-if="index"
         :data-action-id="action.actionCounts"
         :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': finishedAction + 1 < action.actionCounts }]"
       )
         .action__label
           h3 Action {{ action.actionCounts }}
-          p {{ getSkill(action.skillId).name }}
+          p {{ getSkill(action.skillId).name[$i18n.locale] }}
         .action__actor
-          img(:src="require(`~/assets/images/${getUnit(action.actionPosition).hero.imageFileName}`)")
+          img(:src="require(`~/assets/images/heroes/${getUnit(action.actionPosition).hero.fileName}`)")
         .action__type
-          img(:src="require(`~/assets/images/${getSkill(action.skillId).type}`)")
+          img(:src="require(`~/assets/images/icons/skill/${getSkill(action.skillId).iconFileName}`)")
         .action__reactor(v-for="effectPosition in action.effectPositions")
-          img(:src="require(`~/assets/images/${getUnit(effectPosition).hero.imageFileName}`)")
+          img(:src="require(`~/assets/images/heroes/${getUnit(effectPosition).hero.fileName}`)")
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
             :class="{ 'damage--minus': getDamage(action, effectPosition) >= 0, 'damage--plus': getDamage(action, effectPosition) < 0 }"
-          ) {{ Math.abs(getDamage(action, effectPosition)) }}
+          ) {{ getDamage(action, effectPosition) === 0 ? 'Miss' : Math.abs(getDamage(action, effectPosition)) }}
 
     .action.action--end(v-if="result")
       ul
@@ -78,10 +77,10 @@
             span Next
 
   modal.statusModal(v-if="isStatusModalShown" type="bottom" @modal-close="closeStatusModal")
-    h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name }}
+    h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name[$i18n.locale] }}
     .statusModal__body.unit(slot="body")
       p.unit__image
-        img(:src="require(`~/assets/images/${currentUnitStatus.hero.imageFileName}`)")
+        img(:src="require(`~/assets/images/heroes/${currentUnitStatus.hero.fileName}`)")
       h3 Status
       ul.unit__statuses
         li
@@ -99,10 +98,10 @@
       h3 Skills
       .unit__skills
         ol
-          li {{ getSkill(currentUnitStatus.active1).name }}
-          li {{ getSkill(currentUnitStatus.active2).name }}
-          li {{ getSkill(currentUnitStatus.active3).name }}
-        p {{ getSkill(currentUnitStatus.passive) }}
+          li {{ getSkill(currentUnitStatus.active1).name[$i18n.locale] }}
+          li {{ getSkill(currentUnitStatus.active2).name[$i18n.locale] }}
+          li {{ getSkill(currentUnitStatus.active3).name[$i18n.locale] }}
+        p {{ getSkill(currentUnitStatus.passive).name[$i18n.locale] }}
 
   modal.shareModal(v-if="isShareModalShown" type="bottom" @modal-close="closeShareModal")
     h2.shareModal__header(slot="header") Share
@@ -126,12 +125,14 @@ import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import { mapState } from 'vuex'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
-import { start, actions } from '~/assets/data/battle-test'
+// import { start, actions } from '~/assets/data/battle-test'
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
+
   data() {
     return {
+      opponentLoomAddress: '',
       isLoading: true,
       setCount: 0,
       currentAction: 0,
@@ -149,8 +150,10 @@ export default {
       isShareModalShown: false
     }
   },
+
   computed: {
     ...mapState('battle', ['myTeam', 'opponentTeam']),
+
     result() {
       if (this.statuses['myTeam'].every(unit => unit.hp === 0)) {
         return 'lose...'
@@ -160,27 +163,76 @@ export default {
         return ''
       }
     },
+
     isStatusModalShown() {
       return !!Object.keys(this.currentUnitStatus).length
     },
+
     currentUrl() {
       if (process.server) return
       return window.location.href
     }
   },
-  mounted() {
+
+  watch: {
+    async initialUnits(units) {
+      console.log('4. ユニットの初期状態を整形してthis.statusに格納')
+      this.setStatuses(units)
+
+      console.log('5. アクション取得開始')
+      await this.fetchActions()
+
+      console.log('6. オープニング画面を開ける')
+      this.isLoading = false
+      setTimeout(() => this.initAction(), 1000)
+    }
+  },
+
+  created() {
+    console.log('1. URLから相手のLoom Address取得')
+    this.opponentLoomAddress = this.$route.params.id
+  },
+
+  async beforeMount() {
+    console.log('2. バトル開始をLoomに伝える')
+    const battleStart = await this.$battleManager.start(
+      this.opponentLoomAddress
+    )
+
+    console.log('3. ユニットの初期状態をthis.initialUnitsに格納')
+    this.initialUnits = await Promise.all(
+      battleStart.units.map(async (unit, index) => {
+        if (index < 3) {
+          return unit
+        }
+        let hero = await this.$hero.get(unit.heroId)
+        hero = Object.assign(
+          hero,
+          this.$hero.getHeroType(Number(hero.heroType))
+        )
+        unit.hero = hero
+        this.$store.commit('heroes/SET_HERO', hero)
+        return unit
+      })
+    )
+  },
+
+  async mounted() {
     if (!this.isNativeSupportScrollSnap()) {
       this.setScrollSnap()
     }
-    this.initialUnits = start.units
-    this.setStatuses(start.units)
-    this.actions = actions
-    setTimeout(() => {
-      this.isLoading = false
-      setTimeout(() => this.initAction(), 1000)
-    }, 3000)
   },
+
   methods: {
+    async fetchActions() {
+      let isFetchFinished = false
+      do {
+        const { actions, hasNext } = await this.$battleManager.next()
+        actions.forEach(action => this.actions.push(action))
+        isFetchFinished = !hasNext
+      } while (!isFetchFinished)
+    },
+
     onCountUpReady(instance) {
       const hpElem = instance.d.parentElement.parentElement
       const teamElem = hpElem.parentElement
@@ -198,9 +250,11 @@ export default {
       } else {
         this.counters[teamStr][2] = instance
       }
+      console.log('countUpの準備完了')
     },
+
     setStatuses(units) {
-      units.forEach(unit => {
+      units.forEach(async unit => {
         if (!unit.heroId) return
         unit.hero = this.getHero(unit.heroId)
       })
@@ -220,12 +274,15 @@ export default {
         )
       })
     },
+
     isNativeSupportScrollSnap() {
       return 'scrollSnapAlign' in document.documentElement.style
     },
+
     setScrollSnap() {
       scrollSnapPolyfill('.actions', '.action')
     },
+
     getPosition(index) {
       switch (index) {
         case 0:
@@ -236,15 +293,19 @@ export default {
           return 'back'
       }
     },
+
     initAction() {
+      console.log('7. スクロールエリアを設定してスクロール監視')
       const actionsArea = this.$el.querySelector('.actions')
       this.emitLine = actionsArea.firstChild.getBoundingClientRect().top
       actionsArea.addEventListener('scroll', this.onScroll)
     },
+
     onScroll(e) {
       const actionsArea = e.target
       const currentActionElem = this.getCurrentAction(actionsArea)
       if (!currentActionElem) return
+      console.log('8. スクロール検知')
       this.isFinished = currentActionElem.classList.contains('action--end')
       this.currentAction = Number(currentActionElem.dataset.actionId)
       if (this.prevAction !== this.currentAction) {
@@ -263,8 +324,10 @@ export default {
 
         if (this.currentAction > this.finishedAction) {
           this.actionStartTime = +new Date()
+          console.log('アクションエフェクト開始')
           this.startActionAnimation(currentActionElem).then(() => {
-            const currentAction = this.actions[this.currentAction]
+            const currentAction = this.actions[this.currentAction - 1]
+            console.log('アクション後のステータスをセット')
             this.setStatuses(currentAction.units)
           })
         }
@@ -272,6 +335,7 @@ export default {
         this.prevAction = this.currentAction
       }
     },
+
     getCurrentAction(scrollArea) {
       return Array.from(scrollArea.querySelectorAll('.action')).find(
         actionElem => {
@@ -280,6 +344,7 @@ export default {
         }
       )
     },
+
     startActionAnimation(actionElem) {
       return new Promise(resolve => {
         actionElem
@@ -310,6 +375,7 @@ export default {
           })
       })
     },
+
     endAction(actionElem) {
       if (!actionElem) {
         return
@@ -328,6 +394,7 @@ export default {
         reactorElem.querySelector('.damage').classList.add('damaged')
       })
     },
+
     animateEffect(elem) {
       let index = 0
       let limit = 61
@@ -346,37 +413,52 @@ export default {
       }
       tick()
     },
+
     getUnit(position) {
-      return this.initialUnits.find(unit => unit.position === position)
+      return this.initialUnits.find(unit => unit.position === Number(position))
     },
+
     getHero(heroId) {
-      return this.$store.state.heroes.find(hero => hero.id === heroId)
+      return this.$store.state.heroes.find(hero => hero.id === Number(heroId))
     },
+
     getSkill(skillId) {
-      return this.$store.state.skills.find(skill => skill.id === skillId)
+      if (!this.$store.getters['team/getSkill'](Number(skillId))) {
+        console.log('スキルがない', skillId)
+      }
+      return this.$store.getters['team/getSkill'](Number(skillId))
     },
+
     getDamage(action, position) {
+      if (!this.initialUnits.length) {
+        return 0
+      }
       const prevUnits =
         action.actionCounts === 1
           ? this.initialUnits
-          : this.actions[action.actionCounts - 1].units
+          : this.actions.find(a => a.actionCounts === action.actionCounts - 1)
+              .units
       const prevHp = prevUnits[position].hp
       const currentHp = action.units[position].hp
       return prevHp - currentHp
     },
+
     openStatusModal(unit) {
-      console.log(unit)
       this.currentUnitStatus = unit
     },
+
     closeStatusModal() {
       this.currentUnitStatus = {}
     },
+
     openShareModal() {
       this.isShareModalShown = true
     },
+
     closeShareModal() {
       this.isShareModalShown = false
     },
+
     onCopySucceeded() {
       window.alert(`Copied!\nURL: ${window.location.href}`)
     }
@@ -854,8 +936,6 @@ export default {
     width: 100%;
 
     img {
-      filter: invert(100%);
-      opacity: 0.25;
       width: 2rem;
     }
   }
