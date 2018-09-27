@@ -5,9 +5,8 @@
     :to="`/battle-against/${user.address}`"
     :key="index"
   )
-    img.user__image(:src="require('~/assets/images/NAPOLEON05_BL.png')")
-    div
-      h2.user__name {{ user.name }}
+    .user__name
+      h2 {{ user.name || 'No Name' }}
       p {{ user.address }}
     fa-icon.user__arrow(icon="angle-right")
 </template>
@@ -27,11 +26,12 @@ export default {
 
 <style lang="scss" scoped>
 .userList {
-  border-bottom: 1px solid #eee;
+  background: #555;
+  border-bottom: 1px solid #666;
   margin: 1rem -1rem;
 
   &__item {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #666;
   }
 }
 
@@ -48,13 +48,24 @@ export default {
   }
 
   &__name {
-    font-size: 1.2rem;
+    margin-right: auto;
+
+    h2 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    p {
+      color: #999;
+      font-size: 0.8rem;
+    }
   }
 
   &__arrow {
-    color: #ccc;
+    color: #999;
     font-size: 1.5rem;
-    margin-left: auto;
+    margin-left: 1rem;
   }
 }
 </style>
