@@ -6,13 +6,13 @@
         span {{ $store.state.user.name }}
       .versus vs
       .username.username2
-        span {{ opponentLoomAddress }}
+        span {{ opponentName }}
     template(v-else)
       img.header__logo(:src="require('~/assets/images/logo.png')")
       .header__battleUsers
         span {{ $store.state.user.name }}
         span vs
-        span {{ opponentLoomAddress }}
+        span {{ opponentName }}
       nuxt-link.header__close(to="/" tag="button")
         fa-icon(icon="times")
 
@@ -125,7 +125,6 @@ import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import { mapState } from 'vuex'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
-// import { start, actions } from '~/assets/data/battle-test'
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
@@ -133,6 +132,7 @@ export default {
   data() {
     return {
       opponentLoomAddress: '',
+      opponentName: '',
       isLoading: true,
       setCount: 0,
       currentAction: 0,
@@ -197,6 +197,8 @@ export default {
   },
 
   async beforeMount() {
+    this.opponentName = (await this.$user.get(this.opponentLoomAddress)).name
+
     console.log('2. バトル開始をLoomに伝える')
     const battleStart = await this.$battleManager.start(
       this.opponentLoomAddress
