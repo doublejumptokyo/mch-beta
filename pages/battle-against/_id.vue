@@ -63,7 +63,7 @@
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
             :class="{ 'damage--minus': getDamage(action, effectPosition) >= 0, 'damage--plus': getDamage(action, effectPosition) < 0 }"
-          ) {{ getDamage(action, effectPosition) === 0 ? 'Miss' : Math.abs(getDamage(action, effectPosition)) }}
+          ) {{ getDamageStr(action, effectPosition) }}
 
     .action.action--end(v-if="result")
       ul
@@ -435,6 +435,15 @@ export default {
         console.log('スキルがない', skillId)
       }
       return this.$store.getters['team/getSkill'](Number(skillId))
+    },
+
+    getDamageStr(action, effectPosition) {
+      const iconName = this.getSkill(action.skillId).iconFileName
+      if (iconName.indexOf('BUF') !== -1) {
+        return ''
+      }
+      const damage = this.getDamage(action, effectPosition)
+      return damage === 0 ? 'Miss' : Math.abs(damage)
     },
 
     getDamage(action, position) {
