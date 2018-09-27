@@ -2,7 +2,7 @@
 .battlePage
   .page__title
     h1 {{ $i18n.t('pages.battles') }}
-  p 対戦するユーザーを選択してください
+  p Select a user to play against.
   user-list(:users="users")
 </template>
 
@@ -29,7 +29,6 @@ export default {
         users.push({ name: user.name, address })
       })
     )
-    console.log(users)
     this.$set(this, 'users', users)
   }
 }
