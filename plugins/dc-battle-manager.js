@@ -228,7 +228,6 @@ class BattleManager {
     action.actionPosition = +action.actionPosition
     action.battleId = +action.battleId
     action.poisonDamage = +action.poisonDamage
-    console.log(action.skillId)
     action.skillId = +action.skillId
     return action
   }
