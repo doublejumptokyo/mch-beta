@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
 
 import {BattleContext as BC} from "./BattleContext.sol";
 import "./BattleCharge.sol";
@@ -108,7 +108,7 @@ contract BattleTransaction {
         require(battle.exists);
         require(battle.state != BC.BattleState.init && battle.state != BC.BattleState.progress);
         
-        if(battle.state == BC.BattleState.finished) return;
+        if (battle.state == BC.BattleState.finished) return;
         
         emit BattleEnd(battle.id, battle.attacker, battle.defender, uint8(battle.state));
         battle.state = BC.BattleState.finished;

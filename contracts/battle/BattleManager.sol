@@ -94,7 +94,7 @@ contract BattleManager is Ownable {
         BattleInfo storage battleInfo = addressToBattleInfo[msg.sender];
         require(battleInfo.exists);
         
-        if(battleInfo.state == State.progress || battleInfo.state == State.finished) return;
+        if (battleInfo.state == State.progress || battleInfo.state == State.finished) return;
 
         battleTransaction.end(battleInfo.battleId);
         
@@ -108,8 +108,6 @@ contract BattleManager is Ownable {
         BattleInfo storage battleInfo = addressToBattleInfo[msg.sender];
         return battleInfo.exists && battleInfo.state == State.progress;
     }
-
-    // ----- dev
 
     function battleDev(address _attacker, address _defender) public {
         uint32 battleId = battleTransaction.init(_attacker, _defender);
@@ -162,7 +160,7 @@ contract BattleManager is Ownable {
         BattleInfo storage battleInfo = addressToBattleInfo[_attacker];
         require(battleInfo.exists);
         
-        if(battleInfo.state == State.progress || battleInfo.state == State.finished) return;
+        if (battleInfo.state == State.progress || battleInfo.state == State.finished) return;
 
         battleTransaction.end(battleInfo.battleId);
         
