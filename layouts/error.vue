@@ -1,6 +1,6 @@
 <template lang="pug">
 .errorPage
-  no-wallet(v-if="error.statusCode === 401")
+  no-wallet(v-if="error.statusCode === 401" :message="error.message")
 </template>
 
 <script>
