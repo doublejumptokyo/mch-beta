@@ -28,6 +28,7 @@ import { mapGetters } from 'vuex'
 import draggable from 'vuedraggable'
 import UnitListItem from '~/components/UnitListItem'
 export default {
+  middleware: 'walletCheck',
   components: { draggable, UnitListItem },
   computed: mapGetters({
     units: 'team/newUnits'
