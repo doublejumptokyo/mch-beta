@@ -122,12 +122,18 @@ class BattleManager {
         rawEvent.topics
       )
       action = this.encodeBattleAction(action)
-      console.log(action)
       action.units = this.encodeBattleActionUnits(action.data)
       action.effectPositions = this.encodeEffectPositions(
         action.effectPositions
       )
       actions.push(action)
+
+      console.log(
+        'count',
+        action.actionCounts,
+        'hp',
+        ...action.units.map(unit => unit.hp)
+      )
     }
     const hasNext = await this.contract.methods.hasNext().call()
     return { actions, hasNext }
@@ -214,6 +220,7 @@ class BattleManager {
     action.actionPosition = +action.actionPosition
     action.battleId = +action.battleId
     action.poisonDamage = +action.poisonDamage
+    console.log(action.skillId)
     action.skillId = +action.skillId
     return action
   }
