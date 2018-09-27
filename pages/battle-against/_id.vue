@@ -132,6 +132,7 @@ export default {
   components: { ICountUp, ProgressRing, Modal },
   data() {
     return {
+      opponentLoomAddress: '',
       isLoading: true,
       setCount: 0,
       currentAction: 0,
@@ -178,10 +179,11 @@ export default {
       setTimeout(() => this.initAction(), 1000)
     }
   },
+  created() {
+    this.opponentLoomAddress = this.$route.params.id
+  },
   async beforeMount() {
-    const battleStart = await this.$battleManager.start(
-      '0x3b107eba53c13d6cad7e338a6bc9f6436eb41559'
-    )
+    const battleStart = await this.$battleManager.start(this.opponentLoomAddress)
 
     this.initialUnits = await Promise.all(
       battleStart.units.map(async (unit, index) => {
