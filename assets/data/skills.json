@@ -3,7 +3,7 @@
     "id": 1,
     "name": { "en": "confusion", "ja": "混乱" },
     "description": { "en": "Between 30% PHY damage to a random unit", "ja": "ランダムに30%のphyダメージ" },
-    "iconFileName": "SKILL_phy.png",
+    "iconFileName": "phy.png",
     "effectId": 1
   },
   {
