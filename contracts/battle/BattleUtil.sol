@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity 0.4.24;
 
 import {BattleContext as BC} from "./BattleContext.sol";
 
@@ -113,7 +113,7 @@ library BattleUtil {
                 digit -= 4; tmp += uint256(unit.charge) * (10**digit); // 4
                 digit -= 1; tmp += uint256(unit.state) * (10**digit); // 1
                 digit -= 3; tmp += uint256(unit.activeCounts) * (10**digit); // 3
-                digit -= 1; if(unit.passiveEnabled) tmp += uint256(1) * (10**digit); // 1
+                digit -= 1; if (unit.passiveEnabled) tmp += uint256(1) * (10**digit); // 1
                 digit -= 1; tmp += uint256(unit.extra) * (10**digit); // 1
                 data[i] = uint128(tmp);
             }
