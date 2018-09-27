@@ -183,7 +183,7 @@ export default {
       this.setStatuses(units)
 
       console.log('5. アクション取得開始')
-      await this.fetchActions()
+      this.fetchActions()
 
       console.log('6. オープニング画面を開ける')
       this.isLoading = false
