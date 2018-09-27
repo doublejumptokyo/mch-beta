@@ -121,7 +121,9 @@ class BattleManager {
         rawEvent.data,
         rawEvent.topics
       )
-      action.units = this.encodeBattleAction(action.data)
+      action = this.encodeBattleAction(action)
+      console.log(action)
+      action.units = this.encodeBattleActionUnits(action.data)
       action.effectPositions = this.encodeEffectPositions(
         action.effectPositions
       )
@@ -207,7 +209,16 @@ class BattleManager {
     return units
   }
 
-  encodeBattleAction(rawData) {
+  encodeBattleAction(action) {
+    action.actionCounts = +action.actionCounts
+    action.actionPosition = +action.actionPosition
+    action.battleId = +action.battleId
+    action.poisonDamage = +action.poisonDamage
+    action.skillId = +action.skillId
+    return action
+  }
+
+  encodeBattleActionUnits(rawData) {
     let units = []
     for (let u = 0; u < 7; u++) {
       let data = rawData[u]
@@ -263,7 +274,7 @@ class BattleManager {
   encodeEffectPositions(positions) {
     let results = []
     for (let i in positions) {
-      if (positions[i]) results.push(i)
+      if (positions[i]) results.push(+i)
     }
     return results
   }
