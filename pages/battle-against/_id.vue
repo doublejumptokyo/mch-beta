@@ -13,7 +13,7 @@
         span {{ $store.state.user.name }}
         span vs
         span {{ opponentName }}
-      nuxt-link.header__close(to="/" tag="button")
+      nuxt-link.header__close(to="/battle-against" tag="button")
         fa-icon(icon="times")
 
   .statuses
