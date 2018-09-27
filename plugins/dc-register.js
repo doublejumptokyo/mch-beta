@@ -40,7 +40,11 @@ class User {
     })
   }
 
-  async get() {
+  async get(address) {
+    return await this.contract.methods.get(address).call()
+  }
+
+  async getAccount() {
     return await this.contract.methods.getAccount().call()
   }
 
@@ -66,12 +70,12 @@ export default async ({ app, store }, inject) => {
     await register.register()
   }
 
-  const response = await user.get()
+  const response = await user.getAccount()
   if (response.exists) {
     store.commit('user/SET_NAME', response.name)
   } else {
     await user.create()
-    const response = await user.get()
+    const response = await user.getAccount()
     store.commit('user/SET_NAME', response.name)
   }
 
