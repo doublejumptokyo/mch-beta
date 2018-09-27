@@ -107,6 +107,7 @@ class BattleManager {
       rawEvent.topics
     )
     start.units = this.encodeBattleStart(start.data)
+    window.start = start
     return start
   }
 
@@ -143,6 +144,13 @@ class BattleManager {
     const res = await this.contract.methods.end().send()
     const rawEvent = res.events[0].raw
     rawEvent.topics.shift()
+
+    window.end = this.accountManager.web3.eth.abi.decodeLog(
+      E_ABI_BattleEnd,
+      rawEvent.data,
+      rawEvent.topics
+    )
+
     return this.accountManager.web3.eth.abi.decodeLog(
       E_ABI_BattleEnd,
       rawEvent.data,
