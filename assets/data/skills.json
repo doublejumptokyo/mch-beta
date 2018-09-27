@@ -1,5 +1,12 @@
 [
   {
+    "id": 1,
+    "name": { "en": "confusion", "ja": "混乱" },
+    "description": { "en": "Between 30% PHY damage to a random unit", "ja": "ランダムに30%のphyダメージ" },
+    "iconFileName": "SKILL_phy.png",
+    "effectId": 1
+  },
+  {
     "id": 1001,
     "name": { "en": "Rule the Empire by Force", "ja": "天下布武" },
     "description": { "en": "150% PHY damage to a single unit", "ja": "単体に150%のphyダメージ" },
