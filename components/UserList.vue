@@ -1,10 +1,29 @@
 <template lang="pug">
 .userList
-  nuxt-link.userList__item.user(:to="`/users/${userId}`" v-for="userId in [1, 2, 3, 4, 5]" :key="userId")
+  nuxt-link.userList__item.user(
+    v-for="(user, index) in users"
+    :to="`/battle-against/${user.address}`"
+    :key="index"
+  )
     img.user__image(:src="require('~/assets/images/NAPOLEON05_BL.png')")
-    h2.user__name User{{ userId }}
+    div
+      h2.user__name {{ user.name }}
+      p {{ user.address }}
     fa-icon.user__arrow(icon="angle-right")
 </template>
+
+<script>
+export default {
+  props: {
+    users: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .userList {
