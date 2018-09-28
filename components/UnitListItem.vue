@@ -1,7 +1,8 @@
 <template lang="pug">
 nuxt-link.team(
-  :to="to"
+  :to="to || ''"
   tag="li"
+  v-if="hero && extension1 && extension2"
 )
   .team__heroItems
     .team__orderIcon
@@ -33,7 +34,7 @@ nuxt-link.team(
     p
       img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
       span {{ hero.passiveSkill.name[$i18n.locale] }}
-  .team__handle
+  .team__handle(v-if="to")
     fa-icon.team__arrow(icon="angle-right")
 </template>
 
@@ -57,7 +58,6 @@ export default {
     },
     to: {
       type: String,
-      require: true,
       default() {
         return ''
       }
