@@ -2,7 +2,7 @@
 .userList
   nuxt-link.userList__item.user(
     v-for="(user, index) in users"
-    :to="`/battle-against/${user.address}`"
+    :to="`/users/${user.address}`"
     :key="index"
   )
     .user__name
