@@ -5,23 +5,28 @@ import {BattleContext as BC} from "./BattleContext.sol";
 
 library BattleSkill {
 
+    uint8 constant private BATTLE_UNITS_LIMIT = 6;
+    uint8 constant private UNITS_LIMIT = 7;
+
     function nextActiveSkillId(BC.Battle storage battle, uint8 unitIndex) internal returns (uint16) {
         uint8 activeIndex = battle.units[unitIndex].activeCounts++ % 3;
         return battle.units[unitIndex].activeIds[activeIndex];
     }
     
     function getPositionIndex(BC.Battle storage battle, uint8 position) internal view returns (int8) {
-        for (int8 i = 0; i < 7; i++) {
-            if (battle.units[uint8(i)].position == position) return i;
+        for (uint8 i = 0; i < UNITS_LIMIT; i++) {
+            if (battle.units[i].position == position) return int8(i);
         }
         return -1;
-    } 
+        // require(false, "getPositionIndex Error");
+    }
 
     function getTargets(BC.Battle storage battle, BC.EffectTarget target) internal returns (uint8[6] results, uint8 size) {
         uint8 i;
         uint8 resultIndex;
         BC.Unit storage unit = battle.units[battle.actionUnit];
         if (!unit.exists) return;
+        // require(unit.exists, "getTargets Error");
 
         if (target == BC.EffectTarget.self) {
             results[0] = battle.actionUnit;
@@ -31,9 +36,9 @@ library BattleSkill {
         if (target == BC.EffectTarget.random) {
             uint8[6] memory randomCandidate;
             uint8 randomCandidateSize = 0;
-            for (i = 0; i < 7; i++) {
+            for (i = 0; i < UNITS_LIMIT; i++) {
                 unit = battle.units[i];
-                if (unit.exists && unit.position < 6 && unit.current.hp > 0) {
+                if (unit.exists && unit.position < BATTLE_UNITS_LIMIT && unit.current.hp > 0) {
                     randomCandidate[randomCandidateSize++] = i;
                 }
             }
@@ -222,7 +227,8 @@ library BattleSkill {
         require(skill.exists);
         
         BC.Unit storage unit = battle.units[battle.actionUnit];
-        if (!unit.exists || !unit.passiveEnabled || unit.current.hp == 0 || !(unit.position < 6) || unit.state == BC.UnitState.sleep || unit.state == BC.UnitState.confusion) return false;
+        if (!unit.exists || !unit.passiveEnabled || !(unit.position < BATTLE_UNITS_LIMIT) || unit.state == BC.UnitState.sleep || unit.state == BC.UnitState.confusion) return false;
+        if (unit.current.hp == 0 && skill.condition != BC.SkillCondition.death) return false;
 
         if (skill.condition == BC.SkillCondition.active) {
             if (battle.passiveLoop == 1 && battle.activeUnit == battle.actionUnit && int16(getRandom(battle, 100)) < skill.rate) {

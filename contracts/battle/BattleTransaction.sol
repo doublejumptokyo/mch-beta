@@ -16,7 +16,7 @@ contract BattleTransaction {
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
-    uint32 public currentId = 100;
+    uint32 public currentId = 300;
     uint32[] public incompleteIds;
     mapping(uint32 => BC.Battle) internal battles;
     mapping(uint16 => BC.Skill) internal skills;
