@@ -1,12 +1,15 @@
 <template lang="pug">
 .battlePage
-  header.header(:class="{ 'header--opening': isLoading }")
-    template(v-if="isLoading")
+  header.header(:class="{ 'header--opening': !isReady }")
+    template(v-if="!isReady")
       .username.username1
         span {{ $store.state.user.name }}
       .versus vs
       .username.username2
         span {{ opponentName }}
+      p.startButton
+        span(v-if="isLoading") Loading ...
+        button(v-else @click="battleStart") Ready!
     template(v-else)
       img.header__logo(:src="require('~/assets/images/logo.png')")
       .header__battleUsers
@@ -18,7 +21,7 @@
 
   .statuses
     transition(enter-active-class="animated bounceInLeft")
-      .team.myTeam(v-if="!isLoading")
+      .team.myTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.myTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
@@ -28,7 +31,7 @@
             span /
             span {{ unit.maxHp }}
     transition(enter-active-class="animated bounceInRight")
-      .team.opponentTeam(v-if="!isLoading")
+      .team.opponentTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.opponentTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
@@ -43,7 +46,7 @@
 
   .actions
     transition(enter-active-class="animated flash")
-      .action.action--start(v-show="!isLoading" @click="goNextAction")
+      .action.action--start(v-show="isReady" @click="goNextAction")
         span tap to fight!!
 
     template(v-for="(action, index) in actions")
@@ -117,6 +120,8 @@
             a(:href="`https://twitter.com/share?url=${currentUrl}&hashtags=MCH,MyCryptoHeroes`")
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
+
+  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop)
 </template>
 
 <script>
@@ -133,6 +138,7 @@ export default {
 
   data() {
     return {
+      isReady: false,
       opponentLoomAddress: '',
       opponentName: '',
       setCount: 0,
@@ -149,7 +155,8 @@ export default {
       counters: {},
       currentUnitStatus: {},
       isFinished: false,
-      isShareModalShown: false
+      isShareModalShown: false,
+      bgm: null
     }
   },
 
@@ -194,8 +201,8 @@ export default {
       this.fetchActions()
     },
 
-    isLoading(isLoading) {
-      if (isLoading) return
+    isReady(isReady) {
+      if (!isReady) return
       console.log('6. オープニング画面を開ける')
       setTimeout(() => this.initAction(), 1000) // initActionを非同期でやらないとなぜかうまく動かないので
     }
@@ -236,6 +243,8 @@ export default {
     if (!this.isNativeSupportScrollSnap()) {
       this.setScrollSnap()
     }
+
+    this.bgm = this.$el.querySelector('.bgm')
   },
 
   methods: {
@@ -249,6 +258,11 @@ export default {
       this.end = await this.$battleManager.end()
 
       window.actions = this.actions
+    },
+
+    battleStart() {
+      this.bgm.play()
+      this.isReady = true
     },
 
     onCountUpReady(instance) {
@@ -567,6 +581,28 @@ export default {
       color: #999;
       font-size: 2rem;
       margin: 2rem 0;
+    }
+
+    .startButton {
+      align-self: stretch;
+      margin-top: 6rem;
+      padding: 1rem;
+      text-align: center;
+
+      span,
+      button {
+        font-size: 1rem;
+      }
+
+      button {
+        background: map-get($colors, primary);
+        border-radius: 1rem;
+        color: #444;
+        font-size: 1.3rem;
+        max-width: 640px;
+        padding: 1rem;
+        width: 100%;
+      }
     }
   }
 
