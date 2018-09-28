@@ -66,13 +66,16 @@
         )
           li.skill.activeSkill(v-for="index in activeSkillOrder")
             img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
-            span {{ getActiveSkill(index).name[$i18n.locale] }}
+            div
+              p {{ getActiveSkill(index).name[$i18n.locale] }}
+              p {{ getActiveSkill(index).description[$i18n.locale] }}
             .activeSkill__handle
               fa-icon(icon="bars")
         h3 Passive
         p.skill.passiveSkill(v-if="hero.passiveSkill")
           img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
           span {{ hero.passiveSkill.name[$i18n.locale] }}
+          span  {{ hero.passiveSkill.description[$i18n.locale] }}
 
   footer.positionPage__footer
     button(@click="submit") OK
@@ -456,7 +459,7 @@ export default {
     }
   }
 }
-
+      
 .skills {
   margin: 1rem 0;
 
@@ -490,7 +493,7 @@ export default {
       .svg-inline--fa {
         color: #ccc;
         // margin-left: auto;
-      }
+      }  
     }
   }
 
