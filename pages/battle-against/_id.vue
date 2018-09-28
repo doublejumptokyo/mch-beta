@@ -16,6 +16,9 @@
         span {{ $store.state.user.name }}
         span vs
         span {{ opponentName }}
+      button.header__play(@click="toggleBgmPause")
+        img(:src="require('~/assets/images/volume-mute.svg')" v-if="isBgmMuted")
+        img(:src="require('~/assets/images/volume.svg')" v-else)
       nuxt-link.header__close(to="/battle-against" tag="button")
         fa-icon(icon="times")
 
@@ -121,7 +124,7 @@
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
 
-  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop)
+  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop muted)
 </template>
 
 <script>
@@ -156,7 +159,8 @@ export default {
       currentUnitStatus: {},
       isFinished: false,
       isShareModalShown: false,
-      bgm: null
+      bgm: null,
+      isBgmMuted: true
     }
   },
 
@@ -263,6 +267,16 @@ export default {
     battleStart() {
       this.bgm.play()
       this.isReady = true
+    },
+
+    toggleBgmPause() {
+      if (this.bgm.muted) {
+        this.bgm.muted = false
+        this.isBgmMuted = false
+      } else {
+        this.bgm.muted = true
+        this.isBgmMuted = true
+      }
     },
 
     onCountUpReady(instance) {
@@ -630,6 +644,19 @@ export default {
         font-weight: normal;
         margin: 0 0.5rem;
       }
+    }
+  }
+
+  &__play,
+  &__close {
+    margin-left: 1rem;
+  }
+
+  &__play {
+    display: flex;
+
+    img {
+      width: 1.2rem;
     }
   }
 }
