@@ -989,7 +989,7 @@ export default {
 
   &__label {
     align-items: center;
-    color: #999;
+    color: #fff;
     display: flex;
     font-weight: bold;
     font-family: Oswald;
