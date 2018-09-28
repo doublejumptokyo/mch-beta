@@ -67,7 +67,7 @@
           ) {{ getDamageStr(action, effectPosition) }}
 
     .action.action--end(v-if="result")
-      ul
+      ul.end
         li.end__share
           button(@click="openShareModal")
             fa-icon(:icon="['far', 'share-square']" size="2x")
@@ -320,7 +320,11 @@ export default {
     },
 
     goNextAction(e) {
-      e.target.nextSibling.scrollIntoView({ behavior: 'smooth' })
+      e.target.nextSibling.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      })
     },
 
     onScroll(e) {
@@ -1120,6 +1124,10 @@ export default {
 }
 
 .end {
+  a {
+    pointer-events: auto;
+  }
+
   &__share {
     button {
       opacity: 0.25;
