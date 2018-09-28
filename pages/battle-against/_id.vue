@@ -270,6 +270,7 @@ export default {
     },
 
     battleStart() {
+      this.bgm.muted = true
       this.bgm.play()
       this.isReady = true
     },
