@@ -128,6 +128,7 @@ import Modal from '~/components/Modal'
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
+  middleware: 'walletCheck',
 
   data() {
     return {
@@ -601,6 +602,10 @@ export default {
   .hero__hp {
     span:first-of-type {
       font-size: 2rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 3rem;
+      }
     }
 
     &--zero {
@@ -640,8 +645,14 @@ export default {
   display: grid;
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
+  max-width: 70vh;
   width: 100%;
   z-index: 2;
+
+  @media (min-width: $breakpoint) {
+    max-width: 60vh;
+  }
 
   &::after {
     content: '';
@@ -800,6 +811,10 @@ export default {
     font-weight: bold;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+    @media (min-width: $breakpoint) {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -832,6 +847,10 @@ export default {
   scroll-snap-type: y mandatory; /* Safari only */
   width: 100%;
   -webkit-overflow-scrolling: touch;
+
+  @media (min-width: $breakpoint) {
+    padding: 3rem 2rem;
+  }
 }
 
 .action {
@@ -847,6 +866,11 @@ export default {
   position: relative;
   transition: all 0.3s;
 
+  @media (min-width: $breakpoint) {
+    border-radius: 2rem;
+    margin: 2rem 0;
+  }
+
   &:first-of-type {
     margin-top: 0;
   }
@@ -858,6 +882,10 @@ export default {
   &--myTeam {
     border-left: 0.5rem solid $color-battle-user-1;
 
+    @media (min-width: $breakpoint) {
+      border-width: 1rem;
+    }
+
     h3 {
       color: $color-battle-user-1;
     }
@@ -865,6 +893,10 @@ export default {
 
   &--opponentTeam {
     border-left: 0.5rem solid $color-battle-user-2;
+
+    @media (min-width: $breakpoint) {
+      border-width: 1rem;
+    }
 
     h3 {
       color: $color-battle-user-2;
@@ -882,9 +914,18 @@ export default {
     position: absolute;
     top: -0.5rem;
 
+    @media (min-width: $breakpoint) {
+      left: 2rem;
+      top: -0.7rem;
+    }
+
     h3 {
       font-size: 0.8rem;
       margin-right: 0.5rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.2rem;
+      }
 
       &::after {
         content: ':';
@@ -893,6 +934,10 @@ export default {
 
     > p {
       animation-duration: 0.3s !important;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -926,7 +971,7 @@ export default {
       bottom: -0.75rem;
       color: #fff;
       font-family: 'Merriweather Sans';
-      font-size: 7vw;
+      font-size: 1.8rem;
       font-weight: bold;
       letter-spacing: -1px;
       line-height: 1;
@@ -937,6 +982,10 @@ export default {
       width: 100%;
       transition: all 0.3s;
       opacity: 0;
+
+      @media (min-width: $breakpoint) {
+        font-size: 3rem;
+      }
 
       &--minus {
         -webkit-text-stroke: 1px #e74c3c;
@@ -961,7 +1010,11 @@ export default {
     width: 100%;
 
     img {
-      width: 2rem;
+      width: 2.4rem;
+
+      @media (min-width: $breakpoint) {
+        width: 3.2rem;
+      }
     }
   }
 

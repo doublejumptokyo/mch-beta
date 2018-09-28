@@ -13,6 +13,7 @@ const TOTAL_USER_COUNT = 560 - 20
 
 export default {
   components: { UserList },
+  middleware: 'walletCheck',
   data() {
     return {
       users: []
