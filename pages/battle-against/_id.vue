@@ -159,11 +159,14 @@ export default {
     },
 
     result() {
-      if (this.currentAction >= 100) {
+      if (!this.end) {
+        return ''
+      }
+      if (this.end.result === 4) {
         return 'time up!'
-      } else if (this.statuses['myTeam'].every(unit => unit.hp === 0)) {
+      } else if (this.end.result === 3) {
         return 'lose...'
-      } else if (this.statuses['opponentTeam'].every(unit => unit.hp === 0)) {
+      } else if (this.end.result === 2) {
         return 'win!!'
       } else {
         return ''
