@@ -144,18 +144,16 @@ class BattleManager {
     const res = await this.contract.methods.end().send()
     const rawEvent = res.events[0].raw
     rawEvent.topics.shift()
-
-    window.end = this.accountManager.web3.eth.abi.decodeLog(
+    let end = this.accountManager.web3.eth.abi.decodeLog(
       E_ABI_BattleEnd,
       rawEvent.data,
       rawEvent.topics
     )
+    end = this.encodeBattleEnd(end)
 
-    return this.accountManager.web3.eth.abi.decodeLog(
-      E_ABI_BattleEnd,
-      rawEvent.data,
-      rawEvent.topics
-    )
+    window.end = end
+
+    return end
   }
 
   encodeBattleStart(rawData) {
@@ -291,6 +289,12 @@ class BattleManager {
       if (positions[i]) results.push(+i)
     }
     return results
+  }
+
+  encodeBattleEnd(end) {
+    end.battleId = +end.battleId
+    end.result = +end.result
+    return end
   }
 }
 
