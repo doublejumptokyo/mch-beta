@@ -133,7 +133,6 @@ export default {
     return {
       opponentLoomAddress: '',
       opponentName: '',
-      isLoading: true,
       setCount: 0,
       currentAction: 0,
       prevAction: -1,
@@ -154,6 +153,10 @@ export default {
 
   computed: {
     ...mapState('battle', ['myTeam', 'opponentTeam']),
+
+    isLoading() {
+      return !this.actions.length
+    },
 
     result() {
       if (this.currentAction >= 100) {
@@ -184,10 +187,12 @@ export default {
 
       console.log('5. アクション取得開始')
       this.fetchActions()
+    },
 
+    isLoading(isLoading) {
+      if (isLoading) return
       console.log('6. オープニング画面を開ける')
-      this.isLoading = false
-      setTimeout(() => this.initAction(), 1000)
+      setTimeout(() => this.initAction(), 1000) // initActionを非同期でやらないとなぜかうまく動かないので
     }
   },
 
