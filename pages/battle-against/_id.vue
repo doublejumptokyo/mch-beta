@@ -88,7 +88,6 @@
     .statusModal__body.unit(slot="body")
       p.unit__image
         img(:src="require(`~/assets/images/heroes/${currentUnitStatus.hero.fileName}`)")
-      h3 Status
       ul.unit__statuses
         li
           h4 HP
@@ -102,13 +101,20 @@
         li
           h4 AGI
           p {{ currentUnitStatus.agi }}
-      h3 Skills
       .unit__skills
+        h3 Active
         ol
-          li {{ getSkill(currentUnitStatus.active1).name[$i18n.locale] }}
-          li {{ getSkill(currentUnitStatus.active2).name[$i18n.locale] }}
-          li {{ getSkill(currentUnitStatus.active3).name[$i18n.locale] }}
-        p {{ getSkill(currentUnitStatus.passive).name[$i18n.locale] }}
+          li(v-for="num in [1, 2, 3]")
+            img(:src="require(`~/assets/images/icons/skill/${getSkill(currentUnitStatus['active' + num]).iconFileName}`)")
+            div
+              h4 {{ getSkill(currentUnitStatus[`active${num}`]).name[$i18n.locale] }}
+              p {{ getSkill(currentUnitStatus[`active${num}`]).description[$i18n.locale] }}
+        h3 Passive
+        div
+          img(:src="require(`~/assets/images/icons/skill/${getSkill(currentUnitStatus.passive).iconFileName}`)")
+          div
+            h4 {{ getSkill(currentUnitStatus.passive).name[$i18n.locale] }}
+            p {{ getSkill(currentUnitStatus.passive).description[$i18n.locale] }}
 
   modal.shareModal(v-if="isShareModalShown" type="bottom" @modal-close="closeShareModal")
     h2.shareModal__header(slot="header") Share
@@ -1248,8 +1254,26 @@ export default {
       }
 
       &__skills {
+        h3 {
+          color: #999;
+        }
+
         ol {
+          list-style-type: none;
           margin: 1rem 0;
+          padding: 0;
+        }
+
+        li,
+        > div {
+          align-items: center;
+          display: flex;
+          margin-top: 1rem;
+        }
+
+        img {
+          margin-right: 1rem;
+          width: 2rem;
         }
       }
     }
