@@ -67,12 +67,12 @@
 
     .action.action--end(v-if="result")
       ul
-        li
+        li.end__share
           button(@click="openShareModal")
             fa-icon(:icon="['far', 'share-square']" size="2x")
             span Share
-        li
-          nuxt-link(to="/battles")
+        li.end__next
+          nuxt-link(to="/battle-against")
             fa-icon(:icon="['fas', 'arrow-right']" size="2x")
             span Next
 
@@ -1045,6 +1045,15 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+.end {
+  &__share {
+    button {
+      opacity: 0.25;
+      pointer-events: none;
     }
   }
 }
