@@ -27,6 +27,10 @@
       .team.myTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.myTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
+            .hero__state
+              img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
+              img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
+              img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
@@ -37,6 +41,10 @@
       .team.opponentTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.opponentTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
+            .hero__state
+              img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
+              img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
+              img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
@@ -884,14 +892,26 @@ export default {
 
   &__image {
     padding: 0.5rem;
+    position: relative;
 
-    img {
+    > img {
       border-radius: 0.5rem;
       height: auto;
       image-rendering: pixelated;
       object-fit: cover;
       vertical-align: middle;
       width: 100%;
+    }
+  }
+
+  &__state {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+
+    img {
+      width: 2rem;
     }
   }
 
