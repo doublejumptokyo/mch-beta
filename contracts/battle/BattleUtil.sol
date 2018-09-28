@@ -5,9 +5,11 @@ import {BattleContext as BC} from "./BattleContext.sol";
 
 library BattleUtil {
 
+    uint8 constant private ACTION_LIMIT = 200;
+
     function checkEnd(BC.Battle storage battle) internal returns (bool) {
 
-        if (battle.actionCounts > 100) {
+        if (battle.actionCounts > ACTION_LIMIT) {
             battle.state = BC.BattleState.timeUp;
             return true;
         }
