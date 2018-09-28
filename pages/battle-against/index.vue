@@ -9,7 +9,7 @@
 <script>
 import UserList from '~/components/UserList'
 
-const TOTAL_USER_COUNT = 560 - 20
+const TOTAL_USER_COUNT = 415 - 20
 
 export default {
   components: { UserList },
