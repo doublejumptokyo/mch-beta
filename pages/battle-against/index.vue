@@ -20,7 +20,6 @@ export default {
     }
   },
   async beforeMount() {
-    if (process.server) return
     const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
     const addresses = await this.$rank.list(from)
     const users = []
