@@ -43,13 +43,14 @@
 
   .actions
     transition(enter-active-class="animated flash")
-      .action.action--start(v-show="!isLoading")
-        span fight!!
+      .action.action--start(v-show="!isLoading" @click="goNextAction")
+        span tap to fight!!
 
     template(v-for="(action, index) in actions")
       .action(
         :data-action-id="action.actionCounts"
         :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': finishedAction + 1 < action.actionCounts }]"
+        @click="goNextAction"
       )
         .action__label
           h3 Action {{ action.actionCounts }}
@@ -318,11 +319,19 @@ export default {
       actionsArea.addEventListener('scroll', this.onScroll)
     },
 
+    goNextAction(e) {
+      e.target.nextSibling.scrollIntoView({ behavior: 'smooth' })
+    },
+
     onScroll(e) {
       const actionsArea = e.target
       const currentActionElem = this.getCurrentAction(actionsArea)
       if (!currentActionElem) return
       console.log('8. スクロール検知')
+      this.executeAction(currentActionElem)
+    },
+
+    executeAction(currentActionElem) {
       this.isFinished = currentActionElem.classList.contains('action--end')
       this.currentAction = Number(currentActionElem.dataset.actionId)
       if (this.prevAction !== this.currentAction) {
@@ -333,6 +342,7 @@ export default {
             i <= this.currentFinishedAction;
             i++
           ) {
+            const actionsArea = this.$el.querySelector('.actions')
             this.endAction(actionsArea.querySelector(`[data-action-id="${i}"]`))
           }
 
@@ -380,7 +390,7 @@ export default {
             setTimeout(() => {
               const effectElem = reactorElem.querySelector('.action__effect')
               const rate = reactorElem.clientHeight / effectElem.clientHeight
-              const transform = `translate(-50%, -50%) scale(${rate * 3})`
+              const transform = `translate(-50%, -50%) scale(${rate * 2})`
               effectElem.style.transform = transform
               setTimeout(() => this.animateEffect(effectElem), index * 200)
               const damageElem = reactorElem.querySelector('.damage')
@@ -856,19 +866,26 @@ export default {
 .action {
   background: #555;
   border-radius: 1rem;
+  cursor: pointer;
   height: 100%;
-  margin: 1rem 0;
+  margin: 1rem auto;
   padding: 0.25rem 1rem;
   scroll-snap-align: center;
   display: flex;
   justify-content: space-around;
+  max-width: 640px;
   width: 100%;
   position: relative;
   transition: all 0.3s;
 
   @media (min-width: $breakpoint) {
     border-radius: 2rem;
-    margin: 2rem 0;
+    margin: 2rem auto;
+  }
+
+  * {
+    pointer-events: none;
+    user-select: none;
   }
 
   &:first-of-type {
