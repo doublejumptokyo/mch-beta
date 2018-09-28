@@ -50,7 +50,7 @@
   .actions
     transition(enter-active-class="animated flash")
       .action.action--start(v-show="isReady" @click="goNextAction")
-        span tap to fight!!
+        span {{ isTouchDevice ? 'scroll' : 'tap' }} to fight!!
 
     template(v-for="(action, index) in actions")
       .action(
@@ -193,6 +193,11 @@ export default {
     currentUrl() {
       if (process.server) return
       return window.location.href
+    },
+
+    isTouchDevice() {
+      if (process.server) return
+      return 'ontouchstart' in window
     }
   },
 
@@ -348,6 +353,7 @@ export default {
     },
 
     goNextAction(e) {
+      if (this.isTouchDevice) return
       e.target.nextSibling.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
