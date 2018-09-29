@@ -308,6 +308,9 @@ export default {
 
     battleStart() {
       this.bgm.muted = true
+      Array.from(Array(5).keys()).forEach(
+        num => (this.se[num + 1].muted = true)
+      )
       this.bgm.play()
       this.isReady = true
     },
@@ -315,9 +318,15 @@ export default {
     toggleBgmPause() {
       if (this.bgm.muted) {
         this.bgm.muted = false
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = false)
+        )
         this.isBgmMuted = false
       } else {
         this.bgm.muted = true
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = true)
+        )
         this.isBgmMuted = true
       }
     },
