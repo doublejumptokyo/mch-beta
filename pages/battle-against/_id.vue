@@ -142,6 +142,11 @@
               span Twitter
 
   audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop muted)
+  audio.se.se-1(src="/sounds/se/1.mp3")
+  audio.se.se-2(src="/sounds/se/2.mp3")
+  audio.se.se-3(src="/sounds/se/3.mp3")
+  audio.se.se-4(src="/sounds/se/4.mp3")
+  audio.se.se-5(src="/sounds/se/5.mp3")
 </template>
 
 <script>
@@ -177,7 +182,8 @@ export default {
       isFinished: false,
       isShareModalShown: false,
       bgm: null,
-      isBgmMuted: true
+      isBgmMuted: true,
+      se: {}
     }
   },
 
@@ -271,6 +277,13 @@ export default {
     }
 
     this.bgm = this.$el.querySelector('.bgm')
+    Array.from(Array(5).keys()).forEach(num => {
+      this.$set(
+        this.se,
+        String(num + 1),
+        this.$el.querySelector(`.se-${num + 1}`)
+      )
+    })
   },
 
   destroyed() {
@@ -456,6 +469,13 @@ export default {
               const transform = `translate(-50%, -50%) scale(${rate * 2})`
               effectElem.style.transform = transform
               setTimeout(() => this.animateEffect(effectElem), index * 200)
+
+              const effectStr = Array.from(effectElem.classList.entries())
+                .filter(c => c[1].startsWith('effect-'))
+                .pop()
+              const effectId = Number(effectStr[1].split('-')[1])
+              this.se[effectId].play()
+
               const damageElem = reactorElem.querySelector('.damage')
               setTimeout(() => {
                 damageElem.classList.add('animated', 'bounce', 'damaged')
