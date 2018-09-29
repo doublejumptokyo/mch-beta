@@ -543,7 +543,7 @@ export default {
     },
 
     getTeamName(position) {
-      return position < 2 ? 'myTeam' : 'opponentTeam'
+      return position < 3 ? 'myTeam' : 'opponentTeam'
     },
 
     openStatusModal(unit) {
