@@ -69,11 +69,14 @@
         .action__label
           h3 Action {{ action.actionCounts }}
           p {{ getSkill(action.skillId).name[$i18n.locale] }}
-        .action__actor
+        .action__actor(:class="`action__actor--${getTeamName(action.actionPosition)}`")
           img(:src="require(`~/assets/images/heroes/${getUnit(action.actionPosition).hero.fileName}`)")
         .action__type
           img(:src="require(`~/assets/images/icons/skill/${getSkill(action.skillId).iconFileName}`)")
-        .action__reactor(v-for="effectPosition in action.effectPositions")
+        .action__reactor(
+          v-for="effectPosition in action.effectPositions"
+          :class="`action__reactor--${getTeamName(effectPosition)}`"
+        )
           img(:src="require(`~/assets/images/heroes/${getUnit(effectPosition).hero.fileName}`)")
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
@@ -537,6 +540,10 @@ export default {
       const prevHp = prevUnits[position].hp
       const currentHp = action.units[position].hp
       return prevHp - currentHp
+    },
+
+    getTeamName(position) {
+      return position < 2 ? 'myTeam' : 'opponentTeam'
     },
 
     openStatusModal(unit) {
@@ -1004,24 +1011,12 @@ export default {
   }
 
   &--myTeam {
-    border-left: 0.5rem solid $color-battle-user-1;
-
-    @media (min-width: $breakpoint) {
-      border-width: 1rem;
-    }
-
     h3 {
       color: $color-battle-user-1;
     }
   }
 
   &--opponentTeam {
-    border-left: 0.5rem solid $color-battle-user-2;
-
-    @media (min-width: $breakpoint) {
-      border-width: 1rem;
-    }
-
     h3 {
       color: $color-battle-user-2;
     }
@@ -1071,9 +1066,37 @@ export default {
     animation-duration: 0.3s !important;
     display: flex;
     flex: 1;
+    position: relative;
     text-align: center;
     width: 100%;
-    margin: 0;
+    margin: -0.5rem 0 0;
+
+    &::after {
+      border-radius: 1rem;
+      bottom: 1rem;
+      content: '';
+      display: block;
+      height: 0.5rem;
+      left: 10%;
+      position: absolute;
+      width: 80%;
+
+      @media (min-width: $breakpoint) {
+        height: 1rem;
+      }
+    }
+
+    &--myTeam {
+      &::after {
+        background: $color-battle-user-1;
+      }
+    }
+
+    &--opponentTeam {
+      &::after {
+        background: $color-battle-user-2;
+      }
+    }
 
     img {
       border-radius: 0.5rem;
@@ -1092,7 +1115,7 @@ export default {
     position: relative;
 
     .damage {
-      bottom: -0.75rem;
+      bottom: 0;
       color: #fff;
       font-family: 'Merriweather Sans';
       font-size: 1.8rem;
@@ -1106,6 +1129,7 @@ export default {
       width: 100%;
       transition: all 0.3s;
       opacity: 0;
+      z-index: 1;
 
       @media (min-width: $breakpoint) {
         font-size: 3rem;
@@ -1154,6 +1178,7 @@ export default {
         transition: opacity 0.3s;
         top: 50%;
         width: 100px;
+        z-index: 2;
 
         &.active {
           opacity: 1;
