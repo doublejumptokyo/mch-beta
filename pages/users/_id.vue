@@ -84,6 +84,15 @@ export default {
   }
 
   &__battleButton {
+    background: #444;
+    bottom: 0;
+    left: 0;
+    margin: 0 -1rem;
+    padding: 1rem;
+    position: sticky;
+    text-align: center;
+    width: calc(100% + 2rem);
+
     a {
       background: map-get($colors, primary);
       border-radius: 1rem;
@@ -91,7 +100,6 @@ export default {
       display: block;
       margin: 0 auto;
       padding: 1rem;
-      text-align: center;
       text-decoration: none;
       max-width: 640px;
     }
