@@ -1143,7 +1143,7 @@ export default {
   }
 
   &__effect {
-    @for $i from 1 through 11 {
+    @for $i from 1 through 12 {
       &.effect-#{$i} {
         background: url('~assets/images/effects/#{$i}.png') no-repeat 0 0;
         opacity: 0;
