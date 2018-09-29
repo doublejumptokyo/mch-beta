@@ -55,6 +55,12 @@ export default {
 
     this.units = units
   },
+  destroyed() {
+    // 緊急対応
+    // ユーザーAがユーザーBのこのページを見たあとインベントリに行くと、ユーザーBのヒーローも見えてしまうため
+    // [TODO] storeに入れるヒーローの管理方法検討
+    location.reload()
+  },
   methods: {
     getUnit(unit) {
       return unit.filter((num, index) => index < 3)

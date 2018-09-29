@@ -3,7 +3,9 @@ nuxt
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: mapState(['env']),
   head() {
     return {
       title: this.$t('common.meta.title'),
