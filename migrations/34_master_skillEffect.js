@@ -57,13 +57,13 @@ module.exports = function (deployer) {
             [2004,5,1,3,120,120,false],
             [2005,1,1,1,40,20,true],
             [2005,1,7,1,30,30,true],
-            [2006,1,1,1,60,50,true],
+            [2006,1,1,0,60,50,true],
             [2007,0,2,1,20,20,false],
             [2008,1,1,1,50,45,true],
-            [2009,1,1,1,30,20,true],
+            [2009,1,1,0,30,20,true],
             [2009,0,2,1,10,10,false],
             [2010,5,1,3,70,70,false],
-            [2011,1,1,1,50,40,true],
+            [2011,1,1,0,50,40,true],
         ]
 
         const transaction = await BattleTransaction.deployed()
