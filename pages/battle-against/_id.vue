@@ -270,6 +270,13 @@ export default {
     this.bgm = this.$el.querySelector('.bgm')
   },
 
+  destroyed() {
+    // 緊急対応
+    // ユーザーAがユーザーBのこのページを見たあとインベントリに行くと、ユーザーBのヒーローも見えてしまうため
+    // [TODO] storeに入れるヒーローの管理方法検討
+    location.reload()
+  },
+
   methods: {
     async fetchActions() {
       let isFetchFinished = false
