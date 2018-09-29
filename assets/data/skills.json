@@ -58,7 +58,7 @@
   {
     "id": 1008,
     "name": { "en": "Ode to Joy", "ja": "歓喜の歌" },
-    "description": { "en": "25% INT increase to all enemies' PHY, INT and AGI", "ja": "自分がActive時10%の確率で、敵全員のPHY / INT / AGIをINTの25%分ダウン" },
+    "description": { "en": "50% for the first time,25% INT increase to all enemies' PHY, INT and AGI", "ja": "初めてHP50%未満になった時、敵全員のPHY / INT / AGIをINTの25%分ダウン" },
     "iconFileName": "DEBUF_phy.png",
     "effectId": 5
   },
