@@ -5,8 +5,6 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
       a(href="http://www.doublejump.tokyo/") 運営会社
     li
       nuxt-link(to="/terms") 利用規約
-    li(style="opacity: 0.1")
-      button(@click="logout") CO
   p
     small &copy; {{ (new Date()).getFullYear() }} double jump.tokyo
 </template>
