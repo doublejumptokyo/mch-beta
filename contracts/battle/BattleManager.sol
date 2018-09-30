@@ -11,7 +11,7 @@ import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract BattleManager is Ownable {
 
-    uint8 public constant TURN_COUNTS = 3;
+    uint8 public constant TURN_COUNTS = 1;
 
     DeckManager public deckManager;
     BattleTransaction public battleTransaction;
