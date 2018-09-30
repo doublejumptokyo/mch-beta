@@ -16,7 +16,7 @@ contract BattleTransaction {
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
-    uint32 public currentId = 100;
+    uint32 public currentId = 20000;
     uint32[] public incompleteIds;
     mapping(uint32 => BC.Battle) internal battles;
     mapping(uint16 => BC.Skill) internal skills;
@@ -35,6 +35,7 @@ contract BattleTransaction {
         battle.defender = _defender;
         battle.actionCounts = 1;
         battle.state = BC.BattleState.init;
+        battle.activeUnit = 6;
         incompleteIds.push(currentId);
         return currentId;
     }

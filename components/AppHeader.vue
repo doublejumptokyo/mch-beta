@@ -44,7 +44,7 @@ header.appHeader
           fa-icon(:icon="['fas', 'users']")
           span {{ $i18n.t('pages.team') }}
       li
-        nuxt-link.disabled(to="/battles")
+        nuxt-link(to="/battle-against")
           fa-icon(icon="fire")
           span {{ $i18n.t('pages.battles') }}
       //- li
