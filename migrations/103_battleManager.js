@@ -13,7 +13,6 @@ let BattleManager = artifacts.require('BattleManager')
 
 module.exports = function (deployer) {
     deployer.then(async function() {
-        await deployer.deploy(BattleTransaction)
         await deployer.deploy(BattleManager)
 
         let battleManager = await BattleManager.deployed()
