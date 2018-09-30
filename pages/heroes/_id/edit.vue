@@ -63,16 +63,29 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Modal from '~/components/Modal'
 export default {
   components: { Modal },
   data() {
     return {
       isModalShown: false,
-      displayImageSrc: require('~/assets/images/NAPOLEON04.png'),
       cropImageSrc: '',
       pixelatedData: null,
       isUploading: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getHero: 'heroes/get'
+    }),
+    displayImageSrc() {
+      const heroId = Number(this.$route.params.id)
+      const hero = this.getHero(heroId)
+      if (!hero) {
+        return ''
+      }
+      return require(`~/assets/images/heroes/${hero.fileName}`)
     }
   },
   methods: {
