@@ -2,6 +2,7 @@
 .teamPage
   .page__title
     h1 {{ $i18n.t('pages.team') }}
+    button(@click="isShareModalShown = true") {{ $i18n.t('team.button') }}
   .teamPage__team.team
     //- header.team__header
       //- div(v-if="isChangingOrder[`team${team.id}`]")
@@ -21,24 +22,53 @@
             :unit="getUnit(unit)"
             :skillOrder="getSkillOrder(unit)"
           )
+
+  modal.shareModal(v-if="isShareModalShown" @modal-close="isShareModalShown = false")
+    h2.shareModal__header(slot="header") Share
+    .shareModal__body(slot="body")
+      ul
+        li
+          button(v-clipboard:copy="myUrl" v-clipboard:success="onCopySucceeded")
+            fa-icon(:icon="['far', 'copy']" size="2x")
+            span Copy URL
+        no-ssr
+          li
+            a(:href="`https://twitter.com/share?url=${myUrl}&hashtags=MCH,MyCryptoHeroes`")
+              fa-icon(:icon="['fab', 'twitter']" size="2x")
+              span Twitter
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import draggable from 'vuedraggable'
 import UnitListItem from '~/components/UnitListItem'
+import Modal from '~/components/Modal'
 export default {
   middleware: 'walletCheck',
-  components: { draggable, UnitListItem },
-  computed: mapGetters({
-    units: 'team/newUnits'
-  }),
+  components: { draggable, UnitListItem, Modal },
+  data() {
+    return {
+      isShareModalShown: false
+    }
+  },
+  computed: {
+    ...mapState(['env', 'loomAddress']),
+    ...mapGetters({
+      units: 'team/newUnits'
+    }),
+    myUrl() {
+      return `${this.env.siteUrl}users/${this.loomAddress}`
+    }
+  },
   methods: {
     getUnit(unit) {
       return unit.filter((num, index) => index < 3)
     },
     getSkillOrder(unit) {
       return unit.filter((num, index) => index > 2)
+    },
+    onCopySucceeded() {
+      window.alert(`Copied!\nURL: ${this.myUrl}`)
     }
     //   onDragStart(e) {
     //     // なぜかゴーストの位置がずれるため
@@ -55,6 +85,20 @@ export default {
 .teamPage {
   &__team {
     margin: 1rem -1rem;
+  }
+
+  .page__title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      border: 1px solid map-get($colors, primary);
+      border-radius: 1rem;
+      color: map-get($colors, primary);
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+    }
   }
 }
 
@@ -113,4 +157,37 @@ export default {
 //     background: map-get($colors, primary);
 //   }
 // }
+
+.shareModal {
+  &__body {
+    ul {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      list-style-type: none;
+      margin: 1rem 0;
+      padding: 0;
+      width: 100%;
+
+      li {
+        button,
+        a {
+          align-items: center;
+          color: inherit;
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+
+          .svg-inline--fa {
+            margin-bottom: 0.5rem;
+          }
+
+          span {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

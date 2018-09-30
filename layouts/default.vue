@@ -14,12 +14,13 @@ import AppFooter from '~/components/AppFooter'
 import FixedButton from '~/components/FixedButton'
 export default {
   components: { AppHeader, AppFooter, FixedButton },
-  data() {
-    return {
-      isFixedButtonShown: true
+  computed: {
+    ...mapState(['env']),
+    isFixedButtonShown() {
+      const notFixedButtonShown = ['users-id']
+      return notFixedButtonShown.every(str => str !== this.$route.name)
     }
   },
-  computed: mapState(['env']),
   head() {
     return {
       title: this.$t('common.meta.title'),
