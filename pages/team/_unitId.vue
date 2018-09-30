@@ -66,13 +66,17 @@
         )
           li.skill.activeSkill(v-for="index in activeSkillOrder")
             img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
-            span {{ getActiveSkill(index).name[$i18n.locale] }}
+            div
+              h4 {{ getActiveSkill(index).name[$i18n.locale] }}
+              p {{ getActiveSkill(index).description[$i18n.locale] }}
             .activeSkill__handle
               fa-icon(icon="bars")
         h3 Passive
-        p.skill.passiveSkill(v-if="hero.passiveSkill")
+        div.skill.passiveSkill(v-if="hero.passiveSkill")
           img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
-          span {{ hero.passiveSkill.name[$i18n.locale] }}
+          div
+            h4 {{ hero.passiveSkill.name[$i18n.locale] }}
+            p {{ hero.passiveSkill.description[$i18n.locale] }}
 
   footer.positionPage__footer
     button(@click="submit") OK
@@ -460,48 +464,20 @@ export default {
 .skills {
   margin: 1rem 0;
 
-  h3 {
+  > h3 {
     color: #666;
     margin: 1rem 0 0.5rem;
   }
 
-  ol {
+  > ol {
     list-style-type: none;
     margin: 0;
     padding: 0;
 
     li {
-      align-items: center;
-      display: flex;
-
       &:first-of-type {
         margin-top: 0;
       }
-
-      img {
-        margin-right: 0.5rem;
-        width: 1.2rem;
-      }
-
-      span {
-        flex: 1;
-      }
-
-      .svg-inline--fa {
-        color: #ccc;
-        // margin-left: auto;
-      }
-    }
-  }
-
-  p {
-    img {
-      margin-right: 0.5rem;
-      width: 1.2rem;
-    }
-
-    span {
-      flex: 1;
     }
   }
 
@@ -510,21 +486,34 @@ export default {
   }
 
   .sortable-drag {
-    // background: #fff;
-    // border-bottom: 1px solid #eee;
+    background: #444;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
     opacity: 1 !important;
   }
 }
 
 .skill {
+  align-items: center;
   border: 1px solid #666;
   border-radius: 0.5rem;
+  display: flex;
   margin-top: 0.5rem;
-  overflow: hidden;
   padding: 0.5rem 1rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  > img {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+  }
+
+  p {
+    color: #999;
+    font-size: 0.8rem;
+  }
+}
+
+.activeSkill__handle {
+  color: #ccc;
+  margin-left: auto;
 }
 
 .heroModal,
