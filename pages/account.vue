@@ -4,7 +4,7 @@
     p
       input(v-model="userName" v-if="isRenaming")
       span(v-else) {{ $store.state.user.name }}
-      button(@click="rename" v-if="isRenaming")
+      button(@click="rename" v-if="isRenaming" :class="{ 'active': isRenaming }")
         fa-icon(:icon="['fas', 'check']")
       button(@click="isRenaming = true" v-else)
         fa-icon(:icon="['far', 'edit']")
@@ -138,14 +138,7 @@ export default {
     margin: -1rem -1rem 1rem;
     padding: 1rem;
 
-    img {
-      display: block;
-      image-rendering: pixelated;
-      margin: 1rem auto;
-      width: 128px;
-    }
-
-    p {
+    > p {
       align-items: center;
       display: flex;
       justify-content: center;
@@ -164,12 +157,29 @@ export default {
         background: #666;
         border-radius: 9999px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        margin-left: 0.5rem;
-        padding: 0.5rem;
+        line-height: 1;
+        margin-left: 0.75rem;
+        padding: 0.75rem;
+
+        &.active {
+          background: map-get($colors, primary);
+          color: #444;
+        }
+      }
+
+      input {
+        appearance: none;
+        background: #fff;
+        border: none;
+        border-radius: 4px;
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+        color: #444;
+        font-size: 16px;
+        padding: 0.75rem;
       }
     }
 
-    dl {
+    > dl {
       dt {
         font-weight: bold;
       }
