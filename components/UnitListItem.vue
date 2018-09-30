@@ -116,6 +116,7 @@ export default {
     font-family: Oswald;
     height: 1.75rem;
     margin-bottom: 0.5rem;
+    min-width: 5rem;
     white-space: nowrap;
 
     @media (min-width: $breakpoint) {
@@ -187,7 +188,7 @@ export default {
         margin-left: 0.75rem;
 
         @media (min-width: $breakpoint) {
-          margin-left: 1rem;
+          margin-left: 2rem;
         }
 
         &:nth-of-type(1) {
@@ -260,12 +261,14 @@ export default {
       white-space: nowrap;
 
       @media (min-width: $breakpoint) {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
     }
   }
 
   &__skills {
+    flex: 1;
+
     @media (min-width: $breakpoint) {
       font-size: 1rem;
     }
@@ -284,9 +287,13 @@ export default {
 
     li,
     p {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      align-items: center;
+      display: flex;
+      font-size: 0.7rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+      }
     }
 
     p {
@@ -320,16 +327,5 @@ export default {
       font-size: 2rem;
     }
   }
-
-  // .sortable-ghost {
-  //   visibility: hidden;
-  // }
-
-  // .sortable-drag {
-  //   background: #fff;
-  //   border-bottom: 1px solid #eee;
-  //   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
-  //   opacity: 1 !important;
-  // }
 }
 </style>
