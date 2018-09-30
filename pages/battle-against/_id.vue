@@ -16,6 +16,9 @@
         span {{ $store.state.user.name }}
         span vs
         span {{ opponentName }}
+      button.header__play(@click="toggleBgmPause")
+        img(:src="require('~/assets/images/volume-mute.svg')" v-if="isBgmMuted")
+        img(:src="require('~/assets/images/volume.svg')" v-else)
       nuxt-link.header__close(to="/battle-against" tag="button")
         fa-icon(icon="times")
 
@@ -24,6 +27,10 @@
       .team.myTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.myTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
+            .hero__state
+              img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
+              img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
+              img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
@@ -34,6 +41,10 @@
       .team.opponentTeam(v-if="isReady")
         template(v-for="(unit, index) in statuses.opponentTeam")
           .hero__image(:class="`hero__${getPosition(index)}`" @click="openStatusModal(unit)")
+            .hero__state
+              img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
+              img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
+              img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
             img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
@@ -47,7 +58,7 @@
   .actions
     transition(enter-active-class="animated flash")
       .action.action--start(v-show="isReady" @click="goNextAction")
-        span tap to fight!!
+        span {{ isTouchDevice ? 'scroll' : 'tap' }} to fight!!
 
     template(v-for="(action, index) in actions")
       .action(
@@ -58,11 +69,14 @@
         .action__label
           h3 Action {{ action.actionCounts }}
           p {{ getSkill(action.skillId).name[$i18n.locale] }}
-        .action__actor
+        .action__actor(:class="`action__actor--${getTeamName(action.actionPosition)}`")
           img(:src="require(`~/assets/images/heroes/${getUnit(action.actionPosition).hero.fileName}`)")
         .action__type
           img(:src="require(`~/assets/images/icons/skill/${getSkill(action.skillId).iconFileName}`)")
-        .action__reactor(v-for="effectPosition in action.effectPositions")
+        .action__reactor(
+          v-for="effectPosition in action.effectPositions"
+          :class="`action__reactor--${getTeamName(effectPosition)}`"
+        )
           img(:src="require(`~/assets/images/heroes/${getUnit(effectPosition).hero.fileName}`)")
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
@@ -85,7 +99,6 @@
     .statusModal__body.unit(slot="body")
       p.unit__image
         img(:src="require(`~/assets/images/heroes/${currentUnitStatus.hero.fileName}`)")
-      h3 Status
       ul.unit__statuses
         li
           h4 HP
@@ -99,13 +112,20 @@
         li
           h4 AGI
           p {{ currentUnitStatus.agi }}
-      h3 Skills
       .unit__skills
+        h3 Active
         ol
-          li {{ getSkill(currentUnitStatus.active1).name[$i18n.locale] }}
-          li {{ getSkill(currentUnitStatus.active2).name[$i18n.locale] }}
-          li {{ getSkill(currentUnitStatus.active3).name[$i18n.locale] }}
-        p {{ getSkill(currentUnitStatus.passive).name[$i18n.locale] }}
+          li(v-for="num in [1, 2, 3]")
+            img(:src="require(`~/assets/images/icons/skill/${getSkill(currentUnitStatus['active' + num]).iconFileName}`)")
+            div
+              h4 {{ getSkill(currentUnitStatus[`active${num}`]).name[$i18n.locale] }}
+              p {{ getSkill(currentUnitStatus[`active${num}`]).description[$i18n.locale] }}
+        h3 Passive
+        div
+          img(:src="require(`~/assets/images/icons/skill/${getSkill(currentUnitStatus.passive).iconFileName}`)")
+          div
+            h4 {{ getSkill(currentUnitStatus.passive).name[$i18n.locale] }}
+            p {{ getSkill(currentUnitStatus.passive).description[$i18n.locale] }}
 
   modal.shareModal(v-if="isShareModalShown" type="bottom" @modal-close="closeShareModal")
     h2.shareModal__header(slot="header") Share
@@ -121,7 +141,12 @@
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
 
-  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop)
+  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop muted)
+  audio.se.se-1(src="/sounds/se/1.mp3")
+  audio.se.se-2(src="/sounds/se/2.mp3")
+  audio.se.se-3(src="/sounds/se/3.mp3")
+  audio.se.se-4(src="/sounds/se/4.mp3")
+  audio.se.se-5(src="/sounds/se/5.mp3")
 </template>
 
 <script>
@@ -156,7 +181,9 @@ export default {
       currentUnitStatus: {},
       isFinished: false,
       isShareModalShown: false,
-      bgm: null
+      bgm: null,
+      isBgmMuted: true,
+      se: {}
     }
   },
 
@@ -189,6 +216,11 @@ export default {
     currentUrl() {
       if (process.server) return
       return window.location.href
+    },
+
+    isTouchDevice() {
+      if (process.server) return
+      return 'ontouchstart' in window
     }
   },
 
@@ -245,6 +277,20 @@ export default {
     }
 
     this.bgm = this.$el.querySelector('.bgm')
+    Array.from(Array(5).keys()).forEach(num => {
+      this.$set(
+        this.se,
+        String(num + 1),
+        this.$el.querySelector(`.se-${num + 1}`)
+      )
+    })
+  },
+
+  destroyed() {
+    // 緊急対応
+    // ユーザーAがユーザーBのこのページを見たあとインベントリに行くと、ユーザーBのヒーローも見えてしまうため
+    // [TODO] storeに入れるヒーローの管理方法検討
+    location.reload()
   },
 
   methods: {
@@ -261,8 +307,28 @@ export default {
     },
 
     battleStart() {
+      this.bgm.muted = true
+      Array.from(Array(5).keys()).forEach(
+        num => (this.se[num + 1].muted = true)
+      )
       this.bgm.play()
       this.isReady = true
+    },
+
+    toggleBgmPause() {
+      if (this.bgm.muted) {
+        this.bgm.muted = false
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = false)
+        )
+        this.isBgmMuted = false
+      } else {
+        this.bgm.muted = true
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = true)
+        )
+        this.isBgmMuted = true
+      }
     },
 
     onCountUpReady(instance) {
@@ -334,6 +400,7 @@ export default {
     },
 
     goNextAction(e) {
+      if (this.isTouchDevice) return
       e.target.nextSibling.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
@@ -411,6 +478,13 @@ export default {
               const transform = `translate(-50%, -50%) scale(${rate * 2})`
               effectElem.style.transform = transform
               setTimeout(() => this.animateEffect(effectElem), index * 200)
+
+              const effectStr = Array.from(effectElem.classList.entries())
+                .filter(c => c[1].startsWith('effect-'))
+                .pop()
+              const effectId = Number(effectStr[1].split('-')[1])
+              this.se[effectId].play()
+
               const damageElem = reactorElem.querySelector('.damage')
               setTimeout(() => {
                 damageElem.classList.add('animated', 'bounce', 'damaged')
@@ -495,6 +569,10 @@ export default {
       const prevHp = prevUnits[position].hp
       const currentHp = action.units[position].hp
       return prevHp - currentHp
+    },
+
+    getTeamName(position) {
+      return position < 3 ? 'myTeam' : 'opponentTeam'
     },
 
     openStatusModal(unit) {
@@ -630,6 +708,19 @@ export default {
         font-weight: normal;
         margin: 0 0.5rem;
       }
+    }
+  }
+
+  &__play,
+  &__close {
+    margin-left: 1rem;
+  }
+
+  &__play {
+    display: flex;
+
+    img {
+      width: 1.2rem;
     }
   }
 }
@@ -844,14 +935,26 @@ export default {
 
   &__image {
     padding: 0.5rem;
+    position: relative;
 
-    img {
+    > img {
       border-radius: 0.5rem;
       height: auto;
       image-rendering: pixelated;
       object-fit: cover;
       vertical-align: middle;
       width: 100%;
+    }
+  }
+
+  &__state {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+
+    img {
+      width: 2rem;
     }
   }
 
@@ -937,24 +1040,12 @@ export default {
   }
 
   &--myTeam {
-    border-left: 0.5rem solid $color-battle-user-1;
-
-    @media (min-width: $breakpoint) {
-      border-width: 1rem;
-    }
-
     h3 {
       color: $color-battle-user-1;
     }
   }
 
   &--opponentTeam {
-    border-left: 0.5rem solid $color-battle-user-2;
-
-    @media (min-width: $breakpoint) {
-      border-width: 1rem;
-    }
-
     h3 {
       color: $color-battle-user-2;
     }
@@ -962,7 +1053,7 @@ export default {
 
   &__label {
     align-items: center;
-    color: #999;
+    color: #fff;
     display: flex;
     font-weight: bold;
     font-family: Oswald;
@@ -1004,9 +1095,37 @@ export default {
     animation-duration: 0.3s !important;
     display: flex;
     flex: 1;
+    position: relative;
     text-align: center;
     width: 100%;
-    margin: 0;
+    margin: -0.5rem 0 0;
+
+    &::after {
+      border-radius: 1rem;
+      bottom: 1rem;
+      content: '';
+      display: block;
+      height: 0.5rem;
+      left: 10%;
+      position: absolute;
+      width: 80%;
+
+      @media (min-width: $breakpoint) {
+        height: 1rem;
+      }
+    }
+
+    &--myTeam {
+      &::after {
+        background: $color-battle-user-1;
+      }
+    }
+
+    &--opponentTeam {
+      &::after {
+        background: $color-battle-user-2;
+      }
+    }
 
     img {
       border-radius: 0.5rem;
@@ -1025,7 +1144,7 @@ export default {
     position: relative;
 
     .damage {
-      bottom: -0.75rem;
+      bottom: 0;
       color: #fff;
       font-family: 'Merriweather Sans';
       font-size: 1.8rem;
@@ -1039,6 +1158,7 @@ export default {
       width: 100%;
       transition: all 0.3s;
       opacity: 0;
+      z-index: 1;
 
       @media (min-width: $breakpoint) {
         font-size: 3rem;
@@ -1076,7 +1196,7 @@ export default {
   }
 
   &__effect {
-    @for $i from 1 through 11 {
+    @for $i from 1 through 12 {
       &.effect-#{$i} {
         background: url('~assets/images/effects/#{$i}.png') no-repeat 0 0;
         opacity: 0;
@@ -1087,6 +1207,7 @@ export default {
         transition: opacity 0.3s;
         top: 50%;
         width: 100px;
+        z-index: 2;
 
         &.active {
           opacity: 1;
@@ -1214,8 +1335,26 @@ export default {
       }
 
       &__skills {
+        h3 {
+          color: #999;
+        }
+
         ol {
+          list-style-type: none;
           margin: 1rem 0;
+          padding: 0;
+        }
+
+        li,
+        > div {
+          align-items: center;
+          display: flex;
+          margin-top: 1rem;
+        }
+
+        img {
+          margin-right: 1rem;
+          width: 2rem;
         }
       }
     }

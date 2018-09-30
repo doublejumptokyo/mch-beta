@@ -14,9 +14,9 @@ let BattleManager = artifacts.require('BattleManager')
 module.exports = function (deployer) {
     deployer.then(async function() {
         await deployer.deploy(BattleManager)
+
         let battleManager = await BattleManager.deployed()
         let rank = await Rank.deployed()
-
         await rank.addSigner(BattleManager.address)
         await battleManager.setRankAddress(Rank.address)
         await battleManager.setBattleTransactionAddress(BattleTransaction.address)
