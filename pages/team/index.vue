@@ -16,7 +16,7 @@
     no-ssr
       ol
         template(v-for="(unit, index) in units")
-          unit-list-item(
+          unit-list-item.team__listItem(
             v-if="unit"
             :to="`/team/${index + 1}`"
             :unit="getUnit(unit)"
@@ -141,6 +141,16 @@ export default {
 
     * {
       user-select: none;
+    }
+  }
+
+  &__listItem {
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.5;
     }
   }
 }

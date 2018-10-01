@@ -13,13 +13,6 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
 export default {
   props: {
     isFixedButtonShown: { type: Boolean, default: false }
-  },
-  methods: {
-    async logout() {
-      await this.$store.dispatch('logout')
-      await this.$router.push('/')
-      window.location.reload()
-    }
   }
 }
 </script>
