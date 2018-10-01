@@ -158,6 +158,7 @@ export default {
 
     @media (min-width: $breakpoint) {
       margin: 0.5rem -2rem -1rem;
+      width: calc(100% + 4rem);
     }
 
     ul {
