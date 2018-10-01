@@ -111,10 +111,18 @@
                 img(:src="require('~/assets/images/icons/status/int.png')")
                 span {{ selectedHero.intl }}
             .detailViewer__skills
+              h4 Active
               .detailViewer__skill.detailViewer__activeSkill
-                span {{ selectedHero.activeSkill.name[$i18n.locale] }}
+                img(:src="require(`~/assets/images/icons/skill/${selectedHero.activeSkill.iconFileName}`)")
+                div
+                  p {{ selectedHero.activeSkill.name[$i18n.locale] }}
+                  p {{ selectedHero.activeSkill.description[$i18n.locale] }}
+              h4 Passive
               .detailViewer__skill.detailViewer__passiveSkill
-                span {{ selectedHero.passiveSkill.name[$i18n.locale] }}
+                img(:src="require(`~/assets/images/icons/skill/${selectedHero.passiveSkill.iconFileName}`)")
+                div
+                  p {{ selectedHero.passiveSkill.name[$i18n.locale] }}
+                  p {{ selectedHero.passiveSkill.description[$i18n.locale] }}
     .heroModal__footer(slot="footer")
       button.heroModal__cancelButton(@click="heroModalCancel") Cancel
       button.heroModal__submitButton(@click="heroModalSubmit") OK
@@ -147,7 +155,10 @@
                 span(:class="{ 'detailViewer__status--plus': selectedItem[isItemModalShown].intl > 0, 'detailViewer__status--minus': selectedItem[isItemModalShown].intl < 0, 'detailViewer__status--zero': selectedItem[isItemModalShown].intl === 0 }") {{ selectedItem[isItemModalShown].intl }}
             .detailViewer__skills
               .detailViewer__skill.detailViewer__activeSkill
-                span {{ selectedItem[isItemModalShown].activeSkill.name[$i18n.locale] }}
+                img(:src="require(`~/assets/images/icons/skill/${selectedItem[isItemModalShown].activeSkill.iconFileName}`)")
+                div
+                  p {{ selectedItem[isItemModalShown].activeSkill.name[$i18n.locale] }}
+                  p {{ selectedItem[isItemModalShown].activeSkill.description[$i18n.locale]}}
     .itemModal__footer(slot="footer")
       button.itemModal__cancelButton(@click="itemModalCancel(isItemModalShown)") Cancel
       button.itemModal__submitButton(@click="itemModalSubmit(isItemModalShown)") OK
