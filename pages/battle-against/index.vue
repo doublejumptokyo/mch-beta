@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import UserList from '~/components/UserList'
 
 const TOTAL_USER_COUNT = 415 - 20
@@ -19,15 +20,18 @@ export default {
       users: []
     }
   },
+  computed: mapState(['loomAddress']),
   async beforeMount() {
     const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
     const addresses = await this.$rank.list(from)
     const users = []
     await Promise.all(
-      addresses.map(async address => {
-        const user = await this.$user.get(address)
-        users.push({ name: user.name, address })
-      })
+      addresses
+        .filter(address => address !== this.loomAddress)
+        .map(async address => {
+          const user = await this.$user.get(address)
+          users.push({ name: user.name, address })
+        })
     )
     this.$set(this, 'users', users)
   }
