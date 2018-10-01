@@ -79,7 +79,9 @@
             p {{ hero.passiveSkill.description[$i18n.locale] }}
 
   footer.positionPage__footer
-    button(@click="submit") OK
+    button(@click="submit")
+      fa-icon(icon="check")
+      span OK
 
   modal.heroModal(type="bottom" v-if="isHeroModalShown" @modal-close="heroModalCancel")
     h2.heroModal__header(slot="header") Change Hero
@@ -310,7 +312,13 @@ export default {
   }
 
   &__footer {
-    margin: 2rem 0 1rem;
+    background: #444;
+    bottom: 0;
+    left: 0;
+    margin: 0 -1rem;
+    padding: 1rem;
+    position: sticky;
+    width: calc(100% + 2rem);
 
     button {
       background: #f1c40f;
@@ -321,6 +329,14 @@ export default {
       max-width: 640px;
       padding: 1rem;
       width: 100%;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.5rem;
+      }
+
+      svg {
+        margin-right: 0.5rem;
+      }
     }
   }
 }
