@@ -85,6 +85,7 @@ module.exports = {
     '@nuxtjs/proxy',
     // '@nuxtjs/bulma',
     '@nuxtjs/toast',
+    'cookie-universal-nuxt',
     ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
     ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
   ],

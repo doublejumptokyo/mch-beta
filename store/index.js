@@ -22,18 +22,22 @@ export const mutations = {
   },
   SET_HAS_WALLET(state, hasWallet) {
     state.hasWallet = hasWallet
+    this.$cookies.set('mch-beta:has_wallet', hasWallet)
   },
   SET_ETH_ADDRESS(state, address) {
     state.ethAddress = address
   },
   SET_LOOM_ADDRESS(state, address) {
     state.loomAddress = address
+    this.$cookies.set('mch-beta:loom_address', address)
   },
   SET_PRIVATE_KEY(state, key) {
     state.dappsChainPrivateKeyBase64 = key
   },
   DELETE_PRIVATE_KEYS(state) {
     state.dappsChainPrivateKeyBase64 = null
+    this.$cookies.remove('mch-beta:has_wallet')
+    this.$cookies.remove('mch-beta:loom_address')
   }
 }
 
@@ -62,6 +66,8 @@ export const actions = {
     const sig = await this.$ethManager.getSignatureAsync(dataToSign)
     const key = await this.$keyManager.loginAsync(ethAddress, sig, message)
     window && window.localStorage.setItem(storageKeyName, key)
+    this.$cookies.set('mch-beta:has_wallet', true)
+    this.$cookies.set('mch-beta:loom_address', 'LOOM_ADDRESS')
     window && window.location.reload()
   },
   async logout({ commit }) {
