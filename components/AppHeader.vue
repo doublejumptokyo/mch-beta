@@ -81,6 +81,7 @@ export default {
     setLang(lang) {
       this.$i18n.locale = lang
       this.isLangDropdownShown = false
+      window.localStorage.setItem('mch-beta:lang', lang)
     }
   }
 }
