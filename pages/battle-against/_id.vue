@@ -405,8 +405,8 @@ export default {
       if (!nextElem) return
       nextElem.scrollIntoView({
         behavior: 'smooth',
-        block: 'center',
-        inline: 'center'
+        block: this.isTouchDevice ? 'nearest' : 'center',
+        inline: this.isTouchDevice ? 'nearest' : 'center'
       })
     },
 
