@@ -62,12 +62,10 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 98px;
   position: relative;
 
   @media (min-width: $breakpoint) {
     align-items: center;
-    padding-top: 104px;
   }
 
   &--modalShown {
@@ -79,7 +77,7 @@ export default {
 
 .appHeader {
   left: 0;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 2;
