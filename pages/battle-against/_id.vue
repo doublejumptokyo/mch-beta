@@ -701,6 +701,7 @@ export default {
   }
 
   &__battleUsers {
+    align-items: center;
     flex: 1;
     display: flex;
     margin: 0 1rem;
@@ -710,11 +711,31 @@ export default {
     white-space: nowrap;
 
     span {
+      display: inline-block;
       flex: 1;
       font-weight: bold;
 
+      &:nth-of-type(1),
+      &:nth-of-type(3) {
+        &::before {
+          content: '●';
+          margin-right: 0.5rem;
+        }
+      }
+
+      &:nth-of-type(1) {
+        &::before {
+          color: $color-battle-user-1;
+        }
+      }
+
+      &:nth-of-type(3) {
+        &::before {
+          color: $color-battle-user-2;
+        }
+      }
+
       &:nth-of-type(2) {
-        display: inline-block;
         flex: 0;
         font-weight: normal;
         margin: 0 0.5rem;
