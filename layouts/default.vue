@@ -17,7 +17,7 @@ export default {
   computed: {
     ...mapState(['env']),
     isFixedButtonShown() {
-      const notFixedButtonShown = ['users-id']
+      const notFixedButtonShown = ['users-id', 'team-unitId']
       return notFixedButtonShown.every(str => str !== this.$route.name)
     }
   },
