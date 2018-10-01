@@ -1,12 +1,12 @@
 <template lang="pug">
-.pixelatorPage
+.heroEditPage
   .page__title
-    h1 pixelatorPage
-  .pixelatorPage__content
-    .pixelatorPage__left
-      p.pixelatorPage__display
+    h1 Art edit
+  .heroEditPage__content
+    .heroEditPage__left
+      p.heroEditPage__display
         img(:src="displayImageSrc" ref="image")
-      p.pixelatorPage__button
+      p.heroEditPage__button
         .file
           label.file-label
             input.file-input(type="file" ref="input" @change="fileChanged")
@@ -14,7 +14,7 @@
               span.file-icon
                 fa-icon(icon="upload")
               span.file-label Choose a file
-    .pixelatorPage__right
+    .heroEditPage__right
       .pixelatedData(v-if="pixelatedData")
         section
           h3 labelsFromAws
@@ -136,7 +136,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pixelatorPage {
+.heroEditPage {
   @media (min-width: $breakpoint) {
     &__content {
       display: flex;
