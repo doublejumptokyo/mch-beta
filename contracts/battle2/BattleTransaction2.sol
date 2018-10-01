@@ -8,13 +8,14 @@ import "./BattleUtil.sol";
 
 contract BattleTransaction2 {
 
-    event BattleAction(uint32 indexed battleId, uint8 actionCounts, uint16 skillId, uint8 actionPosition, bool[7] effectPositions, int16 poisonDamage, uint128[7] data);
-    event BattleEnd(uint32 indexed battleId, address indexed attacker, address indexed defender, uint8 result);
+    event BattleAction2(uint32 indexed battleId, uint8 actionCounts, uint16 skillId, uint8 actionPosition, bool[7] effectPositions, int16 poisonDamage, uint128[7] data);
+    event BattleFinished2(uint32 indexed battleId, uint8 result, uint8 actionCounts);
 
     using BattleCharge for BC.Battle;
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
+    uint32[] public battleIdsInProgress;
     mapping(uint32 => BC.Battle) internal battles;
     mapping(uint16 => BC.Skill) internal skills;
     
@@ -24,18 +25,24 @@ contract BattleTransaction2 {
     }
     
     function setBattle(uint32 _battleId, uint256[7] _data, uint16 _randomSeed) public {
-        BC.Battle memory battle;
+        BC.Battle storage battle = battles[_battleId];
+        require(!battle.exists);
+
         battle.exists = true;
         battle.id = _battleId;
         battle.actionCounts = 1;
-        battle.state = BC.BattleState.init;
+        battle.state = BC.BattleState.progress;
         battle.activeUnit = 6;
         battle.randomSeed = _randomSeed;
+        battleIdsInProgress.push(_battleId);
 
         for (uint8 i = 0; i < 7; i++) {
-            BC.Unit memory unit;
-            unit.exists = true;
             uint256 data = _data[i];
+            if (data == 0) continue;
+            
+            BC.Unit storage unit = battle.units[i];
+            unit.exists = true;
+
             uint256 digit = 77;
             digit -= 1; data %= 10**digit;
             digit -= 1; unit.position = uint8(data/10**digit); data %= 10**digit;
@@ -55,11 +62,13 @@ contract BattleTransaction2 {
             unit.current.intl = unit.original.intl;
             unit.current.agi = unit.original.agi;
             unit.passiveEnabled = true;
-            battle.units[i] = unit;
         }
     }
 
-    function next(BC.Battle memory battle) internal returns (BC.BattleState) {
+    function next(uint32 _battleId) public returns (BC.BattleState) {
+        BC.Battle storage battle = battles[_battleId];
+        require(battle.exists);
+
         uint16 skillId;
 
         bool occurePassiveSkill;
@@ -72,7 +81,7 @@ contract BattleTransaction2 {
                 skillId = battle.units[i].passiveId;
                 if (battle.usePassiveSkill(skills[skillId])) {
                     occurePassiveSkill = true;
-                    emit BattleAction(battle.id, battle.actionCounts, skillId, battle.units[battle.actionUnit].position, battle.getEffectPositions(), 0, battle.getActionUnitData());
+                    emit BattleAction2(battle.id, battle.actionCounts, skillId, battle.units[battle.actionUnit].position, battle.getEffectPositions(), 0, battle.getActionUnitData());
                     battle.nextActionInit();
                 }
             }
@@ -80,6 +89,7 @@ contract BattleTransaction2 {
         battle.passiveLoop = 0;
 
         if (battle.checkEnd()) {
+            emit BattleFinished2(battle.id, uint8(battle.state), battle.actionCounts - 1);
             return battle.state;
         }
 
@@ -90,7 +100,7 @@ contract BattleTransaction2 {
             else skillId = battle.nextActiveSkillId(battle.activeUnit);
             battle.useSkill(skills[skillId]);
             int16 poisonDamage = battle.poisonDamage();
-            emit BattleAction(battle.id, battle.actionCounts, skillId, battle.units[battle.actionUnit].position, battle.getEffectPositions(), poisonDamage, battle.getActionUnitData());
+            emit BattleAction2(battle.id, battle.actionCounts, skillId, battle.units[battle.actionUnit].position, battle.getEffectPositions(), poisonDamage, battle.getActionUnitData());
             battle.nextActionInit();
         }
         

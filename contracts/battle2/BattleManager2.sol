@@ -10,6 +10,10 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/SignerRole.sol";
 contract BattleManager2 is SignerRole {
 
     event BattleStart2(uint32 indexed battleId, address indexed attacker, address indexed defender, uint256[7] data, uint16 randomSeed);
+    event BattleEnd2(uint32 indexed battleId, address indexed attacker, address indexed defender, uint8 result, uint8 actionCounts);
+
+    uint8 constant public State$progress = 0;
+    uint8 constant public State$win = 2;
 
     DeckManager public deckManager;
     Rank public rank;
@@ -18,12 +22,11 @@ contract BattleManager2 is SignerRole {
     mapping(address=>uint32) public addressToBattleId;
     mapping(uint32=>BattleInfo) public battleIdToBattleInfo;
 
-    enum State {progress, win, lose, timeUp}
-    
     struct BattleInfo {
         address attacker;
         address defender;
-        State state;
+        uint8 actionCounts;
+        uint8 state;
         bool rankBattle;
         bool exists;
     }
@@ -67,26 +70,28 @@ contract BattleManager2 is SignerRole {
         emit BattleStart2(battleId, msg.sender, _address, eventDatas, randomSeed);
 
         addressToBattleId[msg.sender] = battleId;
-        battleIdToBattleInfo[battleId] = BattleInfo(msg.sender, _address, State.progress, _rankBattle, true);
+        battleIdToBattleInfo[battleId] = BattleInfo(msg.sender, _address, 0, State$progress, _rankBattle, true);
     }
     
-    function setResult(uint32 _battleId, uint8 _result) public onlySigner {
+    function setResult(uint32 _battleId, uint8 _result, uint8 _actionCounts) public onlySigner {
         BattleInfo storage battleInfo = battleIdToBattleInfo[_battleId];
         if (!battleInfo.exists) return;
         
-        if (_result == 2) battleInfo.state = State.win;
-        else if (_result == 3) battleInfo.state = State.lose;
-        else if (_result == 4) battleInfo.state = State.timeUp;
+        battleInfo.state = _result;
+        battleInfo.actionCounts = _actionCounts;
     }
     
     function end() public {
         uint32 _battleId = addressToBattleId[msg.sender];
         BattleInfo storage battleInfo = battleIdToBattleInfo[_battleId];
-        if (!battleInfo.exists || battleInfo.state == State.progress) return;
+        if (!battleInfo.exists || battleInfo.state == State$progress) return;
 
-        if (battleInfo.rankBattle && battleInfo.state == State.win) {
+        if (battleInfo.rankBattle && battleInfo.state == State$win) {
             rank.swap(msg.sender, battleInfo.defender);
         }
+        
+        emit BattleEnd2(_battleId, battleInfo.attacker, battleInfo.defender, battleInfo.state, battleInfo.actionCounts);
+        
         delete addressToBattleId[msg.sender];
         delete battleIdToBattleInfo[_battleId];
     }
