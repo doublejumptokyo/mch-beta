@@ -300,7 +300,7 @@ library BattleSkill {
     function getRandom(BC.Battle storage battle, uint16 max) internal returns(uint16) {
         return uint16(
             keccak256(
-                abi.encodePacked(blockhash(block.number-1), battle.randomCounts++)
+                abi.encodePacked(battle.randomSeed, battle.randomCounts++)
             )) % max;
     }
 
