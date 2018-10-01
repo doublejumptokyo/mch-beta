@@ -16,7 +16,7 @@
         span {{ $store.state.user.name }}
         span vs
         span {{ opponentName }}
-      button.header__play(@click="toggleBgmPause")
+      button.header__play(@click="toggleBgmMute")
         img(:src="require('~/assets/images/volume-mute.svg')" v-if="isBgmMuted")
         img(:src="require('~/assets/images/volume.svg')" v-else)
       nuxt-link.header__close(to="/battle-against" tag="button")
@@ -183,7 +183,8 @@ export default {
       isShareModalShown: false,
       bgm: null,
       isBgmMuted: true,
-      se: {}
+      se: {},
+      muteSettingKey: 'mch-beta:battle_allow_sound'
     }
   },
 
@@ -307,27 +308,35 @@ export default {
     },
 
     battleStart() {
-      this.bgm.muted = true
-      Array.from(Array(5).keys()).forEach(
-        num => (this.se[num + 1].muted = true)
-      )
-      this.bgm.play()
-      this.isReady = true
-    },
-
-    toggleBgmPause() {
-      if (this.bgm.muted) {
+      const isAllowSound = window.localStorage.getItem(this.muteSettingKey)
+      if (isAllowSound === 'true') {
         this.bgm.muted = false
         Array.from(Array(5).keys()).forEach(
           num => (this.se[num + 1].muted = false)
         )
-        this.isBgmMuted = false
       } else {
         this.bgm.muted = true
         Array.from(Array(5).keys()).forEach(
           num => (this.se[num + 1].muted = true)
         )
+      }
+      this.bgm.play()
+      this.isReady = true
+    },
+
+    toggleBgmMute() {
+      const seCount = 5
+      const seCountArray = Array.from(Array(seCount).keys())
+      if (this.bgm.muted) {
+        this.bgm.muted = false
+        seCountArray.forEach(num => (this.se[num + 1].muted = false))
+        this.isBgmMuted = false
+        window.localStorage.setItem(this.muteSettingKey, true)
+      } else {
+        this.bgm.muted = true
+        seCountArray.forEach(num => (this.se[num + 1].muted = true))
         this.isBgmMuted = true
+        window.localStorage.setItem(this.muteSettingKey, false)
       }
     },
 
