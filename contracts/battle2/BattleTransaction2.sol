@@ -9,13 +9,15 @@ import "./BattleUtil.sol";
 contract BattleTransaction2 {
 
     event BattleAction2(uint32 indexed battleId, uint8 actionCounts, uint16 skillId, uint8 actionPosition, bool[7] effectPositions, int16 poisonDamage, uint128[7] data);
-    event BattleFinished2(uint32 indexed battleId, uint8 result, uint8 actionCounts);
+    event BattleCompleted2(uint32 indexed battleId, uint8 result, uint8 actionCounts);
 
     using BattleCharge for BC.Battle;
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
-    uint32[] public battleIdsInProgress;
+    uint32[] public battleIds;
+    uint32 public progressCounts;
+    uint32 public finishedCounts;
     mapping(uint32 => BC.Battle) internal battles;
     mapping(uint16 => BC.Skill) internal skills;
     
@@ -34,7 +36,8 @@ contract BattleTransaction2 {
         battle.state = BC.BattleState.progress;
         battle.activeUnit = 6;
         battle.randomSeed = _randomSeed;
-        battleIdsInProgress.push(_battleId);
+        battleIds.push(_battleId);
+        progressCounts++;
 
         for (uint8 i = 0; i < 7; i++) {
             uint256 data = _data[i];
@@ -89,7 +92,7 @@ contract BattleTransaction2 {
         battle.passiveLoop = 0;
 
         if (battle.checkEnd()) {
-            emit BattleFinished2(battle.id, uint8(battle.state), battle.actionCounts - 1);
+            emit BattleCompleted2(battle.id, uint8(battle.state), battle.actionCounts - 1);
             return battle.state;
         }
 
@@ -107,10 +110,15 @@ contract BattleTransaction2 {
         return battle.state;
     }
 
-    function nexts(uint32 battleId, uint8 counts) public returns (BC.BattleState result) {
+    function nexts(uint8 counts) public returns (BC.BattleState result) {
+        if (finishedCounts >= progressCounts) return;
+        uint32 battleId = battleIds[finishedCounts];
         for (uint8 i = 0; i < counts; i++) {
             result = next(battleId);
-            if (result != BC.BattleState.progress) return;
+            if (result != BC.BattleState.progress) {
+                finishedCounts++;
+                break;
+            }
         }
     }
 
