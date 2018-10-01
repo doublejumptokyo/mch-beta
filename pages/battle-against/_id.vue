@@ -401,7 +401,9 @@ export default {
 
     goNextAction(e) {
       if (this.isTouchDevice) return
-      e.target.nextSibling.scrollIntoView({
+      const nextElem = e.target.nextElementSibling
+      if (!nextElem) return
+      nextElem.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
         inline: 'center'
