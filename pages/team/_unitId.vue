@@ -96,7 +96,7 @@
           img(:src="require(`~/assets/images/heroes/${selectedHero.fileName}`)")
           .detailViewer__data
             h3 {{ selectedHero.name[$i18n.locale] }}
-            h4 {{ selectedHero.anotherName }}
+            p {{ selectedHero.anotherName }}
             .detailViewer__statuses
               .detailViewer__status
                 img(:src="require('~/assets/images/icons/status/hp.png')")
@@ -111,17 +111,19 @@
                 img(:src="require('~/assets/images/icons/status/int.png')")
                 span {{ selectedHero.intl }}
             .detailViewer__skills
-              h4 Active
               .detailViewer__skill.detailViewer__activeSkill
-                img(:src="require(`~/assets/images/icons/skill/${selectedHero.activeSkill.iconFileName}`)")
                 div
-                  p {{ selectedHero.activeSkill.name[$i18n.locale] }}
+                  h4 Active
+                  img(:src="require(`~/assets/images/icons/skill/${selectedHero.activeSkill.iconFileName}`)")
+                div
+                  h5 {{ selectedHero.activeSkill.name[$i18n.locale] }}
                   p {{ selectedHero.activeSkill.description[$i18n.locale] }}
-              h4 Passive
               .detailViewer__skill.detailViewer__passiveSkill
-                img(:src="require(`~/assets/images/icons/skill/${selectedHero.passiveSkill.iconFileName}`)")
                 div
-                  p {{ selectedHero.passiveSkill.name[$i18n.locale] }}
+                  h4 Passive
+                  img(:src="require(`~/assets/images/icons/skill/${selectedHero.passiveSkill.iconFileName}`)")
+                div
+                  h5 {{ selectedHero.passiveSkill.name[$i18n.locale] }}
                   p {{ selectedHero.passiveSkill.description[$i18n.locale] }}
     .heroModal__footer(slot="footer")
       button.heroModal__cancelButton(@click="heroModalCancel") Cancel
@@ -155,9 +157,11 @@
                 span(:class="{ 'detailViewer__status--plus': selectedItem[isItemModalShown].intl > 0, 'detailViewer__status--minus': selectedItem[isItemModalShown].intl < 0, 'detailViewer__status--zero': selectedItem[isItemModalShown].intl === 0 }") {{ selectedItem[isItemModalShown].intl }}
             .detailViewer__skills
               .detailViewer__skill.detailViewer__activeSkill
-                img(:src="require(`~/assets/images/icons/skill/${selectedItem[isItemModalShown].activeSkill.iconFileName}`)")
                 div
-                  p {{ selectedItem[isItemModalShown].activeSkill.name[$i18n.locale] }}
+                  h4 Active
+                  img(:src="require(`~/assets/images/icons/skill/${selectedItem[isItemModalShown].activeSkill.iconFileName}`)")
+                div
+                  h5 {{ selectedItem[isItemModalShown].activeSkill.name[$i18n.locale] }}
                   p {{ selectedItem[isItemModalShown].activeSkill.description[$i18n.locale]}}
     .itemModal__footer(slot="footer")
       button.itemModal__cancelButton(@click="itemModalCancel(isItemModalShown)") Cancel
@@ -747,8 +751,6 @@ export default {
   }
 
   &__skills {
-    display: flex;
-    justify-content: space-between;
     margin-top: 0.5rem;
 
     @media (min-width: $breakpoint) {
@@ -757,28 +759,41 @@ export default {
   }
 
   &__skill {
-    border: 1px solid #ccc;
+    align-items: center;
     border-radius: 1rem;
+    display: flex;
     flex: 1;
-    margin-left: 1rem;
-    min-width: 0;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.5rem;
 
     @media (min-width: $breakpoint) {
       padding: 1rem;
     }
 
-    &:first-of-type {
-      margin-left: 0;
+    div:first-of-type {
+      margin-right: 0.5rem;
+      min-width: 4rem;
+      text-align: center;
     }
 
-    span {
+    h4 {
+      border: 1px solid #666;
+      border-radius: 0.5rem;
+      color: #999;
+      display: inline-block;
       font-size: 0.8rem;
-      line-height: 1;
+      margin-bottom: 0.5rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    img {
       display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      margin: 0 auto;
+      width: 1.2rem;
+    }
+
+    p {
+      color: #999;
+      font-size: 0.8rem;
 
       @media (min-width: $breakpoint) {
         font-size: 1rem;
