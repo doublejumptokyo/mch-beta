@@ -13,7 +13,9 @@
             :skillOrder="getSkillOrder(unit)"
           )
   .userPage__battleButton
-    nuxt-link(:to="`/battle-against/${$route.params.id}`") Battle Start
+    nuxt-link(:to="`/battle-against/${$route.params.id}`")
+      span Battle Start
+      fa-icon(icon="arrow-right")
 </template>
 
 <script>
@@ -102,6 +104,14 @@ export default {
       padding: 1rem;
       text-decoration: none;
       max-width: 640px;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1.5rem;
+      }
+
+      svg {
+        margin-left: 0.5rem;
+      }
     }
   }
 }
