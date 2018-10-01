@@ -123,7 +123,7 @@
     h2.itemModal__header(slot="header") Change Item
     .itemModal__body(slot="body")
       .itemSelector
-        .itemSelector__item(v-for="item in $store.state.extensions" :class="{ 'itemSelector__item--disabled': isDisabled(item.id, 'item') }")
+        .itemSelector__item(v-for="item in $store.state.extensions" :class="{ 'itemSelector__item--disabled': isDisabled(item.id, 'item', isItemModalShown) }")
           label
             input(type="radio" name="itemSelector" :value="item" v-model="selectedItem[isItemModalShown]")
             .itemSelector__itemInner
@@ -221,11 +221,18 @@ export default {
         return this.item2.activeSkill
       }
     },
-    isDisabled(id, type) {
+    isDisabled(id, type, extensionType = false) {
       if (type === 'hero') {
-        return !!this.units.find(unit => unit[0] === id)
+        const isAlreadyAdded = this.units.some(unit => unit[0] === id)
+        const isCurrentHero = this.units[this.positionIndex][0] === id
+        return isAlreadyAdded && !isCurrentHero
       } else if (type === 'item') {
-        return !!this.units.find(unit => unit[1] === id || unit[2] === id)
+        const isAlreadyAdded = this.units.some(unit => {
+          return unit[1] === id || unit[2] === id
+        })
+        const extIndex = extensionType === 'item1' ? 1 : 2
+        const isCurrentExt = this.units[this.positionIndex][extIndex] === id
+        return isAlreadyAdded && !isCurrentExt
       }
     },
     heroModalOpen() {
