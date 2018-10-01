@@ -6,12 +6,18 @@ Vue.use(VueI18n)
 export default ({ app, req }) => {
   let locale = 'en'
   if (process.client) {
-    // browserから取る場合はnavigator経由で取得
-    locale =
-      window.navigator.language &&
-      window.navigator.language.substr(0, 2) === 'ja'
-        ? 'ja'
-        : 'en'
+    // browserから取る場合はlocalStorageかnavigator経由で取得
+    const langSetting = window.localStorage.getItem('mch-beta:lang')
+    if (langSetting) {
+      locale = langSetting
+    } else {
+      locale =
+        window.navigator.language &&
+        window.navigator.language.substr(0, 2) === 'ja'
+          ? 'ja'
+          : 'en'
+    }
+    locale = locale === 'ja' ? 'ja' : 'en'
   } else if (req) {
     // ssrの場合はrequestから取得)
     locale = req.headers['accept-language']
