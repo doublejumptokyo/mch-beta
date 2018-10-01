@@ -97,6 +97,10 @@ export default {
   padding: 0.5rem 1rem;
   white-space: nowrap;
 
+  @media (min-width: $breakpoint) {
+    padding: 1rem 2rem;
+  }
+
   a {
     color: #666;
     text-decoration: none;
@@ -121,6 +125,10 @@ export default {
 
   &__lang {
     margin: auto auto auto 1rem;
+
+    @media (min-width: $breakpoint) {
+      margin-left: 2rem;
+    }
 
     .dropdown-trigger .button,
     .dropdown-menu {
@@ -147,6 +155,10 @@ export default {
   &__globalNavi {
     margin: 0.5rem -1rem -0.5rem;
     width: calc(100% + 2rem);
+
+    @media (min-width: $breakpoint) {
+      margin: 0.5rem -2rem -1rem;
+    }
 
     ul {
       display: flex;
