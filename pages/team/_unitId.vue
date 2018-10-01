@@ -503,17 +503,42 @@ export default {
   > img {
     margin-right: 0.5rem;
     width: 1.2rem;
+
+    @media (min-width: $breakpoint) {
+      margin-right: 1rem;
+      width: 2rem;
+    }
+  }
+
+  > div:first-of-type {
+    flex: 1;
   }
 
   p {
     color: #999;
     font-size: 0.8rem;
+
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+    }
   }
 }
 
-.activeSkill__handle {
-  color: #ccc;
-  margin-left: auto;
+.activeSkill {
+  &__handle {
+    color: #ccc;
+    cursor: grab;
+    margin-left: 0.5rem;
+
+    @media (min-width: $breakpoint) {
+      font-size: 1.8rem;
+      margin-left: 1rem;
+    }
+  }
+
+  &.sortable-chosen .activeSkill__handle {
+    cursor: grabbing;
+  }
 }
 
 .heroModal,
