@@ -21,7 +21,7 @@ const loomLocal = new LoomTruffleProvider(
   'NoODOcSzIe2ZaAw/gstdc1Xx+2k9yZd7u5MlqjIWlm6xwNw+O2dQjPUIZbntsne0tbO2m9un8MQ3f/9T5gzqxw=='
 )
 
-const sandChainID = "default";
+const sandChainID = "mch-sand-loom";
 const sandRead = "http://loom.sand.mch.djty.co:46658/query";
 const sandWrite = "http://loom.sand.mch.djty.co:46658/rpc";
 
