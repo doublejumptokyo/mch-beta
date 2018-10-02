@@ -12,8 +12,8 @@ contract BattleManager2 is SignerRole {
     event BattleStart2(uint32 indexed battleId, address indexed attacker, address indexed defender, uint256[7] data, uint16 randomSeed);
     event BattleEnd2(uint32 indexed battleId, address indexed attacker, address indexed defender, uint8 result, uint8 actionCounts);
 
-    uint8 constant public State$progress = 0;
-    uint8 constant public State$win = 2;
+    uint8 constant public State_progress = 0;
+    uint8 constant public State_win = 2;
 
     DeckManager public deckManager;
     Rank public rank;
@@ -70,7 +70,7 @@ contract BattleManager2 is SignerRole {
         emit BattleStart2(battleId, msg.sender, _address, eventDatas, randomSeed);
 
         addressToBattleId[msg.sender] = battleId;
-        battleIdToBattleInfo[battleId] = BattleInfo(msg.sender, _address, 0, State$progress, _rankBattle, true);
+        battleIdToBattleInfo[battleId] = BattleInfo(msg.sender, _address, 0, State_progress, _rankBattle, true);
     }
     
     function setResult(uint32 _battleId, uint8 _result, uint8 _actionCounts) public onlySigner {
@@ -86,7 +86,7 @@ contract BattleManager2 is SignerRole {
         BattleInfo storage battleInfo = battleIdToBattleInfo[_battleId];
         // if (!battleInfo.exists || battleInfo.state == State$progress) return;
 
-        if (battleInfo.rankBattle && battleInfo.state == State$win) {
+        if (battleInfo.rankBattle && battleInfo.state == State_win) {
             rank.swap(msg.sender, battleInfo.defender);
         }
         
