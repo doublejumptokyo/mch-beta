@@ -84,7 +84,7 @@ contract BattleManager2 is SignerRole {
     function end() public {
         uint32 _battleId = addressToBattleId[msg.sender];
         BattleInfo storage battleInfo = battleIdToBattleInfo[_battleId];
-        if (!battleInfo.exists || battleInfo.state == State$progress) return;
+        // if (!battleInfo.exists || battleInfo.state == State$progress) return;
 
         if (battleInfo.rankBattle && battleInfo.state == State$win) {
             rank.swap(msg.sender, battleInfo.defender);

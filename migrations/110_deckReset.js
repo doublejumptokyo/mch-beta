@@ -16,7 +16,7 @@ module.exports = function (deployer) {
         let deckManager = await DeckManager.deployed()
         let heroAsset = await HeroAsset.deployed()
 
-        let address = '0xA3aD2389F8666aDF188F61Bc59b553f4524AE102'
+        let address = '0x8820abba1598d89f9750a79ab0acba580872cfa7'
 
         let currentDeck = await deckManager.getDeck(address);
 
