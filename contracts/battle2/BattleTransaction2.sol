@@ -28,7 +28,7 @@ contract BattleTransaction2 {
     
     function setBattle(uint32 _battleId, uint256[7] _data, uint16 _randomSeed) public {
         BC.Battle storage battle = battles[_battleId];
-        require(!battle.exists);
+        if (battle.exists) return;
 
         battle.exists = true;
         battle.id = _battleId;

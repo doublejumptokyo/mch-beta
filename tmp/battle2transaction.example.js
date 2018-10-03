@@ -1,8 +1,22 @@
-const C_ABI_BattleManager = [
+const C_ABI_BattleTransaction = [
     {
       "constant": true,
       "inputs": [],
-      "name": "battleId",
+      "name": "finishedCounts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "progressCounts",
       "outputs": [
         {
           "name": "",
@@ -18,10 +32,10 @@ const C_ABI_BattleManager = [
       "inputs": [
         {
           "name": "",
-          "type": "address"
+          "type": "uint256"
         }
       ],
-      "name": "addressToBattleId",
+      "name": "battleIds",
       "outputs": [
         {
           "name": "",
@@ -33,141 +47,10 @@ const C_ABI_BattleManager = [
       "type": "function"
     },
     {
-      "constant": true,
       "inputs": [],
-      "name": "State$win",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "isSigner",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "rank",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "State$progress",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "uint32"
-        }
-      ],
-      "name": "battleIdToBattleInfo",
-      "outputs": [
-        {
-          "name": "attacker",
-          "type": "address"
-        },
-        {
-          "name": "defender",
-          "type": "address"
-        },
-        {
-          "name": "actionCounts",
-          "type": "uint8"
-        },
-        {
-          "name": "state",
-          "type": "uint8"
-        },
-        {
-          "name": "rankBattle",
-          "type": "bool"
-        },
-        {
-          "name": "exists",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "deckManager",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "renounceSigner",
-      "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "addSigner",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
+      "type": "constructor"
     },
     {
       "anonymous": false,
@@ -178,27 +61,37 @@ const C_ABI_BattleManager = [
           "type": "uint32"
         },
         {
-          "indexed": true,
-          "name": "attacker",
-          "type": "address"
+          "indexed": false,
+          "name": "actionCounts",
+          "type": "uint8"
         },
         {
-          "indexed": true,
-          "name": "defender",
-          "type": "address"
+          "indexed": false,
+          "name": "skillId",
+          "type": "uint16"
+        },
+        {
+          "indexed": false,
+          "name": "actionPosition",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "name": "effectPositions",
+          "type": "bool[7]"
+        },
+        {
+          "indexed": false,
+          "name": "poisonDamage",
+          "type": "int16"
         },
         {
           "indexed": false,
           "name": "data",
-          "type": "uint256[7]"
-        },
-        {
-          "indexed": false,
-          "name": "randomSeed",
-          "type": "uint16"
+          "type": "uint128[7]"
         }
       ],
-      "name": "BattleStart2",
+      "name": "BattleAction2",
       "type": "event"
     },
     {
@@ -208,16 +101,6 @@ const C_ABI_BattleManager = [
           "indexed": true,
           "name": "battleId",
           "type": "uint32"
-        },
-        {
-          "indexed": true,
-          "name": "attacker",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "defender",
-          "type": "address"
         },
         {
           "indexed": false,
@@ -230,80 +113,27 @@ const C_ABI_BattleManager = [
           "type": "uint8"
         }
       ],
-      "name": "BattleEnd2",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "SignerAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "SignerRemoved",
+      "name": "BattleCompleted2",
       "type": "event"
     },
     {
       "constant": false,
       "inputs": [
         {
-          "name": "_deckManagerAddress",
-          "type": "address"
-        }
-      ],
-      "name": "setDeckManagerAddress",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_rankAddress",
-          "type": "address"
-        }
-      ],
-      "name": "setRankAddress",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_address",
-          "type": "address"
+          "name": "_battleId",
+          "type": "uint32"
         },
         {
-          "name": "_rankBattle",
-          "type": "bool"
-        }
-      ],
-      "name": "start",
-      "outputs": [
+          "name": "_data",
+          "type": "uint256[7]"
+        },
         {
-          "name": "",
-          "type": "uint32"
+          "name": "_randomSeed",
+          "type": "uint16"
         }
       ],
+      "name": "setBattle",
+      "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
@@ -314,17 +144,55 @@ const C_ABI_BattleManager = [
         {
           "name": "_battleId",
           "type": "uint32"
-        },
+        }
+      ],
+      "name": "next",
+      "outputs": [
         {
-          "name": "_result",
-          "type": "uint8"
-        },
-        {
-          "name": "_actionCounts",
+          "name": "",
           "type": "uint8"
         }
       ],
-      "name": "setResult",
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "counts",
+          "type": "uint8"
+        }
+      ],
+      "name": "nexts",
+      "outputs": [
+        {
+          "name": "result",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint16"
+        },
+        {
+          "name": "condition",
+          "type": "uint8"
+        },
+        {
+          "name": "rate",
+          "type": "int16"
+        }
+      ],
+      "name": "initSkill",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -332,8 +200,37 @@ const C_ABI_BattleManager = [
     },
     {
       "constant": false,
-      "inputs": [],
-      "name": "end",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint16"
+        },
+        {
+          "name": "target",
+          "type": "uint8"
+        },
+        {
+          "name": "param",
+          "type": "uint8"
+        },
+        {
+          "name": "calc",
+          "type": "uint8"
+        },
+        {
+          "name": "rate",
+          "type": "int16"
+        },
+        {
+          "name": "minRate",
+          "type": "int16"
+        },
+        {
+          "name": "damage",
+          "type": "bool"
+        }
+      ],
+      "name": "addSkillEffect",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -343,36 +240,60 @@ const C_ABI_BattleManager = [
       "constant": true,
       "inputs": [
         {
-          "name": "position",
+          "name": "id",
+          "type": "uint16"
+        }
+      ],
+      "name": "getSkill",
+      "outputs": [
+        {
+          "name": "exist",
+          "type": "bool"
+        },
+        {
+          "name": "condition",
           "type": "uint8"
         },
         {
-          "name": "ids",
-          "type": "uint256[3]"
+          "name": "conditionRate",
+          "type": "int16"
         },
         {
-          "name": "params",
-          "type": "int16[4]"
+          "name": "effects",
+          "type": "uint8"
         },
         {
-          "name": "skills",
-          "type": "uint16[4]"
-        }
-      ],
-      "name": "getEventData",
-      "outputs": [
+          "name": "target",
+          "type": "uint8[3]"
+        },
         {
-          "name": "",
-          "type": "uint256"
+          "name": "param",
+          "type": "uint8[3]"
+        },
+        {
+          "name": "calc",
+          "type": "uint8[3]"
+        },
+        {
+          "name": "rate",
+          "type": "int16[3]"
+        },
+        {
+          "name": "minRate",
+          "type": "int16[3]"
+        },
+        {
+          "name": "damage",
+          "type": "bool[3]"
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
+      "stateMutability": "view",
       "type": "function"
     }
   ];
     
-const C_ADDRESS_BattleManager = '0x8608db694a4a9d5769438ba46325c348150a3865';
+const C_ADDRESS_BattleTransaction = '0xee8916f0ae2bc8c1cf75314a58c0f7afab79d3d8';
     
 const E_ABI_BattleStart = [
     {
@@ -544,28 +465,91 @@ function encodeEffectPositions(positions) {
     return results;
 }
     
-let battleManager = $nuxt.$accountManager.getContract(C_ABI_BattleManager, C_ADDRESS_BattleManager);
+let battleTransaction = $nuxt.$accountManager.getContract(C_ABI_BattleTransaction, C_ADDRESS_BattleTransaction);
     
     
 // ここまで決め打ち、ここから実行
     
-    
-let opponent = '0x3b107eba53c13d6cad7e338a6bc9f6436eb41559';
 
-let start;
 let actions = [];
-let end;
-let res;
+let completed;
+let res1;
+let res2 = [];
 let rawEvent;
 
 // BattleStart2
 // 0xcc22171b38ec51213fff72a8a777428ea09f8b1e140406e632206810f0de0e92
 // BattleEnd2
 // 0xba6b1b08ac122b4bd8dacadefb4cf338ac51d73f977ad29d6db5d55c1e1fb326
+// BattleAction2
+// 0x3e8346021d48c796b34795a1af434bf29578eb4c1b964d21f9f03601a449b2ce
+// BattleCompleted2
+// 0x89c381bcb7ff6e4dd45d036f97b14266a82bccbb76c866752a9d4ddade3dd6ec
 
 (async () => { 
+/*
+    var unit0 = web3.toBigNumber('10010010001010010001030110001015601560570250342011200120091033000000000000000');
+    var unit1 = web3.toBigNumber('11010020001030080001030070001012601260310770342008200120101034000000000000000');
+    var unit2 = web3.toBigNumber('12010030001040060001030100001017401740340660342004200120071035000000000000000');
+    var unit3 = web3.toBigNumber('13040090018050040007030100007019201920810260492007200220011014000000000000000');
+    var unit4 = web3.toBigNumber('14040070053030070007050060007018001800300870432010200320011012000000000000000');
+    var unit5 = web3.toBigNumber('15040050091040060007030060007013201320390800492005200120041010000000000000000');
+    var unit6 = web3.toBigNumber(0);
+*/
 
-    res = await battleManager.methods.start(opponent, false).send();
+res1 = await battleTransaction.methods.setBattle(502, [
+'10010010001010010001030110001015601560570250342011200120091033000000000000000',
+'11010020001030080001030070001012601260310770342008200120101034000000000000000',
+'12010030001040060001030100001017401740340660342004200120071035000000000000000',
+'13040090018050040007030100007019201920810260492007200220011014000000000000000',
+'14040070053030070007050060007018001800300870432010200320011012000000000000000',
+'15040050091040060007030060007013201320390800492005200120041010000000000000000',
+'0',
+], 0).send();
+
+//    res1 = await battleTransaction.methods.setBattle(500, [unit0,unit1,unit2,unit3,unit4,unit5,unit6], 0).send();
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+    res2.push(await battleTransaction.methods.nexts(5).send());
+
+/*
     rawEvent = res.events.BattleStart2.raw;
     rawEvent.topics.shift();
     start = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleStart, rawEvent.data, rawEvent.topics);
@@ -586,7 +570,8 @@ let rawEvent;
         hasNext = await battleManager.methods.hasNext().call();
     } while (hasNext);
     */
-/*
+
+    /*
     res = await battleManager.methods.end().send();
     rawEvent = res.events.BattleEnd2.raw;
     rawEvent.topics.shift();

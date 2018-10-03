@@ -1,0 +1,43 @@
+const { readFileSync } = require('fs');
+const LoomTruffleProvider = require('loom-truffle-provider');
+
+const key = 'NoODOcSzIe2ZaAw/gstdc1Xx+2k9yZd7u5MlqjIWlm6xwNw+O2dQjPUIZbntsne0tbO2m9un8MQ3f/9T5gzqxw=='
+
+const ips = [
+    'loom.sand.mch.djty.co',
+];
+
+const providers =
+    ips.
+    map(ip => [`http://${ip}:46658/rpc`, `http://${ip}:46658/query`]).
+    map(server => new LoomTruffleProvider('default', server[0], server[1], key));
+
+const networkNamePrefix = 'loom_sand_';
+
+let config = {
+    solc: {
+        optimizer: {
+            enabled: true,
+            runs: 200
+        }
+    },
+    networks: {
+        development: {
+            host: 'localhost',
+            port: 8545,
+            network_id: '*',
+            gas: 6721975
+        },
+    }
+};
+
+providers.forEach((provider, index) => {
+    let networkName = networkNamePrefix + index;
+    config.networks[networkName] = {
+      provider: provider,
+      network_id: '*',
+      gas: 100000000
+    };
+})
+
+module.exports = config;

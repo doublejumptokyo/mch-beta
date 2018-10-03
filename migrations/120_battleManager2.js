@@ -12,5 +12,7 @@ module.exports = function (deployer) {
         await battleManager2.setRankAddress(Rank.address)
         await battleManager2.setDeckManagerAddress(DeckManager.address)
 
+        // vlr8bjE3GA1Hz+PFE2CuzHDTmWPKqrslxEPHLsFk4yWCHrCGGRjqQgtRqq6EkmiR+tpOBl3yzQkOAXepJLAVpg==
+        await battleManager2.addSigner('0x5E6221564bB9f98C01C831417c68c44C955268D5')
     });
 }
