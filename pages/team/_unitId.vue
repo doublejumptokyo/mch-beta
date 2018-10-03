@@ -58,11 +58,17 @@
           img(:src="require('~/assets/images/icons/status/int.png')")
           p {{ computedStatus.int }}
       .skills
-        h3 Active
+        .skills__title
+          h3 Active
+          //- button
+            fa-icon(icon="sort")
+            span Sort
         draggable(
           v-model="activeSkillOrder",
           element="ol",
           :options="{ animation: 300, handle: '.activeSkill__handle' }"
+          @choose="onDragStart"
+          @end="onDragEnd"
         )
           li.skill.activeSkill(v-for="index in activeSkillOrder")
             img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
@@ -71,7 +77,8 @@
               p {{ getActiveSkill(index).description[$i18n.locale] }}
             .activeSkill__handle
               fa-icon(icon="bars")
-        h3 Passive
+        .skills__title
+          h3 Passive
         div.skill.passiveSkill(v-if="hero.passiveSkill")
           img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
           div
@@ -235,6 +242,14 @@ export default {
       if (index === 2) {
         return this.item2.activeSkill
       }
+    },
+    onDragStart() {
+      const skillsElem = this.$el.querySelector('.skills > ol')
+      skillsElem.classList.add('skills__dragging')
+    },
+    onDragEnd() {
+      const skillsElem = this.$el.querySelector('.skills > ol')
+      skillsElem.classList.remove('skills__dragging')
     },
     isDisabled(id, type, extensionType = false) {
       if (type === 'hero') {
@@ -502,9 +517,28 @@ export default {
 .skills {
   margin: 1rem 0;
 
-  > h3 {
-    color: #666;
-    margin: 1rem 0 0.5rem;
+  &__title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    > h3 {
+      color: #666;
+      margin: 1rem 0 0.5rem;
+    }
+
+    > button {
+      border: 1px solid map-get($colors, primary);
+      border-radius: 0.5rem;
+      color: map-get($colors, primary);
+      font-size: 0.8rem;
+      line-height: 1;
+      padding: 0.5rem;
+
+      svg {
+        margin-right: 0.25rem;
+      }
+    }
   }
 
   > ol {
@@ -513,8 +547,46 @@ export default {
     padding: 0;
 
     li {
+      margin-left: 2rem;
+      position: relative;
+
+      &::before {
+        color: #fff;
+        display: block;
+        font-family: Oswald;
+        left: -2rem;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-50%) rotate(-90deg);
+        top: 50%;
+      }
+
       &:first-of-type {
         margin-top: 0;
+
+        &::before {
+          content: '1st';
+        }
+      }
+
+      &:nth-of-type(2) {
+        &::before {
+          content: '2nd';
+        }
+      }
+
+      &:nth-of-type(3) {
+        &::before {
+          content: '3rd';
+        }
+      }
+    }
+  }
+
+  &__dragging {
+    li {
+      &::before {
+        display: none !important;
       }
     }
   }
