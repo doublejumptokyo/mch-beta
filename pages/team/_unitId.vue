@@ -60,13 +60,15 @@
       .skills
         .skills__title
           h3 Active
-          button
+          //- button
             fa-icon(icon="sort")
             span Sort
         draggable(
           v-model="activeSkillOrder",
           element="ol",
           :options="{ animation: 300, handle: '.activeSkill__handle' }"
+          @choose="onDragStart"
+          @end="onDragEnd"
         )
           li.skill.activeSkill(v-for="index in activeSkillOrder")
             img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
@@ -225,6 +227,14 @@ export default {
       if (index === 2) {
         return this.item2.activeSkill
       }
+    },
+    onDragStart() {
+      const skillsElem = this.$el.querySelector('.skills > ol')
+      skillsElem.classList.add('skills__dragging')
+    },
+    onDragEnd() {
+      const skillsElem = this.$el.querySelector('.skills > ol')
+      skillsElem.classList.remove('skills__dragging')
     },
     isDisabled(id, type, extensionType = false) {
       if (type === 'hero') {
@@ -522,8 +532,46 @@ export default {
     padding: 0;
 
     li {
+      margin-left: 2rem;
+      position: relative;
+
+      &::before {
+        color: #fff;
+        display: block;
+        font-family: Oswald;
+        left: -2rem;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-50%) rotate(-90deg);
+        top: 50%;
+      }
+
       &:first-of-type {
         margin-top: 0;
+
+        &::before {
+          content: '1st';
+        }
+      }
+
+      &:nth-of-type(2) {
+        &::before {
+          content: '2nd';
+        }
+      }
+
+      &:nth-of-type(3) {
+        &::before {
+          content: '3rd';
+        }
+      }
+    }
+  }
+
+  &__dragging {
+    li {
+      &::before {
+        display: none !important;
       }
     }
   }
