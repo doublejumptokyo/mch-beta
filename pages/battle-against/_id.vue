@@ -140,6 +140,13 @@
             a(:href="`https://twitter.com/share?url=${currentUrl}&hashtags=MCH,MyCryptoHeroes`")
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
+
+  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop muted)
+  audio.se.se-1(src="/sounds/se/1.mp3")
+  audio.se.se-2(src="/sounds/se/2.mp3")
+  audio.se.se-3(src="/sounds/se/3.mp3")
+  audio.se.se-4(src="/sounds/se/4.mp3")
+  audio.se.se-5(src="/sounds/se/5.mp3")
 </template>
 
 <script>
@@ -149,7 +156,6 @@ import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import { mapState } from 'vuex'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
-import { Sound } from '~/assets/scripts/battle-sound'
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
@@ -177,8 +183,8 @@ export default {
       isShareModalShown: false,
       bgm: null,
       isBgmMuted: true,
-      muteSettingKey: 'mch-beta:battle_allow_sound',
-      se: {}
+      se: {},
+      muteSettingKey: 'mch-beta:battle_allow_sound'
     }
   },
 
@@ -270,6 +276,15 @@ export default {
     if (!this.isNativeSupportScrollSnap()) {
       this.setScrollSnap()
     }
+
+    this.bgm = this.$el.querySelector('.bgm')
+    Array.from(Array(5).keys()).forEach(num => {
+      this.$set(
+        this.se,
+        String(num + 1),
+        this.$el.querySelector(`.se-${num + 1}`)
+      )
+    })
   },
 
   destroyed() {
@@ -292,33 +307,34 @@ export default {
       window.actions = this.actions
     },
 
-    async battleStart() {
+    battleStart() {
       const isAllowSound = window.localStorage.getItem(this.muteSettingKey)
-      this.isBgmMuted = isAllowSound !== 'true'
-
-      this.bgm = new Sound()
-      await this.bgm.set('/sounds/MCH-1min_0821.mp3')
-      this.bgm.play({ loop: true })
-      if (this.isBgmMuted) {
-        this.bgm.mute(true)
+      if (isAllowSound === 'true') {
+        this.bgm.muted = false
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = false)
+        )
+      } else {
+        this.bgm.muted = true
+        Array.from(Array(5).keys()).forEach(
+          num => (this.se[num + 1].muted = true)
+        )
       }
-      await Promise.all(
-        Array.from(Array(5).keys()).map(async num => {
-          this.se[num + 1] = new Sound()
-          await this.se[num + 1].set(`/sounds/se/${num + 1}.mp3`)
-        })
-      )
-
+      this.bgm.play()
       this.isReady = true
     },
 
     toggleBgmMute() {
-      if (this.isBgmMuted) {
-        this.bgm.mute(false)
+      const seCount = 5
+      const seCountArray = Array.from(Array(seCount).keys())
+      if (this.bgm.muted) {
+        this.bgm.muted = false
+        seCountArray.forEach(num => (this.se[num + 1].muted = false))
         this.isBgmMuted = false
         window.localStorage.setItem(this.muteSettingKey, true)
       } else {
-        this.bgm.mute(true)
+        this.bgm.muted = true
+        seCountArray.forEach(num => (this.se[num + 1].muted = true))
         this.isBgmMuted = true
         window.localStorage.setItem(this.muteSettingKey, false)
       }
@@ -486,13 +502,11 @@ export default {
               effectElem.style.transform = transform
               setTimeout(() => this.animateEffect(effectElem), index * 200)
 
-              if (!this.isBgmMuted) {
-                const effectStr = Array.from(effectElem.classList.entries())
-                  .filter(c => c[1].startsWith('effect-'))
-                  .pop()
-                const effectId = Number(effectStr[1].split('-')[1])
-                this.se[effectId].play()
-              }
+              const effectStr = Array.from(effectElem.classList.entries())
+                .filter(c => c[1].startsWith('effect-'))
+                .pop()
+              const effectId = Number(effectStr[1].split('-')[1])
+              this.se[effectId].play()
 
               const damageElem = reactorElem.querySelector('.damage')
               setTimeout(() => {
