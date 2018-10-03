@@ -58,7 +58,11 @@
           img(:src="require('~/assets/images/icons/status/int.png')")
           p {{ computedStatus.int }}
       .skills
-        h3 Active
+        .skills__title
+          h3 Active
+          button
+            fa-icon(icon="sort")
+            span Sort
         draggable(
           v-model="activeSkillOrder",
           element="ol",
@@ -71,7 +75,8 @@
               p {{ getActiveSkill(index).description[$i18n.locale] }}
             .activeSkill__handle
               fa-icon(icon="bars")
-        h3 Passive
+        .skills__title
+          h3 Passive
         div.skill.passiveSkill(v-if="hero.passiveSkill")
           img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
           div
@@ -487,9 +492,28 @@ export default {
 .skills {
   margin: 1rem 0;
 
-  > h3 {
-    color: #666;
-    margin: 1rem 0 0.5rem;
+  &__title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    > h3 {
+      color: #666;
+      margin: 1rem 0 0.5rem;
+    }
+
+    > button {
+      border: 1px solid map-get($colors, primary);
+      border-radius: 0.5rem;
+      color: map-get($colors, primary);
+      font-size: 0.8rem;
+      line-height: 1;
+      padding: 0.5rem;
+
+      svg {
+        margin-right: 0.25rem;
+      }
+    }
   }
 
   > ol {
