@@ -404,8 +404,20 @@ export default {
     initAction() {
       console.log('7. スクロールエリアを設定してスクロール監視')
       const actionsArea = this.$el.querySelector('.actions')
-      this.emitLine = actionsArea.firstChild.getBoundingClientRect().top
+      this.emitLine = this.getEmitLine(actionsArea)
+      window.addEventListener('resize', () => {
+        this.emitLine = this.getEmitLine(actionsArea)
+      })
       actionsArea.addEventListener('scroll', this.onScroll)
+    },
+
+    getEmitLine(actionsArea) {
+      const boundingTop = actionsArea.getBoundingClientRect().top
+      const paddingTop = window
+        .getComputedStyle(actionsArea, null)
+        .getPropertyValue('padding-top')
+        .replace('px', '')
+      return boundingTop + Number(paddingTop)
     },
 
     goNextAction(e) {
