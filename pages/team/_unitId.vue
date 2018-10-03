@@ -71,18 +71,22 @@
           @end="onDragEnd"
         )
           li.skill.activeSkill(v-for="index in activeSkillOrder")
-            img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
+            img(:src="getSkillTypeImage(index)")
             div
-              h4 {{ getActiveSkill(index).name[$i18n.locale] }}
+              h4
+                img(:src="require(`~/assets/images/icons/skill/${getActiveSkill(index).iconFileName}`)")
+                span {{ getActiveSkill(index).name[$i18n.locale] }}
               p {{ getActiveSkill(index).description[$i18n.locale] }}
             .activeSkill__handle
               fa-icon(icon="bars")
         .skills__title
           h3 Passive
         div.skill.passiveSkill(v-if="hero.passiveSkill")
-          img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
+          img(:src="getSkillTypeImage(0)")
           div
-            h4 {{ hero.passiveSkill.name[$i18n.locale] }}
+            h4
+              img(:src="require(`~/assets/images/icons/skill/${hero.passiveSkill.iconFileName}`)")
+              span {{ hero.passiveSkill.name[$i18n.locale] }}
             p {{ hero.passiveSkill.description[$i18n.locale] }}
 
   footer.positionPage__footer
@@ -226,6 +230,17 @@ export default {
       }
       if (index === 2) {
         return this.item2.activeSkill
+      }
+    },
+    getSkillTypeImage(index) {
+      if (index === 0) {
+        return require(`~/assets/images/heroes/${this.hero.fileName}`)
+      }
+      if (index === 1) {
+        return require(`~/assets/images/extensions/${this.item1.fileName}`)
+      }
+      if (index === 2) {
+        return require(`~/assets/images/extensions/${this.item2.fileName}`)
       }
     },
     onDragStart() {
@@ -544,6 +559,11 @@ export default {
         position: absolute;
         transform: translateY(-50%) rotate(-90deg);
         top: 50%;
+
+        @media (min-width: $breakpoint) {
+          font-size: 1.5rem;
+          left: -2.5rem;
+        }
       }
 
       &:first-of-type {
@@ -593,20 +613,34 @@ export default {
   border-radius: 0.5rem;
   display: flex;
   margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
+
+  @media (min-width: $breakpoint) {
+    padding: 1rem;
+  }
 
   > img {
     margin-right: 0.5rem;
-    width: 1.2rem;
+    width: 1.8rem;
 
     @media (min-width: $breakpoint) {
       margin-right: 1rem;
-      width: 2rem;
+      width: 3.6rem;
     }
   }
 
   > div:first-of-type {
     flex: 1;
+
+    h4 {
+      align-items: center;
+      display: flex;
+
+      img {
+        margin-right: 0.25rem;
+        width: 1.5rem;
+      }
+    }
   }
 
   p {
@@ -623,11 +657,10 @@ export default {
   &__handle {
     color: #ccc;
     cursor: grab;
-    margin-left: 0.5rem;
+    margin: 0 0.5rem;
 
     @media (min-width: $breakpoint) {
       font-size: 1.8rem;
-      margin-left: 1rem;
     }
   }
 
