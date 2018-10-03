@@ -18,7 +18,7 @@ contract BattleManager2 is SignerRole {
     DeckManager public deckManager;
     Rank public rank;
     
-    uint32 public battleId = 30000;
+    uint32 public battleId = 40000;
     mapping(address=>uint32) public addressToBattleId;
     mapping(uint32=>BattleInfo) public battleIdToBattleInfo;
 
