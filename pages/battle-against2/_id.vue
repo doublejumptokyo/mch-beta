@@ -305,8 +305,8 @@ export default {
       await this.$battleManager2.watch(this.battleId)
       // this.$battleManager2.actions.forEach(action => this.actions.push(action))
       // this.actions = await this.$battleManager2.watch(this.battleId)
-      await this.$battleManager2.end()
-      // this.actions = this.$battleManager2.actions
+      this.end = await this.$battleManager2.end()
+      this.actions = this.$battleManager2.actions
 
       // let isFetchFinished = false
       // do {
