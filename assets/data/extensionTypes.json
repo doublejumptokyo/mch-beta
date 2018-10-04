@@ -58,5 +58,17 @@
     "name": { "en": "Novice Blade", "ja": "ノービスブレイド" },
     "fileName": "1001.png",
     "rarity": "Common"
+  },
+    {
+    "type": 4008,
+    "name": { "en": "Three Musketeers' Musket", "ja": "三銃士のマスケット" },
+    "fileName": "4008.png",
+    "rarity": "Epic"
+  },
+  {
+    "type": 3012,
+    "name": { "en": "Brave Kabuto", "ja": "ブレイブカブト" },
+    "fileName": "3012.png",
+    "rarity": "Rare"
   }
 ]
