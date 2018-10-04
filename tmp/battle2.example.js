@@ -1,4 +1,4 @@
-const C_ABI_BattleManager = [
+const C_ABI_BattleManager2 = [
     {
       "constant": true,
       "inputs": [],
@@ -372,9 +372,9 @@ const C_ABI_BattleManager = [
     }
   ];
     
-const C_ADDRESS_BattleManager = '0x8608db694a4a9d5769438ba46325c348150a3865';
+const C_ADDRESS_BattleManager2 = '0x8608db694a4a9d5769438ba46325c348150a3865';
     
-const E_ABI_BattleStart = [
+const E_ABI_BattleStart2 = [
     {
       "indexed": true,
       "name": "battleId",
@@ -402,66 +402,89 @@ const E_ABI_BattleStart = [
     }
   ];
     
-const E_ABI_BattleAction = [
-{
-"indexed": true,
-"name": "battleId",
-"type": "uint32"
-},
-{
-"indexed": false,
-"name": "actionCounts",
-"type": "uint8"
-},
-{
-"indexed": false,
-"name": "skillId",
-"type": "uint16"
-},
-{
-"indexed": false,
-"name": "actionPosition",
-"type": "uint8"
-},
-{
-"indexed": false,
-"name": "effectPositions",
-"type": "bool[7]"
-},
-{
-"indexed": false,
-"name": "poisonDamage",
-"type": "int16"
-},
-{
-"indexed": false,
-"name": "data",
-"type": "uint128[7]"
-}
-];
-    
-const E_ABI_BattleEnd = [
-{
-"indexed": true,
-"name": "battleId",
-"type": "uint32"
-},
-{
-"indexed": true,
-"name": "attacker",
-"type": "address"
-},
-{
-"indexed": true,
-"name": "defender",
-"type": "address"
-},
-{
-"indexed": false,
-"name": "result",
-"type": "uint8"
-}
-];
+const E_ABI_BattleAction2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "skillId",
+      "type": "uint16"
+    },
+    {
+      "indexed": false,
+      "name": "actionPosition",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "effectPositions",
+      "type": "bool[7]"
+    },
+    {
+      "indexed": false,
+      "name": "poisonDamage",
+      "type": "int16"
+    },
+    {
+      "indexed": false,
+      "name": "data",
+      "type": "uint128[7]"
+    }
+  ];
+
+const E_ABI_BattleCompleted2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": false,
+      "name": "result",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    }
+  ];  
+
+const E_ABI_BattleEnd2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": true,
+      "name": "attacker",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "name": "defender",
+      "type": "address"
+    },
+    {
+      "indexed": false,
+      "name": "result",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    }
+  ];
     
     
 function encodeBattleStart(rawData) {
@@ -543,56 +566,82 @@ function encodeEffectPositions(positions) {
     }
     return results;
 }
+
+const E_NAME_BattleStart2 = '0xcc22171b38ec51213fff72a8a777428ea09f8b1e140406e632206810f0de0e92';
+const E_NAME_BattleAction2 = '0x3e8346021d48c796b34795a1af434bf29578eb4c1b964d21f9f03601a449b2ce';
+const E_NAME_BattleCompleted2 = '0x89c381bcb7ff6e4dd45d036f97b14266a82bccbb76c866752a9d4ddade3dd6ec';
+const E_NAME_BattleEnd2 = '0xba6b1b08ac122b4bd8dacadefb4cf338ac51d73f977ad29d6db5d55c1e1fb326';
+
+const E_URL = 'https://beta.mycryptoheroes.net/events';
+
+let battleManager = $nuxt.$accountManager.getContract(C_ABI_BattleManager2, C_ADDRESS_BattleManager2);
+
     
-let battleManager = $nuxt.$accountManager.getContract(C_ABI_BattleManager, C_ADDRESS_BattleManager);
-    
-    
-// ここまで決め打ち、ここから実行
+// ここまで定数
     
     
 let opponent = '0x3b107eba53c13d6cad7e338a6bc9f6436eb41559';
 
 let start;
 let actions = [];
+let completed;
 let end;
+
+let req = {};
+req.limit = 200;
 let res;
 let rawEvent;
 
-// BattleStart2
-// 0xcc22171b38ec51213fff72a8a777428ea09f8b1e140406e632206810f0de0e92
-// BattleEnd2
-// 0xba6b1b08ac122b4bd8dacadefb4cf338ac51d73f977ad29d6db5d55c1e1fb326
-
 (async () => { 
+    console.log("start begin");
 
     res = await battleManager.methods.start(opponent, false).send();
     rawEvent = res.events.BattleStart2.raw;
     rawEvent.topics.shift();
-    start = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleStart, rawEvent.data, rawEvent.topics);
+    start = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleStart2, rawEvent.data, rawEvent.topics);
     start.units = encodeBattleStart(start.data);
 
-    /*
-    let hasNext;
-    do {
-        res = await battleManager.methods.next().send();
-        for (let index in res.events) {
-            rawEvent = res.events[index].raw;
+    console.log("start finished");
+
+    // ここまででBattle開始はできる
+
+    let encodedBattleId = $nuxt.$accountManager.web3.eth.abi.encodeParameter('uint32', start.battleId);
+    req.topic1 = encodedBattleId;
+
+    const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+
+    console.log("action begin");
+    while (true) {
+        await sleep(1000);
+        console.log("action try");
+        req.name = E_NAME_BattleAction2;
+        res = await $nuxt.$axios.get(E_URL, {params: req});
+        for (let index in res.data) {
+            rawEvent = res.data[index];
             rawEvent.topics.shift();
-            let action = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleAction, rawEvent.data, rawEvent.topics);
+            let action = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleAction2, rawEvent.data, rawEvent.topics);
             action.units = encodeBattleAction(action.data);
             action.effectPositions = encodeEffectPositions(action.effectPositions);
-            actions.push(action);
+            if(actions[action.actionCounts - 1] == undefined) actions[action.actionCounts - 1] = action;
         }
-        hasNext = await battleManager.methods.hasNext().call();
-    } while (hasNext);
-    */
-/*
+
+        req.name = E_NAME_BattleCompleted2;
+        res = await $nuxt.$axios.get(E_URL, {params: req});
+        if (res.data.length == 0) continue;
+
+        rawEvent = res.data[0];
+        rawEvent.topics.shift();
+        completed = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleCompleted2, rawEvent.data, rawEvent.topics);
+        if (completed.actionCounts == actions.length) break;
+    }
+    console.log("action finished");
+
+    console.log("end begin");
     res = await battleManager.methods.end().send();
     rawEvent = res.events.BattleEnd2.raw;
     rawEvent.topics.shift();
-    end = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleEnd, rawEvent.data, rawEvent.topics);
-*/
-    console.log('end');
+    end = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleEnd2, rawEvent.data, rawEvent.topics);
+    console.log("end finished");
 })();
 
 // endが表示されたら終わり
