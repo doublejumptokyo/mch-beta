@@ -75,7 +75,8 @@ module.exports = {
     { src: '~/plugins/dc-extension', ssr: false },
     { src: '~/plugins/dc-team', ssr: false },
     { src: '~/plugins/dc-rank', ssr: false },
-    { src: '~/plugins/dc-battle-manager', ssr: false }
+    { src: '~/plugins/dc-battle-manager', ssr: false },
+    { src: '~/plugins/dc-battle-manager2', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules: [
@@ -91,6 +92,7 @@ module.exports = {
   ],
   proxy: {
     '/api': 'https://beta.origin.sand.mch.djty.co',
+    '/events': 'https://beta.mycryptoheroes.net',
     '/tmp': 'https://beta.origin.sand.mch.djty.co'
   },
   toast: {
