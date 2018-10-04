@@ -56,13 +56,6 @@
     "effectId": 3
   },
   {
-    "id": 1008,
-    "name": { "en": "Ode to Joy", "ja": "歓喜の歌" },
-    "description": { "en": "50% for the first time,25% INT increase to all enemies' PHY, INT and AGI", "ja": "初めてHP50%未満になった時、敵全員のPHY / INT / AGIをINTの25%分ダウン" },
-    "iconFileName": "DEBUF_phy.png",
-    "effectId": 5
-  },
-  {
     "id": 1009,
     "name": { "en": "Swallow's Blade", "ja": "燕返し" },
     "description": { "en": "After own active skill, 10% INT increase own AGI", "ja": "自分がActive時、自分のAGIをINTの10%分アップ" },
@@ -149,23 +142,16 @@
   {
     "id": 2002,
     "name": { "en": "Forceful Blade", "ja": "圧斬り" },
-    "description": { "en": "60-80% PHY damage to front enemy", "ja": "先頭の敵にPHYの60~80%分ダメージ" },
+    "description": { "en": "先頭の敵にPHYの60~80%分ダメージ", "ja": "60-80% PHY damage to front enemy" },
     "iconFileName": "phy.png",
     "effectId": 1
   },
   {
     "id": 2003,
     "name": { "en": "The Polymath's Remains", "ja": "万能人の遺蹟" },
-    "description": { "en": "60-70% INT damage to front enemy", "ja": "先頭の敵にINTの60~70%分ダメージ" },
+    "description": { "en": "先頭の敵にINTの60~70%分ダメージ", "ja": "60-70% INT damage to front enemy" },
     "iconFileName": "int.png",
     "effectId": 2
-  },
-  {
-    "id": 2004,
-    "name": { "en": "Modern Prophecy", "ja": "現代の予言書" },
-    "description": { "en": "Recovers ally with lowest Hp by 120%", "ja": "最もHPが低い味方に120%の回復効果を与える" },
-    "iconFileName": "hp.png",
-    "effectId": 3
   },
   {
     "id": 2005,
@@ -189,25 +175,11 @@
     "effectId": 5
   },
   {
-    "id": 2008,
-    "name": { "en": "Snipe", "ja": "スナイプ" },
-    "description": { "en": "45-50% INT front enemy", "ja": "先頭の敵にINTの45~50%分ダメージ" },
-    "iconFileName": "int.png",
-    "effectId": 2
-  },
-  {
     "id": 2009,
     "name": { "en": "Shield Bash", "ja": "シールドバッシュ" },
-    "description": { "en": "20-30% PHY damage to front enemy and 10% INT increase to own PHY", "ja": "先頭の敵にPHYの20~30%分ダメージを与え、自分のPHYをINTの10%分アップ" },
+    "description": { "en": "20-30% INT damage to front enemy and 10% INT increase to own PHY", "ja": "先頭の敵にINTの20~30%分ダメージを与え、自分のPHYをINTの10%分アップ" },
     "iconFileName": "phy.png",
     "effectId": 1
-  },
-  {
-    "id": 2010,
-    "name": { "en": "Restoration", "ja": "レストレーション" },
-    "description": { "en": "Recovers ally with lowest HP by 70%", "ja": "最もHPが低い味方に70%の回復効果を与える" },
-    "iconFileName": "hp.png",
-    "effectId": 3
   },
   {
     "id": 2011,
@@ -215,5 +187,68 @@
     "description": { "en": "40-50% PHY damage to front enemy", "ja": "先頭の敵にPHYの40~50%分ダメージ" },
     "iconFileName": "phy.png",
     "effectId": 1
+  },
+  {
+    "id": 1038,
+    "name": { "en": "Gladiator War", "ja": "剣闘士の反乱" },
+    "description": { "en": "When own HP becomes <20% for the first time, 15% INT decrease to all enemies' INT", "ja": "初めてHP20%未満になった時、敵全員のINTをINTの15%分ダウン" },
+    "iconFileName": "DEBUF_int.png",
+    "effectId": 5
+  },
+  {
+    "id": 1037,
+    "name": { "en": "One for all,All for one", "ja": "ワンフォーオール・オールフォーワン" },
+    "description": { "en": "At time of battle commencement, 20% INT increase to all allies PHY and INT", "ja": "バトル開始時、味方全員のPHY / INTをINTの20%分アップ" },
+    "iconFileName": "BUF_phy.png",
+    "effectId": 4
+  },
+  {
+    "id": 1038,
+    "name": { "en": "The Elekiter", "ja": "エレキテル" },
+    "description": { "en": "When own HP becomes <60% for the first time, 40% INT damage to all enemy", "ja": "初めてHP60%未満になった時、敵全員にINTの40%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 2012,
+    "name": { "en": "King's Musketeers", "ja": "王の銃士" },
+    "description": { "en": "10-15% INT damage to all enemy", "ja": "敵全体にINTの10~15%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 2013,
+    "name": { "en": "Tighten your helmet strings", "ja": "緒を締めよ" },
+    "description": { "en": "10% INT increase own PHY and INT", "ja": "自分のPHY / INTをINTの10%分アップ" },
+    "iconFileName": "BUF_phy.png",
+    "effectId": 4
+  },
+  {
+    "id": 1008,
+    "name": { "en": "Ode to Joy", "ja": "歓喜の歌" },
+    "description": { "en": "When own HP becomes <50% for the first time,25% INT decrease to all enemies' PHY, INT and AGI", "ja": "初めてHP50%未満になった時、敵全員のPHY / INT / AGIをINTの25%分ダウン" },
+    "iconFileName": "DEBUF_phy.png",
+    "effectId": 5
+  },
+  {
+    "id": 2004,
+    "name": { "en": "Modern Prophecy", "ja": "現代の予言書" },
+    "description": { "en": "Recovers ally with lowest Hp by 80%", "ja": "最もHPが低い味方に80%の回復効果を与える" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 2010,
+    "name": { "en": "Restoration", "ja": "レストレーション" },
+    "description": { "en": "Recovers ally with lowest HP by 40%", "ja": "最もHPが低い味方に40%の回復効果を与える" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 2008,
+    "name": { "en": "Snipe", "ja": "スナイプ" },
+    "description": { "en": "45-50% INT damage front enemy", "ja": "先頭の敵にINTの45~50%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
   }
 ]
