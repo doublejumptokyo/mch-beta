@@ -160,6 +160,7 @@ class BattleManager {
       await sleep(1000)
       console.log('action try')
       const req = {}
+      req.limit = 200
       req.name = E_NAME_BattleAction2
       req.topic1 = battleId
       let res = await window.$nuxt.$axios.get(E_URL, { params: req })
@@ -234,13 +235,15 @@ class BattleManager {
     const res = await this.contract.methods.end().send()
     const rawEvent = res.events.BattleEnd2.raw
     rawEvent.topics.shift()
-    const end = this.accountManager.web3.eth.abi.decodeLog(
+    let end = this.accountManager.web3.eth.abi.decodeLog(
       E_ABI_BattleEnd2,
       rawEvent.data,
       rawEvent.topics
     )
     console.log('end finished')
     console.log(end)
+    end = this.encodeBattleEnd(end)
+    return end
   }
 
   async _end() {
