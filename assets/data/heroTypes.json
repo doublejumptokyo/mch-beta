@@ -162,7 +162,7 @@
     "fileName": "1001.png",
     "rarity": "Common",
     "wikipediaUrl": null
-    },
+  },
   {
     "type": 1002,
     "name": { "en": "MCHTactician", "ja": "MCHタクティシャン" },
@@ -176,5 +176,35 @@
     "fileName": "1003.png",
     "rarity": "Common",
     "wikipediaUrl": null
+  },
+	{
+    "type": 2002,
+    "name": { "en": "Spartacus", "ja": "スパルタクス" },
+    "fileName": "2002.png",
+    "rarity": "Uncommon",
+    "wikipediaUrl": {
+      "en": "https://en.wikipedia.org/wiki/Spartacus",
+      "ja": "https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%91%E3%83%AB%E3%82%BF%E3%82%AF%E3%82%B9"
+    }
+  },
+	{
+    "type": 3002,
+    "name": { "en": "[MCH]D'Artagnan", "ja": "[MCH]ダルタニャン" },
+    "fileName": "3002.png",
+    "rarity": "Rare",
+    "wikipediaUrl": {
+      "en": "https://en.wikipedia.org/wiki/Charles_de_Batz_de_Castelmore_d%27Artagnan",
+      "ja": "https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%AB%E3%82%BF%E3%83%8B%E3%83%A3%E3%83%B3"
+    }
+  },
+	{
+    "type": 3003,
+    "name": { "en": "[MCH]Gennai Hiraga", "ja": "[MCH]平賀源内" },
+    "fileName": "3003.png",
+    "rarity": "Rare",
+    "wikipediaUrl": {
+      "en": "https://en.wikipedia.org/wiki/Hiraga_Gennai",
+      "ja": "https://ja.wikipedia.org/wiki/%E5%B9%B3%E8%B3%80%E6%BA%90%E5%86%85"
+    }
   }
 ]
