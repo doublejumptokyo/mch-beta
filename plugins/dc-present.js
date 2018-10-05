@@ -27,10 +27,11 @@ export default async ({ app, store }, inject) => {
 
   const present = new Present(app.$accountManager)
 
+/*
   const canReceive = await this.$present.canReceive()
   if (canReceive) {
     await this.$present.receive()
   }
-
+*/
   inject('present', present)
 }
