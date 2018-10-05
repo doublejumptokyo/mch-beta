@@ -232,14 +232,21 @@ class BattleManager {
 
   async end() {
     console.log('end begin')
-    const res = await this.contract.methods.end().send()
-    const rawEvent = res.events.BattleEnd2.raw
-    rawEvent.topics.shift()
-    let end = this.accountManager.web3.eth.abi.decodeLog(
-      E_ABI_BattleEnd2,
-      rawEvent.data,
-      rawEvent.topics
-    )
+    const sleep2 = msec => new Promise(resolve => setTimeout(resolve, msec))
+    let end;
+    let result = 0
+    while (result == 0) {
+      const res = await this.contract.methods.end().send()
+      const rawEvent = res.events.BattleEnd2.raw
+      rawEvent.topics.shift()
+      end = this.accountManager.web3.eth.abi.decodeLog(
+        E_ABI_BattleEnd2,
+        rawEvent.data,
+        rawEvent.topics
+      )
+      result = end.result
+      if (result == 0) await sleep2(1000)
+    }
     console.log('end finished')
     console.log(end)
     end = this.encodeBattleEnd(end)
