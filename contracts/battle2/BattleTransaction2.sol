@@ -15,6 +15,7 @@ contract BattleTransaction2 {
     using BattleSkill for BC.Battle;
     using BattleUtil for BC.Battle;
 
+    string public name = "BattleTransaction2:0.9";
     uint32[] public battleIds;
     uint32 public progressCounts;
     uint32 public finishedCounts;
@@ -110,16 +111,20 @@ contract BattleTransaction2 {
         return battle.state;
     }
 
-    function nexts(uint8 counts) public returns (BC.BattleState result) {
+    function nexts(uint8 counts) public {
         if (finishedCounts >= progressCounts) return;
         uint32 battleId = battleIds[finishedCounts];
         for (uint8 i = 0; i < counts; i++) {
-            result = next(battleId);
+            BC.BattleState result = next(battleId);
             if (result != BC.BattleState.progress) {
                 finishedCounts++;
                 break;
             }
         }
+    }
+    
+    function skip() public {
+        finishedCounts++;
     }
 
     function initSkill(uint16 id, uint8 condition, int16 rate) public {
