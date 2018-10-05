@@ -170,13 +170,16 @@ library BattleSkill {
                 }
             } else if (effect.param == BC.EffectParam.phy) {
                 unit.current.phy += int16(points);
-                if (unit.current.phy < 0) unit.current.phy = 0;
+                if (unit.current.phy < 1) unit.current.phy = 1;
+                else if (unit.current.phy > 999) unit.current.phy = 999;
             } else if (effect.param == BC.EffectParam.intl) {
                 unit.current.intl += int16(points);
-                if (unit.current.intl < 0) unit.current.intl = 0;
+                if (unit.current.intl < 1) unit.current.intl = 1;
+                else if (unit.current.intl > 999) unit.current.intl = 999;
             } else if (effect.param == BC.EffectParam.agi) {
                 unit.current.agi += int16(points);
-                if (unit.current.agi < 0) unit.current.agi = 0;
+                if (unit.current.agi < 1) unit.current.agi = 1;
+                else if (unit.current.agi > 999) unit.current.agi = 999;
             }
             
         }
