@@ -1,462 +1,490 @@
-const C_ABI_BattleManager = [
+const C_ABI_BattleManager2 = [
     {
-    "constant": true,
-    "inputs": [
+      "constant": true,
+      "inputs": [],
+      "name": "battleId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
     {
-    "name": "",
-    "type": "address"
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "addressToBattleId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "State$win",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isSigner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rank",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "State$progress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "name": "battleIdToBattleInfo",
+      "outputs": [
+        {
+          "name": "attacker",
+          "type": "address"
+        },
+        {
+          "name": "defender",
+          "type": "address"
+        },
+        {
+          "name": "actionCounts",
+          "type": "uint8"
+        },
+        {
+          "name": "state",
+          "type": "uint8"
+        },
+        {
+          "name": "rankBattle",
+          "type": "bool"
+        },
+        {
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "deckManager",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceSigner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addSigner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "battleId",
+          "type": "uint32"
+        },
+        {
+          "indexed": true,
+          "name": "attacker",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "defender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "data",
+          "type": "uint256[7]"
+        },
+        {
+          "indexed": false,
+          "name": "randomSeed",
+          "type": "uint16"
+        }
+      ],
+      "name": "BattleStart2",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "battleId",
+          "type": "uint32"
+        },
+        {
+          "indexed": true,
+          "name": "attacker",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "defender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "result",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "name": "actionCounts",
+          "type": "uint8"
+        }
+      ],
+      "name": "BattleEnd2",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "SignerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "SignerRemoved",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_deckManagerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setDeckManagerAddress",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_rankAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setRankAddress",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "name": "_rankBattle",
+          "type": "bool"
+        }
+      ],
+      "name": "start",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_battleId",
+          "type": "uint32"
+        },
+        {
+          "name": "_result",
+          "type": "uint8"
+        },
+        {
+          "name": "_actionCounts",
+          "type": "uint8"
+        }
+      ],
+      "name": "setResult",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "end",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "position",
+          "type": "uint8"
+        },
+        {
+          "name": "ids",
+          "type": "uint256[3]"
+        },
+        {
+          "name": "params",
+          "type": "int16[4]"
+        },
+        {
+          "name": "skills",
+          "type": "uint16[4]"
+        }
+      ],
+      "name": "getEventData",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
     }
-    ],
-    "name": "addressToBattleInfoDev",
-    "outputs": [
-    {
-    "name": "battleId",
-    "type": "uint32"
-    },
-    {
-    "name": "attacker",
-    "type": "address"
-    },
-    {
-    "name": "defender",
-    "type": "address"
-    },
-    {
-    "name": "state",
-    "type": "uint8"
-    },
-    {
-    "name": "rankBattle",
-    "type": "bool"
-    },
-    {
-    "name": "exists",
-    "type": "bool"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "TURN_COUNTS",
-    "outputs": [
-    {
-    "name": "",
-    "type": "uint8"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "battleTransaction",
-    "outputs": [
-    {
-    "name": "",
-    "type": "address"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-    {
-    "name": "",
-    "type": "address"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "isOwner",
-    "outputs": [
-    {
-    "name": "",
-    "type": "bool"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "rank",
-    "outputs": [
-    {
-    "name": "",
-    "type": "address"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [
-    {
-    "name": "",
-    "type": "address"
-    }
-    ],
-    "name": "addressToBattleInfo",
-    "outputs": [
-    {
-    "name": "battleId",
-    "type": "uint32"
-    },
-    {
-    "name": "attacker",
-    "type": "address"
-    },
-    {
-    "name": "defender",
-    "type": "address"
-    },
-    {
-    "name": "state",
-    "type": "uint8"
-    },
-    {
-    "name": "rankBattle",
-    "type": "bool"
-    },
-    {
-    "name": "exists",
-    "type": "bool"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "deckManager",
-    "outputs": [
-    {
-    "name": "",
-    "type": "address"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "newOwner",
-    "type": "address"
-    }
-    ],
-    "name": "transferOwnership",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "anonymous": false,
-    "inputs": [
-    {
-    "indexed": true,
-    "name": "previousOwner",
-    "type": "address"
-    }
-    ],
-    "name": "OwnershipRenounced",
-    "type": "event"
-    },
-    {
-    "anonymous": false,
-    "inputs": [
-    {
-    "indexed": true,
-    "name": "previousOwner",
-    "type": "address"
-    },
-    {
-    "indexed": true,
-    "name": "newOwner",
-    "type": "address"
-    }
-    ],
-    "name": "OwnershipTransferred",
-    "type": "event"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_deckManagerAddress",
-    "type": "address"
-    }
-    ],
-    "name": "setDeckManagerAddress",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_battleTransactionAddress",
-    "type": "address"
-    }
-    ],
-    "name": "setBattleTransactionAddress",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_rankAddress",
-    "type": "address"
-    }
-    ],
-    "name": "setRankAddress",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_address",
-    "type": "address"
-    },
-    {
-    "name": "_rankBattle",
-    "type": "bool"
-    }
-    ],
-    "name": "start",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [],
-    "name": "next",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [],
-    "name": "end",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [],
-    "name": "hasNext",
-    "outputs": [
-    {
-    "name": "",
-    "type": "bool"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_attacker",
-    "type": "address"
-    },
-    {
-    "name": "_defender",
-    "type": "address"
-    }
-    ],
-    "name": "battleDev",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_attacker",
-    "type": "address"
-    }
-    ],
-    "name": "nextDev",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": false,
-    "inputs": [
-    {
-    "name": "_attacker",
-    "type": "address"
-    }
-    ],
-    "name": "endDev",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-    },
-    {
-    "constant": true,
-    "inputs": [
-    {
-    "name": "_attacker",
-    "type": "address"
-    }
-    ],
-    "name": "hasNextDev",
-    "outputs": [
-    {
-    "name": "",
-    "type": "bool"
-    }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-    }
-    ];
+  ];
     
-const C_ADDRESS_BattleManager = '0x3b86ffbd2e75972ebaf37a9900c3ef50f15ce9a2';
+const C_ADDRESS_BattleManager2 = '0x8608db694a4a9d5769438ba46325c348150a3865';
     
-const E_ABI_BattleStart = [
-{
-"indexed": true,
-"name": "battleId",
-"type": "uint32"
-},
-{
-"indexed": true,
-"name": "attacker",
-"type": "address"
-},
-{
-"indexed": true,
-"name": "defender",
-"type": "address"
-},
-{
-"indexed": false,
-"name": "data",
-"type": "uint256[7]"
-}
-];
+const E_ABI_BattleStart2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": true,
+      "name": "attacker",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "name": "defender",
+      "type": "address"
+    },
+    {
+      "indexed": false,
+      "name": "data",
+      "type": "uint256[7]"
+    },
+    {
+      "indexed": false,
+      "name": "randomSeed",
+      "type": "uint16"
+    }
+  ];
     
-const E_ABI_BattleAction = [
-{
-"indexed": true,
-"name": "battleId",
-"type": "uint32"
-},
-{
-"indexed": false,
-"name": "actionCounts",
-"type": "uint8"
-},
-{
-"indexed": false,
-"name": "skillId",
-"type": "uint16"
-},
-{
-"indexed": false,
-"name": "actionPosition",
-"type": "uint8"
-},
-{
-"indexed": false,
-"name": "effectPositions",
-"type": "bool[7]"
-},
-{
-"indexed": false,
-"name": "poisonDamage",
-"type": "int16"
-},
-{
-"indexed": false,
-"name": "data",
-"type": "uint128[7]"
-}
-];
-    
-const E_ABI_BattleEnd = [
-{
-"indexed": true,
-"name": "battleId",
-"type": "uint32"
-},
-{
-"indexed": true,
-"name": "attacker",
-"type": "address"
-},
-{
-"indexed": true,
-"name": "defender",
-"type": "address"
-},
-{
-"indexed": false,
-"name": "result",
-"type": "uint8"
-}
-];
+const E_ABI_BattleAction2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "skillId",
+      "type": "uint16"
+    },
+    {
+      "indexed": false,
+      "name": "actionPosition",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "effectPositions",
+      "type": "bool[7]"
+    },
+    {
+      "indexed": false,
+      "name": "poisonDamage",
+      "type": "int16"
+    },
+    {
+      "indexed": false,
+      "name": "data",
+      "type": "uint128[7]"
+    }
+  ];
+
+const E_ABI_BattleCompleted2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": false,
+      "name": "result",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    }
+  ];  
+
+const E_ABI_BattleEnd2 = [
+    {
+      "indexed": true,
+      "name": "battleId",
+      "type": "uint32"
+    },
+    {
+      "indexed": true,
+      "name": "attacker",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "name": "defender",
+      "type": "address"
+    },
+    {
+      "indexed": false,
+      "name": "result",
+      "type": "uint8"
+    },
+    {
+      "indexed": false,
+      "name": "actionCounts",
+      "type": "uint8"
+    }
+  ];
     
     
 function encodeBattleStart(rawData) {
@@ -538,12 +566,11 @@ function encodeEffectPositions(positions) {
     }
     return results;
 }
-    
-let battleManager = $nuxt.$accountManager.getContract(C_ABI_BattleManager, C_ADDRESS_BattleManager);
-    
-const E_NAME_BattleStart = '0x47c4d3e760f12a357789a6608964beeb51122cd2939d213cb53d34f9c5baf32a';
-const E_NAME_BattleAction = '0x6f59c07d472385e2fb32a0f1805e30041ec4626a7f081eb3ecfe8b0d334c8f1e';
-const E_NAME_BattleEnd = '0x4205ed0ed730eb299e5ca7dd2c60a3922859330a4e869c98c9e715b5cb1c019d';
+
+const E_NAME_BattleStart2 = '0xcc22171b38ec51213fff72a8a777428ea09f8b1e140406e632206810f0de0e92';
+const E_NAME_BattleAction2 = '0x3e8346021d48c796b34795a1af434bf29578eb4c1b964d21f9f03601a449b2ce';
+const E_NAME_BattleCompleted2 = '0x89c381bcb7ff6e4dd45d036f97b14266a82bccbb76c866752a9d4ddade3dd6ec';
+const E_NAME_BattleEnd2 = '0xba6b1b08ac122b4bd8dacadefb4cf338ac51d73f977ad29d6db5d55c1e1fb326';
 
 const E_URL = 'https://beta.mycryptoheroes.net/events';
 
@@ -554,7 +581,7 @@ let start;
 let actions = [];
 let end;
 
-let battleId = 800;
+let battleId = 40253;
 let encodedBattleId = $nuxt.$accountManager.web3.eth.abi.encodeParameter('uint32', battleId);
 
 let req = {};
@@ -565,29 +592,29 @@ let rawEvent;
 
 (async()=>{
 
-    req.name = E_NAME_BattleStart;
+    req.name = E_NAME_BattleStart2;
     res = await $nuxt.$axios.get(E_URL, {params: req});
     rawEvent = res.data[0];
     rawEvent.topics.shift();
-    start = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleStart, rawEvent.data, rawEvent.topics);
+    start = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleStart2, rawEvent.data, rawEvent.topics);
     start.units = encodeBattleStart(start.data);
 
-    req.name = E_NAME_BattleAction;
+    req.name = E_NAME_BattleAction2;
     res = await $nuxt.$axios.get(E_URL, {params: req});
     for (let index in res.data) {
         rawEvent = res.data[index];
         rawEvent.topics.shift();
-        let action = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleAction, rawEvent.data, rawEvent.topics);
+        let action = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleAction2, rawEvent.data, rawEvent.topics);
         action.units = encodeBattleAction(action.data);
         action.effectPositions = encodeEffectPositions(action.effectPositions);
         actions[action.actionCounts - 1] = action;
     }
 
-    req.name = E_NAME_BattleEnd;
+    req.name = E_NAME_BattleEnd2;
     res = await $nuxt.$axios.get(E_URL, {params: req});
     rawEvent = res.data[0];
     rawEvent.topics.shift();
-    end = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleEnd, rawEvent.data, rawEvent.topics);
+    end = $nuxt.$accountManager.web3.eth.abi.decodeLog(E_ABI_BattleEnd2, rawEvent.data, rawEvent.topics);
     
     console.log('end');
 
