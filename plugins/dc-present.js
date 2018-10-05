@@ -13,17 +13,24 @@ class Present {
 
   async receive() {
     return new Promise((resolve, reject) => {
-        this.contract.methods
-          .receive()
-          .send()
-          .on('receipt', resolve)
-          .on('error', reject)
-      })
+      this.contract.methods
+        .receive()
+        .send()
+        .on('receipt', resolve)
+        .on('error', reject)
+    })
   }
 }
 
 export default async ({ app, store }, inject) => {
   if (!store.getters.isLoggedIn) return
+
   const present = new Present(app.$accountManager)
+
+  const canReceive = await this.$present.canReceive()
+  if (canReceive) {
+    await this.$present.receive()
+  }
+
   inject('present', present)
 }

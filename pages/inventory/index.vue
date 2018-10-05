@@ -43,14 +43,6 @@ export default {
     if (route.name === 'inventory') {
       return redirect('/inventory/heroes')
     }
-/*
-  },
-  async beforeMount() {
-    let canReceive = await this.$present.canReceive()
-    if (canReceive) {
-      await this.$present.receive()
-    }
-*/
   }
 }
 </script>
