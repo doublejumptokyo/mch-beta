@@ -13,7 +13,7 @@
             :skillOrder="getSkillOrder(unit)"
           )
   .userPage__battleButton
-    nuxt-link(:to="`/battle-against/${$route.params.id}`")
+    nuxt-link(:to="`/battle-against2/${$route.params.id}`")
       span Battle Start
       fa-icon(icon="arrow-right")
 </template>
