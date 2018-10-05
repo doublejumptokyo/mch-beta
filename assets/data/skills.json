@@ -189,7 +189,7 @@
     "effectId": 1
   },
   {
-    "id": 1038,
+    "id": 1036,
     "name": { "en": "Gladiator War", "ja": "剣闘士の反乱" },
     "description": { "en": "When own HP becomes <20% for the first time, 15% INT decrease to all enemies' INT", "ja": "初めてHP20%未満になった時、敵全員のINTをINTの15%分ダウン" },
     "iconFileName": "DEBUF_int.png",
