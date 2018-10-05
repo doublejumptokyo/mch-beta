@@ -233,7 +233,7 @@ class BattleManager {
   async end() {
     console.log('end begin')
     const sleep2 = msec => new Promise(resolve => setTimeout(resolve, msec))
-    let end;
+    let end
     let result = 0
     while (result == 0) {
       const res = await this.contract.methods.end().send()
