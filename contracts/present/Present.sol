@@ -54,5 +54,9 @@ contract Present is Ownable {
         }
         addressToReceived[msg.sender] = received;
     }
+    
+    function canReceive() public view returns (bool) {
+        return addressToReceived[msg.sender] < presents.length;
+    }
 
 }
