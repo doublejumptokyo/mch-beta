@@ -121,7 +121,7 @@ const E_NAME_BattleCompleted2 =
 // const E_NAME_BattleEnd2 =
 //   '0xba6b1b08ac122b4bd8dacadefb4cf338ac51d73f977ad29d6db5d55c1e1fb326'
 
-const E_URL = '/events'
+const E_URL = 'https://beta.mycryptoheroes.net/events'
 
 class BattleManager {
   constructor(accountManager) {
