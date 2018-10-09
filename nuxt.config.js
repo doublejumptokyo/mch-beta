@@ -20,14 +20,20 @@ if (!isProduction) {
   modules.push('@nuxtjs/proxy')
 }
 
+const axios = isProduction
+  ? {
+      https: true,
+      browserBaseURL: 'https://beta.mycryptoheroes.net'
+    }
+  : {}
+
 const proxy = (() => {
   if (isProduction) {
     return {}
   } else {
     return {
-      '/api': 'https://beta.origin.sand.mch.djty.co',
-      '/events': 'https://beta.mycryptoheroes.net',
-      '/tmp': 'https://beta.origin.sand.mch.djty.co'
+      '/api': 'https://beta.mycryptoheroes.net',
+      '/events': 'https://beta.mycryptoheroes.net'
     }
   }
 })()
@@ -106,6 +112,7 @@ module.exports = {
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules,
+  axios,
   proxy,
   toast: {
     duration: 3000
