@@ -11,7 +11,7 @@ class Hero {
   }
 
   async get(id) {
-    const hero = await this.contract.methods.getHero(id).call()
+    let hero = await this.contract.methods.getHero(id).call()
     const numberKeys = [
       'activeSkillId',
       'agi',
@@ -29,6 +29,10 @@ class Hero {
     hero.passiveSkill = skillsData.find(
       skill => skill.id === hero.passiveSkillId
     )
+    hero = Object.assign({}, hero, this.getHeroType(hero.heroType))
+    hero.imageUrl = hero.ipfs
+      ? `https://beta.mycryptoheroes.net/image/${hero.ipfs}`
+      : require(`~/assets/images/heroes/${hero.fileName}`)
     return hero
   }
 
@@ -71,11 +75,7 @@ export default async ({ app, store }, inject) => {
     heroIds.map(async heroId => await hero.get(heroId))
   )
 
-  heroes
-    .map(myHero => {
-      return Object.assign(myHero, hero.getHeroType(Number(myHero.heroType)))
-    })
-    .forEach(hero => store.commit('heroes/SET_HERO', hero))
+  heroes.forEach(hero => store.commit('heroes/SET_HERO', hero))
 
   inject('hero', hero)
 }

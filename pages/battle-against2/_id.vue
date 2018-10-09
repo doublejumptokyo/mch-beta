@@ -31,7 +31,7 @@
               img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
               img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
               img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
-            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
+            img(:src="unit.hero.imageUrl")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -45,7 +45,7 @@
               img(:src="require(`~/assets/images/icons/skill/poison.png`)" v-if="unit.state === 1")
               img(:src="require(`~/assets/images/icons/skill/sleep.png`)" v-else-if="unit.state === 2")
               img(:src="require(`~/assets/images/icons/skill/confused.png`)" v-else-if="unit.state === 3")
-            img(:src="require(`~/assets/images/heroes/${unit.hero.fileName}`)")
+            img(:src="unit.hero.imageUrl")
           .hero__status.hero__hp(:class="`hero__${getPosition(index)}`")
             span(:class="{ 'hero__hp--zero': !unit.hp }")
               ICountUp(:startVal="unit.hp" :endVal="unit.hp" @ready="onCountUpReady")
@@ -70,14 +70,14 @@
           h3 Action {{ action.actionCounts }}
           p {{ getSkill(action.skillId).name[$i18n.locale] }}
         .action__actor(:class="`action__actor--${getTeamName(action.actionPosition)}`")
-          img(:src="require(`~/assets/images/heroes/${getUnit(action.actionPosition).hero.fileName}`)")
+          img(:src="getUnit(action.actionPosition).hero.imageUrl")
         .action__type
           img(:src="require(`~/assets/images/icons/skill/${getSkill(action.skillId).iconFileName}`)")
         .action__reactor(
           v-for="effectPosition in action.effectPositions"
           :class="`action__reactor--${getTeamName(effectPosition)}`"
         )
-          img(:src="require(`~/assets/images/heroes/${getUnit(effectPosition).hero.fileName}`)")
+          img(:src="getUnit(effectPosition).hero.imageUrl")
           .action__effect(:class="`effect-${getSkill(action.skillId).effectId}`")
           .damage(
             :class="{ 'damage--minus': getDamage(action, effectPosition) >= 0, 'damage--plus': getDamage(action, effectPosition) < 0 }"
@@ -98,7 +98,7 @@
     h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name[$i18n.locale] }}
     .statusModal__body.unit(slot="body")
       p.unit__image
-        img(:src="require(`~/assets/images/heroes/${currentUnitStatus.hero.fileName}`)")
+        img(:src="currentUnitStatus.hero.imageUrl")
       ul.unit__statuses
         li
           h4 HP
