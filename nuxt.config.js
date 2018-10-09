@@ -20,6 +20,13 @@ if (!isProduction) {
   modules.push('@nuxtjs/proxy')
 }
 
+const axios = isProduction
+  ? {
+      https: true,
+      browserBaseURL: 'https://beta.mycryptoheroes.net'
+    }
+  : {}
+
 const proxy = (() => {
   if (isProduction) {
     return {}
@@ -105,6 +112,7 @@ module.exports = {
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules,
+  axios,
   proxy,
   toast: {
     duration: 3000
