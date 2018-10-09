@@ -1,8 +1,8 @@
 import humps from 'humps'
 
-export default function({ $axios, browser }) {
+export default function({ $axios }) {
   $axios.onRequest(config => {
-    if (browser && config.data instanceof FormData) {
+    if (config.headers['Content-Type'] === 'multipart/form-data') {
       return
     }
     config.data = humps.decamelizeKeys(config.data)

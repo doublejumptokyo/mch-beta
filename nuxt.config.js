@@ -23,10 +23,13 @@ if (!isProduction) {
 const axios = isProduction
   ? {
       https: true,
+      proxy: false,
       baseURL: 'https://beta.mycryptoheroes.net',
       browserBaseURL: 'https://beta.mycryptoheroes.net'
     }
-  : {}
+  : {
+      proxy: true
+    }
 
 const proxy = isProduction
   ? {}
@@ -105,7 +108,8 @@ module.exports = {
     { src: '~/plugins/dc-rank', ssr: false },
     { src: '~/plugins/dc-battle-manager', ssr: false },
     { src: '~/plugins/dc-battle-manager2', ssr: false },
-    { src: '~/plugins/dc-present', ssr: false }
+    { src: '~/plugins/dc-present', ssr: false },
+    { src: '~/plugins/dc-hero-manager', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
   modules,
