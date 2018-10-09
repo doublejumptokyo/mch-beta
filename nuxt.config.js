@@ -23,20 +23,17 @@ if (!isProduction) {
 const axios = isProduction
   ? {
       https: true,
+      baseURL: 'https://beta.mycryptoheroes.net',
       browserBaseURL: 'https://beta.mycryptoheroes.net'
     }
   : {}
 
-const proxy = (() => {
-  if (isProduction) {
-    return {}
-  } else {
-    return {
+const proxy = isProduction
+  ? {}
+  : {
       '/api': 'https://beta.mycryptoheroes.net',
       '/events': 'https://beta.mycryptoheroes.net'
     }
-  }
-})()
 
 module.exports = {
   /*
