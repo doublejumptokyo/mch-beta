@@ -4,42 +4,33 @@
     h1 Art edit
   .heroEditPage__content
     .heroEditPage__left
-      p.heroEditPage__display
-        img(:src="displayImageSrc" ref="image")
-      p.heroEditPage__button
-        .file
-          label.file-label
-            input.file-input(type="file" ref="input" @change="fileChanged")
-            span.file-cta
-              span.file-icon
-                fa-icon(icon="upload")
-              span.file-label Choose a file
+
+      template(v-if="isConfirming")
+        p.heroEditPage__display
+          img(:src="`https://beta.mycryptoheroes.net/image/${pixelatedData.ipfs}`")
+        .heroEditPage__skill
+          .skill
+            img(:src="require(`~/assets/images/icons/skill/${getSkill(pixelatedData.skillId).iconFileName}`)")
+            div
+              h2 {{ getSkill(pixelatedData.skillId).name[$i18n.locale] }}
+              p {{ getSkill(pixelatedData.skillId).description[$i18n.locale] }}
+        p.heroEditPage__decideButtons
+          button(@click="reload") Cancel
+          button(@click="decide") OK
+
+      template(v-else)
+        p.heroEditPage__display
+          img(:src="hero.imageUrl" ref="image")
+        p.heroEditPage__button
+          .file
+            label.file-label
+              input.file-input(type="file" ref="input" @change="fileChanged")
+              span.file-cta
+                span.file-icon
+                  fa-icon(icon="upload")
+                span.file-label Choose a file
+
     .heroEditPage__right
-      .pixelatedData(v-if="pixelatedData")
-        section
-          h3 labelsFromAws
-          table.table.is-striped.is-fullwidth
-            thead
-              th name
-              th confidence
-              th type
-            tbody
-              tr(v-for="data in pixelatedData.labelsFromAws")
-                td {{ data.name }}
-                td {{ data.confidence }}
-                td {{ data.type }}
-        section
-          h3 labelsFromGcp
-          table.table.is-striped.is-fullwidth
-            thead
-              th name
-              th confidence
-              th type
-            tbody
-              tr(v-for="data in pixelatedData.labelsFromGcp")
-                td {{ data.name }}
-                td {{ data.confidence }}
-                td {{ data.type }}
 
   modal(v-if="isModalShown" type="bottom" @modal-close="closeModal")
     h2(slot="header") Crop
@@ -69,6 +60,7 @@ export default {
   components: { Modal },
   data() {
     return {
+      hero: {},
       isModalShown: false,
       cropImageSrc: '',
       pixelatedData: null,
@@ -77,16 +69,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getHero: 'heroes/get'
+      getSkill: 'team/getSkill'
     }),
-    displayImageSrc() {
-      const heroId = Number(this.$route.params.id)
-      const hero = this.getHero(heroId)
-      if (!hero) {
-        return ''
-      }
-      return require(`~/assets/images/heroes/${hero.fileName}`)
+    isConfirming() {
+      return !!this.pixelatedData
     }
+  },
+  async mounted() {
+    const heroId = Number(this.$route.params.id)
+    this.hero = await this.$hero.get(heroId)
   },
   methods: {
     fileChanged(e) {
@@ -116,11 +107,11 @@ export default {
       this.$refs.cropper.getCropBlob(async blob => {
         const formData = new FormData()
         formData.append('upload', blob)
+        const headers = { 'Content-Type': `multipart/form-data` }
         const res = await this.$axios
-          .post('/api/pixelator/upload', formData)
+          .post('/api/pixelator/upload', formData, { headers })
           .catch(console.error)
         this.pixelatedData = res.data
-        this.displayImageSrc = `/${this.pixelatedData.fileUrl}`
         this.isUploading = false
         this.closeModal()
       })
@@ -130,6 +121,14 @@ export default {
     },
     closeModal() {
       this.isModalShown = false
+    },
+    reload() {
+      window.location.reload()
+    },
+    async decide() {
+      await this.$heroManager.set(this.hero.id, this.pixelatedData.ipfs)
+      this.$toast.show('Success.')
+      this.$router.push(`/heroes/${this.hero.id}`)
     }
   }
 }
@@ -173,6 +172,21 @@ export default {
       width: 100%;
     }
   }
+
+  &__decideButtons {
+    display: flex;
+
+    > button {
+      width: 100%;
+
+      &:last-of-type {
+        background: map-get($colors, primary);
+        border-radius: 1rem;
+        color: #fff;
+        padding: 1rem;
+      }
+    }
+  }
 }
 
 .file {
@@ -206,11 +220,29 @@ export default {
   }
 }
 
-.pixelatedData {
+.skill {
+  align-items: center;
+  border: 1px solid #666;
+  border-radius: 1rem;
+  display: flex;
   margin: 1rem 0;
+  padding: 1rem;
 
-  section {
-    margin: 1rem 0;
+  > img {
+    margin-right: 1rem;
+    width: 2rem;
+  }
+
+  > div {
+    flex: 1;
+
+    > h2 {
+      font-size: 1.2rem;
+    }
+
+    > p {
+      color: #ccc;
+    }
   }
 }
 
