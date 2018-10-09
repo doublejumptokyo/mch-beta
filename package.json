@@ -51,6 +51,7 @@
     "vue-countup-v2": "^1.0.3",
     "vue-cropper": "^0.3.6",
     "vue-i18n": "^8.0.0",
+    "vue-nl2br": "0.0.5",
     "vue-observe-visibility": "^0.4.1",
     "vue2-highcharts": "^1.2.5",
     "vuedraggable": "^2.16.0",
