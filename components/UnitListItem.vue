@@ -7,7 +7,7 @@ nuxt-link.team(
   .team__heroItems
     .team__orderIcon
     .team__hero
-      img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+      img(:src="hero.imageUrl")
     .team__items
       .team__item
         img(:src="require(`~/assets/images/extensions/${extension1.fileName}`)")
