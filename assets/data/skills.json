@@ -250,5 +250,96 @@
     "description": { "en": "45-50% INT damage front enemy", "ja": "先頭の敵にINTの45~50%分ダメージ" },
     "iconFileName": "int.png",
     "effectId": 2
+  },
+  {
+    "id": 3001,
+    "name": { "en": "Black Blow", "ja": "ブラックブロウ" },
+    "description": { "en": "60-80% INT damage to front enemy", "ja": "先頭の敵にINTの60~80%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 3002,
+    "name": { "en": "Red Smite", "ja": "レッドスマイト" },
+    "description": { "en": "50-90% PHY damage to front enemy", "ja": "先頭の敵にPHYの50~90%分ダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 3003,
+    "name": { "en": "Blue Blessing", "ja": "ブルーブレッシング" },
+    "description": { "en": "15% INT increase to front allies's INT and AGI", "ja": "先頭の味方のINT / AGIをINTの15％分アップ" },
+    "iconFileName": "BUF_int.png",
+    "effectId": 4
+  },
+  {
+    "id": 3004,
+    "name": { "en": "Green Haste", "ja": "グリーンヘイスト" },
+    "description": { "en": "15% INT increase to front allies's PHY and AGI", "ja": "先頭の味方のPHY / AGIをINTの15％分アップ" },
+    "iconFileName": "BUF_phy.png",
+    "effectId": 4
+  },
+  {
+    "id": 3005,
+    "name": { "en": "Yellow Thunder", "ja": "イエローサンダー" },
+    "description": { "en": "5% INT dicrease to front enemy's INT", "ja": "先頭の敵のINTをINTの5%分ダウン" },
+    "iconFileName": "DEBUF_int.png",
+    "effectId": 5
+  },
+  {
+    "id": 3006,
+    "name": { "en": "Cyan Geyser", "ja": "シアンゲイザー" },
+    "description": { "en": "5% INT dicrease to front enemy's PHY", "ja": "先頭の敵のPHYをINTの5%分ダウン" },
+    "iconFileName": "DEBUF_phy.png",
+    "effectId": 5
+  },
+  {
+    "id": 3007,
+    "name": { "en": "Magenta Fog", "ja": "マゼンダフォッグ" },
+    "description": { "en": "30-50% PHY damage to front enemy and Sometimes an front enemy gets confused", "ja": "先頭の敵にPHYの30~50％分ダメージを与え、混乱効果を与えることがある" },
+    "iconFileName": "confused.png",
+    "effectId": 5
+  },
+  {
+    "id": 3008,
+    "name": { "en": "White Regeneration", "ja": "ホワイトリジェネレーション" },
+    "description": { "en": "Recovers all allies' HP by 20%", "ja": "味方全体に20%の回復効果を与える" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 3101,
+    "name": { "en": "Ethereum Cannon", "ja": "エーテリウム・キャノン" },
+    "description": { "en": "20-30% INT damage to all enemy", "ja": "敵全体にINTの20〜30%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 3102,
+    "name": { "en": "Brass Nyaknuckles", "ja": "ブラスニャックル" },
+    "description": { "en": "40-50% PHY damage to front enemy and 20% INT increase to own AGI", "ja": "先頭の敵にPHYの40～50%分ダメージを与え、自分のAGIをINTの 20%分アップ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 3103,
+    "name": { "en": "BowWowWow", "ja": "バウワウワウ" },
+    "description": { "en": "40-50% PHY damage to front enemy and 20% INT increase to own PHY", "ja": "先頭の敵にPHYの40～50%分ダメージを与え、自分のPHYをINTの 20%分アップ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 3104,
+    "name": { "en": "Block Chain", "ja": "ブロック・チェイン" },
+    "description": { "en": "15-30% PHY damage to all enemy", "ja": "敵全体にPHYの15〜30%分ダメージ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
+  },
+  {
+    "id": 3105,
+    "name": { "en": "1UP!", "ja": "1UP!" },
+    "description": { "en": "10% INT increase to front allies's INT and AGI, PHY", "ja": "自分のPHY / INT / AGIをINTの10%分アップ" },
+    "iconFileName": "BUF_phy.png",
+    "effectId": 4
   }
 ]
