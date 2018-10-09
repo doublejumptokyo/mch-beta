@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "API_URL=/ nuxt build",
     "build-spa": "API_URL=/ nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
