@@ -2,7 +2,7 @@
 .assetPage
   .assetPage__left(v-if="hero")
     .assetPage__image
-      img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+      img(:src="hero.imageUrl")
       button(v-if="isSellable")
         fa-icon(:icon="['far', 'edit']")
     .assetPage__rarity
