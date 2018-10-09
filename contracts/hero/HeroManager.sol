@@ -10,12 +10,11 @@ import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 contract HeroManager is Ownable, MinterRole {
 
     uint16 public constant HERO_TYPE_OFFSET = 10000;
+    uint16 public constant DEFAULT_SKILL_ID = 2001;
 
     Hero public hero;
     HeroAsset public heroAsset;
     IpfsType public ipfsType;
-
-    mapping (uint256 => address) public tokenOwner;
 
     function setHeroAddress(address _heroAddress) public onlyOwner {
         hero = Hero(_heroAddress);
@@ -68,7 +67,6 @@ contract HeroManager is Ownable, MinterRole {
     function mintHero(address _owner, uint256 _heroId) public onlyMinter {
         hero.createHero(_heroId);
         heroAsset.mintHeroAsset(_owner, _heroId);
-        tokenOwner[_heroId] = _owner;
     }    
 
     function forceTransferFrom(address _from, address _to, uint256 _tokenId) public onlyMinter {
@@ -76,12 +74,15 @@ contract HeroManager is Ownable, MinterRole {
     }    
 
     function forceMintHero(address _to, uint256 _heroId) public onlyMinter {
-        address _from = tokenOwner[_heroId];
-        if(_from == address(0x0)){
-            mintHero(_to, _heroId);          
+        uint16 _heroType = uint16(_heroId / HERO_TYPE_OFFSET);
+        uint16 _heroLength = hero.getHeroTypeLength(_heroType);
+        uint256 _lastHeroId = uint256(_heroType) * HERO_TYPE_OFFSET + _heroLength;
+        
+        if(_heroId > _lastHeroId){
+            mintHero(_to, _heroId);
         } else {
+            address _from = heroAsset.ownerOf(_heroId);
             forceTransferFrom(_from, _to, _heroId);
-            tokenOwner[_heroId] = _to;
         }
     }
     
@@ -91,6 +92,10 @@ contract HeroManager is Ownable, MinterRole {
 
     function presetIpfs(string _ipfs, uint16 _skillId) public onlyMinter {
         ipfsType.set(_ipfs, _skillId);
+    }
+
+    function forceUnsetIpfs(uint256 _heroId) public onlyMinter {
+        hero.setIpfs(_heroId, "", DEFAULT_SKILL_ID);
     }
 
     function setAliasName(uint256 _heroId, string _aliasName) public {
@@ -105,4 +110,8 @@ contract HeroManager is Ownable, MinterRole {
         hero.setIpfs(_heroId, _ipfs, skillId);
     }
 
+    function unsetIpfs(uint256 _heroId) public {
+        require(msg.sender == heroAsset.ownerOf(_heroId));
+        hero.setIpfs(_heroId, "", DEFAULT_SKILL_ID);
+    }
 }
