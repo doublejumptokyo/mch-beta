@@ -1,3 +1,5 @@
+const isProduction = process.env.NODE_ENV === 'production'
+
 const SITE_INFO = {
   title: 'My Crypto Heroes',
   description:
@@ -6,6 +8,29 @@ const SITE_INFO = {
   gaTrackingId: 'UA-119742974-1',
   primaryColor: '#444'
 }
+
+const modules = [
+  '@nuxtjs/axios',
+  '@nuxtjs/toast',
+  'cookie-universal-nuxt',
+  ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
+  ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
+]
+if (!isProduction) {
+  modules.push('@nuxtjs/proxy')
+}
+
+const proxy = (() => {
+  if (isProduction) {
+    return {}
+  } else {
+    return {
+      '/api': 'https://beta.origin.sand.mch.djty.co',
+      '/events': 'https://beta.mycryptoheroes.net',
+      '/tmp': 'https://beta.origin.sand.mch.djty.co'
+    }
+  }
+})()
 
 module.exports = {
   /*
@@ -80,22 +105,8 @@ module.exports = {
     { src: '~/plugins/dc-present', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
-  modules: [
-    // '@nuxtjs/font-awesome',
-    '@nuxtjs/axios',
-    // '@nuxtjs/pwa',
-    '@nuxtjs/proxy',
-    // '@nuxtjs/bulma',
-    '@nuxtjs/toast',
-    'cookie-universal-nuxt',
-    ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
-    ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
-  ],
-  proxy: {
-    '/api': 'https://beta.origin.sand.mch.djty.co',
-    '/events': 'https://beta.mycryptoheroes.net',
-    '/tmp': 'https://beta.origin.sand.mch.djty.co'
-  },
+  modules,
+  proxy,
   toast: {
     duration: 3000
   }
