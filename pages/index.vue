@@ -4,6 +4,9 @@
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
     .update
+      nl2br(tag="p" :text="$t('home.trouble')")
+  section.indexPage__section
+    .update
       p {{ $t('home.update') }}
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af") Update schedule
@@ -28,6 +31,14 @@
     ul
       li(v-for="notice in $i18n.messages[$i18n.locale].home.notice") {{ notice }}
 </template>
+
+<script>
+import Nl2br from 'vue-nl2br'
+export default {
+  components: { Nl2br }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .indexPage {
