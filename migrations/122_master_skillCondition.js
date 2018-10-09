@@ -38,6 +38,9 @@ module.exports = function (deployer) {
             [1033,4,50],
             [1034,4,50],
             [1035,6,50],
+            [1036,4,20],
+            [1037,2,100],
+            [1038,4,60],
             [2001,0,100],
             [2002,0,100],
             [2003,0,100],
@@ -49,6 +52,8 @@ module.exports = function (deployer) {
             [2009,0,100],
             [2010,0,100],
             [2011,0,100],
+            [2012,0,100],
+            [2013,0,100],
         ]
 
         const transaction = await BattleTransaction2.deployed()
