@@ -7,13 +7,11 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "build-spa": "API_URL=/ nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue .",
     "lintfix": "eslint --fix --ext .js,.vue .",
-    "precommit": "npm run lintfix",
-    "devserver": "HOST=0.0.0.0 PORT=80 nuxt"
+    "precommit": "npm run lintfix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
@@ -22,11 +20,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "@nuxtjs/axios": "^5.3.1",
-    "@nuxtjs/bulma": "^1.2.0",
-    "@nuxtjs/font-awesome": "^1.0.3",
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/proxy": "^1.2.4",
-    "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/toast": "^3.0.1",
     "animate.css": "^3.7.0",
     "body-scroll-lock": "^2.5.1",
