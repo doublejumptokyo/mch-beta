@@ -2,6 +2,7 @@ pragma solidity 0.4.24;
 
 import "./Hero.sol";
 import "./HeroAsset.sol";
+import "./IpfsType.sol";
 import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 
@@ -12,6 +13,7 @@ contract HeroManager is Ownable, MinterRole {
 
     Hero public hero;
     HeroAsset public heroAsset;
+    IpfsType public ipfsType;
 
     mapping (uint256 => address) public tokenOwner;
 
@@ -21,6 +23,10 @@ contract HeroManager is Ownable, MinterRole {
 
     function setHeroAssetAddress(address _heroAssetAddress) public onlyOwner {
         heroAsset = HeroAsset(_heroAssetAddress);
+    }
+
+    function setIpfsTypeAddress(address _ipfsTypeAddress) public onlyOwner {
+        ipfsType = IpfsType(_ipfsTypeAddress);
     }
 
     function setHeroType(
@@ -65,11 +71,6 @@ contract HeroManager is Ownable, MinterRole {
         tokenOwner[_heroId] = _owner;
     }    
 
-    function setAliasName(uint256 _heroId, string _aliasName) public {
-        require(msg.sender == heroAsset.ownerOf(_heroId));
-        hero.setAliasName(_heroId, _aliasName);
-    }
-
     function forceTransferFrom(address _from, address _to, uint256 _tokenId) public onlyMinter {
         heroAsset.forceTransferFrom(_from, _to, _tokenId);
     }    
@@ -88,6 +89,20 @@ contract HeroManager is Ownable, MinterRole {
         hero.updateHero(_heroId);
     }
 
-    // function setIpfs(uint256 _heroId, string _ipfs) public {}
+    function presetIpfs(string _ipfs, uint16 _skillId) public onlyMinter {
+        ipfsType.set(_ipfs, _skillId);
+    }
+
+    function setAliasName(uint256 _heroId, string _aliasName) public {
+        require(msg.sender == heroAsset.ownerOf(_heroId));
+        hero.setAliasName(_heroId, _aliasName);
+    }
+
+    function setIpfs(uint256 _heroId, string _ipfs) public {
+        require(msg.sender == heroAsset.ownerOf(_heroId));
+        uint16 skillId = ipfsType.get(_ipfs);
+        require(skillId != 0);
+        hero.setIpfs(_heroId, _ipfs, skillId);
+    }
 
 }
