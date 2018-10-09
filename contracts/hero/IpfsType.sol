@@ -1,13 +1,13 @@
 pragma solidity 0.4.24;
 
-import "../lib/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../lib/openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
 
 
-contract IpfsType is Ownable {
+contract IpfsType is MinterRole {
 
     mapping(string => uint16) internal ipfsTypes;
 
-    function set(string _ipfs, uint16 _type) public onlyOwner {
+    function set(string _ipfs, uint16 _type) public onlyMinter {
         ipfsTypes[_ipfs] = _type;
     }
 
