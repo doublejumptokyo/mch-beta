@@ -117,7 +117,7 @@ export default {
         const formData = new FormData()
         formData.append('upload', blob)
         const res = await this.$axios
-          .post('/pixelator/upload', formData)
+          .post('/api/pixelator/upload', formData)
           .catch(console.error)
         this.pixelatedData = res.data
         this.displayImageSrc = `/${this.pixelatedData.fileUrl}`
@@ -172,6 +172,26 @@ export default {
       padding: 1rem;
       width: 100%;
     }
+  }
+}
+
+.file {
+  label.file-label {
+    width: 100%;
+  }
+
+  &-cta,
+  .file-label:hover .file-cta {
+    background: map-get($colors, primary);
+    border: none;
+    border-radius: 1rem;
+    color: #444;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    line-height: 1;
+    padding: 1rem;
+    width: 100%;
   }
 }
 
