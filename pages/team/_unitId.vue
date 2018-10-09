@@ -6,7 +6,7 @@
       .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
         fa-icon(icon="sync")
         .hero__image
-          img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+          img(:src="hero.imageUrl")
         //- .hero__name
         //-   span {{ hero.name[$i18n.locale] }}
       //- .hero.hero--empty(v-else @click="heroModalOpen")
@@ -102,9 +102,9 @@
           label
             input(type="radio" name="heroSelector" :value="hero" v-model="selectedHero")
             .heroSelector__heroInner
-              img(:src="require(`~/assets/images/heroes/${hero.fileName}`)")
+              img(:src="hero.imageUrl")
         .detailViewer(v-if="selectedHero")
-          img(:src="require(`~/assets/images/heroes/${selectedHero.fileName}`)")
+          img(:src="selectedHero.imageUrl")
           .detailViewer__data
             h3 {{ selectedHero.name[$i18n.locale] }}
             p {{ selectedHero.anotherName }}
@@ -249,7 +249,7 @@ export default {
     },
     getSkillTypeImage(index) {
       if (index === 0) {
-        return require(`~/assets/images/heroes/${this.hero.fileName}`)
+        return this.hero.imageUrl
       }
       if (index === 1) {
         return require(`~/assets/images/extensions/${this.item1.fileName}`)
