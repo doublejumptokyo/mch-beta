@@ -33,7 +33,7 @@
             span Copy URL
         no-ssr
           li
-            a(:href="`https://twitter.com/share?url=${myUrl}&hashtags=MCH,MyCryptoHeroes`")
+            a(:href="`https://twitter.com/share?url=${myUrl}&hashtags=MCH,MyCryptoHeroes&text=${text}`")
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
 </template>
@@ -58,6 +58,9 @@ export default {
     }),
     myUrl() {
       return `${this.env.siteUrl}users/${this.loomAddress}`
+    },
+    text() {
+      return encodeURIComponent("Let's battle with me!")
     }
   },
   methods: {
