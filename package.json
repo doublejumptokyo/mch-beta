@@ -20,6 +20,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/bulma": "^1.2.0",
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/proxy": "^1.2.4",
     "@nuxtjs/toast": "^3.0.1",
