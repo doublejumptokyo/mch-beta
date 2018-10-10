@@ -38,6 +38,7 @@
       .cropperWrapper
         vue-cropper(
           ref="cropper"
+          outputType="png"
           :img="cropImageSrc"
           :auto-crop="!isUploading"
           :center-box="!isUploading"
