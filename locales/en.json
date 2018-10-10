@@ -4,6 +4,10 @@
     "meta": {
       "title": "My Crypto Heroes | Beta Battle test",
       "description": "‘My Crypto Heroes’(MCH) is Beta Battle test now. Heroes acquired through the Pre-sale can be used. You can get some prize! Beta tests will be carried out for each function sequentially."
+    },
+    "footer": {
+      "company": "Operating Company",
+      "terms": "Terms of Service"
     }
   },
   "pages": {
@@ -14,7 +18,7 @@
     "dungeons": "Quest",
     "market": "Market",
     "help": "Help",
-    "terms": "Terms"
+    "terms": "Terms of Service"
   },
   "others": {
     "other": "Others"

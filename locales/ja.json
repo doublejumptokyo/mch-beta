@@ -4,6 +4,10 @@
     "meta": {
       "title": "Dapps/ブロックチェーンゲーム「My Crypto Heros」 | バトルβ",
       "description": "My Crypto Heroes（MCH）はバトルβテスト中です。プレセールを通じて獲得したヒーローを使用することができます。報酬付きのイベントも実施いたします！バトルβの各機能は順次追加されていきます。"
+    },
+    "footer": {
+      "company": "運営会社",
+      "terms": "利用規約"
     }
   },
   "pages": {
