@@ -2,9 +2,9 @@
 .heroEditPage
   .page__title
     h1 Art edit
-  .heroEditPage__content
 
-    template(v-if="isConfirming")
+  template(v-if="isConfirming")
+    .heroEditPage__content
       p.heroEditPage__display
         img(:src="`https://beta.mycryptoheroes.net/image/${pixelatedData.ipfs}`")
       .heroEditPage__skill
@@ -17,10 +17,11 @@
         button(@click="reload") Cancel
         button(@click="decide") OK
 
-    template(v-else)
+  template(v-else)
+    .heroEditPage__content
       p.heroEditPage__display
         img(:src="hero.imageUrl" ref="image")
-      p.heroEditPage__button
+      .heroEditPage__button
         .file
           label.file-label
             input.file-input(type="file" ref="input" @change="fileChanged")
@@ -28,6 +29,14 @@
               span.file-icon
                 fa-icon(icon="upload")
               span.file-label Choose a file
+    .heroEditPage__warning
+      ul
+        li(v-for="(text, index) in $i18n.messages[$i18n.locale].heroId.edit.warning")
+          span {{ text }}
+          ol(v-if="index === 1")
+            li(v-for="text in $i18n.messages[$i18n.locale].heroId.edit.prohibited") {{ text }}
+      p
+        nuxt-link(to="/terms") {{ $t('pages.terms') }}
 
   modal(v-if="isModalShown" type="bottom" @modal-close="closeModal")
     h2(slot="header") Crop
@@ -144,6 +153,10 @@ export default {
   &__display {
     margin: 1rem 0;
 
+    @media (min-width: $breakpoint) {
+      margin: 2rem 0;
+    }
+
     img {
       height: auto;
       image-rendering: pixelated;
@@ -153,6 +166,10 @@ export default {
 
   &__button {
     margin: 1rem 0;
+
+    @media (min-width: $breakpoint) {
+      margin: 2rem 0;
+    }
 
     button {
       background: map-get($colors, primary);
@@ -175,6 +192,26 @@ export default {
         color: #fff;
         padding: 1rem;
       }
+    }
+  }
+
+  &__warning {
+    color: #ccc;
+    font-size: 0.8rem;
+    margin: 1rem 0;
+
+    @media (min-width: $breakpoint) {
+      margin: 2rem 0;
+    }
+
+    ul,
+    ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    p {
+      margin: 1rem 0;
     }
   }
 }
