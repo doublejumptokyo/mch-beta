@@ -5,6 +5,7 @@
       img(:src="hero.imageUrl")
       nuxt-link(to="edit" append)
         fa-icon(:icon="['far', 'edit']")
+        span Art Edit
     .assetPage__rarity
       p {{ hero.rarity }}
     .assetPage__name
@@ -132,17 +133,22 @@ export default {
     }
 
     a {
+      align-items: center;
       background: #666;
       border-radius: 9999px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       color: #ccc;
-      height: 3rem;
-      line-height: 3rem;
+      display: flex;
+      padding: 0.5rem 1rem;
       position: absolute;
       right: 0;
       text-align: center;
+      text-decoration: none;
       top: 0;
-      width: 3rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
     }
   }
 
