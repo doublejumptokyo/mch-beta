@@ -68,5 +68,12 @@
   },
   "team": {
     "button": "This is my team !!"
+  },
+  "userId": {
+    "reportButton": "Report User",
+    "mail": {
+      "subject": "{userName} {userAddress}",
+      "body": "User Name: {userName}\nLoomAdress: {userAddress}\n\nTo report this user's problem, just send us an email.\nIf you want to supplement the report, please describe the contents below.\n—————————————————\nSupplement:\n\n\n\n\n\n—————————————————"
+    }
   }
 }
