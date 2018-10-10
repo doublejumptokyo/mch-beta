@@ -2,9 +2,9 @@
 footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
   ul
     li
-      a(href="http://www.doublejump.tokyo/") 運営会社
+      a(href="http://www.doublejump.tokyo/") {{ $t('common.footer.company') }}
     li
-      nuxt-link(to="/terms") 利用規約
+      nuxt-link(to="/terms") {{ $t('common.footer.terms') }}
   p
     small &copy; {{ (new Date()).getFullYear() }} double jump.tokyo
 </template>
