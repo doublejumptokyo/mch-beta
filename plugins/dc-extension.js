@@ -11,7 +11,7 @@ class Extension {
   }
 
   async get(id) {
-    const ext = await this.contract.methods.getExtension(id).call()
+    let ext = await this.contract.methods.getExtension(id).call()
     const numberKeys = [
       'activeSkillId',
       'agi',
@@ -25,6 +25,7 @@ class Extension {
       .forEach(key => (ext[key] = Number(ext[key])))
     ext.id = id
     ext.activeSkill = skillsData.find(skill => skill.id === ext.activeSkillId)
+    ext = Object.assign({}, ext, this.getExtensionType(ext.extensionType))
     return ext
   }
 

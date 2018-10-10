@@ -1,12 +1,5 @@
 <template lang="pug">
 section.section.section__heroList
-  //- header
-    form.searchForm
-      input.searchForm__input(type="search" v-model="searchText" placeholder="Your Hero Name")
-      fa-icon(icon="search")
-    button.sortButton
-      fa-icon(icon="sort-alpha-down" size="lg")
-      fa-icon(icon="sort")
   .heroList
     nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in heroes" :key="hero.id")
       img.heroItem__image(:src="hero.imageUrl")
@@ -14,14 +7,23 @@ section.section.section__heroList
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      searchText: ''
+      heroes: []
     }
   },
-  computed: mapState(['heroes'])
+  async mounted() {
+    const address = this.$store.state.loomAddress
+    const heroCount = await this.$hero.asset.getHeroCount(address)
+    const indexes = Array.from(Array(heroCount).keys())
+    const heroIds = await Promise.all(
+      indexes.map(index => this.$hero.asset.getHeroId(address, index))
+    )
+    this.heroes = await Promise.all(
+      heroIds.map(heroId => this.$hero.get(heroId))
+    )
+  }
 }
 </script>
 
