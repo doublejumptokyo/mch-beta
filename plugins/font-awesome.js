@@ -32,6 +32,7 @@ import {
   faSignInAlt,
   faSignOutAlt,
   faExclamationCircle,
+  faExclamationTriangle,
   faSync
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -84,6 +85,7 @@ library.add(
   faSignInAlt,
   faSignOutAlt,
   faExclamationCircle,
+  faExclamationTriangle,
   faSync,
   faClock,
   faSadTear,
