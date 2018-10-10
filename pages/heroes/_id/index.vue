@@ -3,7 +3,7 @@
   .assetPage__left(v-if="hero")
     .assetPage__image
       img(:src="hero.imageUrl")
-      button(v-if="isSellable")
+      nuxt-link(to="edit" append)
         fa-icon(:icon="['far', 'edit']")
     .assetPage__rarity
       p {{ hero.rarity }}
@@ -122,20 +122,27 @@ export default {
 
   &__image {
     margin-bottom: 1rem;
+    padding: 1rem;
+    position: relative;
 
     img {
+      border-radius: 1rem;
       image-rendering: pixelated;
       width: 100%;
     }
 
-    button {
-      background: #eee;
+    a {
+      background: #666;
       border-radius: 9999px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      padding: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      color: #ccc;
+      height: 3rem;
+      line-height: 3rem;
       position: absolute;
       right: 0;
+      text-align: center;
       top: 0;
+      width: 3rem;
     }
   }
 
