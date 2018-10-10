@@ -137,7 +137,7 @@ export default {
   @media (min-width: $breakpoint) {
     &__content {
       margin: 0 auto;
-      max-width: 640px;
+      max-width: 375px;
     }
   }
 
