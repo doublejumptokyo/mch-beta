@@ -31,14 +31,14 @@
               span.file-label Choose a file
       .heroEditPage__unsetButton(v-if="hero.ipfs")
         button(@click="unset") Unset
+
     .heroEditPage__warning
+      h3 {{ $t('heroId.edit.warning.title') }}
       ul
-        li(v-for="(text, index) in $i18n.messages[$i18n.locale].heroId.edit.warning")
-          span {{ text }}
-          ol(v-if="index === 1")
-            li(v-for="text in $i18n.messages[$i18n.locale].heroId.edit.prohibited") {{ text }}
+        li(v-for="text in $i18n.messages[$i18n.locale].heroId.edit.warning.list") {{ text }}
       p
         nuxt-link(to="/terms") {{ $t('pages.terms') }}
+      p {{ $t('heroId.edit.warning.footer') }}
 
   modal(v-if="isModalShown" type="bottom" @modal-close="closeModal")
     h2(slot="header") Crop
@@ -225,12 +225,16 @@ export default {
   }
 
   &__warning {
+    background: #555;
+    border-radius: 1rem;
     color: #ccc;
     font-size: 0.8rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
+    padding: 1rem;
 
     @media (min-width: $breakpoint) {
-      margin: 2rem 0;
+      margin: 2rem;
+      padding: 2rem;
     }
 
     ul,
