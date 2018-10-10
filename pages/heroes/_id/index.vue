@@ -74,17 +74,13 @@ export default {
   components: { Modal },
   data() {
     return {
+      hero: null,
       isModalShown: false,
       isActionsShown: false,
       isWikiModalShown: false
     }
   },
   computed: {
-    hero() {
-      return this.$store.state.heroes.find(
-        hero => hero.id === Number(this.$route.params.id)
-      )
-    },
     id() {
       return `#${this.zeroPadding(this.$route.params.id, 4)}`
     },
@@ -94,6 +90,10 @@ export default {
     isBuyable() {
       return this.$route.params.id > 5
     }
+  },
+  async mounted() {
+    const heroId = Number(this.$route.params.id)
+    this.hero = await this.$hero.get(heroId)
   },
   methods: {
     zeroPadding(num, length) {
