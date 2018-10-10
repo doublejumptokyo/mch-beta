@@ -24,7 +24,7 @@
       .heroEditPage__button
         .file
           label.file-label
-            input.file-input(type="file" ref="input" @change="fileChanged")
+            input.file-input(type="file" accept="image/*" ref="input" @change="fileChanged")
             span.file-cta
               span.file-icon
                 fa-icon(icon="upload")
