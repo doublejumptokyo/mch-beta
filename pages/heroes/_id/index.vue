@@ -10,7 +10,7 @@
       p {{ hero.rarity }}
     .assetPage__name
       h1 {{ hero.name[$i18n.locale] }}
-      p {{ id }}
+      p {{ `#${hero.id}` }}
 
   .assetPage__right(v-if="hero")
 
@@ -82,9 +82,6 @@ export default {
     }
   },
   computed: {
-    id() {
-      return `#${this.zeroPadding(this.$route.params.id, 4)}`
-    },
     isSellable() {
       return this.$route.params.id < 6
     },
@@ -95,11 +92,6 @@ export default {
   async mounted() {
     const heroId = Number(this.$route.params.id)
     this.hero = await this.$hero.get(heroId)
-  },
-  methods: {
-    zeroPadding(num, length) {
-      return ('0000000000' + num).slice(-length)
-    }
   }
 }
 </script>
