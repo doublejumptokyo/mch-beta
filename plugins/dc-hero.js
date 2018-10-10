@@ -58,6 +58,10 @@ class HeroAsset {
       .call()
     return Number(heroId)
   }
+
+  async getOwnerAddress(id) {
+    return await this.contract.methods.ownerOf(id).call()
+  }
 }
 
 export default async ({ app, store }, inject) => {
