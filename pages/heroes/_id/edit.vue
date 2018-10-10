@@ -29,6 +29,8 @@
               span.file-icon
                 fa-icon(icon="upload")
               span.file-label Choose a file
+      .heroEditPage__unsetButton(v-if="hero.ipfs")
+        button(@click="unset") Unset
     .heroEditPage__warning
       ul
         li(v-for="(text, index) in $i18n.messages[$i18n.locale].heroId.edit.warning")
@@ -141,6 +143,11 @@ export default {
       await this.$heroManager.set(this.hero.id, this.pixelatedData.ipfs)
       this.$toast.show('Success.')
       this.$router.push(`/heroes/${this.hero.id}`)
+    },
+    async unset() {
+      await this.$heroManager.unset(this.hero.id)
+      this.$toast.show('Success.')
+      this.$router.push(`/heroes/${this.hero.id}`)
     }
   }
 }
@@ -181,6 +188,23 @@ export default {
       border-radius: 1rem;
       color: #fff;
       padding: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__unsetButton {
+    margin: 1rem 0;
+
+    @media (min-width: $breakpoint) {
+      margin: 2rem 0;
+    }
+
+    button {
+      border: 1px solid #999;
+      border-radius: 1rem;
+      color: #999;
+      line-height: 1;
+      padding: calc(1rem - 2px);
       width: 100%;
     }
   }
