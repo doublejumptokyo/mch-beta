@@ -120,8 +120,10 @@ export default {
         }
         const res = await this.$axios
           .post('/api/pixelator/upload', formData, { headers })
-          .catch(console.error)
-        this.pixelatedData = res.data
+          .catch(() => this.$toast.error('Error.'))
+        if (res) {
+          this.pixelatedData = res.data
+        }
         this.isUploading = false
         this.closeModal()
       })
