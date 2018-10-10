@@ -18,6 +18,10 @@ class HeroManager {
   async unset(id) {
     await this.contract.methods.unsetIpfs(id).send()
   }
+
+  async forceUnset(id) {
+    await this.contract.methods.forceUnsetIpfs(id).send()
+  }
 }
 
 export default async ({ app, store }, inject) => {
