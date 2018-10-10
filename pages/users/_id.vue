@@ -15,6 +15,7 @@
             v-if="unit"
             :unit="getUnit(unit)"
             :skillOrder="getSkillOrder(unit)"
+            :to="`/heroes/${unit[0]}`"
           )
   .userPage__battleButton
     nuxt-link(:to="`/battle-against2/${$route.params.id}`")
@@ -229,6 +230,16 @@ export default {
 
     * {
       user-select: none;
+    }
+
+    > li {
+      cursor: pointer;
+      opacity: 1;
+      transition: all 0.3s;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
   }
 }
