@@ -1,8 +1,12 @@
 <template lang="pug">
 .userPage
   .page__title
-    h1 {{ user.name }}
-    p {{ address }}
+    div
+      h1 {{ user.name }}
+      p {{ address }}
+    a(:href="mailAddress")
+      fa-icon(icon="exclamation-triangle")
+      span {{ $t('userId.reportButton') }}
   .userPage__user.team
     no-ssr
       ol
@@ -28,6 +32,24 @@ export default {
       address: '',
       user: {},
       units: []
+    }
+  },
+  computed: {
+    mailAddress() {
+      const address = 'mch-support@doublejump.tokyo'
+      const subject = encodeURIComponent(
+        this.$t('userId.mail.subject', {
+          userName: this.$store.state.user.name,
+          userAddress: this.$store.state.loomAddress
+        })
+      )
+      const body = encodeURIComponent(
+        this.$t('userId.mail.body', {
+          userName: this.user.name,
+          userAddress: this.address
+        })
+      )
+      return `mailto:${address}?subject=${subject}&body=${body}`
     }
   },
   async beforeMount() {
@@ -76,9 +98,36 @@ export default {
 
 <style lang="scss" scoped>
 .userPage {
-  .page__title p {
-    color: #999;
-    font-size: 0.8rem;
+  .page__title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    a {
+      border: 1px solid #999;
+      border-radius: 1rem;
+      color: #999;
+      font-size: 0.8rem;
+      display: inline-block;
+      line-height: 1;
+      margin-left: 1rem;
+      padding: 0.5rem;
+      text-decoration: none;
+      white-space: nowrap;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
   }
 
   &__user {
