@@ -253,7 +253,7 @@
   },
   {
     "id": 3001,
-    "name": { "en": "Black Blow", "ja": "ブラックブロウ" },
+    "name": { "en": "Dark Blow", "ja": "ダークブロウ" },
     "description": { "en": "60-80% INT damage to front enemy", "ja": "先頭の敵にINTの60~80%分ダメージ" },
     "iconFileName": "int.png",
     "effectId": 2
@@ -302,7 +302,7 @@
   },
   {
     "id": 3008,
-    "name": { "en": "White Regeneration", "ja": "ホワイトリジェネレーション" },
+    "name": { "en": "Light Regeneration", "ja": "ライトリジェネレーション" },
     "description": { "en": "Recovers all allies' HP by 20%", "ja": "味方全体に20%の回復効果を与える" },
     "iconFileName": "hp.png",
     "effectId": 3
