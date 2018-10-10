@@ -63,21 +63,17 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      hero: null,
+      extension1: null,
+      extension2: null
+    }
+  },
   computed: {
     ...mapGetters({
-      getHero: 'heroes/get',
-      getExtension: 'extensions/get',
       getSkill: 'team/getSkill'
     }),
-    hero() {
-      return this.getHero(this.unit[0])
-    },
-    extension1() {
-      return this.getExtension(this.unit[1])
-    },
-    extension2() {
-      return this.getExtension(this.unit[2])
-    },
     hp() {
       return this.hero.hp + this.extension1.hp + this.extension2.hp
     },
@@ -103,6 +99,13 @@ export default {
         }
       })
     }
+  },
+  async mounted() {
+    ;[this.hero, this.extension1, this.extension2] = await Promise.all([
+      this.$hero.get(this.unit[0]),
+      this.$extension.get(this.unit[1]),
+      this.$extension.get(this.unit[2])
+    ])
   }
 }
 </script>
