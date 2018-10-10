@@ -68,5 +68,12 @@
   },
   "team": {
     "button": "対戦相手を募集！"
+  },
+  "userId": {
+    "reportButton": "ユーザーを報告する",
+    "mail": {
+      "subject": "{userName} {userAddress}",
+      "body": "ユーザー名：{userName}\nLoomAdress：{userAddress}\n\nこのユーザーの問題を報告するには、このままメールを送信してください。\n報告を補足したい場合は、下記に内容を記載してください。\n—————————————————\n補足内容：\n\n\n\n\n————————————————"
+    }
   }
 }
