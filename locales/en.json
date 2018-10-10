@@ -68,5 +68,52 @@
   },
   "team": {
     "button": "This is my team !!"
+  },
+  "heroId": {
+    "edit": {
+      "warning": [
+        "Do not use images that may violate third party's intellectual property right in art editing.",
+        "The User shall not use the Service to engage in the following acts, or any other act that may possibly be categorized as such acts:",
+        "For details, please check the following link \"Terms of Service\"."
+      ],
+      "prohibited": [
+        "Acts that violate any applicable laws and regulations, public policy, or the TOS;",
+        "Criminal acts, conduct that leads to criminal acts, or conduct that promotes such acts;",
+        "Posting information that is harmful to adolescents (as defined in Article 2, Paragraph 3 of the Act on Development of an Environment that Provides Safe and Secure Internet Use for Young People), or luring children to become a partner in sexual acts;",
+        "Sending or storing text or images with child pornography or other content that would make other users uncomfortable;",
+        "Engaging in any conduct for the purpose of having intercourse with others or an obscene act or encounter;",
+        "Sending or storing data about dating with unknown others;",
+        "Using false information to register as a user, or otherwise providing or disseminating untruthful information to DJT or third parties through the Service;",
+        "Using or selling or purchasing drugs, especially contraband such as stimulants or narcotics, or recommending or encouraging minors to drink, smoke, or gamble;",
+        "Encouraging or recommending suicide or self-harm;",
+        "Posting content that libels, defames, or insults a third party or content that harms the reputation or credibility of a third party, or other harassing conduct;",
+        "Posting expressions that lead to discrimination based on race, ethnicity, gender, creed, social status, place of residence, physical characteristics, medical history, education, or wealth;",
+        "Commercial activities outside of the Service, or preparing for such activities by using the Service or data provided through the Service (including selling, or offering to sell, Profiles or private keys outside the Service, irrespective of the type of consideration, but excluding any act that is permitted under the TOS);",
+        "Encouraging involvement in political groups or religious organizations, or otherwise engaging in political or religious activity; ",
+        "Improperly collecting or using other users' personal information;",
+        "Infringing on the Intellectual Property Rights and Moral Rights of DJT or a third party;",
+        "Creating, distributing, or using an outside program such as a bot or cheat tool (including, but not limited to, outside tools to manipulate the results from using the Service in ways not intended by DJT);",
+        "Using the results obtained by a third party from using the type of outside program described above for oneself;",
+        "Improperly manipulating the results obtained from using the Service by oneself or in collaboration with another user, or by taking advantage of another user's actions; ",
+        "Putting a significant burden on the servers or networks used to run the Service;",
+        "Engaging in any unauthorized access;",
+        "Deliberately providing or disclosing information about deficiencies in the Service to a third party other than DJT;",
+        "Posing as DJT, another user, or another individual or organization associated with the Service, or otherwise somehow misleading a third party about one's association with the Service; ",
+        "Distributing computer viruses;",
+        "Modifying, damaging, disassembling, decompiling, or reverse engineering the program used in the Service;",
+        "Modifying, damaging, disassembling, decompiling, or reverse engineering the OS installed on the device (including rooting or jailbreaking a device); ",
+        "Harming or otherwise somehow inconveniencing DJT or a third party;",
+        "Interfering with the normal delivery of the Service;",
+        "Damaging the credibility of DJT or the Service; or",
+        "Any other act that DJT determines to be improper;"
+      ]
+    }
+  },
+  "userId": {
+    "reportButton": "Report User",
+    "mail": {
+      "subject": "{userName} {userAddress}",
+      "body": "User Name: {userName}\nLoomAdress: {userAddress}\n\nTo report this user's problem, just send us an email.\nIf you want to supplement the report, please describe the contents below.\n—————————————————\nSupplement:\n\n\n\n\n\n—————————————————"
+    }
   }
 }
