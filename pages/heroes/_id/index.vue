@@ -3,7 +3,7 @@
   .assetPage__left(v-if="hero")
     .assetPage__image
       img(:src="hero.imageUrl")
-      nuxt-link(to="edit" append)
+      nuxt-link(v-if="isOwner" to="edit" append)
         fa-icon(:icon="['far', 'edit']")
         span Art Edit
     .assetPage__rarity
@@ -11,6 +11,9 @@
     .assetPage__name
       h1 {{ hero.name[$i18n.locale] }}
       p {{ `#${hero.id}` }}
+    .assetPage__owner(v-if="!isOwner")
+      h2 Owner
+      p {{ ownerAddress }}
 
   .assetPage__right(v-if="hero")
 
@@ -78,10 +81,17 @@ export default {
       hero: null,
       isModalShown: false,
       isActionsShown: false,
-      isWikiModalShown: false
+      isWikiModalShown: false,
+      ownerAddress: ''
     }
   },
   computed: {
+    isOwner() {
+      return (
+        this.ownerAddress.toLowerCase() ===
+        this.$store.state.loomAddress.toLowerCase()
+      )
+    },
     isSellable() {
       return this.$route.params.id < 6
     },
@@ -92,6 +102,7 @@ export default {
   async mounted() {
     const heroId = Number(this.$route.params.id)
     this.hero = await this.$hero.get(heroId)
+    this.ownerAddress = await this.$hero.asset.getOwnerAddress(heroId)
   }
 }
 </script>
@@ -172,6 +183,21 @@ export default {
     p {
       color: #999;
       font-weight: 100;
+    }
+  }
+
+  &__owner {
+    border: 1px solid #999;
+    border-radius: 1rem;
+    color: #999;
+    padding: 1rem;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
     }
   }
 
