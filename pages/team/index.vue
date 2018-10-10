@@ -4,15 +4,6 @@
     h1 {{ $i18n.t('pages.team') }}
     button(@click="isShareModalShown = true") {{ $i18n.t('team.button') }}
   .teamPage__team.team
-    //- header.team__header
-      //- div(v-if="isChangingOrder[`team${team.id}`]")
-        button.button__cancel(@click="cancelChangingOrder(team)")
-          fa-icon(:icon="['fas', 'times']")
-        button.button__ok(@click="saveChangingOrder(team)")
-          fa-icon(:icon="['fas', 'check']")
-      //- button.button__change(@click="startChangingOrder(team)" v-else)
-        fa-icon(:icon="['fas', 'sort']")
-        span Change Order
     no-ssr
       ol
         template(v-for="(unit, index) in units")
@@ -39,7 +30,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import draggable from 'vuedraggable'
 import UnitListItem from '~/components/UnitListItem'
 import Modal from '~/components/Modal'
@@ -48,17 +39,19 @@ export default {
   components: { draggable, UnitListItem, Modal },
   data() {
     return {
+      units: [],
       isShareModalShown: false
     }
   },
   computed: {
     ...mapState(['env', 'loomAddress']),
-    ...mapGetters({
-      units: 'team/newUnits'
-    }),
     myUrl() {
       return `${this.env.siteUrl}users/${this.loomAddress}`
     }
+  },
+  async mounted() {
+    const address = this.$store.state.loomAddress
+    this.units = await this.$team.get(address)
   },
   methods: {
     getUnit(unit) {
@@ -70,13 +63,6 @@ export default {
     onCopySucceeded() {
       window.alert(`Copied!\nURL: ${this.myUrl}`)
     }
-    //   onDragStart(e) {
-    //     // なぜかゴーストの位置がずれるため
-    //     const dragItem = this.$el.querySelector('.sortable-drag')
-    //     const slide = this.$el.querySelector('.swiper-slide-active')
-    //     dragItem.style.top = `${e.item.offsetTop}px`
-    //     dragItem.style.left = `${slide ? slide.offsetLeft : 0}px`
-    //   }
   }
 }
 </script>
