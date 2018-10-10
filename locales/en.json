@@ -79,10 +79,11 @@
         "title": "Art edit rules and notes on beta battle",
         "list": [
           "Images can be changed any number of times",
-          "The initial image is retained without being lost after art editing. You can undo by \"Reset\"",
+          "The initial image is retained without being lost after art editing. You can undo by \"Unset\"",
           "For edited images, only the display in MCH is changed. On external services such as opensea, the initial image is displayed even after editing.",
           "Do not use pictures that infringe copyright or images that are against public order and morality.",
-          "In addition, please refer to Article 11 of the following Terms of Service for the attention of Art Usage Terms of Use"
+          "Images uploaded with Art Edit System are managed decentralizedly using IPFS which is a distributed file system. ",
+          "In addition, please refer to Article 11 of the following Terms of Service for the attention of Art Usage Terms of Use."
         ],
         "footer": "* The above rules may be changed after beta battle."
       }
