@@ -3,34 +3,31 @@
   .page__title
     h1 Art edit
   .heroEditPage__content
-    .heroEditPage__left
 
-      template(v-if="isConfirming")
-        p.heroEditPage__display
-          img(:src="`https://beta.mycryptoheroes.net/image/${pixelatedData.ipfs}`")
-        .heroEditPage__skill
-          .skill
-            img(:src="require(`~/assets/images/icons/skill/${getSkill(pixelatedData.skillId).iconFileName}`)")
-            div
-              h2 {{ getSkill(pixelatedData.skillId).name[$i18n.locale] }}
-              p {{ getSkill(pixelatedData.skillId).description[$i18n.locale] }}
-        p.heroEditPage__decideButtons
-          button(@click="reload") Cancel
-          button(@click="decide") OK
+    template(v-if="isConfirming")
+      p.heroEditPage__display
+        img(:src="`https://beta.mycryptoheroes.net/image/${pixelatedData.ipfs}`")
+      .heroEditPage__skill
+        .skill
+          img(:src="require(`~/assets/images/icons/skill/${getSkill(pixelatedData.skillId).iconFileName}`)")
+          div
+            h2 {{ getSkill(pixelatedData.skillId).name[$i18n.locale] }}
+            p {{ getSkill(pixelatedData.skillId).description[$i18n.locale] }}
+      p.heroEditPage__decideButtons
+        button(@click="reload") Cancel
+        button(@click="decide") OK
 
-      template(v-else)
-        p.heroEditPage__display
-          img(:src="hero.imageUrl" ref="image")
-        p.heroEditPage__button
-          .file
-            label.file-label
-              input.file-input(type="file" ref="input" @change="fileChanged")
-              span.file-cta
-                span.file-icon
-                  fa-icon(icon="upload")
-                span.file-label Choose a file
-
-    .heroEditPage__right
+    template(v-else)
+      p.heroEditPage__display
+        img(:src="hero.imageUrl" ref="image")
+      p.heroEditPage__button
+        .file
+          label.file-label
+            input.file-input(type="file" ref="input" @change="fileChanged")
+            span.file-cta
+              span.file-icon
+                fa-icon(icon="upload")
+              span.file-label Choose a file
 
   modal(v-if="isModalShown" type="bottom" @modal-close="closeModal")
     h2(slot="header") Crop
@@ -139,16 +136,8 @@ export default {
 .heroEditPage {
   @media (min-width: $breakpoint) {
     &__content {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    &__left {
-      width: 32%;
-    }
-
-    &__right {
-      width: 65%;
+      margin: 0 auto;
+      max-width: 640px;
     }
   }
 
@@ -193,6 +182,10 @@ export default {
 .file {
   label.file-label {
     width: 100%;
+  }
+
+  &-input {
+    text-indent: -9999px;
   }
 
   &-cta,
