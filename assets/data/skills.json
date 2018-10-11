@@ -345,7 +345,7 @@
   {
     "id": 1039,
     "name": { "en": "Eye of the day", "ja": "アイ・オブ・ザ・デイ" },
-    "description": { "en": "After own active skill,10% INT decrease to front enemy and 40% INT damege to own HP", "ja": "自分がActive時、先頭の敵のINTをINTの10%分ダウンし、自分にINTの40%分ダメージ" },
+    "description": { "en": "After own active skill,10% INT decrease to front enemy and 20-40% INT damege to own HP", "ja": "自分がActive時、先頭の敵のINTをINTの10%分ダウンし、自分にINTの20~40%分ダメージ" },
     "iconFileName": "DEBUF_int.png",
     "effectId": 5
   }
