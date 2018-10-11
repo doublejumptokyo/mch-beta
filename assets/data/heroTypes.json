@@ -205,8 +205,9 @@
     "wikipediaUrl": {
       "en": "https://en.wikipedia.org/wiki/Hiraga_Gennai",
       "ja": "https://ja.wikipedia.org/wiki/%E5%B9%B3%E8%B3%80%E6%BA%90%E5%86%85"
-    },
-    {
+    }
+  },
+  {
     "type": 3004,
     "name": { "en": "Mata Hari", "ja": "マタ・ハリ" },
     "fileName": "3004.png",
