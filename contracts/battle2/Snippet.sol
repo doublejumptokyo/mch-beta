@@ -5,7 +5,23 @@ import {BattleContext as BC} from "./BattleContext.sol";
 
 contract Snippet {
 //    BC.Unit public unit;
-    
+    bytes32 constant mask = 0xffff000000000000000000000000000000000000000000000000000000000000;
+
+    function getKeccakedUint16(uint16 i) public pure returns (uint16) {
+        bytes32 hash = keccak256(abi.encodePacked(i));
+        bytes2 head2 = bytes2(hash & mask);
+        return uint16(head2);
+    }
+
+    function get(uint16 i, uint16 j) public pure returns (bytes, bytes32, bytes2, uint16) {
+//        bytes memory encode = abi.encodePacked(i, j);
+        bytes memory encode = abi.encodePacked(i + j);
+        bytes32 hash = keccak256(encode);
+        bytes2 head = bytes2(hash & mask);
+        uint16 result2 = uint16(head);
+        return (encode, hash, head, result2);
+    }
+
     function set(uint256 data) public pure returns (uint256, uint256) {
         uint256 digit = 77;
         uint256 result;
