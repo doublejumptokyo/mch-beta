@@ -44,7 +44,6 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ commit }) {
     const env = await this.$axios.$get('/config/env.json')
-    this.$axios.defaults.baseURL = env.siteUrl
     commit('SET_ENV', env)
   },
   checkLoggedIn({ state, commit }) {
