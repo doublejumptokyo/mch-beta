@@ -31,14 +31,21 @@ export default {
     async fetch() {
       const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
       const addresses = await this.$rank.list(from)
-      const users = []
-      await Promise.all(
-        addresses
-          .filter(address => address !== this.loomAddress)
-          .map(async address => {
-            const user = await this.$user.get(address)
-            users.push({ name: user.name, address })
-          })
+      const userPromises = addresses
+        .filter(address => address !== this.loomAddress)
+        .map(address => this.$user.get(address))
+      let users = await Promise.all(userPromises)
+      const teamPromises = users
+        .map((user, i) => ({ name: user.name, address: addresses[i] }))
+        .map(user => this.$team.get(user.address))
+      let teams = await Promise.all(teamPromises)
+      teams = await Promise.all(
+        teams.map(team =>
+          Promise.all(team.map(unit => this.$hero.get(unit[0])))
+        )
+      )
+      users = teams.map((team, i) =>
+        Object.assign({}, users[i], { address: addresses[i] }, { team })
       )
       this.$set(this, 'users', users)
     }
@@ -62,15 +69,24 @@ export default {
 
     p {
       font-size: 0.8rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+      }
     }
 
     button {
       border: 1px solid map-get($colors, primary);
-      border-radius: 1rem;
+      border-radius: 9999px;
       color: map-get($colors, primary);
       font-size: 0.8rem;
       line-height: 1;
       padding: 0.5rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+        padding: 1rem;
+      }
     }
   }
 }
