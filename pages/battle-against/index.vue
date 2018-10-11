@@ -35,6 +35,7 @@ export default {
         .filter(address => address !== this.loomAddress)
         .map(address => this.$user.get(address))
       let users = await Promise.all(userPromises)
+      this.$set(this, 'users', users)
       const teamPromises = users
         .map((user, i) => ({ name: user.name, address: addresses[i] }))
         .map(user => this.$team.get(user.address))
