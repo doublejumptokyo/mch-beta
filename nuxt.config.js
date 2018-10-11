@@ -11,21 +11,17 @@ const SITE_INFO = {
 
 const modules = [
   '@nuxtjs/axios',
+  '@nuxtjs/proxy',
   '@nuxtjs/toast',
   'cookie-universal-nuxt',
   ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
   ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
 ]
-if (!isProduction) {
-  modules.push('@nuxtjs/proxy')
-}
 
 const axios = isProduction
   ? {
       https: true,
-      proxy: false,
-      baseURL: 'https://beta.mycryptoheroes.net',
-      browserBaseURL: 'https://beta.mycryptoheroes.net'
+      proxy: false
     }
   : {
       proxy: true
