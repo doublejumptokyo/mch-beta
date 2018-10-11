@@ -1026,6 +1026,7 @@ export default {
     font-family: Oswald;
     font-size: 0.8rem;
     font-weight: bold;
+    line-height: 1;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 
@@ -1306,9 +1307,13 @@ export default {
     color: #fff;
 
     span {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: bold;
       text-transform: capitalize;
+
+      @media (min-width: $breakpoint) {
+        font-size: 2.5rem;
+      }
     }
   }
 
