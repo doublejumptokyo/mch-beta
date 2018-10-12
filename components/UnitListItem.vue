@@ -43,10 +43,10 @@ import { mapGetters } from 'vuex'
 export default {
   props: {
     unit: {
-      type: Array,
+      type: Promise,
       require: true,
       default() {
-        return []
+        return null
       }
     },
     skillOrder: {
@@ -101,11 +101,7 @@ export default {
     }
   },
   async mounted() {
-    ;[this.hero, this.extension1, this.extension2] = await Promise.all([
-      this.$hero.get(this.unit[0]),
-      this.$extension.get(this.unit[1]),
-      this.$extension.get(this.unit[2])
-    ])
+    ;[this.hero, this.extension1, this.extension2] = await this.unit
   }
 }
 </script>
