@@ -4,36 +4,51 @@
     div
       h1 {{ $i18n.t('pages.battles') }}
       p Select a user to play against.
-    button(@click="fetch")
+    button(@click="refresh")
       fa-icon(icon="sync")
-  user-list(:users="users")
+  ul.tabList
+    li.tabItem
+      nuxt-link(to="/battle-against/ranked") Ranked
+    li.tabItem
+      nuxt-link(to="/battle-against/random") Random
+    li.tabItem
+      nuxt-link(to="/battle-against/top") Top 20
+
+  nuxt-child(:users="users" @init="init")
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import UserList from '~/components/UserList'
-
-const TOTAL_USER_COUNT = 415 - 20
-
 export default {
-  components: { UserList },
   middleware: 'walletCheck',
+  fetch({ route, redirect }) {
+    if (route.name === 'battle-against') {
+      return redirect('/battle-against/ranked')
+    }
+  },
   data() {
     return {
-      users: []
+      users: [],
+      from: 1
     }
   },
   computed: mapState(['loomAddress']),
-  beforeMount() {
-    this.fetch()
-  },
   methods: {
-    async fetch() {
-      const addresses = await this.fetchAddresses()
+    init({ from }) {
+      this.from = from
+      this.fetch(from)
+    },
+    refresh() {
+      this.fetch(this.from)
+    },
+    async fetch(from) {
+      const addresses = await this.$rank.list(from)
       let users = await this.fetchUsers(addresses)
+      const myRank = await this.fetchMyRank()
       users = users.map((user, i) => ({
         name: user.name,
-        address: addresses[i]
+        address: addresses[i],
+        isMe: this.loomAddress.toLowerCase() === addresses[i].toLowerCase()
       }))
       this.$set(this, 'users', users)
       const [ranks, teams] = await Promise.all([
@@ -41,14 +56,18 @@ export default {
         this.fetchTeams(addresses)
       ])
       users = ranks.map((rank, i) =>
-        Object.assign({}, users[i], { address: addresses[i] }, { rank })
+        Object.assign(
+          {},
+          users[i],
+          { address: addresses[i] },
+          { rank, isRanked: myRank - 21 < rank && rank < myRank }
+        )
       )
       users = teams.map((team, i) => Object.assign({}, users[i], { team }))
       this.$set(this, 'users', users)
     },
-    async fetchAddresses() {
-      const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
-      return await this.$rank.list(from)
+    async fetchMyRank() {
+      return await this.$rank.rank(this.loomAddress)
     },
     async fetchUsers(addresses) {
       const userPromises = addresses
@@ -108,6 +127,38 @@ export default {
         font-size: 1rem;
         padding: 1rem;
       }
+    }
+  }
+}
+
+.tabList {
+  display: flex;
+  list-style-type: none;
+  margin: 0 -1rem -1rem;
+  padding: 0;
+  width: calc(100% + 2rem);
+}
+
+.tabItem {
+  width: 50%;
+
+  a {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    font-size: 0.9rem;
+    margin: 0;
+    outline: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
+    &.nuxt-link-active {
+      border-bottom: 2px solid #ccc;
     }
   }
 }
