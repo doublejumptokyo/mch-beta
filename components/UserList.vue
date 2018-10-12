@@ -5,6 +5,8 @@
     :to="`/users/${user.address}`"
     :key="index"
   )
+    .user__rank(v-if="user.rank")
+      span {{ `#${user.rank}` }}
     .user__images
       img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
     .user__name
@@ -72,6 +74,19 @@ export default {
 
   &:hover {
     opacity: 0.7;
+  }
+
+  &__rank {
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+
+    span {
+      color: #999;
+      font-family: Oswald;
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1rem;
+    }
   }
 
   &__images {
