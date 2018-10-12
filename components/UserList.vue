@@ -6,7 +6,7 @@
     :key="index"
   )
     .user__images
-      img(v-for="unit in user.team" :src="unit.imageUrl")
+      img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
     .user__name
       h2 {{ user.name || 'No Name' }}
     .user__button

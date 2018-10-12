@@ -29,26 +29,38 @@ export default {
   },
   methods: {
     async fetch() {
-      const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
-      const addresses = await this.$rank.list(from)
-      const userPromises = addresses
-        .filter(address => address !== this.loomAddress)
-        .map(address => this.$user.get(address))
-      let users = await Promise.all(userPromises)
+      const addresses = await this.fetchAddresses()
+      let users = await this.fetchUsers(addresses)
+      users = users.map((user, i) => ({
+        name: user.name,
+        address: addresses[i]
+      }))
       this.$set(this, 'users', users)
-      const teamPromises = users
-        .map((user, i) => ({ name: user.name, address: addresses[i] }))
-        .map(user => this.$team.get(user.address))
-      let teams = await Promise.all(teamPromises)
-      teams = await Promise.all(
-        teams.map(team =>
-          Promise.all(team.map(unit => this.$hero.get(unit[0])))
-        )
-      )
+      const teams = await this.fetchTeams(addresses)
       users = teams.map((team, i) =>
         Object.assign({}, users[i], { address: addresses[i] }, { team })
       )
       this.$set(this, 'users', users)
+    },
+    async fetchAddresses() {
+      const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
+      return await this.$rank.list(from)
+    },
+    async fetchUsers(addresses) {
+      const userPromises = addresses
+        .filter(address => address !== this.loomAddress)
+        .map(address => this.$user.get(address))
+      return await Promise.all(userPromises)
+    },
+    async fetchTeams(addresses) {
+      const teamPromises = addresses.map(address => this.$team.get(address))
+      const teams = await Promise.all(teamPromises)
+      return await Promise.all(
+        teams.map(team => Promise.all(this.getHeroPromises(team)))
+      )
+    },
+    getHeroPromises(team) {
+      return team.map(unit => this.$hero.get(unit[0]))
     }
   }
 }

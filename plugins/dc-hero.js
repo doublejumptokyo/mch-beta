@@ -73,11 +73,9 @@ export default async ({ app, store }, inject) => {
   const heroCount = await hero.asset.getHeroCount(address)
   const indexes = Array.from(Array(heroCount).keys())
   const heroIds = await Promise.all(
-    indexes.map(async index => await hero.asset.getHeroId(address, index))
+    indexes.map(index => hero.asset.getHeroId(address, index))
   )
-  const heroes = await Promise.all(
-    heroIds.map(async heroId => await hero.get(heroId))
-  )
+  const heroes = await Promise.all(heroIds.map(heroId => hero.get(heroId)))
 
   heroes.forEach(hero => store.commit('heroes/SET_HERO', hero))
 
