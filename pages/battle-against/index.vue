@@ -36,10 +36,14 @@ export default {
         address: addresses[i]
       }))
       this.$set(this, 'users', users)
-      const teams = await this.fetchTeams(addresses)
-      users = teams.map((team, i) =>
-        Object.assign({}, users[i], { address: addresses[i] }, { team })
+      const [ranks, teams] = await Promise.all([
+        this.fetchRank(addresses),
+        this.fetchTeams(addresses)
+      ])
+      users = ranks.map((rank, i) =>
+        Object.assign({}, users[i], { address: addresses[i] }, { rank })
       )
+      users = teams.map((team, i) => Object.assign({}, users[i], { team }))
       this.$set(this, 'users', users)
     },
     async fetchAddresses() {
@@ -51,6 +55,10 @@ export default {
         .filter(address => address !== this.loomAddress)
         .map(address => this.$user.get(address))
       return await Promise.all(userPromises)
+    },
+    async fetchRank(addresses) {
+      const rankPromises = addresses.map(address => this.$rank.rank(address))
+      return await Promise.all(rankPromises)
     },
     async fetchTeams(addresses) {
       const teamPromises = addresses.map(address => this.$team.get(address))
