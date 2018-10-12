@@ -11,6 +11,8 @@
     .assetPage__name
       h1 {{ hero.name[$i18n.locale] }}
       p {{ `#${hero.id}` }}
+    .assetPage__wikipedia
+      button(v-if="hero.wikipediaUrl" @click="isWikiModalShown = true") Wikipedia
     .assetPage__owner(v-if="!isOwner")
       h2 Owner
       p {{ ownerAddress }}
@@ -64,8 +66,6 @@
           p {{ hero.passiveSkill.name[$i18n.locale] }}
           p {{ hero.passiveSkill.description[$i18n.locale] }}
 
-    button(v-if="hero.wikipediaUrl" @click="isWikiModalShown = true") Wikipedia
-
     modal.wikiModal(type="bottom" v-if="isWikiModalShown" @modal-close="isWikiModalShown = false")
       h2(slot="header") Wikipedia
       .wikiModal__body(slot="body")
@@ -110,7 +110,6 @@ export default {
 <style lang="scss" scoped>
 .assetPage {
   @media (min-width: $breakpoint) {
-    // align-items: flex-end;
     display: flex;
 
     &__left {
@@ -404,6 +403,20 @@ export default {
     margin: 1rem 0;
     padding: 1rem;
     width: 100%;
+  }
+
+  &__wikipedia {
+    margin: 1rem 0;
+    text-align: center;
+
+    button {
+      border: 1px solid #999;
+      border-radius: 1rem;
+      color: #999;
+      font-size: 0.8rem;
+      line-height: 1;
+      padding: 0.5rem 1rem;
+    }
   }
 }
 
