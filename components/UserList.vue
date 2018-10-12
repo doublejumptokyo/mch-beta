@@ -4,9 +4,14 @@
     v-for="(user, index) in users"
     :to="`/users/${user.address}`"
     :key="index"
+    :class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }"
   )
-    .user__rank(v-if="user.rank")
-      span {{ `#${user.rank}` }}
+    .user__header
+      .user__rank(v-if="user.rank")
+        span {{ `#${user.rank}` }}
+      .user__type
+        span.user__type--ranked(v-if="user.isRanked") Ranked
+        span.user__type--exhibition(v-else) Exhibition
     .user__images
       img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
     .user__name
@@ -76,16 +81,40 @@ export default {
     opacity: 0.7;
   }
 
-  &__rank {
-    align-self: flex-start;
+  &__header {
+    align-self: stretch;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
+  }
 
+  &__rank {
     span {
       color: #999;
       font-family: Oswald;
       font-size: 1.6rem;
       font-weight: bold;
       line-height: 1rem;
+    }
+  }
+
+  &__type {
+    span {
+      border-radius: 0.25rem;
+      display: inline-block;
+      font-family: Oswald;
+      font-size: 0.8rem;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+    }
+
+    &--ranked {
+      background: map-get($colors, primary);
+    }
+
+    &--exhibition {
+      background: #999;
     }
   }
 
@@ -163,6 +192,10 @@ export default {
     svg {
       margin-left: 0.5rem;
     }
+  }
+
+  &--me {
+    background: rgba(241, 196, 15, 0.15);
   }
 }
 </style>
