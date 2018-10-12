@@ -13,7 +13,7 @@
         template(v-for="(unit, index) in units")
           unit-list-item(
             v-if="unit"
-            :unit="getUnit(unit)"
+            :unit="getUnitPromise(unit)"
             :skillOrder="getSkillOrder(unit)"
             :to="`/heroes/${unit[0]}`"
           )
@@ -82,39 +82,14 @@ export default {
   async beforeMount() {
     this.address = this.$route.params.id
     this.user = await this.$user.get(this.address)
-    const units = await this.$team.get(this.address)
-
-    units.forEach(async unit => {
-      let hero = await this.$hero.get(unit[0])
-      hero = Object.assign(hero, this.$hero.getHeroType(hero.heroType))
-      this.$store.commit('heroes/SET_HERO', hero)
-
-      let extension1 = await this.$extension.get(unit[1])
-      extension1 = Object.assign(
-        extension1,
-        this.$extension.getExtensionType(extension1.extensionType)
-      )
-      this.$store.commit('extensions/SET_EXTENSION', extension1)
-
-      let extension2 = await this.$extension.get(unit[2])
-      extension2 = Object.assign(
-        extension2,
-        this.$extension.getExtensionType(extension2.extensionType)
-      )
-      this.$store.commit('extensions/SET_EXTENSION', extension2)
-    })
-
-    this.units = units
-  },
-  destroyed() {
-    // 緊急対応
-    // ユーザーAがユーザーBのこのページを見たあとインベントリに行くと、ユーザーBのヒーローも見えてしまうため
-    // [TODO] storeに入れるヒーローの管理方法検討
-    location.reload()
+    this.units = await this.$team.get(this.address)
   },
   methods: {
-    getUnit(unit) {
-      return unit.filter((num, index) => index < 3)
+    getUnitPromise(unit) {
+      const hero = this.$hero.get(unit[0])
+      const ext1 = this.$extension.get(unit[1])
+      const ext2 = this.$extension.get(unit[2])
+      return Promise.all([hero, ext1, ext2])
     },
     getSkillOrder(unit) {
       return unit.filter((num, index) => index > 2)
