@@ -10,7 +10,7 @@
           unit-list-item.team__listItem(
             v-if="unit"
             :to="`/team/${index + 1}`"
-            :unit="getUnit(unit)"
+            :unit="getUnitPromise(unit)"
             :skillOrder="getSkillOrder(unit)"
           )
 
@@ -53,12 +53,14 @@ export default {
     }
   },
   async mounted() {
-    const address = this.$store.state.loomAddress
-    this.units = await this.$team.get(address)
+    this.units = await this.$team.get(this.loomAddress)
   },
   methods: {
-    getUnit(unit) {
-      return unit.filter((num, index) => index < 3)
+    getUnitPromise(unit) {
+      const hero = this.$hero.get(unit[0])
+      const ext1 = this.$extension.get(unit[1])
+      const ext2 = this.$extension.get(unit[2])
+      return Promise.all([hero, ext1, ext2])
     },
     getSkillOrder(unit) {
       return unit.filter((num, index) => index > 2)
