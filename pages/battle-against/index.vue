@@ -28,8 +28,7 @@ export default {
   },
   data() {
     return {
-      users: [],
-      addresses: []
+      users: []
     }
   },
   computed: mapState(['loomAddress']),
@@ -41,7 +40,6 @@ export default {
   },
   methods: {
     init({ addresses }) {
-      this.addresses = addresses
       this.fetch(addresses)
     },
     refresh() {
