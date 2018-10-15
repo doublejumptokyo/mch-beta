@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       users: [],
-      from: 1
+      addresses: []
     }
   },
   computed: mapState(['loomAddress']),
@@ -40,23 +40,23 @@ export default {
     }
   },
   methods: {
-    init({ from }) {
-      this.from = from
-      this.fetch(from)
+    init({ addresses }) {
+      this.addresses = addresses
+      this.fetch(addresses)
     },
     refresh() {
-      this.fetch(this.from)
+      this.fetch(this.addresses)
     },
-    async fetch(from) {
-      const addresses = await this.$rank.list(from)
-      let users = await this.fetchUsers(addresses)
+    async fetch(addresses) {
       const myRank = await this.fetchMyRank()
+      let users = await this.fetchUsers(addresses)
       users = users.map((user, i) => ({
         name: user.name,
         address: addresses[i],
         isMe: this.loomAddress.toLowerCase() === addresses[i].toLowerCase()
       }))
       this.$set(this, 'users', users)
+
       const [ranks, teams] = await Promise.all([
         this.fetchRank(addresses),
         this.fetchTeams(addresses)
@@ -72,14 +72,14 @@ export default {
       users = teams.map((team, i) => Object.assign({}, users[i], { team }))
       this.$set(this, 'users', users)
     },
-    async fetchMyRank() {
-      return await this.$rank.rank(this.loomAddress)
-    },
     async fetchUsers(addresses) {
       const userPromises = addresses
         .filter(address => address !== this.loomAddress)
         .map(address => this.$user.get(address))
       return await Promise.all(userPromises)
+    },
+    async fetchMyRank() {
+      return await this.$rank.rank(this.loomAddress)
     },
     async fetchRank(addresses) {
       const rankPromises = addresses.map(address => this.$rank.rank(address))

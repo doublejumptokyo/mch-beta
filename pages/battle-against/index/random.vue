@@ -18,9 +18,13 @@ export default {
       }
     }
   },
-  beforeMount() {
-    const from = Math.floor(Math.random() * TOTAL_USER_COUNT) + 1
-    this.$emit('init', { from })
+  async beforeMount() {
+    const addresses = await Promise.all(
+      Array.from(Array(20).keys())
+        .map(() => Math.floor(Math.random() * TOTAL_USER_COUNT) + 1)
+        .map(rank => this.$rank.address(rank))
+    )
+    this.$emit('init', { addresses })
   }
 }
 </script>
