@@ -3,7 +3,9 @@
   .page__title
     div
       h1 {{ $i18n.t('pages.battles') }}
-      p Select a user to play against.
+      .battlePage__myRank
+        span Your current rank:
+        span {{ `#${myRank}` }}
     button(@click="refresh")
       fa-icon(icon="sync")
   ul.tabList
@@ -28,7 +30,8 @@ export default {
   },
   data() {
     return {
-      users: []
+      users: [],
+      myRank: null
     }
   },
   computed: mapState(['loomAddress']),
@@ -47,7 +50,7 @@ export default {
       this.$refs.userList.fetch()
     },
     async fetch(addresses) {
-      const myRank = await this.$rank.rank(this.loomAddress)
+      this.myRank = await this.$rank.rank(this.loomAddress)
       addresses.forEach(async address => {
         const [user, rank, teamIds] = await Promise.all([
           this.$user.get(address),
@@ -59,7 +62,7 @@ export default {
         )
         const name = user.name
         const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
-        const isRanked = myRank - 21 < rank && rank < myRank
+        const isRanked = this.myRank - 21 < rank && rank < this.myRank
         this.users.push({ address, rank, team, name, isMe, isRanked })
       })
     }
@@ -81,14 +84,6 @@ export default {
       font-size: 1.2rem;
     }
 
-    p {
-      font-size: 0.8rem;
-
-      @media (min-width: $breakpoint) {
-        font-size: 1rem;
-      }
-    }
-
     button {
       border: 1px solid map-get($colors, primary);
       border-radius: 9999px;
@@ -100,6 +95,21 @@ export default {
       @media (min-width: $breakpoint) {
         font-size: 1rem;
         padding: 1rem;
+      }
+    }
+  }
+
+  &__myRank {
+    span {
+      &:first-of-type {
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      &:last-of-type {
+        font-family: Oswald;
+        font-weight: bold;
+        margin-left: 0.5rem;
       }
     }
   }
