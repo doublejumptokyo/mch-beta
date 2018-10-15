@@ -3,7 +3,7 @@
   .page__title
     div
       h1 {{ $i18n.t('pages.battles') }}
-      .battlePage__myRank
+      .battlePage__myRank(v-if="myRank")
         span Your current rank:
         span {{ `#${myRank}` }}
     button(@click="refresh")
