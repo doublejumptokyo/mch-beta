@@ -1,24 +1,24 @@
 <template lang="pug">
 .userList
-  nuxt-link.userList__item.user(
+  nuxt-link.userList__item(
     v-for="(user, index) in users"
     :to="`/users/${user.address}`"
     :key="index"
-    :class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }"
   )
-    .user__header
-      .user__rank(v-if="user.rank")
-        span {{ `#${user.rank}` }}
-      .user__type(v-if="user.isRanked !== undefined")
-        span.user__type--ranked(v-if="user.isRanked") Ranked
-        span.user__type--exhibition(v-else) Exhibition
-    .user__images
-      img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
-    .user__name
-      h2 {{ user.name || 'No Name' }}
-    .user__button
-      span Show Detail
-      fa-icon.user__arrow(icon="angle-right")
+    .user(:class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }")
+      .user__header
+        .user__rank(v-if="user.rank")
+          span {{ `#${user.rank}` }}
+        .user__type(v-if="user.isRanked !== undefined")
+          span.user__type--ranked(v-if="user.isRanked") Ranked
+          span.user__type--exhibition(v-else) Exhibition
+      .user__images
+        img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
+      .user__name
+        h2 {{ user.name || 'No Name' }}
+      .user__button
+        span Show Detail
+        fa-icon.user__arrow(icon="angle-right")
 </template>
 
 <script>
@@ -45,6 +45,8 @@ export default {
   &__item {
     border-top: 1px solid #666;
     border-left: 1px solid #666;
+    color: inherit;
+    text-decoration: none;
     width: calc((100% - 1px) / 2);
 
     @media (min-width: $breakpoint) {
@@ -69,10 +71,9 @@ export default {
 
 .user {
   align-items: center;
-  color: inherit;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  height: 100%;
   opacity: 1;
   padding: 1rem;
   transition: all 0.3s;
