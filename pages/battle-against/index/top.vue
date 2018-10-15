@@ -17,8 +17,13 @@ export default {
     }
   },
   async beforeMount() {
-    const addresses = await this.$rank.list(1)
-    this.$emit('init', { addresses })
+    this.fetch()
+  },
+  methods: {
+    async fetch() {
+      const addresses = await this.$rank.list(1)
+      this.$emit('init', { addresses })
+    }
   }
 }
 </script>

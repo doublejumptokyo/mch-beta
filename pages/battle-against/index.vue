@@ -14,7 +14,7 @@
     li.tabItem
       nuxt-link(to="/battle-against/top") Top 20
 
-  nuxt-child(:users="users" @init="init")
+  nuxt-child(ref="userList" :users="users" @init="init")
 </template>
 
 <script>
@@ -45,7 +45,8 @@ export default {
       this.fetch(addresses)
     },
     refresh() {
-      this.fetch(this.addresses)
+      this.users = []
+      this.$refs.userList.fetch()
     },
     async fetch(addresses) {
       const myRank = await this.fetchMyRank()
