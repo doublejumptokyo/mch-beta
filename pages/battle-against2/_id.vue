@@ -303,36 +303,16 @@ export default {
   methods: {
     async fetchActions() {
       const timerId = window.setInterval(() => {
-        // this.actions = this.$battleManager2.actions
-        console.log(this.$battleManager2.actions.length)
         this.$set(this, 'actions', this.$battleManager2.actions)
-        console.log(this.actions.length)
         if (this.actions.length) {
           this.isLoading = false
         }
       }, 1000)
-      // this.$watch('$battleManager2.actions.length', length => {
-      //   console.log(length)
-      //   if (!length) return
-      //   this.actions = this.$battleManager2.actions
-      // }, { immediate: true, deep: true })
 
       await this.$battleManager2.watch(this.battleId)
-      // this.$battleManager2.actions.forEach(action => this.actions.push(action))
-      // this.actions = await this.$battleManager2.watch(this.battleId)
       this.end = await this.$battleManager2.end()
       this.actions = this.$battleManager2.actions
       window.clearInterval(timerId)
-
-      // let isFetchFinished = false
-      // do {
-      //   const { actions, hasNext } = await this.$battleManager2.next()
-      //   actions.forEach(action => this.actions.push(action))
-      //   isFetchFinished = !hasNext
-      // } while (!isFetchFinished)
-      // this.end = await this.$battleManager2.end()
-
-      // window.actions = this.actions
     },
 
     battleStart() {
