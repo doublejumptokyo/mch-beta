@@ -21,7 +21,8 @@ export default {
   computed: mapState(['loomAddress']),
   async beforeMount() {
     const myRank = await this.$rank.rank(this.loomAddress)
-    this.$emit('init', { from: myRank - 20 })
+    const addresses = await this.$rank.list(myRank - 20)
+    this.$emit('init', { addresses })
   }
 }
 </script>

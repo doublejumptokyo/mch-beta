@@ -16,8 +16,9 @@ export default {
       }
     }
   },
-  beforeMount() {
-    this.$emit('init', { from: 1 })
+  async beforeMount() {
+    const addresses = await this.$rank.list(1)
+    this.$emit('init', { addresses })
   }
 }
 </script>
