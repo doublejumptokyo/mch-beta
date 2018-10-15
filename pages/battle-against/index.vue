@@ -35,7 +35,7 @@ export default {
   watch: {
     $route() {
       // タブ切り替え時にリストがチラつくため
-      this.users.length = 0
+      this.users = []
     }
   },
   methods: {
@@ -47,52 +47,21 @@ export default {
       this.$refs.userList.fetch()
     },
     async fetch(addresses) {
-      const myRank = await this.fetchMyRank()
-      let users = await this.fetchUsers(addresses)
-      users = users.map((user, i) => ({
-        name: user.name,
-        address: addresses[i],
-        isMe: this.loomAddress.toLowerCase() === addresses[i].toLowerCase()
-      }))
-      this.$set(this, 'users', users)
-
-      const [ranks, teams] = await Promise.all([
-        this.fetchRank(addresses),
-        this.fetchTeams(addresses)
-      ])
-      users = ranks.map((rank, i) =>
-        Object.assign(
-          {},
-          users[i],
-          { address: addresses[i] },
-          { rank, isRanked: myRank - 21 < rank && rank < myRank }
+      const myRank = await this.$rank.rank(this.loomAddress)
+      addresses.forEach(async address => {
+        const [user, rank, teamIds] = await Promise.all([
+          this.$user.get(address),
+          this.$rank.rank(address),
+          this.$team.get(address)
+        ])
+        const team = await Promise.all(
+          teamIds.map(unit => this.$hero.get(unit[0]))
         )
-      )
-      users = teams.map((team, i) => Object.assign({}, users[i], { team }))
-      this.$set(this, 'users', users)
-    },
-    async fetchUsers(addresses) {
-      const userPromises = addresses
-        .filter(address => address !== this.loomAddress)
-        .map(address => this.$user.get(address))
-      return await Promise.all(userPromises)
-    },
-    async fetchMyRank() {
-      return await this.$rank.rank(this.loomAddress)
-    },
-    async fetchRank(addresses) {
-      const rankPromises = addresses.map(address => this.$rank.rank(address))
-      return await Promise.all(rankPromises)
-    },
-    async fetchTeams(addresses) {
-      const teamPromises = addresses.map(address => this.$team.get(address))
-      const teams = await Promise.all(teamPromises)
-      return await Promise.all(
-        teams.map(team => Promise.all(this.getHeroPromises(team)))
-      )
-    },
-    getHeroPromises(team) {
-      return team.map(unit => this.$hero.get(unit[0]))
+        const name = user.name
+        const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
+        const isRanked = myRank - 21 < rank && rank < myRank
+        this.users.push({ address, rank, team, name, isMe, isRanked })
+      })
     }
   }
 }
