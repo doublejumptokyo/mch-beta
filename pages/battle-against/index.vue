@@ -33,6 +33,12 @@ export default {
     }
   },
   computed: mapState(['loomAddress']),
+  watch: {
+    $route() {
+      // タブ切り替え時にリストがチラつくため
+      this.users.length = 0
+    }
+  },
   methods: {
     init({ from }) {
       this.from = from

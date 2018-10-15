@@ -9,7 +9,7 @@
     .user__header
       .user__rank(v-if="user.rank")
         span {{ `#${user.rank}` }}
-      .user__type
+      .user__type(v-if="user.isRanked !== undefined")
         span.user__type--ranked(v-if="user.isRanked") Ranked
         span.user__type--exhibition(v-else) Exhibition
     .user__images
