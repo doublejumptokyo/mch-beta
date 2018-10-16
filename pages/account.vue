@@ -91,22 +91,6 @@ export default {
   }
 }
 
-.userData {
-  display: flex;
-
-  > * {
-    text-align: center;
-    width: 50%;
-  }
-
-  svg {
-    color: #999;
-    display: block;
-    font-size: 1.5rem;
-    margin: 0.5rem auto;
-  }
-}
-
 .accountPage {
   background: #444;
 
@@ -165,11 +149,14 @@ export default {
 
     > dl {
       dt {
+        color: #999;
         font-weight: bold;
+        margin-top: 1rem;
       }
 
       dd {
-        font-size: 0.5rem;
+        color: #ccc;
+        font-size: 0.8rem;
       }
     }
   }
