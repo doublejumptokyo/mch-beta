@@ -16,7 +16,7 @@ class EthAccountManager {
     }, 100)
 
     if (!userAccount) {
-      console.error(
+      throw new Error(
         'Cannot connect to MetaMask, \nPlease check if MetaMask is installed and active'
       )
     }
@@ -75,18 +75,27 @@ class EthAccountManager {
 }
 
 export default async ({ store }, inject) => {
+  // Walletがあるかのチェック
   let hasWallet = !!window.web3
   if (hasWallet && window.web3.currentProvider.hasOwnProperty('enable')) {
     const addresses = await window.web3.currentProvider.enable()
     hasWallet = !!addresses.length
   }
+
+  // ログインしているか（特にMetamask）のチェック
+  let ethManager
+  try {
+    ethManager = await EthAccountManager.createAsync(
+      window.web3.currentProvider
+    )
+  } catch (e) {
+    hasWallet = false
+  }
+
   store.commit('SET_HAS_WALLET', hasWallet)
 
   if (!store.state.hasWallet) return
 
-  const ethManager = await EthAccountManager.createAsync(
-    window.web3.currentProvider
-  )
   const ethAddress = await ethManager.getCurrentAccountAsync()
   store.commit('SET_ETH_ADDRESS', ethAddress)
 
