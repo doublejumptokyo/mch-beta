@@ -459,32 +459,50 @@ export default {
       this.executeAction(currentActionElem)
     },
 
-    executeAction(currentActionElem) {
+    async executeAction(currentActionElem) {
       this.isFinished = currentActionElem.classList.contains('action--end')
-      this.currentAction = Number(currentActionElem.dataset.actionId)
+      let actionId = currentActionElem.dataset.actionId
+      if (!actionId) {
+        actionId = this.isFinished ? '999' : '0'
+      }
+      this.currentAction = Number(actionId)
       if (this.prevAction !== this.currentAction) {
         this.currentFinishedAction = this.currentAction - 1
+
+        // すでに終わったアクションを片付ける
         if (this.currentFinishedAction > this.finishedAction) {
+          const actionsArea = this.$el.querySelector('.actions')
           for (
             let i = this.finishedAction + 1;
             i <= this.currentFinishedAction;
             i++
           ) {
-            const actionsArea = this.$el.querySelector('.actions')
-            this.endAction(actionsArea.querySelector(`[data-action-id="${i}"]`))
+            if (!i) continue
+            const actionElem = actionsArea.querySelector(
+              `[data-action-id="${i}"]`
+            )
+            if (!actionElem) return
+            this.endAction(actionElem)
+            const currentAction = this.actions[i]
+            if (currentAction) {
+              console.log('アクション後のステータスをセット')
+              this.setStatuses(currentAction.units)
+            }
           }
 
           this.finishedAction = this.currentFinishedAction
         }
 
+        // その上で現在のアクションを処理する
         if (this.currentAction > this.finishedAction) {
           this.actionStartTime = +new Date()
           console.log('アクションエフェクト開始')
-          this.startActionAnimation(currentActionElem).then(() => {
-            const currentAction = this.actions[this.currentAction - 1]
+          await this.startActionAnimation(currentActionElem)
+          const currentAction = this.actions[this.currentAction - 1]
+          if (currentAction) {
             console.log('アクション後のステータスをセット')
             this.setStatuses(currentAction.units)
-          })
+          }
         }
 
         this.prevAction = this.currentAction
