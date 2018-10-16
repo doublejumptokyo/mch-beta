@@ -63,7 +63,7 @@
     template(v-for="(action, index) in actions")
       .action(
         :data-action-id="action.actionCounts"
-        :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': finishedAction + 1 < action.actionCounts }]"
+        :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': isStillAction(action) }]"
         @click="goNextAction"
       )
         .action__label
@@ -421,6 +421,10 @@ export default {
       }
     },
 
+    isStillAction(action) {
+      return this.finishedAction + 1 < action.actionCounts
+    },
+
     initAction() {
       console.log('7. スクロールエリアを設定してスクロール監視')
       const actionsArea = this.$el.querySelector('.actions')
@@ -477,13 +481,15 @@ export default {
             i <= this.currentFinishedAction;
             i++
           ) {
-            if (!i) continue
+            if (i === 0) continue
             const actionElem = actionsArea.querySelector(
               `[data-action-id="${i}"]`
             )
-            if (!actionElem) return
+            if (!actionElem) break
             this.endAction(actionElem)
-            const currentAction = this.actions[i]
+            const currentAction = this.actions.find(
+              action => action.actionCounts === i
+            )
             if (currentAction) {
               console.log('アクション後のステータスをセット')
               this.setStatuses(currentAction.units)
