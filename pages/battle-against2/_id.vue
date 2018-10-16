@@ -500,7 +500,7 @@ export default {
         }
 
         // その上で現在のアクションを処理する
-        if (this.currentAction > this.finishedAction) {
+        if (this.currentAction > this.finishedAction && !this.isFinished) {
           this.actionStartTime = +new Date()
           console.log('アクションエフェクト開始')
           await this.startActionAnimation(currentActionElem)
