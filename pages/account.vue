@@ -16,28 +16,12 @@
       dd
         code {{ loomAddress }}
   section.accountPage__links
-    h2 {{ $i18n.t('others.other') }}
+    //- h2 {{ $i18n.t('others.other') }}
     ul.links
-      li
-        a.links__item(href="https://discord.gg/")
-          fa-icon.links__icon(:icon="['fab', 'discord']" fixed-width)
-          span Official Discord
-          fa-icon.links__arrow(icon="angle-right")
-      li
-        a.links__item(href="https://medium.com/mycryptoheroes")
-          fa-icon.links__icon(:icon="['fab', 'medium']" fixed-width)
-          span Official Medium
-          fa-icon.links__arrow(icon="angle-right")
-      li
-        nuxt-link.links__item(to="/terms")
-          fa-icon.links__icon(icon="info" fixed-width)
-          span {{ $i18n.t('pages.terms') }}
-          fa-icon.links__arrow(icon="angle-right")
       li
         button.links__item(@click="logout")
           fa-icon.links__icon(icon="sign-out-alt" fixed-width)
           span Sign out
-          fa-icon.links__arrow(icon="angle-right")
 </template>
 
 <script>
