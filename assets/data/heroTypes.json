@@ -216,5 +216,29 @@
       "en": "https://en.wikipedia.org/wiki/Mata_Hari",
       "ja": "https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%BF%E3%83%BB%E3%83%8F%E3%83%AA"
     }
+  },
+  {
+    "type": 3005,
+    "name": { "en": "ETHEREMON-BLUE", "ja": "ETHEREMON-BLUE" },
+    "fileName": "3005.png",
+    "rarity": "Rare",
+    "wikipediaUrl": null
+  },
+  {
+    "type": 3006,
+    "name": { "en": "ETHEREMON-GREEN", "ja": "ETHEREMON-GREEN" },
+    "fileName": "3006.png",
+    "rarity": "Rare",
+    "wikipediaUrl": null
+  },
+  {
+    "type": 2003,
+    "name": { "en": "Jack the Ripper", "ja": "ジャックザリッパー" },
+    "fileName": "2003.png",
+    "rarity": "Uncommon",
+    "wikipediaUrl": {
+      "en": "https://en.wikipedia.org/wiki/Jack_the_Ripper",
+      "ja": "https://ja.wikipedia.org/wiki/%E5%88%87%E3%82%8A%E8%A3%82%E3%81%8D%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AF"
+    }
   }
 ]
