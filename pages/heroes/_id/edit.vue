@@ -116,10 +116,7 @@ export default {
       this.$refs.cropper.getCropBlob(async blob => {
         const formData = new FormData()
         formData.append('upload', blob)
-        const headers = {
-          'Content-Type': 'multipart/form-data',
-          'Loom-Address': this.$store.state.loomAddress
-        }
+        const headers = { 'Content-Type': 'multipart/form-data' }
         const res = await this.$axios
           .post('/api/pixelator/upload', formData, { headers })
           .catch(() => this.$toast.error('Error.'))
