@@ -8,6 +8,19 @@
         span {{ `#${myRank}` }}
     button(slot="right" @click="refresh")
       fa-icon(icon="sync")
+
+  .battlePage__info
+    template(v-if="termStatus === 'IN_RANKING_TERM'")
+      p {{ $t('battle.info.inRankingTerm') }}
+      p
+        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+    template(v-else-if="termStatus === 'IN_AGGREGATING_TERM'")
+      p {{ $t('battle.info.inAggregatingTerm') }}
+    template(v-else-if="termStatus === 'AFTER_AGGREGATING_TERM'")
+      p {{ $t('battle.info.afterAggregatingTerm') }}
+      p
+        a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
+
   ul.tabList
     li.tabItem
       nuxt-link(to="/battle-against/ranked") Ranked
@@ -25,6 +38,25 @@ import PageHeader from '~/components/PageHeader'
 export default {
   middleware: 'walletCheck',
   components: { PageHeader },
+  async asyncData({ $axios }) {
+    const endOfRankingTerm = new Date(Date.UTC(2018, 10 - 1, 21, 6)).getTime()
+    const endOfAggregatingTerm = new Date(
+      Date.UTC(2018, 10 - 1, 22, 6)
+    ).getTime()
+    const now = await $axios
+      .$get('/now.json')
+      .then(now => now.unixMsec * 1000)
+      .catch(() => new Date().getTime())
+    let termStatus
+    if (now < endOfRankingTerm) {
+      termStatus = 'IN_RANKING_TERM'
+    } else if (endOfRankingTerm < now && now < endOfAggregatingTerm) {
+      termStatus = 'IN_AGGREGATING_TERM'
+    } else {
+      termStatus = 'AFTER_AGGREGATING_TERM'
+    }
+    return { termStatus }
+  },
   fetch({ route, redirect }) {
     if (route.name === 'battle-against') {
       return redirect('/battle-against/ranked')
@@ -110,6 +142,20 @@ export default {
           font-size: 1.8rem;
         }
       }
+    }
+  }
+
+  &__info {
+    background: #555;
+    border-radius: 1rem;
+    color: #ccc;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+      margin: 0 1rem 1rem;
     }
   }
 }
