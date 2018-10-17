@@ -26,8 +26,10 @@ header.appHeader
         span {{ address }}
       button(v-else-if="hasWallet" @click="login")
         fa-icon(icon="sign-in-alt")
-        | Login
-      span(v-else) No wallet
+        span Login
+      span(v-else)
+        fa-icon(:icon="['far', 'sad-tear']")
+        span No wallet.
 
   .appHeader__globalNavi
     ul
@@ -47,14 +49,6 @@ header.appHeader
         nuxt-link(to="/battle-against")
           fa-icon(icon="fire")
           span {{ $i18n.t('pages.battles') }}
-      //- li
-        nuxt-link.disabled(to="/dungeons")
-          fa-icon(:icon="['far', 'compass']")
-          span {{ $i18n.t('pages.dungeons') }}
-      //- li
-        nuxt-link.disabled(to="/market")
-          fa-icon(icon="store")
-          span {{ $i18n.t('pages.market') }}
 </template>
 
 <script>
@@ -229,14 +223,7 @@ export default {
   }
 
   &__userData {
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
     margin-left: 1rem;
-    padding-bottom: calc(0.375em - 1px);
-    padding-left: 0.75em;
-    padding-right: 0.75em;
-    padding-top: calc(0.375em - 1px);
-    max-width: 8rem;
 
     a {
       color: #dbdbdb;
@@ -249,6 +236,25 @@ export default {
 }
 
 .userData {
+  > a,
+  > button {
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: calc(0.375em - 1px);
+    max-width: 8rem;
+  }
+
+  > span {
+    color: #999;
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+
   svg {
     margin-right: 0.5rem;
   }

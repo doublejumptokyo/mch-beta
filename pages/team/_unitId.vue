@@ -1,50 +1,26 @@
 <template lang="pug">
 .positionPage
   no-ssr
-    .positionPage__editArea
+    .positionPage__editArea(v-if="hero")
 
       .hero(v-if="hero.name && hero.fileName" @click="heroModalOpen")
         fa-icon(icon="sync")
         .hero__image
           img(:src="hero.imageUrl")
-        //- .hero__name
-        //-   span {{ hero.name[$i18n.locale] }}
-      //- .hero.hero--empty(v-else @click="heroModalOpen")
-        .hero__image.hero__image--empty
-          no-ssr
-            fa-icon(icon="plus")
-        //- .hero__name.hero__name--empty
-        //-   span No Hero
 
       .item.item1(v-if="item1.name && item1.fileName" @click="itemModalOpen('item1')")
         fa-icon(icon="sync")
         .item__image
           img(:src="require(`~/assets/images/extensions/${item1.fileName}`)")
-        //- .item__name
-        //-   span {{ item1.name[$i18n.locale] }}
-      //- .item.item1.item--empty(v-else @click="itemModalOpen('item1')")
-        .item__image.item__image--empty
-          no-ssr
-            fa-icon(icon="plus")
-        //- .item__name.item__name--empty
-        //-   span No Item
 
       .item.item2(v-if="item2.name && item2.fileName" @click="itemModalOpen('item2')")
         fa-icon(icon="sync")
         .item__image
           img(:src="require(`~/assets/images/extensions/${item2.fileName}`)")
-        //- .item__name
-        //-   span {{ item2.name[$i18n.locale] }}
-      //- .item.item2.item--empty(v-else @click="itemModalOpen('item2')")
-        .item__image.item__image--empty
-          no-ssr
-            fa-icon(icon="plus")
-        //- .item__name.item__name--empty
-        //-   span No Item
 
   no-ssr
     .positionPage__resultArea
-      .statuses
+      .statuses(v-if="hero")
         .status
           img(:src="require('~/assets/images/icons/status/hp.png')")
           p {{ computedStatus.hp }}
@@ -57,12 +33,9 @@
         .status
           img(:src="require('~/assets/images/icons/status/int.png')")
           p {{ computedStatus.int }}
-      .skills
+      .skills(v-if="hero")
         .skills__title
           h3 Active
-          //- button
-            fa-icon(icon="sort")
-            span Sort
         draggable(
           v-model="activeSkillOrder",
           element="ol",
@@ -98,7 +71,7 @@
     h2.heroModal__header(slot="header") Change Hero
     .heroModal__body(slot="body")
       .heroSelector
-        .heroSelector__hero(v-for="hero in $store.state.heroes" :class="{ 'heroSelector__hero--disabled': isDisabled(hero.id, 'hero') }")
+        .heroSelector__hero(v-for="hero in myOwnHeroes" :class="{ 'heroSelector__hero--disabled': isDisabled(hero.id, 'hero') }")
           label
             input(type="radio" name="heroSelector" :value="hero" v-model="selectedHero")
             .heroSelector__heroInner
@@ -187,16 +160,16 @@ export default {
   components: { draggable, Modal },
   data() {
     return {
-      // position: null,
       isHeroModalShown: false,
       isItemModalShown: false,
       activeSkillOrder: [],
       selectedHero: null,
-      selectedItem: { item1: null, item2: null }
+      selectedItem: { item1: null, item2: null },
+      myOwnHeroes: []
     }
   },
   computed: {
-    ...mapState(['team']),
+    ...mapState(['team', 'loomAddress']),
     ...mapGetters({
       units: 'team/newUnits',
       getHero: 'heroes/get',
@@ -207,8 +180,8 @@ export default {
       return this.units[this.positionIndex]
     },
     hero() {
-      if (!this.position) return {}
-      return this.getHero(this.position[0])
+      if (!this.position) return
+      return this.myOwnHeroes.find(hero => hero.id === this.position[0])
     },
     item1() {
       if (!this.position) return {}
@@ -229,10 +202,21 @@ export default {
   },
   beforeMount() {
     this.positionIndex = Number(this.$route.params.unitId) - 1
-    // this.position = this.units[this.positionIndex]
     this.activeSkillOrder = this.position.filter((num, index) => index > 2)
+    this.getMyOwnHeroes()
   },
   methods: {
+    async getMyOwnHeroes() {
+      const address = this.loomAddress
+      const heroCount = await this.$hero.asset.getHeroCount(address)
+      const indexes = Array.from(Array(heroCount).keys())
+      const heroIds = await Promise.all(
+        indexes.map(index => this.$hero.asset.getHeroId(address, index))
+      )
+      this.myOwnHeroes = await Promise.all(
+        heroIds.map(heroId => this.$hero.get(heroId))
+      )
+    },
     getStatus(type) {
       return this.hero[type] + this.item1[type] + this.item2[type]
     },

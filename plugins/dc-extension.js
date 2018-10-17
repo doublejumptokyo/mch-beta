@@ -65,12 +65,10 @@ export default async ({ app, store }, inject) => {
   const extensionCount = await extension.asset.getExtensionCount(address)
   const indexes = Array.from(Array(extensionCount).keys())
   const extensionIds = await Promise.all(
-    indexes.map(
-      async index => await extension.asset.getExtensionId(address, index)
-    )
+    indexes.map(index => extension.asset.getExtensionId(address, index))
   )
   const extensions = await Promise.all(
-    extensionIds.map(async extensionId => await extension.get(extensionId))
+    extensionIds.map(extensionId => extension.get(extensionId))
   )
 
   extensions

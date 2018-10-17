@@ -63,7 +63,7 @@
     template(v-for="(action, index) in actions")
       .action(
         :data-action-id="action.actionCounts"
-        :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': finishedAction + 1 < action.actionCounts }]"
+        :class="[action.actionPosition < 3 ? 'action--myTeam' : 'action--opponentTeam', { 'action--still': isStillAction(action) }]"
         @click="goNextAction"
       )
         .action__label
@@ -421,6 +421,10 @@ export default {
       }
     },
 
+    isStillAction(action) {
+      return this.finishedAction + 1 < action.actionCounts
+    },
+
     initAction() {
       console.log('7. スクロールエリアを設定してスクロール監視')
       const actionsArea = this.$el.querySelector('.actions')
@@ -459,32 +463,52 @@ export default {
       this.executeAction(currentActionElem)
     },
 
-    executeAction(currentActionElem) {
+    async executeAction(currentActionElem) {
       this.isFinished = currentActionElem.classList.contains('action--end')
-      this.currentAction = Number(currentActionElem.dataset.actionId)
+      let actionId = currentActionElem.dataset.actionId
+      if (!actionId) {
+        actionId = this.isFinished ? '999' : '0'
+      }
+      this.currentAction = Number(actionId)
       if (this.prevAction !== this.currentAction) {
         this.currentFinishedAction = this.currentAction - 1
+
+        // すでに終わったアクションを片付ける
         if (this.currentFinishedAction > this.finishedAction) {
+          const actionsArea = this.$el.querySelector('.actions')
           for (
             let i = this.finishedAction + 1;
             i <= this.currentFinishedAction;
             i++
           ) {
-            const actionsArea = this.$el.querySelector('.actions')
-            this.endAction(actionsArea.querySelector(`[data-action-id="${i}"]`))
+            if (i === 0) continue
+            const actionElem = actionsArea.querySelector(
+              `[data-action-id="${i}"]`
+            )
+            if (!actionElem) break
+            this.endAction(actionElem)
+            const currentAction = this.actions.find(
+              action => action.actionCounts === i
+            )
+            if (currentAction) {
+              console.log('アクション後のステータスをセット')
+              this.setStatuses(currentAction.units)
+            }
           }
 
           this.finishedAction = this.currentFinishedAction
         }
 
-        if (this.currentAction > this.finishedAction) {
+        // その上で現在のアクションを処理する
+        if (this.currentAction > this.finishedAction && !this.isFinished) {
           this.actionStartTime = +new Date()
           console.log('アクションエフェクト開始')
-          this.startActionAnimation(currentActionElem).then(() => {
-            const currentAction = this.actions[this.currentAction - 1]
+          await this.startActionAnimation(currentActionElem)
+          const currentAction = this.actions[this.currentAction - 1]
+          if (currentAction) {
             console.log('アクション後のステータスをセット')
             this.setStatuses(currentAction.units)
-          })
+          }
         }
 
         this.prevAction = this.currentAction
