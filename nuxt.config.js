@@ -88,6 +88,7 @@ module.exports = {
     '~/plugins/axios',
     '~/plugins/font-awesome',
     '~/plugins/i18n.js',
+    { src: '~/plugins/console', ssr: false },
     { src: '~/plugins/ks-vue-scrollmagic', ssr: false },
     { src: '~/plugins/swiper', ssr: false },
     { src: '~/plugins/vue-highcharts', ssr: true },
