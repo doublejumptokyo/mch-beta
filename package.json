@@ -14,11 +14,9 @@
     "precommit": "npm run lintfix"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.2",
-    "@fortawesome/free-brands-svg-icons": "^5.2.0",
-    "@fortawesome/free-regular-svg-icons": "^5.2.0",
-    "@fortawesome/free-solid-svg-icons": "^5.2.0",
-    "@fortawesome/vue-fontawesome": "^0.1.1",
+    "@fortawesome/free-brands-svg-icons": "^5.4.1",
+    "@fortawesome/free-regular-svg-icons": "^5.4.1",
+    "@fortawesome/free-solid-svg-icons": "^5.4.1",
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/bulma": "^1.2.0",
     "@nuxtjs/google-gtag": "^1.0.4",
@@ -36,6 +34,7 @@
     "loom-js": "^1.23.0",
     "node-sass": "^4.9.3",
     "nuxt": "^1.4.2",
+    "nuxt-fontawesome": "^0.3.0",
     "nuxt-sass-resources-loader": "^2.0.5",
     "openzeppelin-solidity": "2.0.0-rc.1",
     "pug": "^2.0.3",
