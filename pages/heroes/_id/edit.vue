@@ -58,7 +58,7 @@
     .modal__footer(slot="footer")
       button.cancelButton(@click="closeModal") Cancel
       button.submitButton(@click="submit" :disabled="isUploading")
-        i.fas.fa-spinner.fa-spin.fa-lg(v-if="isUploading")
+        fa-icon(icon="spinner" spin size="lg" v-if="isUploading")
         span Submit
 </template>
 

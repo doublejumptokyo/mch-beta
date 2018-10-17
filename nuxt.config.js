@@ -14,6 +14,7 @@ const modules = [
   '@nuxtjs/proxy',
   '@nuxtjs/toast',
   'cookie-universal-nuxt',
+  'nuxt-fontawesome',
   ['@nuxtjs/google-gtag', { id: SITE_INFO.gaTrackingId }],
   ['nuxt-sass-resources-loader', ['~/assets/styles/main.scss']]
 ]
@@ -86,7 +87,6 @@ module.exports = {
   },
   plugins: [
     '~/plugins/axios',
-    '~/plugins/font-awesome',
     '~/plugins/i18n.js',
     { src: '~/plugins/console', ssr: false },
     { src: '~/plugins/ks-vue-scrollmagic', ssr: false },
@@ -114,5 +114,22 @@ module.exports = {
   proxy,
   toast: {
     duration: 3000
+  },
+  fontawesome: {
+    component: 'fa-icon',
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
+      {
+        set: '@fortawesome/free-regular-svg-icons',
+        icons: ['far']
+      },
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['fab']
+      }
+    ]
   }
 }
