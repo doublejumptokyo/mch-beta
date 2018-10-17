@@ -104,12 +104,20 @@ export default {
       &:first-of-type {
         color: #999;
         font-size: 0.9rem;
+
+        @media (min-width: $breakpoint) {
+          font-size: 1rem;
+        }
       }
 
       &:last-of-type {
         font-family: Oswald;
         font-weight: bold;
         margin-left: 0.5rem;
+
+        @media (min-width: $breakpoint) {
+          font-size: 1.8rem;
+        }
       }
     }
   }
@@ -121,6 +129,10 @@ export default {
   margin: 0 -1rem -1rem;
   padding: 0;
   width: calc(100% + 2rem);
+
+  @media (min-width: $breakpoint) {
+    margin: 1rem -1rem -1rem;
+  }
 }
 
 .tabItem {
