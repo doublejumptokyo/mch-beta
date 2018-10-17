@@ -1,24 +1,27 @@
 <template lang="pug">
 .userList
-  nuxt-link.userList__item(
-    v-for="(user, index) in users"
-    :to="`/users/${user.address}`"
-    :key="index"
-  )
-    .user(:class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }")
-      .user__header
-        .user__rank(v-if="user.rank")
-          span {{ `#${user.rank}` }}
-        .user__type(v-if="user.isRanked !== undefined")
-          span.user__type--ranked(v-if="user.isRanked") Ranked
-          span.user__type--exhibition(v-else) Exhibition
-      .user__images
-        img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
-      .user__name
-        h2 {{ user.name || 'No Name' }}
-      .user__button
-        span Show Detail
-        fa-icon.user__arrow(icon="angle-right")
+  template(v-if="users.length")
+    nuxt-link.userList__item(
+      v-for="(user, index) in users"
+      :to="`/users/${user.address}`"
+      :key="index"
+    )
+      .user(:class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }")
+        .user__header
+          .user__rank(v-if="user.rank")
+            span {{ `#${user.rank}` }}
+          .user__type(v-if="user.isRanked !== undefined")
+            span.user__type--ranked(v-if="user.isRanked") Ranked
+            span.user__type--exhibition(v-else) Exhibition
+        .user__images
+          img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
+        .user__name
+          h2 {{ user.name || 'No Name' }}
+        .user__button
+          span Show Detail
+          fa-icon.user__arrow(icon="angle-right")
+  .userList__empty(v-else)
+    fa-icon(icon="spinner" spin size="3x")
 </template>
 
 <script>
@@ -66,6 +69,15 @@ export default {
         border-left: none;
       }
     }
+  }
+
+  &__empty {
+    align-items: center;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    padding: 8rem 0;
+    width: 100%;
   }
 }
 
