@@ -3,10 +3,15 @@
   .indexPage__keyVisual
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
-    .update
-      nl2br(tag="p" :text="$t('home.news')")
-      p
-        a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
+    template
+      div
+        ul
+          li(v-for="item in data")
+            a(v-bind:href="item.link") {{ item.title }}
+    //- .update
+    //-   nl2br(tag="p" :text="$t('home.news')")
+    //-   p
+    //-     a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
   section.indexPage__section
     .update
       p {{ $t('home.update') }}
@@ -36,8 +41,25 @@
 
 <script>
 import Nl2br from 'vue-nl2br'
+import axios from 'axios'
+
 export default {
-  components: { Nl2br }
+  components: { Nl2br },
+  async asyncData() {
+    await axios
+      .get(`https://medium.com/feed/mycryptoheroes`)
+      .then(res => {
+        var parseString = require('xml2js').parseString
+        var xml = res.data
+        const a = parseString(xml, (message, xmlres) => {
+          return { data: xmlres.rss.channel[0].item }
+        })
+        console.log(a instanceof Promise)
+      })
+      // .catch(e => {
+      //   return { statusCode: 404, message: 'ページが見つかりません' }
+      // })
+  }
 }
 </script>
 
