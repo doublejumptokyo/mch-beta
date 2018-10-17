@@ -98,13 +98,5 @@ export default {
   max-width: 1024px;
   padding: 1rem;
   width: 100%;
-
-  &__title {
-    font-size: 1.2rem;
-
-    > * {
-      font-size: 1.2rem;
-    }
-  }
 }
 </style>
