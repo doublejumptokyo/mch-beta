@@ -3,23 +3,6 @@
   .page__title
     h1 {{ $i18n.t('pages.inventory') }}
 
-    // .dropdown
-      .dropdown-trigger
-        .button(aria-haspopup="true" aria-controls="dropdown-menu")
-          span loom
-          .icon.is-small
-            i.fas.fa-angle-down(aria-hidden="true")
-      .dropdown-menu#dropdown-menu(role="menu")
-        .dropdown-content
-          a.dropdown-item(href="#") loom
-          a.dropdown-item(href="#") ETH
-
-  //- .inventoryPage__partyLink
-    nuxt-link.inventoryPage__partyLink__item(to="/inventory/parties")
-      fa-icon.inventoryPage__partyLink__icon(icon="users")
-      span Show / Edit Parties
-      fa-icon.inventoryPage__partyLink__arrow(icon="angle-right")
-
   ul.tabList
     li.tabItem
       nuxt-link(to="/inventory/heroes") Heroes
