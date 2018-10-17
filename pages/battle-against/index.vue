@@ -1,12 +1,12 @@
 <template lang="pug">
 .battlePage
-  .page__title
-    div
+  page-header.battlePage__header
+    template
       h1 {{ $i18n.t('pages.battles') }}
       .battlePage__myRank(v-if="myRank")
         span Your current rank:
         span {{ `#${myRank}` }}
-    button(@click="refresh")
+    button(slot="right" @click="refresh")
       fa-icon(icon="sync")
   ul.tabList
     li.tabItem
@@ -21,8 +21,10 @@
 
 <script>
 import { mapState } from 'vuex'
+import PageHeader from '~/components/PageHeader'
 export default {
   middleware: 'walletCheck',
+  components: { PageHeader },
   fetch({ route, redirect }) {
     if (route.name === 'battle-against') {
       return redirect('/battle-against/ranked')
@@ -72,18 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .battlePage {
-  .page__title {
-    align-items: center;
-    display: flex;
-
-    > div {
-      flex: 1;
-    }
-
-    h1 {
-      font-size: 1.2rem;
-    }
-
+  &__header {
     button {
       border: 1px solid map-get($colors, primary);
       border-radius: 9999px;
@@ -129,10 +120,6 @@ export default {
   margin: 0 -1rem -1rem;
   padding: 0;
   width: calc(100% + 2rem);
-
-  @media (min-width: $breakpoint) {
-    margin: 1rem -1rem -1rem;
-  }
 }
 
 .tabItem {
@@ -152,6 +139,11 @@ export default {
     text-align: center;
     text-decoration: none;
     width: 100%;
+
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+      padding: 1rem;
+    }
 
     &.nuxt-link-active {
       border-bottom: 2px solid #ccc;
