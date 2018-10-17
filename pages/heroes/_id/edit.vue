@@ -1,6 +1,6 @@
 <template lang="pug">
 .heroEditPage
-  .page__title
+  page-header
     h1 Art edit
 
   template(v-if="isConfirming")
@@ -65,8 +65,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import Modal from '~/components/Modal'
+import PageHeader from '~/components/PageHeader'
 export default {
-  components: { Modal },
+  components: { Modal, PageHeader },
   data() {
     return {
       hero: {},
