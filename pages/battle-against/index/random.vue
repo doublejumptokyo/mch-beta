@@ -24,11 +24,22 @@ export default {
   methods: {
     async fetch() {
       const addresses = await Promise.all(
-        Array.from(Array(20).keys())
-          .map(() => Math.floor(Math.random() * RANDOM_MAX_RANK) + 1)
-          .map(rank => this.$rank.address(rank))
+        this.getRanks().map(rank => this.$rank.address(rank))
       )
       this.$emit('init', { addresses })
+    },
+    getRanks() {
+      const ranks = []
+      while (ranks.length < 20) {
+        const rank = this.getRandomRank()
+        if (!ranks.includes(rank)) {
+          ranks.push(rank)
+        }
+      }
+      return ranks
+    },
+    getRandomRank() {
+      return Math.floor(Math.random() * RANDOM_MAX_RANK) + 1
     }
   }
 }
