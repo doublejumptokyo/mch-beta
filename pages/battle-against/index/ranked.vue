@@ -1,5 +1,5 @@
 <template lang="pug">
-.battlePage
+.battleRankedPage
   user-list(:users="users")
 </template>
 

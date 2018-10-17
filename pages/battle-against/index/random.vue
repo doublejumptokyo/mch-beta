@@ -1,5 +1,5 @@
 <template lang="pug">
-.battlePage
+.battleRandomPage
   user-list(:users="users")
 </template>
 
