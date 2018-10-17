@@ -142,14 +142,14 @@
   {
     "id": 2002,
     "name": { "en": "Forceful Blade", "ja": "圧斬り" },
-    "description": { "en": "先頭の敵にPHYの60~80%分ダメージ", "ja": "60-80% PHY damage to front enemy" },
+    "description": { "en": "60-80% PHY damage to front enemy", "ja": "先頭の敵にPHYの60~80%分ダメージ" },
     "iconFileName": "phy.png",
     "effectId": 1
   },
   {
     "id": 2003,
     "name": { "en": "The Polymath's Remains", "ja": "万能人の遺蹟" },
-    "description": { "en": "先頭の敵にINTの60~70%分ダメージ", "ja": "60-70% INT damage to front enemy" },
+    "description": { "en": "60-70% INT damage to front enemy", "ja": "先頭の敵にINTの60~70%分ダメージ" },
     "iconFileName": "int.png",
     "effectId": 2
   },
@@ -348,5 +348,26 @@
     "description": { "en": "After own active skill,10% INT decrease to front enemy and 20-40% INT damege to own HP", "ja": "自分がActive時、先頭の敵のINTをINTの10%分ダウンし、自分にINTの20~40%分ダメージ" },
     "iconFileName": "DEBUF_int.png",
     "effectId": 5
+  },
+  {
+    "id": 1040,
+    "name": { "en": "OmnomTactics", "ja": "オムノンタクティクス" },
+    "description": { "en": "After own active skill,  50% INT damage to front enemy at a probability of 10%", "ja": "自分がActive時10%の確率で、先頭の敵にINTの50%分ダメージ" },
+    "iconFileName": "int.png",
+    "effectId": 2
+  },
+  {
+    "id": 1041,
+    "name": { "en": "MintolArt", "ja": "ミントルアート" },
+    "description": { "en": "After own active skill,  recovers all allies by 30% at a probability of 10%", "ja": "自分がActive時10%の確率で、味方全員に30%の回復効果を与える" },
+    "iconFileName": "hp.png",
+    "effectId": 3
+  },
+  {
+    "id": 1042,
+    "name": { "en": "Langer's Line", "ja": "ランゲルライン" },
+    "description": { "en": "After own active skill, 10-30% PHY damege to random target (increase ally) and 5% AGI increase own AGI", "ja": "自分がActive時、ランダムにPHYの10〜30%分ダメージを与え、自分のAGIを5%分アップ" },
+    "iconFileName": "phy.png",
+    "effectId": 1
   }
 ]
