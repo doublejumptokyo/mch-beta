@@ -9,6 +9,7 @@
       p {{ item.rarity }}
     .assetPage__name
       h1 {{ item.name[$i18n.locale] }}
+      p {{ `#${item.id}` }}
 
   .assetPage__right(v-if="item")
     .assetPage__statuses
@@ -84,6 +85,11 @@ export default {
   &__name {
     margin: 0 0 1rem;
     text-align: center;
+
+    p {
+      color: #999;
+      font-weight: 100;
+    }
   }
 
   &__rarity {
