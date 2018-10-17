@@ -1,16 +1,12 @@
 <template lang="pug">
 section.section.section__extensionList
-  //- header
-    form.searchForm
-      input.searchForm__input(type="search" v-model="searchText.extension" placeholder="Your extension Name")
-      fa-icon(icon="search")
-    button.sortButton
-      fa-icon(icon="sort-alpha-down" size="lg")
-      fa-icon(icon="sort")
   .extensionList
-    nuxt-link.extensionExtension(:to="`/extensions/${extension.id}`" v-for="extension in extensions" :key="extension.id")
-      img.extensionExtension__image(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
-      p.extensionExtension__name {{ extension.name[$i18n.locale] }}
+    template(v-if="extensions.length")
+      nuxt-link.extensionExtension(:to="`/extensions/${extension.id}`" v-for="extension in extensions" :key="extension.id")
+        img.extensionExtension__image(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
+        p.extensionExtension__name {{ extension.name[$i18n.locale] }}
+    .extensionList__empty(v-else)
+        fa-icon(icon="spinner" spin size="3x")
 </template>
 
 <script>
@@ -83,6 +79,15 @@ export default {
   @media (min-width: $breakpoint) {
     margin: -2rem 0 0 -2rem;
     padding: 1rem;
+  }
+
+  &__empty {
+    align-items: center;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    padding: 8rem 0;
+    width: 100%;
   }
 }
 
