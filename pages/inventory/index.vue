@@ -1,6 +1,6 @@
 <template lang="pug">
 .inventoryPage
-  .page__title
+  page-header
     h1 {{ $i18n.t('pages.inventory') }}
 
   ul.tabList
@@ -14,8 +14,9 @@
 
 <script>
 import Modal from '~/components/Modal'
+import PageHeader from '~/components/PageHeader'
 export default {
-  components: { Modal },
+  components: { Modal, PageHeader },
   middleware: 'walletCheck',
   data() {
     return {
@@ -33,27 +34,6 @@ export default {
 <style lang="scss" scoped>
 .inventoryPage {
   position: relative;
-
-  .page__title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-    button {
-      appearance: none;
-      background: map-get($colors, white);
-      border: 1px solid map-get($colors, primary);
-      border-radius: 1rem;
-      color: map-get($colors, primary);
-      cursor: pointer;
-      font-size: 0.8rem;
-      padding: 0.5rem 1rem;
-
-      svg {
-        margin-right: 0.5rem;
-      }
-    }
-  }
 
   &__partyLink {
     border-bottom: 1px solid #eee;
