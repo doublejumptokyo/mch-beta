@@ -1,8 +1,8 @@
 <template lang="pug">
 .teamPage
-  .page__title
+  page-header.teamPage__title
     h1 {{ $i18n.t('pages.team') }}
-    button(@click="isShareModalShown = true") {{ $i18n.t('team.button') }}
+    button(slot="right" @click="isShareModalShown = true") {{ $i18n.t('team.button') }}
   .teamPage__team.team
     no-ssr
       ol
@@ -33,10 +33,11 @@
 import { mapState } from 'vuex'
 import draggable from 'vuedraggable'
 import UnitListItem from '~/components/UnitListItem'
+import PageHeader from '~/components/PageHeader'
 import Modal from '~/components/Modal'
 export default {
   middleware: 'walletCheck',
-  components: { draggable, UnitListItem, Modal },
+  components: { draggable, UnitListItem, Modal, PageHeader },
   data() {
     return {
       units: [],
@@ -78,11 +79,7 @@ export default {
     margin: 1rem -1rem;
   }
 
-  .page__title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
+  &__title {
     button {
       border: 1px solid map-get($colors, primary);
       border-radius: 1rem;

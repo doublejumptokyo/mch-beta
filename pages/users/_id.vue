@@ -1,10 +1,10 @@
 <template lang="pug">
 .userPage
-  .page__title
-    div
+  page-header.userPage__header
+    template
       h1 {{ user.name }}
       p {{ address }}
-    button(@click="isReportModalShown = true")
+    button(slot="right" @click="isReportModalShown = true")
       fa-icon(icon="exclamation-triangle")
       span {{ $t('userId.reportButton') }}
   .userPage__user.team
@@ -46,9 +46,10 @@
 <script>
 import UnitListItem from '~/components/UnitListItem'
 import Modal from '~/components/Modal'
+import PageHeader from '~/components/PageHeader'
 export default {
   middleware: 'walletCheck',
-  components: { UnitListItem, Modal },
+  components: { UnitListItem, Modal, PageHeader },
   data() {
     return {
       address: '',
@@ -100,18 +101,18 @@ export default {
 
 <style lang="scss" scoped>
 .userPage {
-  .page__title {
+  &__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
 
-    h1 {
-      font-size: 1.2rem;
-    }
-
     p {
       color: #999;
       font-size: 0.8rem;
+
+      @media (min-width: $breakpoint) {
+        font-size: 1rem;
+      }
     }
 
     button {
