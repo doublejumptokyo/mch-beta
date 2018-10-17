@@ -32,6 +32,7 @@ build/*
 !build/contracts/Rank.json
 !build/contracts/BattleManager.json
 !build/contracts/BattleManager2.json
+!build/contracts/BattleManager3.json
 !build/contracts/BattleTransaction2.json
 !build/contracts/Present.json
 
