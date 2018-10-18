@@ -1,6 +1,6 @@
 <template lang="pug">
 .battleRandomPage
-  user-list(:users="users")
+  user-list(:users="users.random")
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   components: { UserList },
   props: {
     users: {
-      type: Array,
+      type: Object,
       default() {
         return []
       }
