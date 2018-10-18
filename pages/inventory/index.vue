@@ -87,6 +87,11 @@ export default {
     text-decoration: none;
     width: 100%;
 
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
     &.nuxt-link-active {
       border-bottom: 2px solid #ccc;
     }

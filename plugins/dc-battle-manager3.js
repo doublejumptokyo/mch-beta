@@ -12,6 +12,57 @@ import {
 
 import { NullMessage, BattleResponse } from '@/assets/types/types_pb'
 
+const E_ABI_BattleStart3 = [
+  {
+    indexed: true,
+    name: 'battleId',
+    type: 'uint32'
+  },
+  {
+    indexed: true,
+    name: 'attacker',
+    type: 'address'
+  },
+  {
+    indexed: true,
+    name: 'defender',
+    type: 'address'
+  },
+  {
+    indexed: false,
+    name: 'data',
+    type: 'uint256[7]'
+  },
+  {
+    indexed: false,
+    name: 'randomSeed',
+    type: 'uint16'
+  }
+]
+
+const E_ABI_BattleEnd3 = [
+  {
+    indexed: true,
+    name: 'battleId',
+    type: 'uint32'
+  },
+  {
+    indexed: true,
+    name: 'attacker',
+    type: 'address'
+  },
+  {
+    indexed: true,
+    name: 'defender',
+    type: 'address'
+  },
+  {
+    indexed: false,
+    name: 'win',
+    type: 'bool'
+  }
+]
+
 class BattleManager3 {
   static async createAsync(
     accountManager,
@@ -64,22 +115,37 @@ class BattleManager3 {
     )
   }
 
-  async startAsync(opponentLoomAddress) {
+  async startAsync(opponentLoomAddress, isRanked = false) {
     console.log('start begin')
     const res = await this.contract.methods
-      .start(opponentLoomAddress, false)
+      .start(opponentLoomAddress, isRanked)
       .send()
-    this.startRes = res
-    console.log(res)
+      .catch(e => console.error(e))
+    const rawEvent = res.events.BattleStart3.raw
+    rawEvent.topics.shift()
+    const start = this.accountManager.web3.eth.abi.decodeLog(
+      E_ABI_BattleStart3,
+      rawEvent.data,
+      rawEvent.topics
+    )
+    start.units = this.encodeBattleStart(start.data)
     console.log('start end')
+    return start
   }
 
   async endAsync(winnerCode) {
     console.log('end begin')
     const res = await this.contract.methods.end(winnerCode).send()
-    this.endRes = res
-    console.log(res)
+    const rawEvent = res.events.BattleEnd3.raw
+    rawEvent.topics.shift()
+    let end = this.accountManager.web3.eth.abi.decodeLog(
+      E_ABI_BattleEnd3,
+      rawEvent.data,
+      rawEvent.topics
+    )
+    end = this.encodeBattleEnd(end)
     console.log('end finished')
+    return end
   }
 
   async battleAsync() {
@@ -89,7 +155,185 @@ class BattleManager3 {
       params,
       new BattleResponse()
     )
-    window.battleRes = result
+    return {
+      actionCounts: result.getActionCounts(),
+      isWon: result.getWin(),
+      winnerCode: result.getWinnerCode()
+    }
+  }
+
+  async getActions(battleId, actionCounts) {
+    console.log('action begin')
+    let encodedActions = []
+    const bool = true
+    while (bool) {
+      const sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
+      await sleep(1000)
+      console.log('action try')
+      const req = {}
+      req.limit = 200
+      req.name = 'BattleAction3'
+      req.topic1 = battleId
+      encodedActions = await window.$nuxt.$axios.$get('/events', {
+        params: req
+      })
+      if (actionCounts === encodedActions.length) break
+    }
+    const hexToString = this.accountManager.web3.utils.hexToString
+    const actions = encodedActions
+      .map(action => JSON.parse(hexToString(action.data)))
+      .map(action => this.encodeBattleAction(action))
+      .map(action => {
+        action.units = this.encodeBattleActionUnits(action.datas)
+        return action
+      })
+      .map(action => {
+        const positions = action.effectUnits
+        action.effectPositions = this.encodeEffectPositions(positions)
+        return action
+      })
+    actions.sort((p, c) => p.actionCounts - c.actionCounts)
+    return actions
+  }
+
+  encodeBattleStart(rawData) {
+    let units = []
+    for (let u = 0; u < 7; u++) {
+      let data = rawData[u].toString()
+      if (data === '0') continue
+      let s
+      let e
+      s = 1
+      e = s + 1
+      let position = +data.substring(s, e)
+      s = e
+      e = s + 9
+      let heroId = +data.substring(s, e)
+      s = e
+      e = s + 9
+      let itemId1 = +data.substring(s, e)
+      s = e
+      e = s + 9
+      let itemId2 = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let maxHp = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let hp = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let phy = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let intl = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let agi = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let a1 = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let a2 = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let a3 = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let p = +data.substring(s, e)
+      units[u] = {
+        position: position,
+        heroId: heroId,
+        itemId1: itemId1,
+        itemId2: itemId2,
+        maxHp: maxHp,
+        hp: hp,
+        phy: phy,
+        int: intl,
+        agi: agi,
+        active1: a1,
+        active2: a2,
+        active3: a3,
+        passive: p
+      }
+    }
+    return units
+  }
+
+  encodeBattleEnd(end) {
+    end.battleId = +end.battleId
+    return end
+  }
+
+  encodeBattleAction(action) {
+    action.actionCounts = +action.actionCounts
+    action.actionPosition = +action.actionPosition
+    action.battleId = +action.battleId
+    action.poisonDamage = +action.poisonDamage
+    action.skillId = +action.skillId
+    return action
+  }
+
+  encodeBattleActionUnits(rawData) {
+    let units = []
+    for (let u = 0; u < 7; u++) {
+      let data = rawData[u]
+      if (data === '0') continue
+      let s
+      let e
+      s = 1
+      e = s + 1
+      let position = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let hp = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let phy = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let intl = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let agi = +data.substring(s, e)
+      s = e
+      e = s + 4
+      let charge = +data.substring(s, e)
+      s = e
+      e = s + 1
+      let state = +data.substring(s, e)
+      s = e
+      e = s + 3
+      let activeCounts = +data.substring(s, e)
+      s = e
+      e = s + 1
+      let passiveEnabled = +data.substring(s, e)
+      s = e
+      e = s + 1
+      let extra = +data.substring(s, e)
+      units[u] = {
+        position: position,
+        hp: hp,
+        phy: phy,
+        int: intl,
+        agi: agi,
+        charge: charge,
+        state: state,
+        activeCounts: activeCounts,
+        passiveEnabled: passiveEnabled,
+        extra: extra
+      }
+    }
+    return units
+  }
+
+  encodeEffectPositions(positions) {
+    let results = []
+    for (let i in positions) {
+      if (positions[i]) results.push(Number(i))
+    }
+    return results
   }
 }
 
