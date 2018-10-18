@@ -1,12 +1,17 @@
 <template lang="pug">
 .indexPage
   .indexPage__keyVisual
-    img(:src="require('~/assets/images/keyvisual.png')")
+    img(:src="require('~/assets/images/battlebeta_only.png')")
   section.indexPage__section
-    .update
-      nl2br(tag="p" :text="$t('home.battleRanking')")
-      p
-        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+    .announce
+      nl2br(tag="p" :text="$t('home.battleannounce')")
+      //- p
+      //-   a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+  //- section.indexPage__section
+  //-   .update
+  //-     nl2br(tag="p" :text="$t('home.battleRanking')")
+  //-     p
+  //-       a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
   section.indexPage__section
     .update
       nl2br(tag="p" :text="$t('home.news')")
@@ -129,5 +134,16 @@ ul {
   background: #555;
   border-radius: 1rem;
   padding: 1rem;
+}
+
+.announce {
+  background: #555;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  p {
+    color: red;
+    font-weight: 700;
+  }
 }
 </style>
