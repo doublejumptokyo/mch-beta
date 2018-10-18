@@ -6,9 +6,6 @@ module.exports = function(deployer) {
         let rank = await Rank.deployed()
         
         let participants = [
-"0xee8cfaf830bf161e58d59b7c6d6fb50721476f2b",
-"0x3336b3fc0ec19934238167e558e55895204096f4",
-"0xbb96f87282a72acc26f217f45e3381013f06db14",
 "0x653e194ee222a4b72c9d77e39730228056cbd8f9",
 "0x12d3e19a439415ba8e18d5c365bb2abf40cadc65",
 "0xe05163259b0dba483990341d64bdc4214a0d0762",
