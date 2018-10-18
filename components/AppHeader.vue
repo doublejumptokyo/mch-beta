@@ -6,7 +6,7 @@ header.appHeader
 
   .appHeader__beta
     span Beta
-
+    
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
       .button(aria-haspopup="true" aria-controls="dropdown-menu")
