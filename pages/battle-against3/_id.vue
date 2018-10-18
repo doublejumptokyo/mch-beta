@@ -201,6 +201,9 @@ export default {
       if (!this.end) {
         return ''
       }
+      if (this.actions.length === 200) {
+        return 'time up!'
+      }
       return this.isWon ? 'win!!' : 'lose...'
     },
 
