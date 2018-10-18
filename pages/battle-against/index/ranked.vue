@@ -16,16 +16,31 @@ export default {
       default() {
         return []
       }
+    },
+    myRank: {
+      type: Number,
+      default() {
+        return null
+      }
+    },
+    willChangeRank: {
+      type: Number,
+      default() {
+        return null
+      }
     }
   },
   computed: mapState(['loomAddress']),
-  async beforeMount() {
-    this.fetch()
+  watch: {
+    myRank() {
+      if (!this.myRank) return
+      this.fetch()
+    }
   },
   methods: {
     async fetch() {
-      const myRank = await this.$rank.rank(this.loomAddress)
-      const addresses = await this.$rank.list(myRank - 20)
+      let addresses = await this.$rank.list(this.myRank - this.willChangeRank)
+      addresses = addresses.filter((address, i) => i < 10)
       this.$emit('init', { addresses })
     }
   }

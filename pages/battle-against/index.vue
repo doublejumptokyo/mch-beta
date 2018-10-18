@@ -29,28 +29,41 @@
     li.tabItem
       nuxt-link(to="/battle-against/top") Top 20
 
-  nuxt-child(ref="userList" :users="users" @init="init")
+  nuxt-child(
+    ref="userList"
+    :users="users"
+    :my-rank="myRank"
+    :will-change-rank="willChangeRank"
+    @init="init"
+  )
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import PageHeader from '~/components/PageHeader'
+
+const END_OF_RANKING_TERM = new Date(Date.UTC(2018, 10 - 1, 21, 6))
+const END_OF_AGGREGATING_TERM = new Date(Date.UTC(2018, 10 - 1, 22, 6))
+const END_OF_RANKING_TERM_MS = END_OF_RANKING_TERM.getTime()
+const END_OF_AGGREGATING_TERM_MS = END_OF_AGGREGATING_TERM.getTime()
+const WILL_CHANGE_RANK = 9
+
 export default {
   middleware: 'walletCheck',
   components: { PageHeader },
   async asyncData({ $axios }) {
-    const endOfRankingTerm = new Date(Date.UTC(2018, 10 - 1, 21, 6)).getTime()
-    const endOfAggregatingTerm = new Date(
-      Date.UTC(2018, 10 - 1, 22, 6)
-    ).getTime()
     const now = await $axios
       .$get('/now.json')
       .then(now => now.unixMsec * 1000)
       .catch(() => new Date().getTime())
     let termStatus
-    if (now < endOfRankingTerm) {
+    const isRankingTerm = now < END_OF_RANKING_TERM_MS
+    const isAfterRankingTerm = END_OF_RANKING_TERM_MS < now
+    const isBeforeAggregatingTerm = now < END_OF_AGGREGATING_TERM_MS
+    const isAggregatingTerm = isAfterRankingTerm && isBeforeAggregatingTerm
+    if (isRankingTerm) {
       termStatus = 'IN_RANKING_TERM'
-    } else if (endOfRankingTerm < now && now < endOfAggregatingTerm) {
+    } else if (isAggregatingTerm) {
       termStatus = 'IN_AGGREGATING_TERM'
     } else {
       termStatus = 'AFTER_AGGREGATING_TERM'
@@ -68,12 +81,20 @@ export default {
       myRank: null
     }
   },
-  computed: mapState(['loomAddress']),
+  computed: {
+    ...mapState(['loomAddress']),
+    willChangeRank() {
+      return WILL_CHANGE_RANK
+    }
+  },
   watch: {
     $route() {
       // タブ切り替え時にリストがチラつくため
       this.users = []
     }
+  },
+  async beforeMount() {
+    this.myRank = await this.$rank.rank(this.loomAddress)
   },
   methods: {
     init({ addresses }) {
@@ -84,21 +105,24 @@ export default {
       this.$refs.userList.fetch()
     },
     async fetch(addresses) {
-      this.myRank = await this.$rank.rank(this.loomAddress)
-      addresses.forEach(async address => {
-        const [user, rank, teamIds] = await Promise.all([
-          this.$user.get(address),
-          this.$rank.rank(address),
-          this.$team.get(address)
-        ])
-        const team = await Promise.all(
-          teamIds.map(unit => this.$hero.get(unit[0]))
-        )
-        const name = user.name
-        const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
-        const isRanked = this.myRank - 21 < rank && rank < this.myRank
-        this.users.push({ address, rank, team, name, isMe, isRanked })
-      })
+      const noUserAddress = '0x0000000000000000000000000000000000000000'
+      addresses
+        .filter(address => address !== noUserAddress)
+        .forEach(async address => {
+          const [user, rank, teamIds] = await Promise.all([
+            this.$user.get(address),
+            this.$rank.rank(address),
+            this.$team.get(address)
+          ])
+          const team = await Promise.all(
+            teamIds.map(unit => this.$hero.get(unit[0]))
+          )
+          const name = user.name
+          const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
+          const isRanked =
+            this.myRank - WILL_CHANGE_RANK <= rank && rank < this.myRank
+          this.users.push({ address, rank, team, name, isMe, isRanked })
+        })
     }
   }
 }
