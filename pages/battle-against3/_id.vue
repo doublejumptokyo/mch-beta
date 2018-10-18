@@ -1123,6 +1123,7 @@ export default {
     line-height: 1;
     position: absolute;
     top: -0.5rem;
+    z-index: 1;
 
     @media (min-width: $breakpoint) {
       left: 2rem;
