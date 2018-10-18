@@ -13,7 +13,7 @@
   margin-left: auto;
   position: sticky;
   right: 0.5rem;
-  width: 100px;
+  width: 108px;
   z-index: 2;
   text-transform: capitalize;
   cursor: pointer;
@@ -39,15 +39,15 @@
 
     img {
       margin: auto;
-      width: 40px;
+      width: 48px;
       z-index: 2;
     }
 
     span {
       margin: auto;
       color: hsla(0, 0%, 100%, 0.95);
-      font-weight: 700;
-      font-size: 13px;
+      font-weight: 600;
+      font-size: 12px;
       word-break: keep-all;
     }
   }
