@@ -20,17 +20,16 @@ header.appHeader
         ) {{ $i18n.messages[lang].label }}
 
   .appHeader__userData.userData
-    span(v-if="isLoggingIn")
-      fa-icon(icon="spinner" spin)
-    nuxt-link.userData__name(v-else-if="isLoggedIn" to="/account")
-      fa-icon(icon="user")
-      span {{ address }}
-    button(v-else-if="hasWallet" @click="login")
-      fa-icon(icon="sign-in-alt")
-      span Login
-    span(v-else)
-      fa-icon(:icon="['far', 'sad-tear']")
-      span No wallet.
+    no-ssr
+      nuxt-link.userData__name(v-if="isLoggedIn" to="/account")
+        fa-icon(icon="user")
+        span {{ address }}
+      button(v-else-if="hasWallet" @click="login")
+        fa-icon(icon="sign-in-alt")
+        span Login
+      span(v-else)
+        fa-icon(:icon="['far', 'sad-tear']")
+        span No wallet.
 
   .appHeader__globalNavi
     ul
@@ -62,7 +61,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['hasWallet', 'isLoggingIn']),
+    ...mapState(['hasWallet']),
     ...mapGetters(['isLoggedIn']),
     address() {
       return this.$store.state.user.name

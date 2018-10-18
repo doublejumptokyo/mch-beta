@@ -93,9 +93,6 @@ export default async ({ store }, inject) => {
   }
 
   store.commit('SET_HAS_WALLET', hasWallet)
-  if (!hasWallet) {
-    store.commit('SET_IS_LOGGING_IN', false)
-  }
 
   if (!store.state.hasWallet) return
 
