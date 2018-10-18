@@ -11,7 +11,6 @@
 
   .battlePage__info
     template(v-if="termStatus === 'IN_RANKING_TERM'")
-      p {{ $t('battle.info.inRankingTerm') }}
       p
         a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
     template(v-else-if="termStatus === 'IN_AGGREGATING_TERM'")
