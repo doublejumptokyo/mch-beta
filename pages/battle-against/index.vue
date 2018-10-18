@@ -100,8 +100,9 @@ export default {
     init({ addresses }) {
       this.fetch(addresses)
     },
-    refresh() {
+    async refresh() {
       this.users = []
+      this.myRank = await this.$rank.rank(this.loomAddress)
       this.$refs.userList.fetch()
     },
     async fetch(addresses) {
