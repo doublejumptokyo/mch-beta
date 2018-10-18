@@ -107,6 +107,7 @@ module.exports = {
     { src: '~/plugins/dc-battle-manager', ssr: false },
     { src: '~/plugins/dc-battle-manager2', ssr: false },
     { src: '~/plugins/dc-battle-manager3', ssr: false },
+    { src: '~/plugins/dc-battle-manager4', ssr: false },
     { src: '~/plugins/dc-present', ssr: false },
     { src: '~/plugins/dc-hero-manager', ssr: false }
   ],
