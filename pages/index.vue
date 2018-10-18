@@ -4,6 +4,11 @@
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
     .update
+      nl2br(tag="p" :text="$t('home.battleRanking')")
+      p
+        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+  section.indexPage__section
+    .update
       nl2br(tag="p" :text="$t('home.news')")
       p
         a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
