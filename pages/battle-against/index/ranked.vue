@@ -31,8 +31,11 @@ export default {
     }
   },
   computed: mapState(['loomAddress']),
-  beforeMount() {
-    this.fetch()
+  watch: {
+    myRank() {
+      if (!this.myRank) return
+      this.fetch()
+    }
   },
   methods: {
     async fetch() {
