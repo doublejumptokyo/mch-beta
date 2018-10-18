@@ -46,19 +46,17 @@ import axios from 'axios'
 export default {
   components: { Nl2br },
   async asyncData() {
-    await axios
-      .get(`https://medium.com/feed/mycryptoheroes`)
-      .then(res => {
-        var parseString = require('xml2js').parseString
-        var xml = res.data
-        const a = parseString(xml, (message, xmlres) => {
-          return { data: xmlres.rss.channel[0].item }
-        })
-        console.log(a instanceof Promise)
+    await axios.get(`https://medium.com/feed/mycryptoheroes`).then(res => {
+      var parseString = require('xml2js').parseString
+      var xml = res.data
+      const a = parseString(xml, (message, xmlres) => {
+        return { data: xmlres.rss.channel[0].item }
       })
-      // .catch(e => {
-      //   return { statusCode: 404, message: 'ページが見つかりません' }
-      // })
+      console.log(a instanceof Promise)
+    })
+    // .catch(e => {
+    //   return { statusCode: 404, message: 'ページが見つかりません' }
+    // })
   }
 }
 </script>
