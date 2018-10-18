@@ -137,7 +137,7 @@ class BattleManager {
 
   async start(opponentLoomAddress) {
     const res = await this.contract.methods
-      .start(opponentLoomAddress, false)
+      .start(opponentLoomAddress, true)
       .send()
     const rawEvent = res.events.BattleStart2.raw
     rawEvent.topics.shift()
@@ -192,42 +192,8 @@ class BattleManager {
         rawEvent.data,
         rawEvent.topics
       )
-      console.log(completed.actionCounts, this.actions.length)
       if (completed.actionCounts == this.actions.length) break
     }
-
-    console.log('ok')
-    // throw new Error()
-    // return this.actions
-  }
-
-  async next() {
-    const res = await this.contract.methods.next().send()
-    let actions = []
-    for (let index in res.events) {
-      const rawEvent = res.events[index].raw
-      rawEvent.topics.shift()
-      let action = this.accountManager.web3.eth.abi.decodeLog(
-        E_ABI_BattleAction2,
-        rawEvent.data,
-        rawEvent.topics
-      )
-      action = this.encodeBattleAction(action)
-      action.units = this.encodeBattleActionUnits(action.data)
-      action.effectPositions = this.encodeEffectPositions(
-        action.effectPositions
-      )
-      actions.push(action)
-
-      console.log(
-        'count',
-        action.actionCounts,
-        'hp',
-        ...action.units.map(unit => unit.hp)
-      )
-    }
-    const hasNext = await this.contract.methods.hasNext().call()
-    return { actions, hasNext }
   }
 
   async end() {
@@ -248,24 +214,7 @@ class BattleManager {
       if (result == 0) await sleep2(1000)
     }
     console.log('end finished')
-    console.log(end)
     end = this.encodeBattleEnd(end)
-    return end
-  }
-
-  async _end() {
-    const res = await this.contract.methods.end().send()
-    const rawEvent = res.events[0].raw
-    rawEvent.topics.shift()
-    let end = this.accountManager.web3.eth.abi.decodeLog(
-      E_ABI_BattleEnd2,
-      rawEvent.data,
-      rawEvent.topics
-    )
-    end = this.encodeBattleEnd(end)
-
-    window.end = end
-
     return end
   }
 
