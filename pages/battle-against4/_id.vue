@@ -90,7 +90,7 @@
             fa-icon(:icon="['far', 'share-square']" size="2x")
             span Share
         li.end__next
-          nuxt-link(to="/battle-against")
+          button(@click="battleEnd")
             fa-icon(:icon="['fas', 'arrow-right']" size="2x")
             span Next
 
@@ -177,7 +177,6 @@ export default {
       emitLine: 0,
       initialUnits: [],
       actions: [],
-      end: null,
       statuses: { myTeam: [], opponentTeam: [] },
       counters: {},
       currentUnitStatus: {},
@@ -189,17 +188,18 @@ export default {
       battleId: 0,
       actionCounts: 200,
       isWon: null,
-      tmpActions: []
+      tmpActions: [],
+      battle: null
     }
   },
 
   computed: {
     isLoading() {
-      return !this.end
+      return !this.battle
     },
 
     result() {
-      if (!this.end) {
+      if (!this.battle) {
         return ''
       }
       // if (this.actions.length < this.actionCounts) {
@@ -261,7 +261,7 @@ export default {
     this.tmpActions = battle.actions
     this.isWon = battle.isWon
     console.log('ok')
-    this.end = await this.$battleManager4.endAsync(battle.winnerCode)
+    this.battle = battle
 
     console.log('3. ユニットの初期状態をthis.initialUnitsに格納')
     this.initialUnits = await Promise.all(
@@ -319,6 +319,11 @@ export default {
       )
       this.bgm.play()
       this.isReady = true
+    },
+
+    async battleEnd() {
+      await this.$battleManager4.endAsync(this.battle.winnerCode)
+      this.$router.push('/battle-against')
     },
 
     toggleBgmPause() {
@@ -1357,7 +1362,7 @@ export default {
 }
 
 .end {
-  a {
+  * {
     pointer-events: auto;
   }
 
