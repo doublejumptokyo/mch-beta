@@ -7,7 +7,8 @@ export const state = () => ({
   hasWallet: false,
   ethAddress: '',
   loomAddress: '',
-  dappsChainPrivateKeyBase64: ''
+  dappsChainPrivateKeyBase64: '',
+  isLoggingIn: true
 })
 
 export const getters = {
@@ -38,6 +39,9 @@ export const mutations = {
     state.dappsChainPrivateKeyBase64 = null
     this.$cookies.remove('mch-beta:has_wallet')
     this.$cookies.remove('mch-beta:loom_address')
+  },
+  SET_IS_LOGGING_IN(state, isLoggingIn) {
+    state.isLoggingIn = isLoggingIn
   }
 }
 
@@ -48,11 +52,13 @@ export const actions = {
   },
   checkLoggedIn({ state, commit }) {
     if (!state.hasWallet) {
+      commit('SET_IS_LOGGING_IN', false)
       return false
     }
     const storageKeyName = `mch-beta-${state.ethAddress}:loom_key`
     const key = window && window.localStorage.getItem(storageKeyName)
     commit('SET_PRIVATE_KEY', key)
+    commit('SET_IS_LOGGING_IN', false)
     return key
   },
   async login({ state }) {
