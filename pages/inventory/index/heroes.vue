@@ -1,9 +1,12 @@
 <template lang="pug">
 section.section.section__heroList
   .heroList
-    nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in heroes" :key="hero.id")
-      img.heroItem__image(:src="hero.imageUrl")
-      p.heroItem__name {{ hero.name[$i18n.locale] }}
+    template(v-if="heroes.length")
+      nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in heroes" :key="hero.id")
+        img.heroItem__image(:src="hero.imageUrl")
+        p.heroItem__name {{ hero.name[$i18n.locale] }}
+    .heroList__empty(v-else)
+      fa-icon(icon="spinner" spin size="3x")
 </template>
 
 <script>
@@ -85,6 +88,15 @@ export default {
   @media (min-width: $breakpoint) {
     margin: -2rem 0 0 -2rem;
     padding: 1rem;
+  }
+
+  &__empty {
+    align-items: center;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    padding: 8rem 0;
+    width: 100%;
   }
 }
 
