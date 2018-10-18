@@ -1,6 +1,6 @@
 <template lang="pug">
 .battleTopPage
-  user-list(:users="users")
+  user-list(:users="users.top")
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
   components: { UserList },
   props: {
     users: {
-      type: Array,
+      type: Object,
       default() {
         return []
       }
