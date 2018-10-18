@@ -188,7 +188,8 @@ export default {
       se: {},
       battleId: 0,
       actionCounts: 200,
-      isWon: null
+      isWon: null,
+      tmpActions: []
     }
   },
 
@@ -231,7 +232,7 @@ export default {
       this.setStatuses(units)
 
       console.log('5. アクション取得開始')
-      // await this.fetchActions()
+      await this.fetchActions()
     },
 
     isReady(isReady) {
@@ -257,7 +258,7 @@ export default {
     this.battleId = battleStart.battleId
     const battle = await this.$battleManager4.battleAsync()
     console.log(battle)
-    // this.actions = battle.actions
+    this.tmpActions = battle.actions
     this.isWon = battle.isWon
     console.log('ok')
     this.end = await this.$battleManager4.endAsync(battle.winnerCode)
@@ -308,6 +309,7 @@ export default {
       //   this.battleId,
       //   this.actionCounts
       // )
+      this.actions = this.tmpActions
     },
 
     battleStart() {

@@ -18,7 +18,7 @@
             :to="`/heroes/${unit[0]}`"
           )
   .userPage__battleButton
-    nuxt-link(:to="`/battle-against3/${$route.params.id}`")
+    nuxt-link(:to="`/battle-against4/${$route.params.id}`")
       span Battle Start
       fa-icon(icon="arrow-right")
 
