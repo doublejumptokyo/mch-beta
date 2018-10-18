@@ -187,18 +187,21 @@ export default {
       isBgmMuted: true,
       se: {},
       battleId: 0,
-      actionCounts: null,
+      actionCounts: 200,
       isWon: null
     }
   },
 
   computed: {
     isLoading() {
-      return !this.actions.length
+      return !this.end
     },
 
     result() {
       if (!this.end) {
+        return ''
+      }
+      if (this.actions.length < this.actionCounts) {
         return ''
       }
       if (this.actions.length === 200) {
