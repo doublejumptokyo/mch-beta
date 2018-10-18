@@ -32,7 +32,8 @@ const proxy = isProduction
   ? {}
   : {
       '/api': 'https://beta.mycryptoheroes.net',
-      '/events': 'https://beta.mycryptoheroes.net'
+      '/events': 'https://beta.mycryptoheroes.net',
+      '/feed': 'https://beta.mycryptoheroes.net'
     }
 
 module.exports = {

@@ -6,8 +6,10 @@
     template
       div
         ul
-          li(v-for="item in data")
-            a(v-bind:href="item.link") {{ item.title }}
+          li(v-for="item in data[0].item")
+            a(:href="item.link")
+              span {{ item.title[0] }}
+              span {{ (new Date(item['atom:updated'])).getTime() }}
     //- .update
     //-   nl2br(tag="p" :text="$t('home.news')")
     //-   p
@@ -41,26 +43,20 @@
 
 <script>
 import Nl2br from 'vue-nl2br'
-import axios from 'axios'
-
 export default {
   components: { Nl2br },
-  async asyncData() {
-    await axios.get(`https://medium.com/feed/mycryptoheroes`).then(res => {
-      var parseString = require('xml2js').parseString
-      var xml = res.data
-      const a = parseString(xml, (message, xmlres) => {
-        return { data: xmlres.rss.channel[0].item }
+  async asyncData({ $axios }) {
+    const xml = await $axios.$get('/feed')
+    const parseString = require('xml2js').parseString
+    const data = await new Promise(resolve => {
+      parseString(xml, (message, xmlres) => {
+        resolve(xmlres.rss.channel)
       })
-      console.log(a instanceof Promise)
     })
-    // .catch(e => {
-    //   return { statusCode: 404, message: 'ページが見つかりません' }
-    // })
+    return { data }
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .indexPage {
