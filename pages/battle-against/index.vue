@@ -123,14 +123,15 @@ export default {
       addresses
         .filter(address => address !== noUserAddress)
         .forEach(async address => {
-          const [user, rank, teamIds] = await Promise.all([
+          // const [user, rank, teamIds] = await Promise.all([
+          const [user, rank] = await Promise.all([
             this.$user.get(address),
-            this.$rank.rank(address),
-            this.$team.get(address)
+            this.$rank.rank(address)
+            // this.$team.get(address)
           ])
-          const team = await Promise.all(
-            teamIds.map(unit => this.$hero.get(unit[0]))
-          )
+          // const team = await Promise.all(
+          //   teamIds.map(unit => this.$hero.get(unit[0]))
+          // )
           const name = user.name
           const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
           const isRanked =
@@ -138,7 +139,7 @@ export default {
           this.users[routeName].push({
             address,
             rank,
-            team,
+            // team,
             name,
             isMe,
             isRanked
