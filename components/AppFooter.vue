@@ -2,7 +2,7 @@
 footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
   ul
     li
-      a(href="https://discord.gg/") Official Discord
+      a(href="https://discord.gg/C66hByB") Official Community
     li
       a(href="https://medium.com/mycryptoheroes") Official Medium
     li
