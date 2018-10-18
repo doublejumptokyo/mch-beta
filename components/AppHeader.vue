@@ -4,6 +4,8 @@ header.appHeader
   .appHeader__brand
     a(href="https://www.mycryptoheroes.net/") mycryptoheroes
 
+  .appHeader__beta
+    span Beta
   .appHeader__lang.dropdown(:class="{ 'is-active': isLangDropdownShown }")
     .dropdown-trigger(@click="isLangDropdownShown = true")
       .button(aria-haspopup="true" aria-controls="dropdown-menu")
@@ -116,6 +118,10 @@ export default {
         width: 135px;
       }
     }
+  }
+
+  &__beta {
+    margin-left: 0.5rem;
   }
 
   &__lang {
