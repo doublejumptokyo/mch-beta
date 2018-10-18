@@ -322,7 +322,9 @@ export default {
     },
 
     async battleEnd() {
-      await this.$battleManager4.endAsync(this.battle.winnerCode)
+      this.$battleManager4.endAsync(this.battle.winnerCode)
+      const sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
+      await sleep(1500)
       this.$router.push('/battle-against')
     },
 
@@ -636,7 +638,7 @@ export default {
     },
 
     openShareModal() {
-      this.isShareModalShown = true
+      // this.isShareModalShown = true
     },
 
     closeShareModal() {
