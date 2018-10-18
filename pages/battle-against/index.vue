@@ -68,6 +68,7 @@ export default {
     } else {
       termStatus = 'AFTER_AGGREGATING_TERM'
     }
+
     return { termStatus }
   },
   fetch({ route, redirect }) {
@@ -77,7 +78,16 @@ export default {
   },
   data() {
     return {
-      users: [],
+      users: {
+        ranked: [],
+        random: [],
+        top: []
+      },
+      isFetchings: {
+        ranked: false,
+        random: false,
+        top: false
+      },
       myRank: null
     }
   },
@@ -85,12 +95,11 @@ export default {
     ...mapState(['loomAddress']),
     willChangeRank() {
       return WILL_CHANGE_RANK
-    }
-  },
-  watch: {
-    $route() {
-      // タブ切り替え時にリストがチラつくため
-      this.users = []
+    },
+    routeName() {
+      return this.$route.name !== 'battle-against'
+        ? this.$route.name.split('-').pop()
+        : null
     }
   },
   async beforeMount() {
@@ -100,12 +109,16 @@ export default {
     init({ addresses }) {
       this.fetch(addresses)
     },
-    async refresh() {
-      this.users = []
-      this.myRank = await this.$rank.rank(this.loomAddress)
-      this.$refs.userList.fetch()
+    refresh() {
+      // this.isFetchings[this.routeName] = false
+      // this.myRank = await this.$rank.rank(this.loomAddress)
+      // this.$refs.userList.fetch()
+      location.reload()
     },
     async fetch(addresses) {
+      const routeName = this.routeName
+      if (this.isFetchings[routeName]) return
+      this.isFetchings[routeName] = true
       const noUserAddress = '0x0000000000000000000000000000000000000000'
       addresses
         .filter(address => address !== noUserAddress)
@@ -122,7 +135,14 @@ export default {
           const isMe = this.loomAddress.toLowerCase() === address.toLowerCase()
           const isRanked =
             this.myRank - WILL_CHANGE_RANK <= rank && rank < this.myRank
-          this.users.push({ address, rank, team, name, isMe, isRanked })
+          this.users[routeName].push({
+            address,
+            rank,
+            team,
+            name,
+            isMe,
+            isRanked
+          })
         })
     }
   }

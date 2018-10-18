@@ -1,6 +1,6 @@
 <template lang="pug">
 .battleRankedPage
-  user-list(:users="users")
+  user-list(:users="users.ranked")
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   middleware: 'walletCheck',
   props: {
     users: {
-      type: Array,
+      type: Object,
       default() {
         return []
       }
