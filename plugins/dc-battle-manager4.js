@@ -110,17 +110,19 @@ class BattleManager3 {
 
   async endAsync(winnerCode) {
     console.log('end begin')
-    const res = await this.contract.methods.end(winnerCode).send()
-    const rawEvent = res.events.BattleEnd3.raw
-    rawEvent.topics.shift()
-    let end = this.accountManager.web3.eth.abi.decodeLog(
-      E_ABI_BattleEnd3,
-      rawEvent.data,
-      rawEvent.topics
-    )
-    end = this.encodeBattleEnd(end)
-    console.log('end finished')
-    return end
+    await this.contract.methods.end(winnerCode).send()
+    console.log(E_ABI_BattleEnd3)
+    // const res = await this.contract.methods.end(winnerCode).send()
+    // const rawEvent = res.events.BattleEnd3.raw
+    // rawEvent.topics.shift()
+    // let end = this.accountManager.web3.eth.abi.decodeLog(
+    //   E_ABI_BattleEnd3,
+    //   rawEvent.data,
+    //   rawEvent.topics
+    // )
+    // end = this.encodeBattleEnd(end)
+    // console.log('end finished')
+    // return end
   }
 
   async battleAsync() {
