@@ -1,16 +1,6 @@
-import BattleManagerData from '~/build/contracts/BattleManager3.json'
-
-import {
-  NonceTxMiddleware,
-  SignedTxMiddleware,
-  Client,
-  Address,
-  LocalAddress,
-  CryptoUtils,
-  Contract
-} from 'loom-js'
-
+import { Address, LocalAddress, Contract } from 'loom-js'
 import { NullMessage, BattleResponse } from '@/assets/types/types_pb'
+import BattleManagerData from '~/build/contracts/BattleManager3.json'
 
 const E_ABI_BattleStart3 = [
   {
@@ -64,26 +54,11 @@ const E_ABI_BattleEnd3 = [
 ]
 
 class BattleManager3 {
-  static async createAsync(
-    accountManager,
-    { chainId, readClient, writeClient },
-    privateKeyBase64
-  ) {
+  static async createAsync(accountManager) {
     const contractName = 'KeyManager'
-    const privateKey = CryptoUtils.B64ToUint8Array(privateKeyBase64)
-    const publicKey = CryptoUtils.publicKeyFromPrivateKey(privateKey)
+    const client = accountManager.client
+    const publicKey = accountManager.publicKey
     const localAddress = LocalAddress.fromPublicKey(publicKey)
-
-    const client = new Client(chainId, writeClient, readClient)
-    client.on('error', data => {
-      console.error(data)
-    })
-
-    // required middleware
-    client.txMiddleware = [
-      new NonceTxMiddleware(publicKey, client),
-      new SignedTxMiddleware(privateKey)
-    ]
 
     const contractAddr = await client.getContractAddressAsync(contractName)
     if (!contractAddr) {
@@ -341,11 +316,7 @@ export default async ({ app, store }, inject) => {
   if (!store.getters.isLoggedIn) return
   const key = await store.dispatch('checkLoggedIn')
   if (key) {
-    const battleManager = await BattleManager3.createAsync(
-      app.$accountManager,
-      store.state.env.dappsChain,
-      key
-    )
+    const battleManager = await BattleManager3.createAsync(app.$accountManager)
     inject('battleManager3', battleManager)
   }
 }
