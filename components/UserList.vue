@@ -13,7 +13,7 @@
           .user__type(v-if="user.isRanked !== undefined")
             span.user__type--ranked(v-if="user.isRanked") Ranked
             span.user__type--exhibition(v-else) Exhibition
-        .user__images
+        //- .user__images
           img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
         .user__name
           h2 {{ user.name || 'No Name' }}
