@@ -1169,9 +1169,9 @@ export default {
       content: '';
       display: block;
       height: 0.5rem;
-      left: 10%;
+      left: 2.5%;
       position: absolute;
-      width: 80%;
+      width: 95%;
 
       @media (min-width: $breakpoint) {
         height: 1rem;
@@ -1199,7 +1199,9 @@ export default {
       mask-position: center center;
       mask-size: contain;
       object-fit: contain;
+      position: relative;
       width: 100%;
+      z-index: 1;
     }
   }
 
