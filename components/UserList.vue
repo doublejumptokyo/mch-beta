@@ -9,7 +9,19 @@
       .user(:class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }")
         .user__header
           .user__rank(v-if="user.rank")
-            span {{ `#${user.rank}` }}
+            template(v-if="user.rank>3")
+              span {{ `#${user.rank}` }}
+            template(v-else-if="user.rank>2")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/brons.png')")
+            template(v-else-if="user.rank>1")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/silver.png')")
+            template(v-else-if="user.rank=1")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/gold.png')")
+            //- template(v-else-if="user.rank>10")
+            //-   span {{ `#${user.rank}` }}
           .user__type(v-if="user.isRanked !== undefined")
             span.user__type--ranked(v-if="user.isRanked") Ranked
             span.user__type--exhibition(v-else) Exhibition
@@ -108,6 +120,13 @@ export default {
       font-size: 1.6rem;
       font-weight: bold;
       line-height: 1rem;
+    }
+
+    img {
+      display: inline-block;
+      height: auto;
+      width: 2rem;
+      margin-left: 0.2rem;
     }
   }
 
