@@ -8,7 +8,7 @@
       .username.username2
         span {{ opponentName }}
       p.startButton
-        span(v-if="isLoading") Loading ...
+        span(v-if="isLoading") {{ $i18n.t('battle.loading') }}
         button(v-else @click="battleStart") Ready!
     template(v-else)
       img.header__logo(:src="require('~/assets/images/logo.png')")
@@ -324,7 +324,7 @@ export default {
     async battleEnd() {
       this.$battleManager4.endAsync(this.battle.winnerCode)
       const sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
-      await sleep(1500)
+      await sleep(1000)
       this.$router.push('/battle-against')
     },
 
