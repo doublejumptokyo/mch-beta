@@ -19,6 +19,10 @@ class Rank {
   async address(rank) {
     return await this.contract.methods.getAddress(rank).call()
   }
+
+  async participants() {
+    return await this.contract.methods.getParticipants().call()
+  }
 }
 
 export default async ({ app, store }, inject) => {
