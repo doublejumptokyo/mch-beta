@@ -87,6 +87,7 @@
     }
   },
   "battle": {
+    "loading": "Loading ... \nIf it takes more than 30 sec, please reload the page.",
     "info": {
       "inRankingTerm": "Beta Battle Ranked Match has started!\nWe will decide the ranking based on the result of the battle which ended by UTC Oct.21 sun 6:00.\nPlease check the link below for details.",
       "inAggregatingTerm": "Beta Battle Ranked Match has finished.\nThe ranking is being confirmed with the result of the battle which had ended at UTC Oct.21 sun 6:00.\nThe ranking will be announced at UTC Oct.22 mon 6:00.",
