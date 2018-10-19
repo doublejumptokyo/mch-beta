@@ -5,7 +5,7 @@
       h1 {{ $i18n.t('pages.battles') }}
       .battlePage__myRank(v-if="myRank")
         span Your current rank:
-        span {{ `#${myRank}` }}
+        span {{ `#${myRank}` }} {{ `/ ${participants}` }}
     button(slot="right" @click="refresh")
       fa-icon(icon="sync")
 
@@ -87,7 +87,8 @@ export default {
         random: false,
         top: false
       },
-      myRank: null
+      myRank: null,
+      participants: null
     }
   },
   computed: {
@@ -103,6 +104,9 @@ export default {
   },
   async beforeMount() {
     this.myRank = await this.$rank.rank(this.loomAddress)
+    this.$rank.participants().then(result => {
+      this.participants = result
+    })
   },
   methods: {
     init({ addresses }) {
