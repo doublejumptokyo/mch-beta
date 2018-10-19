@@ -13,13 +13,15 @@
     template(v-if="termStatus === 'IN_RANKING_TERM'")
       p
         a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+      p.div
+        span.rankedButton Ranked
+        span.rankedText {{ $t('battle.info.rankHow') }}
     template(v-else-if="termStatus === 'IN_AGGREGATING_TERM'")
       p {{ $t('battle.info.inAggregatingTerm') }}
     template(v-else-if="termStatus === 'AFTER_AGGREGATING_TERM'")
       p {{ $t('battle.info.afterAggregatingTerm') }}
       p
         a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
-
   ul.tabList
     li.tabItem
       nuxt-link(to="/battle-against/ranked") Ranked
@@ -205,6 +207,27 @@ export default {
     @media (min-width: $breakpoint) {
       font-size: 1rem;
       margin: 0 1rem 1rem;
+    }
+
+    .div {
+      margin-top: 0.5rem;
+    }
+
+    .rankedButton {
+      border-radius: 0.25rem;
+      display: inline-block;
+      font-family: Oswald;
+      font-size: 0.8rem;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+      color: white;
+      background: map-get($colors, primary);
+    }
+
+    .rankedText {
+      color: white;
+      margin-left: 0.8rem;
     }
   }
 }
