@@ -106,9 +106,7 @@ export default {
   },
   async beforeMount() {
     this.myRank = await this.$rank.rank(this.loomAddress)
-    this.$rank.participants().then(result => {
-      this.participants = result
-    })
+    this.participants = await this.$rank.participants()
   },
   methods: {
     init({ addresses }) {
