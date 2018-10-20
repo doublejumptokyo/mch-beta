@@ -12,7 +12,8 @@
   .battlePage__info
     template(v-if="termStatus === 'IN_RANKING_TERM'")
       p
-        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") {{ $t('battle.info.newRule') }}
+        //- a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
       p.div
         span.rankedButton Ranked
         span.rankedText {{ $t('battle.info.rankHow') }}
