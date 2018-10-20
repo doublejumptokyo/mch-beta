@@ -88,12 +88,13 @@ export default {
     const battleTimeKey = 'mch-beta-battletime'
     const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
     const startButton = () => {
-        let waitingTime = prevBattleTime + 60000 - new Date
-        if (waitingTime <= 0) {
-            this.battleStart = 'Battle Start'
-        } else {
-            this.battleStart = 'Waiting for ' + Math.ceil(waitingTime / 1000) + ' seconds'
-        }
+      let waitingTime = prevBattleTime + 60000 - new Date()
+      if (waitingTime <= 0) {
+        this.battleStart = 'Battle Start'
+      } else {
+        this.battleStart =
+          'Waiting for ' + Math.ceil(waitingTime / 1000) + ' seconds'
+      }
     }
     setInterval(startButton, 1000)
   },
@@ -110,7 +111,7 @@ export default {
     doBattleButton() {
       const battleTimeKey = 'mch-beta-battletime'
       const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-      if (prevBattleTime + 60000 - new Date <= 0) {
+      if (prevBattleTime + 60000 - new Date() <= 0) {
         this.$router.push('/battle-against4/' + this.$route.params.id)
       }
     }

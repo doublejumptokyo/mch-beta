@@ -250,7 +250,7 @@ export default {
   async beforeMount() {
     const battleTimeKey = 'mch-beta-battletime'
     const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-    if (prevBattleTime + 60000 > +new Date) {
+    if (prevBattleTime + 60000 > +new Date()) {
       this.$router.push('/battle-against')
     }
 
@@ -268,7 +268,7 @@ export default {
     this.isWon = battle.isWon
     console.log('ok')
     this.battle = battle
-    window.localStorage.setItem(battleTimeKey, +new Date)
+    window.localStorage.setItem(battleTimeKey, +new Date())
 
     console.log('3. ユニットの初期状態をthis.initialUnitsに格納')
     this.initialUnits = await Promise.all(
