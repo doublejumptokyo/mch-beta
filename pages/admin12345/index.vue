@@ -55,8 +55,7 @@ export default {
       }
     },
     async getAddress() {
-
-      for(var i = 1; i <= 100; i++) {
+      for (var i = 1; i <= 100; i++) {
         this.address = await this.$rank.address(i)
 
         const deck = await this.$team.get(this.address)
@@ -69,12 +68,12 @@ export default {
 
         this.amount = await this.$hero.asset.getHeroCount(this.address)
         let inventory = []
-        for(var n = 0; n < this.amount; n++) {
+        for (var n = 0; n < this.amount; n++) {
           let hero = await this.$hero.asset.getHeroId(this.address, n)
           hero = Math.floor(hero / 10000)
           inventory.push(hero)
         }
-        console.log("順位  "+i)
+        console.log('順位  ' + i)
         this.users.push({
           rank: i,
           address: this.address,
