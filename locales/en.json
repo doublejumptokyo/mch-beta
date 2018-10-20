@@ -93,7 +93,8 @@
       "inRankingTerm": "Beta Battle Ranked Match has started!\nWe will decide the ranking based on the result of the battle which ended by UTC Oct.21 sun 6:00.\nPlease check the link below for details.",
       "rankHow": "Defeat the team with this mark and rank up!",
       "inAggregatingTerm": "Beta Battle Ranked Match has finished.\nThe ranking is being confirmed with the result of the battle which had ended at UTC Oct.21 sun 6:00.\nThe ranking will be announced at UTC Oct.22 mon 6:00.",
-      "afterAggregatingTerm": "Beta Battle Ranked Match has finished.\nPlease check the link below for the ranking result of UTC Oct.22 mon 6:00."
+      "afterAggregatingTerm": "Beta Battle Ranked Match has finished.\nPlease check the link below for the ranking result of UTC Oct.22 mon 6:00.",
+      "newRule": "One minute interval between each battle will be introduced from 1 hour before the end of ranked match. For details."
     }
   },
   "userId": {
