@@ -18,9 +18,12 @@
             :to="`/heroes/${unit[0]}`"
           )
   .userPage__battleButton
-    div(@click="doBattleButton")
-      span {{ battleStart }}
-      fa-icon(icon="arrow-right")
+    nuxt-link(:to="`/battle-against4/${$route.params.id}`")
+      span Battle Start
+    //- This is for Battle Interval
+    //- div(@click="doBattleButton")
+    //-   span {{ battleStart }}
+    //-   fa-icon(icon="arrow-right")
 
   modal.modal(v-if="isReportModalShown" @modal-close="isReportModalShown = false")
     h2.modal__header(slot="header") Report User
@@ -55,8 +58,9 @@ export default {
       address: '',
       user: {},
       units: [],
-      isReportModalShown: false,
-      battleStart: 'loading'
+      isReportModalShown: false
+      // This is for Battle Interval
+      // battleStart: 'loading'
     }
   },
   computed: {
@@ -85,18 +89,19 @@ export default {
     this.address = this.$route.params.id
     this.user = await this.$user.get(this.address)
     this.units = await this.$team.get(this.address)
-    const battleTimeKey = 'mch-beta-battletime'
-    const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-    const startButton = () => {
-      let waitingTime = prevBattleTime + 60000 - new Date()
-      if (waitingTime <= 0) {
-        this.battleStart = 'Battle Start'
-      } else {
-        this.battleStart =
-          'Waiting for ' + Math.ceil(waitingTime / 1000) + ' seconds'
-      }
-    }
-    setInterval(startButton, 1000)
+    // This is for Battle Interval
+    // const battleTimeKey = 'mch-beta-battletime'
+    // const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
+    // const startButton = () => {
+    //   let waitingTime = prevBattleTime + 60000 - new Date()
+    //   if (waitingTime <= 0) {
+    //     this.battleStart = 'Battle Start'
+    //   } else {
+    //     this.battleStart =
+    //       'Waiting for ' + Math.ceil(waitingTime / 1000) + ' seconds'
+    //   }
+    // }
+    // setInterval(startButton, 1000)
   },
   methods: {
     getUnitPromise(unit) {
@@ -107,13 +112,14 @@ export default {
     },
     getSkillOrder(unit) {
       return unit.filter((num, index) => index > 2)
-    },
-    doBattleButton() {
-      const battleTimeKey = 'mch-beta-battletime'
-      const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-      if (prevBattleTime + 60000 - new Date() <= 0) {
-        this.$router.push('/battle-against4/' + this.$route.params.id)
-      }
+    // This is for Battle Interval
+    // },
+    // doBattleButton() {
+    //   const battleTimeKey = 'mch-beta-battletime'
+    //   const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
+    //   if (prevBattleTime + 60000 - new Date() <= 0) {
+    //     this.$router.push('/battle-against4/' + this.$route.params.id)
+    //   }
     }
   }
 }
@@ -166,8 +172,10 @@ export default {
     text-align: center;
     width: calc(100% + 2rem);
 
-    div {
-      cursor: pointer;
+    a {
+    // This is for Battle Interval
+    // div {
+    //   cursor: pointer;
       background: map-get($colors, primary);
       border-radius: 1rem;
       color: #444;
