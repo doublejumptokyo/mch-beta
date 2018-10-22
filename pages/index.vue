@@ -4,12 +4,14 @@
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
     .update
-      nl2br(tag="p" :text="$t('home.battleNewRule')")
-  section.indexPage__section
-    .update
-      nl2br(tag="p" :text="$t('home.battleRanking')")
+      nl2br(tag="p" :text="$t('home.battleEnd')")
       p
         a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
+  section.indexPage__section
+    //- .update
+    //-   nl2br(tag="p" :text="$t('home.battleRanking')")
+    //-   p
+    //-     a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
   section.indexPage__section
     .update
       nl2br(tag="p" :text="$t('home.news')")
