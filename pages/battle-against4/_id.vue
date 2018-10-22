@@ -248,11 +248,12 @@ export default {
   },
 
   async beforeMount() {
-    const battleTimeKey = 'mch-beta-battletime'
-    const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-    if (prevBattleTime + 60000 > +new Date()) {
-      this.$router.push('/battle-against')
-    }
+    // This is for Battle Interval
+    // const battleTimeKey = 'mch-beta-battletime'
+    // const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
+    // if (prevBattleTime + 60000 > +new Date()) {
+    //   this.$router.push('/battle-against')
+    // }
 
     this.opponentName = (await this.$user.get(this.opponentLoomAddress)).name
 
@@ -268,7 +269,8 @@ export default {
     this.isWon = battle.isWon
     console.log('ok')
     this.battle = battle
-    window.localStorage.setItem(battleTimeKey, +new Date())
+    // This is for Battle Interval
+    // window.localStorage.setItem(battleTimeKey, +new Date())
 
     console.log('3. ユニットの初期状態をthis.initialUnitsに格納')
     this.initialUnits = await Promise.all(
