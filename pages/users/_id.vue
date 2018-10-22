@@ -112,14 +112,14 @@ export default {
     },
     getSkillOrder(unit) {
       return unit.filter((num, index) => index > 2)
-    // This is for Battle Interval
-    // },
-    // doBattleButton() {
-    //   const battleTimeKey = 'mch-beta-battletime'
-    //   const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
-    //   if (prevBattleTime + 60000 - new Date() <= 0) {
-    //     this.$router.push('/battle-against4/' + this.$route.params.id)
-    //   }
+      // This is for Battle Interval
+      // },
+      // doBattleButton() {
+      //   const battleTimeKey = 'mch-beta-battletime'
+      //   const prevBattleTime = +window.localStorage.getItem(battleTimeKey)
+      //   if (prevBattleTime + 60000 - new Date() <= 0) {
+      //     this.$router.push('/battle-against4/' + this.$route.params.id)
+      //   }
     }
   }
 }
@@ -173,9 +173,9 @@ export default {
     width: calc(100% + 2rem);
 
     a {
-    // This is for Battle Interval
-    // div {
-    //   cursor: pointer;
+      // This is for Battle Interval
+      // div {
+      //   cursor: pointer;
       background: map-get($colors, primary);
       border-radius: 1rem;
       color: #444;
