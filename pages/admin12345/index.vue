@@ -12,6 +12,7 @@
       table
         tr
           th 順位
+          th ユーザ名
           th アドレス
           th 所持数
           th 先頭
@@ -20,6 +21,7 @@
           th インベントリ
         tr(v-for="user in users")
           th {{ user.rank }}位
+          th {{ user.name }}
           th {{ user.address}}
           th {{ user.amount }}
           th {{ user.front }}
@@ -35,6 +37,7 @@ export default {
     return {
       users: [],
       heroId: '',
+      name: '',
       address: null,
       amount: '',
       front: '',
@@ -57,7 +60,8 @@ export default {
     async getAddress() {
       for (var i = 1; i <= 100; i++) {
         this.address = await this.$rank.address(i)
-
+        const account = await this.$user.get(this.address)
+        this.name = account[1]
         const deck = await this.$team.get(this.address)
         this.front = Math.floor(deck[0][0] / 10000)
         this.middle = Math.floor(deck[1][0] / 10000)
@@ -76,6 +80,7 @@ export default {
         console.log('順位  ' + i)
         this.users.push({
           rank: i,
+          name: this.name,
           address: this.address,
           amount: this.amount,
           front: this.front,
