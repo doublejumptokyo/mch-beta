@@ -13,14 +13,14 @@
         tr
           th 順位
           th ユーザ名
-          th アドレス
+          th Loomアドレス
           th 所持数
           th 先頭
           th 中間
           th 後方
           th インベントリ
         tr(v-for="user in users")
-          th {{ user.rank }}位
+          th {{ user.rank }}
           th {{ user.name }}
           th {{ user.address}}
           th {{ user.amount }}
