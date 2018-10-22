@@ -90,7 +90,7 @@
             fa-icon(:icon="['far', 'share-square']" size="2x")
             span Share
         li.end__next
-          nuxt-link(to="/battle-against")
+          nuxt-link(to="/battle-against/random")
             fa-icon(:icon="['fas', 'arrow-right']" size="2x")
             span Next
 
