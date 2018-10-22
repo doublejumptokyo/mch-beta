@@ -75,7 +75,7 @@ export default {
   },
   fetch({ route, redirect }) {
     if (route.name === 'battle-against') {
-      return redirect('/battle-against/ranked')
+      return redirect('/battle-against/random')
     }
   },
   data() {
