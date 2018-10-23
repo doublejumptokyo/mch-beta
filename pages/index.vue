@@ -9,16 +9,6 @@
         a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
   section.indexPage__section
     .update
-      nl2br(tag="p" :text="$t('home.battleEnd')")
-      p
-        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
-  section.indexPage__section
-    .update
-      nl2br(tag="p" :text="$t('home.news')")
-      p
-        a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
-  section.indexPage__section
-    .update
       p {{ $t('home.update') }}
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af") Update schedule
@@ -27,6 +17,23 @@
       p {{ $t('home.login') }}
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-loomnetwork-e0c170927b64") Details
+  section.indexPage__section
+    h2
+      fa-icon(icon="info" size="sm" fixed-width)
+      span Information
+    template(v-if="informationList.length")
+      ul.links
+        li(v-for="item in informationList")
+          a.links__item(:href="item.link")
+            div
+              h4 {{ item.title[0] }}
+              time {{ (new Date(item['atom:updated'])).toLocaleString() }}
+            fa-icon(icon="external-link-alt" size="sm")
+      p.links__more
+        a(:href="informationLink") More
+    template(v-else)
+      .links__empty
+        fa-icon(icon="spinner" spin size="2x")
   section.indexPage__section
     h2
       fa-icon(icon="question" size="sm" fixed-width)
@@ -46,11 +53,28 @@
 
 <script>
 import Nl2br from 'vue-nl2br'
+import xml2js from 'xml2js'
 export default {
-  components: { Nl2br }
+  components: { Nl2br },
+  data() {
+    return {
+      informationList: [],
+      informationLink: ''
+    }
+  },
+  async beforeMount() {
+    const xml = await this.$axios.$get('/feed')
+    const parseString = xml2js.parseString
+    const data = await new Promise(resolve => {
+      parseString(xml, (message, xmlres) => {
+        resolve(xmlres.rss.channel.shift())
+      })
+    })
+    this.informationList = data.item.filter((item, i) => i < 5)
+    this.informationLink = data.link
+  }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .indexPage {
@@ -134,5 +158,41 @@ ul {
   background: #555;
   border-radius: 1rem;
   padding: 1rem;
+}
+
+.links {
+  margin: 1rem -1rem;
+
+  @media (min-width: $breakpoint) {
+    margin: 1rem 0;
+  }
+
+  &__item {
+    justify-content: space-between;
+
+    h4 {
+      margin: 0;
+    }
+
+    time {
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    svg {
+      color: #999;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__more {
+    text-align: right;
+  }
+
+  &__empty {
+    color: #999;
+    padding: 3rem;
+    text-align: center;
+  }
 }
 </style>

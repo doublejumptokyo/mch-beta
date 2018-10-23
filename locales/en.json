@@ -62,10 +62,8 @@
       "Rental heroes and extensions will be withdrawn after Battle β Test ends.",
       "Data from Battle β Test will not be carried over after the game's release."
     ],
-    "news": "[announcement] UTC Oct. 10 Wed 8:00\nArt edit system verification has started. Please refer to the following for details.",
     "update": "Currently only a part of battle beta is playable. For details of the function and future update schedule, please see below.",
     "login": "To play Beta Battle you need to log in to the Loom Network.",
-    "battleRanking": "[announcement] UTC Oct. 18 Thu 14:45\nI am sorry to have kept you waiting for a long time.We resumed the verification of beta battle ranked match.\n※ Please try reloading the screen if it takes time to start the battle",
     "battleEnd": "[announcement] UTC Oct.21 Sun 6:00\nBeta battle ranked match has finished.\nThank you so much for your participation in the inadequate playing environment."
   },
   "team": {
