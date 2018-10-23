@@ -52,10 +52,6 @@
           {
             "title": "Battle!",
             "body": "Battles are autonomously fought by your team.\nCheer on your heroes and watch over the battle progression!"
-          },
-          {
-            "title": "Rank Rewards.",
-            "body": "Your rank will change based on battle results.\nRewards will be granted reflecting your Battle β Test rank once the game is launched."
           }
         ]
       }
@@ -66,9 +62,11 @@
       "Rental heroes and extensions will be withdrawn after Battle β Test ends.",
       "Data from Battle β Test will not be carried over after the game's release."
     ],
-    "news": "[announcement] UTC  2018 oct. 10 wed 8:00\nArt edit system verification has started. Please refer to the following for details.",
+    "news": "[announcement] UTC  2018 oct. 10 Wed 8:00\nArt edit system verification has started. Please refer to the following for details.",
     "update": "Currently only a part of battle beta is playable. For details of the function and future update schedule, please see below.",
-    "login": "To play Beta Battle you need to log in to the Loom Network."
+    "login": "To play Beta Battle you need to log in to the Loom Network.",
+    "battleRanking": "[announcement] UTC : Oct. 18 Thu 14:45\nI am sorry to have kept you waiting for a long time.We resumed the verification of beta battle ranked match.\n※ Please try reloading the screen if it takes time to start the battle",
+    "battleNewRule": "[Notice : Additional rules for the ranked match]\nIn order to reduce the access load immediately before the end of the ranked match, we will add the following rules.\n - After the battle's victory or defeat decision, the cool time is set and the next battle can not be started for 1 minute.\n - Rule start time : [UTC] 2018 Oct.21 5:00 (1 hour before the end of the ranked match)\n We apologize for adding rules during the ranked match, thank you for your understanding."
   },
   "team": {
     "button": "This is my team !!"
@@ -87,6 +85,16 @@
         ],
         "footer": "* The above rules may be changed after beta battle."
       }
+    }
+  },
+  "battle": {
+    "loading": "Loading ... \nIf it takes more than 30 sec, please reload the page.",
+    "info": {
+      "inRankingTerm": "Beta Battle Ranked Match has started!\nWe will decide the ranking based on the result of the battle which ended by UTC Oct.21 sun 6:00.\nPlease check the link below for details.",
+      "rankHow": "Defeat the team with this mark and rank up!",
+      "inAggregatingTerm": "Beta Battle Ranked Match has finished.\nThe ranking is being confirmed with the result of the battle which had ended at UTC Oct.21 sun 6:00.\nThe ranking will be announced at UTC Oct.22 mon 6:00.",
+      "afterAggregatingTerm": "Beta Battle Ranked Match has finished.\nPlease check the link below for the ranking result of UTC Oct.22 mon 6:00.",
+      "newRule": "One minute interval between each battle will be introduced from 1 hour before the end of ranked match. For details."
     }
   },
   "userId": {
