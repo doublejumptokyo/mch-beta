@@ -1,4 +1,4 @@
-import PresentData from '~/build/contracts/Present.json'
+import PresentData from '~~/build/contracts/Present.json'
 
 class Present {
   constructor(accountManager) {

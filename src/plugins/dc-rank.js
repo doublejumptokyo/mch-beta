@@ -1,4 +1,4 @@
-import RankData from '~/build/contracts/Rank.json'
+import RankData from '~~/build/contracts/Rank.json'
 
 class Rank {
   constructor(accountManager) {

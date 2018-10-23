@@ -1,6 +1,6 @@
 import { Address, LocalAddress, Contract } from 'loom-js'
 import { NullMessage, BattleResponse } from '@/assets/types/types_pb'
-import BattleManagerData from '~/build/contracts/BattleManager3.json'
+import BattleManagerData from '~~/build/contracts/BattleManager3.json'
 
 const E_ABI_BattleStart3 = [
   {
