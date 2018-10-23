@@ -53,6 +53,9 @@ import PageHeader from '~/components/PageHeader'
 export default {
   middleware: 'walletCheck',
   components: { UnitListItem, Modal, PageHeader },
+  validate({ params }) {
+    return /^0x(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{40}$/.test(params.id)
+  },
   data() {
     return {
       address: '',
@@ -87,7 +90,9 @@ export default {
   },
   async beforeMount() {
     this.address = this.$route.params.id
-    this.user = await this.$user.get(this.address)
+    this.user = await this.$user.get(this.address).catch(() => {
+      return this.$nuxt.error({ statusCode: 404, message: 'Invalid Address' })
+    })
     this.units = await this.$team.get(this.address)
     // This is for Battle Interval
     // const battleTimeKey = 'mch-beta-battletime'
