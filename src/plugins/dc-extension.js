@@ -1,5 +1,5 @@
-import ExtensionData from '~/build/contracts/Extension.json'
-import ExtensionAssetData from '~/build/contracts/ExtensionAsset.json'
+import ExtensionData from '~~/build/contracts/Extension.json'
+import ExtensionAssetData from '~~/build/contracts/ExtensionAsset.json'
 import extensionTypesData from '~/assets/data/extensionTypes.json'
 import skillsData from '~/assets/data/skills.json'
 

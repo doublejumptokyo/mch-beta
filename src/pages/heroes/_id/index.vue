@@ -76,6 +76,9 @@
 import Modal from '~/components/Modal'
 export default {
   components: { Modal },
+  validate({ params }) {
+    return /^[0-9]{8}$/.test(params.id)
+  },
   data() {
     return {
       hero: null,

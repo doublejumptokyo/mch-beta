@@ -1,4 +1,4 @@
-import HeroManagerData from '~/build/contracts/HeroManager.json'
+import HeroManagerData from '~~/build/contracts/HeroManager.json'
 
 class HeroManager {
   constructor(accountManager) {

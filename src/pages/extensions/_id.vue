@@ -46,6 +46,9 @@
 
 <script>
 export default {
+  validate({ params }) {
+    return /^[0-9]{8}$/.test(params.id)
+  },
   computed: {
     item() {
       return this.$store.state.extensions.find(
