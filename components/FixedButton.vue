@@ -1,54 +1,40 @@
 <template lang="pug">
 .fixedButton
-  a.medium(href="https://medium.com/mycryptoheroes")
-    fa-icon(:icon="['fab', 'medium']")
-  a.discord(href="https://discord.gg/")
-    fa-icon(:icon="['fab', 'discord']")
+  a.discord(href="https://discord.gg/C66hByB")
+    fa-icon(:icon="['fab', 'discord']" size="lg")
+    span
+      | Official
+      br
+      | Community
 </template>
 
 <style lang="scss" scoped>
 .fixedButton {
-  align-items: flex-start;
   bottom: 0;
-  display: flex;
-  font-size: 3rem;
   line-height: 1;
-  margin: 1rem;
-  position: fixed;
+  margin-left: auto;
+  padding: 1rem;
+  position: sticky;
   right: 0;
-  z-index: 1;
+  z-index: 2;
+  text-transform: capitalize;
 
   .discord {
-    color: #7289da;
-    margin-left: 1rem;
-    position: relative;
+    align-items: center;
+    background: #7289da;
+    border-radius: 9999px;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
 
-    &::before {
-      background: #fff;
-      content: '';
-      height: 50%;
-      left: 5%;
-      position: absolute;
-      top: 15%;
-      width: 90%;
-      z-index: -1;
+    svg {
+      margin-right: 0.5rem;
     }
-  }
 
-  .medium {
-    color: #222221;
-    margin-left: 1rem;
-    position: relative;
-
-    &::before {
-      background: #fff;
-      content: '';
-      height: 50%;
-      left: 5%;
-      position: absolute;
-      top: 22%;
-      width: 90%;
-      z-index: -1;
+    span {
+      font-size: 0.8rem;
+      word-break: keep-all;
     }
   }
 }

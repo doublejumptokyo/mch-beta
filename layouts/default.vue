@@ -3,7 +3,7 @@
   app-header.appHeader
   main.appMain
     nuxt.page
-  app-footer.appFooter(:isFixedButtonShown="isFixedButtonShown")
+  app-footer.appFooter
   fixed-button.fixedButton(v-if="isFixedButtonShown")
 </template>
 
