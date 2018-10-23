@@ -162,6 +162,9 @@ export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
   middleware: 'walletCheck',
+  validate({ params }) {
+    return /^0x(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{40}$/.test(params.id)
+  },
 
   data() {
     return {

@@ -158,6 +158,9 @@ import draggable from 'vuedraggable'
 import Modal from '~/components/Modal'
 export default {
   components: { draggable, Modal },
+  validate({ params }) {
+    return /^[1-3]{1}$/.test(params.unitId)
+  },
   data() {
     return {
       isHeroModalShown: false,
