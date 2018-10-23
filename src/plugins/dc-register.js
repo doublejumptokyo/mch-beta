@@ -1,5 +1,5 @@
-import RegisterData from '~/build/contracts/Register.json'
-import UserData from '~/build/contracts/User.json'
+import RegisterData from '~~/build/contracts/Register.json'
+import UserData from '~~/build/contracts/User.json'
 
 class Register {
   constructor(accountManager) {

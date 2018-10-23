@@ -114,6 +114,7 @@ module.exports = {
     { src: '~/plugins/dc-hero-manager', ssr: false }
   ],
   css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
+  srcDir: 'src/',
   modules,
   axios,
   proxy,
