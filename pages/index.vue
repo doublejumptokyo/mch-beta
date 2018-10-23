@@ -37,7 +37,7 @@
             time {{ (new Date(item['atom:updated'])).toLocaleString() }}
           fa-icon(icon="external-link-alt" size="sm")
     p.links__more
-      a(:href="informationList.link") More
+      a(:href="informationLink") More
   section.indexPage__section
     h2
       fa-icon(icon="question" size="sm" fixed-width)
@@ -68,7 +68,8 @@ export default {
       })
     })
     const informationList = data.item.filter((item, i) => i < 3)
-    return { informationList }
+    const informationLink = data.link
+    return { informationList, informationLink }
   }
 }
 </script>
