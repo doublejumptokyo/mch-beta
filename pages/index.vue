@@ -78,7 +78,7 @@ export default {
         resolve(xmlres.rss.channel.shift())
       })
     })
-    this.informationList = data.item.filter((item, i) => i < 3)
+    this.informationList = data.item.filter((item, i) => i < 5)
     this.informationLink = data.link
   }
 }
