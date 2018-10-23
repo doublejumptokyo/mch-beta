@@ -25,7 +25,8 @@ const axios = isProduction
       proxy: false
     }
   : {
-      proxy: true
+      proxy: true,
+      debug: true
     }
 
 const proxy = isProduction
@@ -33,6 +34,7 @@ const proxy = isProduction
   : {
       '/api': 'https://beta.mycryptoheroes.net',
       '/events': 'https://beta.mycryptoheroes.net',
+      '/feed': 'https://beta.mycryptoheroes.net',
       '/now.json': 'https://beta.mycryptoheroes.net'
     }
 

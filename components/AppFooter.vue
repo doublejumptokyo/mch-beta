@@ -1,8 +1,8 @@
 <template lang="pug">
-footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
+footer.appFooter
   ul
     li
-      a(href="https://discord.gg/") Official Discord
+      a(href="https://discord.gg/C66hByB") Official Community
     li
       a(href="https://medium.com/mycryptoheroes") Official Medium
     li
@@ -12,14 +12,6 @@ footer.appFooter(:class="{ isFixedButtonShown: isFixedButtonShown }")
   p
     small &copy; {{ (new Date()).getFullYear() }} double jump.tokyo
 </template>
-
-<script>
-export default {
-  props: {
-    isFixedButtonShown: { type: Boolean, default: false }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .appFooter {
@@ -36,10 +28,6 @@ export default {
   @media (min-width: $breakpoint) {
     flex-direction: row;
     font-size: 1rem;
-  }
-
-  &.isFixedButtonShown {
-    padding: 1rem 1rem 5rem;
   }
 
   > ul {
