@@ -23,10 +23,11 @@ const axios = isProduction
   ? {
       https: true,
       proxy: false,
-      baseURL: '/'
+      baseURL: 'https://beta.mycryptoheroes.net'
     }
   : {
-      proxy: true
+      proxy: true,
+      debug: true
     }
 
 const proxy = isProduction
