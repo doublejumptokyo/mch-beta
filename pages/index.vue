@@ -29,15 +29,19 @@
     h2
       fa-icon(icon="info" size="sm" fixed-width)
       span Information
-    ul.links
-      li(v-for="item in informationList")
-        a.links__item(:href="item.link")
-          div
-            h4 {{ item.title[0] }}
-            time {{ (new Date(item['atom:updated'])).toLocaleString() }}
-          fa-icon(icon="external-link-alt" size="sm")
-    p.links__more
-      a(:href="informationLink") More
+    template(v-if="informationList.length")
+      ul.links
+        li(v-for="item in informationList")
+          a.links__item(:href="item.link")
+            div
+              h4 {{ item.title[0] }}
+              time {{ (new Date(item['atom:updated'])).toLocaleString() }}
+            fa-icon(icon="external-link-alt" size="sm")
+      p.links__more
+        a(:href="informationLink") More
+    template(v-else)
+      .links__empty
+        fa-icon(icon="spinner" spin size="2x")
   section.indexPage__section
     h2
       fa-icon(icon="question" size="sm" fixed-width)
@@ -57,19 +61,25 @@
 
 <script>
 import Nl2br from 'vue-nl2br'
+import xml2js from 'xml2js'
 export default {
   components: { Nl2br },
-  async asyncData({ $axios }) {
-    const xml = await $axios.$get('/feed')
-    const parseString = require('xml2js').parseString
+  data() {
+    return {
+      informationList: [],
+      informationLink: ''
+    }
+  },
+  async beforeMount() {
+    const xml = await this.$axios.$get('/feed')
+    const parseString = xml2js.parseString
     const data = await new Promise(resolve => {
       parseString(xml, (message, xmlres) => {
         resolve(xmlres.rss.channel.shift())
       })
     })
-    const informationList = data.item.filter((item, i) => i < 3)
-    const informationLink = data.link
-    return { informationList, informationLink }
+    this.informationList = data.item.filter((item, i) => i < 3)
+    this.informationLink = data.link
   }
 }
 </script>
@@ -185,6 +195,12 @@ ul {
 
   &__more {
     text-align: right;
+  }
+
+  &__empty {
+    color: #999;
+    padding: 3rem;
+    text-align: center;
   }
 }
 </style>
