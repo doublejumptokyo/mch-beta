@@ -22,8 +22,7 @@ const modules = [
 const axios = isProduction
   ? {
       https: true,
-      proxy: false,
-      baseURL: 'https://beta.mycryptoheroes.net'
+      proxy: false
     }
   : {
       proxy: true,

@@ -6,7 +6,7 @@ function isGuest() {
 
 export default ({ store, $axios }) => {
   $axios.onRequest(config => {
-    if (process.client) {
+    if (config.url !== '/config/env.json') {
       config.baseURL = store.state.env.siteUrl
       config.headers['Loom-Address'] = store.state.loomAddress
       config.headers['Eth-Address'] = store.state.ethAddress
