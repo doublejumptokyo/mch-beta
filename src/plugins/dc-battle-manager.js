@@ -1,4 +1,4 @@
-import BattleManagerData from '~/build/contracts/BattleManager.json'
+import BattleManagerData from '~~/build/contracts/BattleManager.json'
 
 const E_ABI_BattleStart = [
   {
