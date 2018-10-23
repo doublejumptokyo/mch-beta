@@ -22,7 +22,8 @@ const modules = [
 const axios = isProduction
   ? {
       https: true,
-      proxy: false
+      proxy: false,
+      baseURL: '/'
     }
   : {
       proxy: true
