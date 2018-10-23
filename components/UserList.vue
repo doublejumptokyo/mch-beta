@@ -1,17 +1,39 @@
 <template lang="pug">
 .userList
-  nuxt-link.userList__item.user(
-    v-for="(user, index) in users"
-    :to="`/users/${user.address}`"
-    :key="index"
-  )
-    .user__images
-      img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
-    .user__name
-      h2 {{ user.name || 'No Name' }}
-    .user__button
-      span Show Detail
-      fa-icon.user__arrow(icon="angle-right")
+  template(v-if="users.length")
+    nuxt-link.userList__item(
+      v-for="(user, index) in users"
+      :to="`/users/${user.address}`"
+      :key="index"
+    )
+      .user(:class="{ 'user--me': user.isMe, 'user--ranked': user.isRanked }")
+        .user__header
+          .user__rank(v-if="user.rank")
+            template(v-if="user.rank>3")
+              span {{ `#${user.rank}` }}
+            template(v-else-if="user.rank>2")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/brons.png')")
+            template(v-else-if="user.rank>1")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/silver.png')")
+            template(v-else-if="user.rank=1")
+              span {{ `#${user.rank}` }}
+              img(:src="require('~/assets/images/icons/gold.png')")
+            //- template(v-else-if="user.rank>10")
+            //-   span {{ `#${user.rank}` }}
+          .user__type(v-if="user.isRanked !== undefined")
+            span.user__type--ranked(v-if="user.isRanked") Ranked
+            span.user__type--exhibition(v-else) Exhibition
+        //- .user__images
+          img(v-for="unit in user.team" :src="unit.imageUrl" width="64" height="64")
+        .user__name
+          h2 {{ user.name || 'No Name' }}
+        .user__button
+          span Show Detail
+          fa-icon.user__arrow(icon="angle-right")
+  .userList__empty(v-else)
+    fa-icon(icon="spinner" spin size="3x")
 </template>
 
 <script>
@@ -38,6 +60,8 @@ export default {
   &__item {
     border-top: 1px solid #666;
     border-left: 1px solid #666;
+    color: inherit;
+    text-decoration: none;
     width: calc((100% - 1px) / 2);
 
     @media (min-width: $breakpoint) {
@@ -58,20 +82,72 @@ export default {
       }
     }
   }
+
+  &__empty {
+    align-items: center;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    padding: 8rem 0;
+    width: 100%;
+  }
 }
 
 .user {
   align-items: center;
-  color: inherit;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  height: 100%;
   opacity: 1;
   padding: 1rem;
   transition: all 0.3s;
 
   &:hover {
     opacity: 0.7;
+  }
+
+  &__header {
+    align-self: stretch;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  &__rank {
+    span {
+      color: #999;
+      font-family: Oswald;
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1rem;
+    }
+
+    img {
+      display: inline-block;
+      height: auto;
+      width: 2rem;
+      margin-left: 0.2rem;
+    }
+  }
+
+  &__type {
+    span {
+      border-radius: 0.25rem;
+      display: inline-block;
+      font-family: Oswald;
+      font-size: 0.8rem;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+    }
+
+    &--ranked {
+      background: map-get($colors, primary);
+    }
+
+    &--exhibition {
+      background: #999;
+    }
   }
 
   &__images {
@@ -148,6 +224,10 @@ export default {
     svg {
       margin-left: 0.5rem;
     }
+  }
+
+  &--me {
+    background: rgba(241, 196, 15, 0.15);
   }
 }
 </style>

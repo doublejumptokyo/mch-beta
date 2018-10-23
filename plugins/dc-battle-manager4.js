@@ -1,5 +1,5 @@
 import { Address, LocalAddress, Contract } from 'loom-js'
-import { NullMessage, BattleResponse } from '@/assets/types/types_pb'
+import { NullMessage, Battle2Response } from '@/assets/types/battle_types_pb'
 import BattleManagerData from '~/build/contracts/BattleManager3.json'
 
 const E_ABI_BattleStart3 = [
@@ -110,66 +110,103 @@ class BattleManager3 {
 
   async endAsync(winnerCode) {
     console.log('end begin')
-    const res = await this.contract.methods.end(winnerCode).send()
-    const rawEvent = res.events.BattleEnd3.raw
-    rawEvent.topics.shift()
-    let end = this.accountManager.web3.eth.abi.decodeLog(
-      E_ABI_BattleEnd3,
-      rawEvent.data,
-      rawEvent.topics
-    )
-    end = this.encodeBattleEnd(end)
-    console.log('end finished')
-    return end
+    await this.contract.methods.end(winnerCode).send()
+    console.log(E_ABI_BattleEnd3)
+    // const res = await this.contract.methods.end(winnerCode).send()
+    // const rawEvent = res.events.BattleEnd3.raw
+    // rawEvent.topics.shift()
+    // let end = this.accountManager.web3.eth.abi.decodeLog(
+    //   E_ABI_BattleEnd3,
+    //   rawEvent.data,
+    //   rawEvent.topics
+    // )
+    // end = this.encodeBattleEnd(end)
+    // console.log('end finished')
+    // return end
   }
 
   async battleAsync() {
+    console.log('battle begin')
     const params = new NullMessage()
     const result = await this.keyManager.callAsync(
-      'Battle',
+      'Battle2',
       params,
-      new BattleResponse()
+      new Battle2Response()
     )
+    console.log(result)
+    window.result = result
+
+    let actions = []
+    result.getActionsList().forEach(pbAction => {
+      let action = {
+        actionCounts: pbAction.getActionCounts(),
+        actionPosition: pbAction.getActionPosition(),
+        poisonDamage: pbAction.getPoisonDamage(),
+        skillId: pbAction.getSkillId(),
+        effectPositions: this.encodeEffectPositions(
+          pbAction.getEffectUnitsList()
+        )
+      }
+      let units = []
+      pbAction.getUnitsList().forEach(pbUnit => {
+        let unit = {
+          position: pbUnit.getPosition(),
+          hp: pbUnit.getHp(),
+          phy: pbUnit.getPhy(),
+          int: pbUnit.getInt(),
+          agi: pbUnit.getAgi(),
+          charge: pbUnit.getCharge(),
+          passiveEnabled: pbUnit.getPassiveEnabled(),
+          state: pbUnit.getState()
+        }
+        units.push(unit)
+      })
+      action.units = units
+      actions.push(action)
+    })
+    console.log(actions)
+    console.log('battle end')
     return {
-      actionCounts: result.getActionCounts(),
+      actionCounts: actions.length,
+      actions,
       isWon: result.getWin(),
       winnerCode: result.getWinnerCode()
     }
   }
 
-  async getActions(battleId, actionCounts) {
-    console.log('action begin')
-    let encodedActions = []
-    const bool = true
-    while (bool) {
-      const sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
-      await sleep(1000)
-      console.log('action try')
-      const req = {}
-      req.limit = 200
-      req.name = 'BattleAction3'
-      req.topic1 = battleId
-      encodedActions = await window.$nuxt.$axios.$get('/events', {
-        params: req
-      })
-      if (actionCounts === encodedActions.length) break
-    }
-    const hexToString = this.accountManager.web3.utils.hexToString
-    const actions = encodedActions
-      .map(action => JSON.parse(hexToString(action.data)))
-      .map(action => this.encodeBattleAction(action))
-      .map(action => {
-        action.units = this.encodeBattleActionUnits(action.datas)
-        return action
-      })
-      .map(action => {
-        const positions = action.effectUnits
-        action.effectPositions = this.encodeEffectPositions(positions)
-        return action
-      })
-    actions.sort((p, c) => p.actionCounts - c.actionCounts)
-    return actions
-  }
+  // async getActions(battleId, actionCounts) {
+  //   console.log('action begin')
+  //   let encodedActions = []
+  //   const bool = true
+  //   while (bool) {
+  //     const sleep = msec => new Promise(resolve => setTimeout(resolve, msec))
+  //     await sleep(1000)
+  //     console.log('action try')
+  //     const req = {}
+  //     req.limit = 200
+  //     req.name = 'BattleAction3'
+  //     req.topic1 = battleId
+  //     encodedActions = await window.$nuxt.$axios.$get('/events', {
+  //       params: req
+  //     })
+  //     if (actionCounts === encodedActions.length) break
+  //   }
+  //   const hexToString = this.accountManager.web3.utils.hexToString
+  //   const actions = encodedActions
+  //     .map(action => JSON.parse(hexToString(action.data)))
+  //     .map(action => this.encodeBattleAction(action))
+  //     .map(action => {
+  //       action.units = this.encodeBattleActionUnits(action.datas)
+  //       return action
+  //     })
+  //     .map(action => {
+  //       const positions = action.effectUnits
+  //       action.effectPositions = this.encodeEffectPositions(positions)
+  //       return action
+  //     })
+  //   actions.sort((p, c) => p.actionCounts - c.actionCounts)
+  //   return actions
+  // }
 
   encodeBattleStart(rawData) {
     let units = []
@@ -317,6 +354,6 @@ export default async ({ app, store }, inject) => {
   const key = await store.dispatch('checkLoggedIn')
   if (key) {
     const battleManager = await BattleManager3.createAsync(app.$accountManager)
-    inject('battleManager3', battleManager)
+    inject('battleManager4', battleManager)
   }
 }
