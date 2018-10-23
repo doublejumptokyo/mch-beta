@@ -1,4 +1,4 @@
-import DeckManagerData from '~/build/contracts/DeckManager.json'
+import DeckManagerData from '~~/build/contracts/DeckManager.json'
 
 class Team {
   constructor(accountManager) {

@@ -1,5 +1,5 @@
-import HeroData from '~/build/contracts/Hero.json'
-import HeroAssetData from '~/build/contracts/HeroAsset.json'
+import HeroData from '~~/build/contracts/Hero.json'
+import HeroAssetData from '~~/build/contracts/HeroAsset.json'
 import heroTypesData from '~/assets/data/heroTypes.json'
 import skillsData from '~/assets/data/skills.json'
 
