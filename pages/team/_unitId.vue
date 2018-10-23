@@ -751,18 +751,20 @@ export default {
 }
 
 .detailViewer {
-  align-items: center;
   background: #555;
   bottom: -1px;
   box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   left: 0;
   margin: 1rem -1rem 0;
+  max-height: 30vh;
+  overflow: auto;
   padding: 1rem;
   position: sticky;
   width: calc(100% + 2rem);
 
   > img {
+    align-self: center;
     border-radius: 0.5rem;
     margin-right: 1rem;
 
