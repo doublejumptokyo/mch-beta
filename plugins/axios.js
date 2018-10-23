@@ -4,13 +4,9 @@ function isGuest() {
   return false
 }
 
-function getUrlsFromServer() {
-  return ['/config/env.json', '/feed']
-}
-
 export default ({ store, $axios }) => {
   $axios.onRequest(config => {
-    if (!getUrlsFromServer().includes(config.url)) {
+    if (process.client) {
       config.baseURL = store.state.env.siteUrl
       config.headers['Loom-Address'] = store.state.loomAddress
       config.headers['Eth-Address'] = store.state.ethAddress
