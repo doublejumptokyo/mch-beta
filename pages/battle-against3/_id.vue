@@ -153,9 +153,11 @@
 import _ from 'lodash'
 import ICountUp from 'vue-countup-v2'
 import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
-import { mapState } from 'vuex'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
+
+const IS_RANKED = true
+
 export default {
   layout: 'battle',
   components: { ICountUp, ProgressRing, Modal },
@@ -185,30 +187,27 @@ export default {
       isBgmMuted: true,
       se: {},
       battleId: 0,
-      isLoading: true
+      actionCounts: 200,
+      isWon: null
     }
   },
 
   computed: {
-    ...mapState('battle', ['myTeam', 'opponentTeam']),
-
-    // isLoading() {
-    //   return !this.actions.length
-    // },
+    isLoading() {
+      return !this.end
+    },
 
     result() {
       if (!this.end) {
         return ''
       }
-      if (this.end.result === 4) {
-        return 'time up!'
-      } else if (this.end.result === 3) {
-        return 'lose...'
-      } else if (this.end.result === 2) {
-        return 'win!!'
-      } else {
+      if (this.actions.length < this.actionCounts) {
         return ''
       }
+      if (this.actions.length === 200) {
+        return 'time up!'
+      }
+      return this.isWon ? 'win!!' : 'lose...'
     },
 
     isStatusModalShown() {
@@ -233,7 +232,6 @@ export default {
 
       console.log('5. アクション取得開始')
       await this.fetchActions()
-      console.log(this.$battleManager2)
     },
 
     isReady(isReady) {
@@ -252,13 +250,15 @@ export default {
     this.opponentName = (await this.$user.get(this.opponentLoomAddress)).name
 
     console.log('2. バトル開始をLoomに伝える')
-    const battleStart = await this.$battleManager2.start(
-      this.opponentLoomAddress
+    const battleStart = await this.$battleManager3.startAsync(
+      this.opponentLoomAddress,
+      IS_RANKED || false
     )
-    this.battleId = this.$accountManager.web3.eth.abi.encodeParameter(
-      'uint32',
-      battleStart.battleId
-    )
+    this.battleId = battleStart.battleId
+    const battle = await this.$battleManager3.battleAsync()
+    this.actionCounts = battle.actionCounts
+    this.isWon = battle.isWon
+    this.end = await this.$battleManager3.endAsync(battle.winnerCode)
 
     console.log('3. ユニットの初期状態をthis.initialUnitsに格納')
     this.initialUnits = await Promise.all(
@@ -302,17 +302,10 @@ export default {
 
   methods: {
     async fetchActions() {
-      const timerId = window.setInterval(() => {
-        this.$set(this, 'actions', this.$battleManager2.actions)
-        if (this.actions.length) {
-          this.isLoading = false
-        }
-      }, 1000)
-
-      await this.$battleManager2.watch(this.battleId)
-      this.end = await this.$battleManager2.end()
-      this.actions = this.$battleManager2.actions
-      window.clearInterval(timerId)
+      this.actions = await this.$battleManager3.getActions(
+        this.battleId,
+        this.actionCounts
+      )
     },
 
     battleStart() {
@@ -361,6 +354,9 @@ export default {
     },
 
     setStatuses(units) {
+      // 7人目のユニットをフィルタリング
+      units = units.filter((unit, i) => i < 6)
+
       units.forEach(async unit => {
         if (!unit.heroId) return
         unit.hero = this.getHero(unit.heroId)
@@ -1130,6 +1126,7 @@ export default {
     line-height: 1;
     position: absolute;
     top: -0.5rem;
+    z-index: 1;
 
     @media (min-width: $breakpoint) {
       left: 2rem;
@@ -1175,9 +1172,9 @@ export default {
       content: '';
       display: block;
       height: 0.5rem;
-      left: 10%;
+      left: 2.5%;
       position: absolute;
-      width: 80%;
+      width: 95%;
 
       @media (min-width: $breakpoint) {
         height: 1rem;
@@ -1205,7 +1202,9 @@ export default {
       mask-position: center center;
       mask-size: contain;
       object-fit: contain;
+      position: relative;
       width: 100%;
+      z-index: 1;
     }
   }
 
