@@ -6,7 +6,7 @@
 <script>
 import UserList from '~/components/UserList'
 
-const RANDOM_MAX_RANK = 200
+const RANDOM_MAX_RANK = 1000
 
 export default {
   components: { UserList },

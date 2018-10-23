@@ -3,9 +3,9 @@
   page-header.battlePage__header
     template
       h1 {{ $i18n.t('pages.battles') }}
-      .battlePage__myRank(v-if="myRank")
-        span Your current rank:
-        span {{ `#${myRank}` }} {{ `/ ${participants}` }}
+      //- .battlePage__myRank(v-if="myRank")
+      //-   span Your current rank:
+      //-   span {{ `#${myRank}` }} {{ `/ ${participants}` }}
     button(slot="right" @click="refresh")
       fa-icon(icon="sync")
 
@@ -23,13 +23,13 @@
       p {{ $t('battle.info.afterAggregatingTerm') }}
       p
         a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
-  ul.tabList
-    li.tabItem
-      nuxt-link(to="/battle-against/ranked") Ranked
-    li.tabItem
-      nuxt-link(to="/battle-against/random") Random
-    li.tabItem
-      nuxt-link(to="/battle-against/top") Top 20
+  //- ul.tabList
+  //-   li.tabItem
+  //-     nuxt-link(to="/battle-against/ranked") Ranked
+  //-   li.tabItem
+  //-     nuxt-link(to="/battle-against/random") Random
+  //-   li.tabItem
+  //-     nuxt-link(to="/battle-against/top") Top 20
 
   nuxt-child(
     ref="userList"
@@ -75,7 +75,7 @@ export default {
   },
   fetch({ route, redirect }) {
     if (route.name === 'battle-against') {
-      return redirect('/battle-against/ranked')
+      return redirect('/battle-against/random')
     }
   },
   data() {
