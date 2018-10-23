@@ -9,16 +9,6 @@
         a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
   section.indexPage__section
     .update
-      nl2br(tag="p" :text="$t('home.battleEnd')")
-      p
-        a(href="https://medium.com/mycryptoheroes/rules-of-beta-battle-ranked-match-ae8bb455ce4d") [beta battle] バトルβランキング戦ルール / Rules of beta battle ranked match
-  section.indexPage__section
-    .update
-      nl2br(tag="p" :text="$t('home.news')")
-      p
-        a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
-  section.indexPage__section
-    .update
       p {{ $t('home.update') }}
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af") Update schedule
