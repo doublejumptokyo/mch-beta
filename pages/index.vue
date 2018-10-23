@@ -3,17 +3,10 @@
   .indexPage__keyVisual
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
-    template
-      div
-        ul
-          li(v-for="item in data[0].item")
-            a(:href="item.link")
-              span {{ item.title[0] }}
-              span {{ (new Date(item['atom:updated'])).getTime() }}
-    //- .update
-    //-   nl2br(tag="p" :text="$t('home.news')")
-    //-   p
-    //-     a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
+    .update
+      nl2br(tag="p" :text="$t('home.news')")
+      p
+        a(href="https://medium.com/mycryptoheroes/how-to-art-edit-b3701b2ecf9b") [battle beta]アートエディット/ How to “Art Edit”
   section.indexPage__section
     .update
       p {{ $t('home.update') }}
@@ -24,6 +17,19 @@
       p {{ $t('home.login') }}
       p
         a(href="https://medium.com/mycryptoheroes/betabattle-loomnetwork-e0c170927b64") Details
+  section.indexPage__section
+    h2
+      fa-icon(icon="info" size="sm" fixed-width)
+      span Information
+    ul.links
+      li(v-for="item in informationList")
+        a.links__item(:href="item.link")
+          div
+            h4 {{ item.title[0] }}
+            time {{ (new Date(item['atom:updated'])).toLocaleString() }}
+          fa-icon(icon="external-link-alt" size="sm")
+    p.links__more
+      a(:href="informationList.link") More
   section.indexPage__section
     h2
       fa-icon(icon="question" size="sm" fixed-width)
@@ -50,10 +56,11 @@ export default {
     const parseString = require('xml2js').parseString
     const data = await new Promise(resolve => {
       parseString(xml, (message, xmlres) => {
-        resolve(xmlres.rss.channel)
+        resolve(xmlres.rss.channel.shift())
       })
     })
-    return { data }
+    const informationList = data.item.filter((item, i) => i < 3)
+    return { informationList }
   }
 }
 </script>
@@ -140,5 +147,35 @@ ul {
   background: #555;
   border-radius: 1rem;
   padding: 1rem;
+}
+
+.links {
+  margin: 1rem -1rem;
+
+  @media (min-width: $breakpoint) {
+    margin: 1rem 0;
+  }
+
+  &__item {
+    justify-content: space-between;
+
+    h4 {
+      margin: 0;
+    }
+
+    time {
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    svg {
+      color: #999;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__more {
+    text-align: right;
+  }
 }
 </style>

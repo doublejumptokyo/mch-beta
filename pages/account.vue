@@ -57,40 +57,7 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
-.links {
-  background: #555;
-  border-bottom: 1px solid #666;
-  list-style-type: none;
-  margin: 1rem -1rem;
-  padding: 0;
-
-  li {
-    border-top: 1px solid #666;
-  }
-
-  &__item {
-    align-items: center;
-    color: inherit;
-    display: flex;
-    min-height: 40px;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    width: 100%;
-  }
-
-  &__icon {
-    color: #999;
-    margin-right: 0.5rem;
-  }
-
-  &__arrow {
-    color: #eee;
-    margin-left: auto;
-  }
-}
-
 .accountPage {
   background: #444;
 
@@ -160,5 +127,9 @@ export default {
       }
     }
   }
+}
+
+.links {
+  margin: 1rem -1rem;
 }
 </style>
