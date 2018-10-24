@@ -5,6 +5,7 @@ section.section.section__extensionList
       nuxt-link.extensionExtension(:to="`/extensions/${extension.id}`" v-for="extension in extensions" :key="extension.id")
         img.extensionExtension__image(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
         p.extensionExtension__name {{ extension.name[$i18n.locale] }}
+        p.extensionExtension__rarity {{ extension.rarity }}
     .extensionList__empty(v-else)
         fa-icon(icon="spinner" spin size="3x")
 </template>
