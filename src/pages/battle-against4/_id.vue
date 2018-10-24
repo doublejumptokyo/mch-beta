@@ -332,13 +332,7 @@ export default {
     },
 
     battleStart() {
-      this.bgm.muted = true
-      Array.from(Array(5).keys()).forEach(
-        num => (this.se[num + 1].muted = true)
-      )
-      Object.keys(this.jingles).forEach(key => {
-        this.jingles[key].muted = true
-      })
+      this.setMuted(true)
       this.bgm.play()
       this.isReady = true
     },
@@ -351,25 +345,18 @@ export default {
     },
 
     toggleBgmPause() {
-      if (this.bgm.muted) {
-        this.bgm.muted = false
-        Array.from(Array(5).keys()).forEach(
-          num => (this.se[num + 1].muted = false)
-        )
-        Object.keys(this.jingles).forEach(key => {
-          this.jingles[key].muted = false
-        })
-        this.isBgmMuted = false
-      } else {
-        this.bgm.muted = true
-        Array.from(Array(5).keys()).forEach(
-          num => (this.se[num + 1].muted = true)
-        )
-        Object.keys(this.jingles).forEach(key => {
-          this.jingles[key].muted = true
-        })
-        this.isBgmMuted = true
-      }
+      this.isBgmMuted = !this.isBgmMuted
+      this.setMuted(this.isBgmMuted)
+    },
+
+    setMuted(bool) {
+      this.bgm.muted = bool
+      Array.from(Array(5).keys()).forEach(
+        num => (this.se[num + 1].muted = bool)
+      )
+      Object.keys(this.jingles).forEach(key => {
+        this.jingles[key].muted = bool
+      })
     },
 
     onCountUpReady(instance) {
