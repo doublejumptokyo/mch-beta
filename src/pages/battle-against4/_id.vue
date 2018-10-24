@@ -1,26 +1,13 @@
 <template lang="pug">
 .battlePage
-  header.header(:class="{ 'header--opening': !isReady }")
-    template(v-if="!isReady")
-      .username.username1
-        span {{ $store.state.user.name }}
-      .versus vs
-      .username.username2
-        span {{ opponentName }}
-      p.startButton
-        span(v-if="isLoading") {{ $i18n.t('battle.loading') }}
-        button(v-else @click="battleStart") Ready!
-    template(v-else)
-      img.header__logo(:src="require('~/assets/images/logo.png')")
-      .header__battleUsers
-        span {{ $store.state.user.name }}
-        span vs
-        span {{ opponentName }}
-      button.header__play(@click="toggleBgmPause")
-        img(:src="require('~/assets/images/volume-mute.svg')" v-if="isBgmMuted")
-        img(:src="require('~/assets/images/volume.svg')" v-else)
-      nuxt-link.header__close(to="/battle-against" tag="button")
-        fa-icon(icon="times")
+  battle-header.header(
+    :is-ready="isReady"
+    :is-loading="isLoading"
+    :is-bgm-muted="isBgmMuted"
+    :opponent-name="opponentName"
+    @battle-start="battleStart"
+    @toggle-bgm-pause="toggleBgmPause"
+  )
 
   .statuses
     transition(enter-active-class="animated bounceInLeft")
@@ -155,12 +142,13 @@ import ICountUp from 'vue-countup-v2'
 import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
+import BattleHeader from '~/components/BattleHeader'
 
 const IS_RANKED = true
 
 export default {
   layout: 'battle',
-  components: { ICountUp, ProgressRing, Modal },
+  components: { ICountUp, ProgressRing, Modal, BattleHeader },
   middleware: 'walletCheck',
   validate({ params }) {
     return /^0x(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{40}$/.test(params.id)
@@ -185,14 +173,14 @@ export default {
       currentUnitStatus: {},
       isFinished: false,
       isShareModalShown: false,
-      bgm: null,
-      isBgmMuted: true,
-      se: {},
       battleId: 0,
       actionCounts: 200,
       isWon: null,
       tmpActions: [],
-      battle: null
+      battle: null,
+      bgm: {},
+      se: {},
+      isBgmMuted: true
     }
   },
 
@@ -267,10 +255,8 @@ export default {
     )
     this.battleId = battleStart.battleId
     const battle = await this.$battleManager4.battleAsync()
-    console.log(battle)
     this.tmpActions = battle.actions
     this.isWon = battle.isWon
-    console.log('ok')
     this.battle = battle
     // This is for Battle Interval
     // window.localStorage.setItem(battleTimeKey, +new Date())
@@ -317,10 +303,6 @@ export default {
 
   methods: {
     fetchActions() {
-      // this.actions = await this.$battleManager4.getActions(
-      //   this.battleId,
-      //   this.actionCounts
-      // )
       this.actions = this.tmpActions
     },
 
@@ -672,144 +654,12 @@ export default {
 }
 
 .header {
-  align-items: center;
-  background: #444;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  color: #fff;
-  display: flex;
   height: 2rem;
   left: 0;
-  line-height: 1;
-  padding: 0 1rem;
   position: absolute;
   top: 0;
-  transition: all 0.5s;
   width: 100%;
   z-index: 3;
-
-  &--opening {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    padding: 0;
-
-    .username {
-      background: #444;
-      font-size: 3rem;
-      font-weight: bold;
-      padding: 1rem;
-      width: 100%;
-
-      span {
-        animation-name: marquee;
-        animation-duration: 5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      &1 span {
-        animation-delay: -2s;
-      }
-
-      &2 span {
-        animation-delay: -1s;
-      }
-    }
-
-    .versus {
-      color: #999;
-      font-size: 2rem;
-      margin: 2rem 0;
-    }
-
-    .startButton {
-      align-self: stretch;
-      margin-top: 6rem;
-      padding: 1rem;
-      text-align: center;
-
-      span,
-      button {
-        font-size: 1rem;
-      }
-
-      button {
-        background: map-get($colors, primary);
-        border-radius: 1rem;
-        color: #444;
-        font-size: 1.3rem;
-        max-width: 640px;
-        padding: 1rem;
-        width: 100%;
-      }
-    }
-  }
-
-  &__logo {
-    height: auto;
-    width: 2rem;
-  }
-
-  &__battleUsers {
-    align-items: center;
-    flex: 1;
-    display: flex;
-    margin: 0 1rem;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    span {
-      display: inline-block;
-      flex: 1;
-      font-weight: bold;
-
-      &:nth-of-type(1),
-      &:nth-of-type(3) {
-        &::before {
-          content: '●';
-          margin-right: 0.5rem;
-        }
-      }
-
-      &:nth-of-type(1) {
-        &::before {
-          color: $color-battle-user-1;
-        }
-      }
-
-      &:nth-of-type(3) {
-        &::before {
-          color: $color-battle-user-2;
-        }
-      }
-
-      &:nth-of-type(2) {
-        flex: 0;
-        font-weight: normal;
-        margin: 0 0.5rem;
-      }
-    }
-  }
-
-  &__play,
-  &__close {
-    margin-left: 1rem;
-  }
-
-  &__play {
-    display: flex;
-
-    img {
-      width: 1.2rem;
-    }
-  }
 }
 
 .statuses {
