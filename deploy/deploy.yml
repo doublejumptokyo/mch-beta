@@ -36,7 +36,7 @@
       file: state=link src="{{ deploy_base }}/{{ commit.stdout }}/dist" dest="{{ rundir }}"
 
     - name: "staticの切り替え"
-      file: state=link src="{{ rundir }}/statics/{{ ENV }}" dest="{{ rundir }}/static" force=yes
+      file: state=link src="{{ rundir }}/src/statics/{{ ENV }}" dest="{{ rundir }}/src/static" force=yes
 
     # - name: npm install
     #   shell: "npm install"
