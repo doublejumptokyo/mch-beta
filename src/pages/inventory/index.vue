@@ -66,7 +66,9 @@ export default {
   list-style-type: none;
   margin: 0 -1rem -1rem;
   padding: 0;
+  position: relative;
   width: calc(100% + 2rem);
+  z-index: 1;
 }
 
 .tabItem {
