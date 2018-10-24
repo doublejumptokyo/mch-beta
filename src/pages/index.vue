@@ -60,9 +60,9 @@ export default {
     informationList: 'list',
     informationLink: 'link'
   }),
-  async asyncData({ store }) {
-    if (store.state.information.list.length) return
-    await store.dispatch('information/fetch')
+  beforeMount() {
+    if (this.$store.state.information.list.length) return
+    this.$store.dispatch('information/fetch')
   }
 }
 </script>
