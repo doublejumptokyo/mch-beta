@@ -128,12 +128,15 @@
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
 
-  audio.bgm(src="/sounds/MCH-1min_0821.mp3" loop muted)
+  audio.bgm(src="/sounds/bgm/MCH-1min_0821.mp3" loop muted)
   audio.se.se-1(src="/sounds/se/1.mp3")
   audio.se.se-2(src="/sounds/se/2.mp3")
   audio.se.se-3(src="/sounds/se/3.mp3")
   audio.se.se-4(src="/sounds/se/4.mp3")
   audio.se.se-5(src="/sounds/se/5.mp3")
+  audio.jingles.jingles__win(src="/sounds/jingles/win.mp3")
+  audio.jingles.jingles__winLoop(src="/sounds/jingles/win-loop.mp3")
+  audio.jingles.jingles__lose(src="/sounds/jingles/lose.mp3")
 </template>
 
 <script>
@@ -180,7 +183,9 @@ export default {
       battle: null,
       bgm: {},
       se: {},
-      isBgmMuted: true
+      isBgmMuted: true,
+      jingles: {},
+      isJinglePlayed: false
     }
   },
 
@@ -230,6 +235,23 @@ export default {
       if (!isReady) return
       console.log('6. オープニング画面を開ける')
       setTimeout(() => this.initAction(), 1000) // initActionを非同期でやらないとなぜかうまく動かないので
+    },
+
+    isFinished(isFinished) {
+      if (!isFinished) return
+      if (this.isJinglePlayed) return
+      // if (this.isBgmMuted) return
+      this.isJinglePlayed = true
+      this.bgm.pause()
+      if (this.isWon) {
+        this.jingles.winLoop.loop = true
+        this.jingles.win.addEventListener('ended', () =>
+          this.jingles.winLoop.play()
+        )
+        this.jingles.win.play()
+      } else {
+        this.jingles.lose.play()
+      }
     }
   },
 
@@ -292,6 +314,9 @@ export default {
         this.$el.querySelector(`.se-${num + 1}`)
       )
     })
+    this.jingles.win = this.$el.querySelector('.jingles__win')
+    this.jingles.winLoop = this.$el.querySelector('.jingles__winLoop')
+    this.jingles.lose = this.$el.querySelector('.jingles__lose')
   },
 
   destroyed() {
@@ -311,6 +336,9 @@ export default {
       Array.from(Array(5).keys()).forEach(
         num => (this.se[num + 1].muted = true)
       )
+      Object.keys(this.jingles).forEach(key => {
+        this.jingles[key].muted = true
+      })
       this.bgm.play()
       this.isReady = true
     },
@@ -328,12 +356,18 @@ export default {
         Array.from(Array(5).keys()).forEach(
           num => (this.se[num + 1].muted = false)
         )
+        Object.keys(this.jingles).forEach(key => {
+          this.jingles[key].muted = false
+        })
         this.isBgmMuted = false
       } else {
         this.bgm.muted = true
         Array.from(Array(5).keys()).forEach(
           num => (this.se[num + 1].muted = true)
         )
+        Object.keys(this.jingles).forEach(key => {
+          this.jingles[key].muted = true
+        })
         this.isBgmMuted = true
       }
     },
