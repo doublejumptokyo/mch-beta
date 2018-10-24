@@ -143,6 +143,7 @@
 import _ from 'lodash'
 import ICountUp from 'vue-countup-v2'
 import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
+import { Sound } from '~/assets/scripts/battle-sound'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
 import BattleHeader from '~/components/BattleHeader'
@@ -183,7 +184,8 @@ export default {
       battle: null,
       bgm: {},
       se: {},
-      isBgmMuted: true,
+      // isBgmMuted: true,
+      isBgmMuted: false,
       jingles: {},
       isJinglePlayed: false
     }
@@ -306,17 +308,17 @@ export default {
       this.setScrollSnap()
     }
 
-    this.bgm = this.$el.querySelector('.bgm')
-    Array.from(Array(5).keys()).forEach(num => {
-      this.$set(
-        this.se,
-        String(num + 1),
-        this.$el.querySelector(`.se-${num + 1}`)
-      )
-    })
-    this.jingles.win = this.$el.querySelector('.jingles__win')
-    this.jingles.winLoop = this.$el.querySelector('.jingles__winLoop')
-    this.jingles.lose = this.$el.querySelector('.jingles__lose')
+    // this.bgm = this.$el.querySelector('.bgm')
+    // Array.from(Array(5).keys()).forEach(num => {
+    //   this.$set(
+    //     this.se,
+    //     String(num + 1),
+    //     this.$el.querySelector(`.se-${num + 1}`)
+    //   )
+    // })
+    // this.jingles.win = this.$el.querySelector('.jingles__win')
+    // this.jingles.winLoop = this.$el.querySelector('.jingles__winLoop')
+    // this.jingles.lose = this.$el.querySelector('.jingles__lose')
   },
 
   destroyed() {
@@ -331,9 +333,22 @@ export default {
       this.actions = this.tmpActions
     },
 
-    battleStart() {
-      this.setMuted(true)
-      this.bgm.play()
+    async battleStart() {
+      // this.setMuted(true)
+      // this.bgm.play()
+      this.bgm = new Sound()
+      await this.bgm.set('/sounds/bgm/MCH-1min_0821.mp3')
+      this.bgm.play({ loop: true })
+      if (this.isBgmMuted) {
+        this.bgm.mute(true)
+      }
+      await Promise.all(
+        Array.from(Array(5).keys()).map(num => {
+          this.se[num + 1] = new Sound()
+          this.se[num + 1].set(`/sounds/se/${num + 1}.mp3`)
+        })
+      )
+
       this.isReady = true
     },
 
@@ -350,13 +365,14 @@ export default {
     },
 
     setMuted(bool) {
-      this.bgm.muted = bool
-      Array.from(Array(5).keys()).forEach(
-        num => (this.se[num + 1].muted = bool)
-      )
-      Object.keys(this.jingles).forEach(key => {
-        this.jingles[key].muted = bool
-      })
+      this.bgm.mute(bool)
+      // this.bgm.muted = bool
+      // Array.from(Array(5).keys()).forEach(
+      //   num => (this.se[num + 1].muted = bool)
+      // )
+      // Object.keys(this.jingles).forEach(key => {
+      //   this.jingles[key].muted = bool
+      // })
     },
 
     onCountUpReady(instance) {
@@ -548,11 +564,18 @@ export default {
               effectElem.style.transform = transform
               setTimeout(() => this.animateEffect(effectElem), index * 200)
 
-              const effectStr = Array.from(effectElem.classList.entries())
-                .filter(c => c[1].startsWith('effect-'))
-                .pop()
-              const effectId = Number(effectStr[1].split('-')[1])
-              this.se[effectId].play()
+              // const effectStr = Array.from(effectElem.classList.entries())
+              //   .filter(c => c[1].startsWith('effect-'))
+              //   .pop()
+              // const effectId = Number(effectStr[1].split('-')[1])
+              // this.se[effectId].play()
+              if (!this.isBgmMuted) {
+                const effectStr = Array.from(effectElem.classList.entries())
+                  .filter(c => c[1].startsWith('effect-'))
+                  .pop()
+                const effectId = Number(effectStr[1].split('-')[1])
+                this.se[effectId].play()
+              }
 
               const damageElem = reactorElem.querySelector('.damage')
               setTimeout(() => {
