@@ -2,6 +2,9 @@ export class Sound {
   constructor() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext
     this.context = new AudioContext()
+
+    // For Safari
+    document.addEventListener('touchstart', this.initAudioContext)
   }
 
   set(fileUrl) {
@@ -31,5 +34,13 @@ export class Sound {
 
   mute(isMuted) {
     this.gain.gain.value = isMuted ? 0 : 1
+  }
+
+  initAudioContext() {
+    document.removeEventListener('touchstart', this.initAudioContext)
+    // wake up AudioContext
+    const emptySource = this.context.createBufferSource()
+    emptySource.start()
+    emptySource.stop()
   }
 }
