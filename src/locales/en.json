@@ -86,7 +86,10 @@
     }
   },
   "battle": {
-    "loading": "Loading ... \nIf it takes more than 30 sec, please reload the page.",
+    "loading": {
+      "lead": "Loading ...",
+      "body": "If it takes more than 30 sec, please reload the page."
+    },
     "info": {
       "inRankingTerm": "Beta Battle Ranked Match has started!\nWe will decide the ranking based on the result of the battle which ended by UTC Oct.21 sun 6:00.\nPlease check the link below for details.",
       "rankHow": "Defeat the team with this mark and rank up!",

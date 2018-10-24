@@ -7,8 +7,10 @@ header.battleHeader(:class="{ 'battleHeader--opening': !isReady }")
     .versus vs
     .username.username2
       span {{ opponentName }}
-    p.startButton
-      span(v-if="isLoading") {{ $i18n.t('battle.loading') }}
+    .startButton
+      template(v-if="isLoading")
+        h3 {{ $i18n.t('battle.loading.lead') }}
+        p {{ $i18n.t('battle.loading.body') }}
       button(v-else @click="$emit('battle-start')") Ready!
 
   template(v-else)
@@ -112,9 +114,25 @@ export default {
       padding: 1rem;
       text-align: center;
 
-      span,
-      button {
-        font-size: 1rem;
+      h3 {
+        color: #ccc;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+
+        @media (min-width: $breakpoint) {
+          font-size: 1.8rem;
+        }
+      }
+
+      p {
+        color: #999;
+        font-size: 0.8rem;
+        line-height: 1.5;
+
+        @media (min-width: $breakpoint) {
+          font-size: 1rem;
+        }
       }
 
       button {
