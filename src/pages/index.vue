@@ -53,25 +53,15 @@
 
 <script>
 import Nl2br from 'vue-nl2br'
-import xml2js from 'xml2js'
+import { mapState } from 'vuex'
 export default {
   components: { Nl2br },
-  data() {
-    return {
-      informationList: [],
-      informationLink: ''
-    }
-  },
-  async beforeMount() {
-    const xml = await this.$axios.$get('/feed')
-    const parseString = xml2js.parseString
-    const data = await new Promise(resolve => {
-      parseString(xml, (message, xmlres) => {
-        resolve(xmlres.rss.channel.shift())
-      })
-    })
-    this.informationList = data.item.filter((item, i) => i < 5)
-    this.informationLink = data.link
+  computed: mapState('information', {
+    informationList: 'list',
+    informationLink: 'link'
+  }),
+  beforeMount() {
+    this.$store.dispatch('information/fetch')
   }
 }
 </script>
