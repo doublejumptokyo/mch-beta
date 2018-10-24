@@ -61,6 +61,7 @@ export default {
     informationLink: 'link'
   }),
   beforeMount() {
+    if (this.$store.state.information.list.length) return
     this.$store.dispatch('information/fetch')
   }
 }
