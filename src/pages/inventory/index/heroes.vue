@@ -5,6 +5,7 @@ section.section.section__heroList
       nuxt-link.heroItem(:to="`/heroes/${hero.id}`" v-for="hero in heroes" :key="hero.id")
         img.heroItem__image(:src="hero.imageUrl")
         p.heroItem__name {{ hero.name[$i18n.locale] }}
+        p {{ hero.rarity }}
     .heroList__empty(v-else)
       fa-icon(icon="spinner" spin size="3x")
 </template>
