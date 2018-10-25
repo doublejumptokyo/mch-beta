@@ -1,8 +1,9 @@
 <template lang="pug">
 .assetPage
   .assetPage__left(v-if="hero")
-    .assetPage__image
-      img(:src="hero.imageUrl")
+    .assetPage__image.image
+      img.image__current(:src="hero.imageUrl")
+      img.image__original(v-if="hero.imageUrl !== hero.originalImageUrl" :src="hero.originalImageUrl")
       nuxt-link(v-if="isOwner" to="edit" append)
         fa-icon(:icon="['far', 'edit']")
         span Art Edit
@@ -130,12 +131,6 @@ export default {
     margin-bottom: 1rem;
     padding: 1rem;
     position: relative;
-
-    img {
-      border-radius: 1rem;
-      image-rendering: pixelated;
-      width: 100%;
-    }
 
     a {
       align-items: center;
@@ -420,6 +415,26 @@ export default {
       line-height: 1;
       padding: 0.5rem 1rem;
     }
+  }
+}
+
+.image {
+  &__current {
+    border-radius: 1rem;
+    image-rendering: pixelated;
+    width: 100%;
+  }
+
+  &__original {
+    background: #444;
+    border: 1px solid #666;
+    border-radius: 1rem;
+    height: 4rem;
+    left: 0;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    width: 4rem;
   }
 }
 
