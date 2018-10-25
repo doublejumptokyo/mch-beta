@@ -899,6 +899,7 @@ export default {
   }
 
   &__image {
+    cursor: pointer;
     padding: 0.5rem;
     position: relative;
 
@@ -1276,6 +1277,10 @@ export default {
 
         &--edited {
           margin: 2rem auto 0;
+
+          @media (min-width: $breakpoint) {
+            margin: 3rem auto 0;
+          }
         }
 
         &Current {
@@ -1290,12 +1295,18 @@ export default {
           border: 1px solid #666;
           border-radius: 1rem;
           height: 4rem;
+          image-rendering: pixelated;
           left: 0;
           margin: -2rem;
           padding: 0.5rem;
           position: absolute;
           top: 0;
           width: 4rem;
+
+          @media (min-width: $breakpoint) {
+            height: 6rem;
+            width: 6rem;
+          }
         }
       }
 
