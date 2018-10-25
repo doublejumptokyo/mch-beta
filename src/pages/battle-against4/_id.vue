@@ -90,6 +90,8 @@
           v-if="currentUnitStatus.hero.imageUrl !== currentUnitStatus.hero.originalImageUrl"
           :src="currentUnitStatus.hero.originalImageUrl"
         )
+        img.unit__extImage.unit__extImage1(:src="currentUnitStatus.extention1.imageUrl")
+        img.unit__extImage.unit__extImage2(:src="currentUnitStatus.extention2.imageUrl")
       ul.unit__statuses
         li
           h4 HP
@@ -286,6 +288,12 @@ export default {
         let hero = await this.$hero.get(unit.heroId)
         unit.hero = hero
         this.$store.commit('heroes/SET_HERO', hero)
+        let extension1 = await this.$extension.get(unit.itemId1)
+        unit.extension1 = extension1
+        this.$store.commit('extensions/SET_EXTENSION', extension1)
+        let extension2 = await this.$extension.get(unit.itemId2)
+        unit.extension2 = extension2
+        this.$store.commit('extensions/SET_EXTENSION', extension2)
         return unit
       })
     )
@@ -393,6 +401,8 @@ export default {
       units.forEach(async unit => {
         if (!unit.heroId) return
         unit.hero = this.getHero(unit.heroId)
+        unit.extention1 = this.getExtension(unit.itemId1)
+        unit.extention2 = this.getExtension(unit.itemId2)
       })
       this.$set(this, 'statuses', {
         myTeam: _.merge(
@@ -615,6 +625,12 @@ export default {
 
     getHero(heroId) {
       return this.$store.state.heroes.find(hero => hero.id === Number(heroId))
+    },
+
+    getExtension(extensionId) {
+      return this.$store.state.extensions.find(
+        extension => extension.id === Number(extensionId)
+      )
     },
 
     getSkill(skillId) {
@@ -1307,6 +1323,24 @@ export default {
             height: 6rem;
             width: 6rem;
           }
+        }
+      }
+
+      &__extImage {
+        bottom: 0;
+        height: auto;
+        image-rendering: pixelated;
+        position: absolute;
+        width: 40%;
+
+        &1 {
+          left: 0;
+          margin-left: calc(-1 * (0.5rem + 40%));
+        }
+
+        &2 {
+          margin-right: calc(-1 * (0.5rem + 40%));
+          right: 0;
         }
       }
 
