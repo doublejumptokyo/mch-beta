@@ -148,6 +148,7 @@ import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
 import BattleHeader from '~/components/BattleHeader'
 
+const SOUND_ALLOWED_STORAGE_KEY = 'mch-beta:is_sound_allowed'
 const IS_RANKED = true
 
 export default {
@@ -315,6 +316,13 @@ export default {
 
   methods: {
     loadSounds() {
+      const isSoundAllowed = window.localStorage.getItem(
+        SOUND_ALLOWED_STORAGE_KEY
+      )
+      if (isSoundAllowed === 'true') {
+        this.isBgmMuted = false
+      }
+
       const audioTypes = ['mp3', 'ogg', 'wav']
       this.bgm = new Howl({
         src: audioTypes.map(type => `/sounds/bgm/MCH-1min_0821.${type}`),
@@ -361,6 +369,7 @@ export default {
     toggleBgmPause() {
       this.isBgmMuted = !this.isBgmMuted
       this.setMuted(this.isBgmMuted)
+      window.localStorage.setItem(SOUND_ALLOWED_STORAGE_KEY, !this.isBgmMuted)
     },
 
     setMuted(bool) {
