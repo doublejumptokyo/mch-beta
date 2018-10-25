@@ -3,9 +3,9 @@ section.section.section__extensionList
   .extensionList
     template(v-if="extensions.length")
       nuxt-link.extensionExtension(:to="`/extensions/${extension.id}`" v-for="extension in extensions" :key="extension.id")
+        p.extensionExtension__rarity {{ extension.rarity }}
         img.extensionExtension__image(:src="require(`~/assets/images/extensions/${extension.fileName}`)")
         p.extensionExtension__name {{ extension.name[$i18n.locale] }}
-        p.extensionExtension__rarity {{ extension.rarity }}
     .extensionList__empty(v-else)
         fa-icon(icon="spinner" spin size="3x")
 </template>
@@ -101,24 +101,29 @@ export default {
   padding: 1rem;
   text-align: center;
   text-decoration: none;
+  width: calc((100% - 2rem) / 2);
 
   @media (min-width: $breakpoint) {
     margin: 2rem 0 0 2rem;
+    width: calc((100% - 10rem) / 5);
+  }
+
+  &__rarity {
+    color: #999;
+    font-family: Oswald;
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    @media (min-width: $breakpoint) {
+      font-size: 1rem;
+    }
   }
 
   &__image {
     border-radius: 1rem;
     image-rendering: pixelated;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
     width: 100%;
-  }
-}
-
-.extensionExtension {
-  width: calc((100% - 2rem) / 2);
-
-  @media (min-width: $breakpoint) {
-    width: calc((100% - 10rem) / 5);
   }
 }
 </style>
