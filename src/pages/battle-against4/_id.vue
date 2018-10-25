@@ -84,8 +84,12 @@
   modal.statusModal(v-if="isStatusModalShown" type="bottom" @modal-close="closeStatusModal")
     h2.statusModal__header(slot="header") {{ currentUnitStatus.hero.name[$i18n.locale] }}
     .statusModal__body.unit(slot="body")
-      p.unit__image
-        img(:src="currentUnitStatus.hero.imageUrl")
+      p.unit__image(:class="{ 'unit__image--edited': currentUnitStatus.hero.imageUrl !== currentUnitStatus.hero.originalImageUrl }")
+        img.unit__imageCurrent(:src="currentUnitStatus.hero.imageUrl")
+        img.unit__imageOriginal(
+          v-if="currentUnitStatus.hero.imageUrl !== currentUnitStatus.hero.originalImageUrl"
+          :src="currentUnitStatus.hero.originalImageUrl"
+        )
       ul.unit__statuses
         li
           h4 HP
@@ -280,10 +284,6 @@ export default {
           return unit
         }
         let hero = await this.$hero.get(unit.heroId)
-        hero = Object.assign(
-          hero,
-          this.$hero.getHeroType(Number(hero.heroType))
-        )
         unit.hero = hero
         this.$store.commit('heroes/SET_HERO', hero)
         return unit
@@ -899,6 +899,7 @@ export default {
   }
 
   &__image {
+    cursor: pointer;
     padding: 0.5rem;
     position: relative;
 
@@ -1270,13 +1271,42 @@ export default {
   &__body {
     .unit {
       &__image {
-        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        width: 50%;
 
-        img {
+        &--edited {
+          margin: 2rem auto 0;
+
+          @media (min-width: $breakpoint) {
+            margin: 3rem auto 0;
+          }
+        }
+
+        &Current {
           border-radius: 0.5rem;
           height: auto;
           image-rendering: pixelated;
-          width: 50%;
+          width: 100%;
+        }
+
+        &Original {
+          background: #444;
+          border: 1px solid #666;
+          border-radius: 1rem;
+          height: 4rem;
+          image-rendering: pixelated;
+          left: 0;
+          margin: -2rem;
+          padding: 0.5rem;
+          position: absolute;
+          top: 0;
+          width: 4rem;
+
+          @media (min-width: $breakpoint) {
+            height: 6rem;
+            width: 6rem;
+          }
         }
       }
 
