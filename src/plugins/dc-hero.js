@@ -33,6 +33,7 @@ class Hero {
     hero.imageUrl = hero.ipfs
       ? `https://beta.mycryptoheroes.net/image/${hero.ipfs}`
       : require(`~/assets/images/heroes/${hero.fileName}`)
+    hero.originalImageUrl = require(`~/assets/images/heroes/${hero.fileName}`)
     return hero
   }
 
