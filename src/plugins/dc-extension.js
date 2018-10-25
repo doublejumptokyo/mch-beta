@@ -25,6 +25,9 @@ class Extension {
       .forEach(key => (ext[key] = Number(ext[key])))
     ext.id = id
     ext.activeSkill = skillsData.find(skill => skill.id === ext.activeSkillId)
+    ext.imageUrl = require(`~/assets/images/extensions/${
+      ext.extensionType
+    }.png`)
     ext = Object.assign({}, ext, this.getExtensionType(ext.extensionType))
     return ext
   }
