@@ -86,22 +86,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: [
-      'ks-vue-scrollmagic',
-      'vue-cropper',
-      'web3',
-      'loom-js',
-      'lodash',
-      'howler'
-    ]
+    vendor: ['vue-cropper', 'web3', 'loom-js', 'lodash', 'howler']
   },
   plugins: [
     '~/plugins/axios',
     '~/plugins/i18n.js',
-    { src: '~/plugins/console', ssr: false },
-    { src: '~/plugins/ks-vue-scrollmagic', ssr: false },
-    { src: '~/plugins/swiper', ssr: false },
-    { src: '~/plugins/vue-highcharts', ssr: true },
     { src: '~/plugins/vue-observe-visibility', ssr: false },
     { src: '~/plugins/vue-cropper', ssr: false },
     { src: '~/plugins/vue-clipboard', ssr: false },
@@ -113,14 +102,11 @@ module.exports = {
     { src: '~/plugins/dc-extension', ssr: false },
     { src: '~/plugins/dc-team', ssr: false },
     { src: '~/plugins/dc-rank', ssr: false },
-    { src: '~/plugins/dc-battle-manager', ssr: false },
-    { src: '~/plugins/dc-battle-manager2', ssr: false },
-    { src: '~/plugins/dc-battle-manager3', ssr: false },
     { src: '~/plugins/dc-battle-manager4', ssr: false },
     { src: '~/plugins/dc-present', ssr: false },
     { src: '~/plugins/dc-hero-manager', ssr: false }
   ],
-  css: ['swiper/dist/css/swiper.css', 'animate.css/animate.css'],
+  css: ['animate.css/animate.css'],
   srcDir: 'src/',
   modules,
   axios,
