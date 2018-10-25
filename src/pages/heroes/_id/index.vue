@@ -430,11 +430,17 @@ export default {
     border: 1px solid #666;
     border-radius: 1rem;
     height: 4rem;
+    image-rendering: pixelated;
     left: 0;
     padding: 0.5rem;
     position: absolute;
     top: 0;
     width: 4rem;
+
+    @media (min-width: $breakpoint) {
+      height: 6rem;
+      width: 6rem;
+    }
   }
 }
 
