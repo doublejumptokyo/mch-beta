@@ -127,26 +127,18 @@
             a(:href="`https://twitter.com/share?url=${currentUrl}&hashtags=MCH,MyCryptoHeroes`")
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
-
-  audio.bgm(src="/sounds/bgm/MCH-1min_0821.mp3" loop muted)
-  audio.se.se-1(src="/sounds/se/1.mp3")
-  audio.se.se-2(src="/sounds/se/2.mp3")
-  audio.se.se-3(src="/sounds/se/3.mp3")
-  audio.se.se-4(src="/sounds/se/4.mp3")
-  audio.se.se-5(src="/sounds/se/5.mp3")
-  audio.jingles.jingles__win(src="/sounds/jingles/win.mp3")
-  audio.jingles.jingles__winLoop(src="/sounds/jingles/win-loop.mp3")
-  audio.jingles.jingles__lose(src="/sounds/jingles/lose.mp3")
 </template>
 
 <script>
 import _ from 'lodash'
+import { Howl, Howler } from 'howler'
 import ICountUp from 'vue-countup-v2'
 import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import ProgressRing from '~/components/ProgressRing'
 import Modal from '~/components/Modal'
 import BattleHeader from '~/components/BattleHeader'
 
+const SOUND_ALLOWED_STORAGE_KEY = 'mch-beta:is_sound_allowed'
 const IS_RANKED = true
 
 export default {
@@ -240,14 +232,10 @@ export default {
     isFinished(isFinished) {
       if (!isFinished) return
       if (this.isJinglePlayed) return
-      // if (this.isBgmMuted) return
       this.isJinglePlayed = true
-      this.bgm.pause()
+      this.bgm.stop()
       if (this.isWon) {
-        this.jingles.winLoop.loop = true
-        this.jingles.win.addEventListener('ended', () =>
-          this.jingles.winLoop.play()
-        )
+        this.jingles.win.once('end', () => this.jingles.winLoop.play())
         this.jingles.win.play()
       } else {
         this.jingles.lose.play()
@@ -267,6 +255,8 @@ export default {
     // if (prevBattleTime + 60000 > +new Date()) {
     //   this.$router.push('/battle-against')
     // }
+
+    this.loadSounds()
 
     this.opponentName = (await this.$user.get(this.opponentLoomAddress)).name
 
@@ -305,18 +295,6 @@ export default {
     if (!this.isNativeSupportScrollSnap()) {
       this.setScrollSnap()
     }
-
-    this.bgm = this.$el.querySelector('.bgm')
-    Array.from(Array(5).keys()).forEach(num => {
-      this.$set(
-        this.se,
-        String(num + 1),
-        this.$el.querySelector(`.se-${num + 1}`)
-      )
-    })
-    this.jingles.win = this.$el.querySelector('.jingles__win')
-    this.jingles.winLoop = this.$el.querySelector('.jingles__winLoop')
-    this.jingles.lose = this.$el.querySelector('.jingles__lose')
   },
 
   destroyed() {
@@ -327,12 +305,46 @@ export default {
   },
 
   methods: {
+    loadSounds() {
+      const isSoundAllowed = window.localStorage.getItem(
+        SOUND_ALLOWED_STORAGE_KEY
+      )
+      if (isSoundAllowed === 'true') {
+        this.isBgmMuted = false
+      }
+
+      const audioTypes = ['mp3', 'ogg', 'wav']
+      this.bgm = new Howl({
+        src: audioTypes.map(type => `/sounds/bgm/MCH-1min_0821.${type}`),
+        loop: true
+      })
+      Array.from(Array(5).keys()).forEach(num => {
+        this.$set(
+          this.se,
+          String(num + 1),
+          new Howl({
+            src: audioTypes.map(type => `/sounds/se/${num + 1}.${type}`)
+          })
+        )
+      })
+      this.jingles.win = new Howl({
+        src: audioTypes.map(type => `/sounds/jingles/win.${type}`)
+      })
+      this.jingles.winLoop = new Howl({
+        src: audioTypes.map(type => `/sounds/jingles/win-loop.${type}`),
+        loop: true
+      })
+      this.jingles.lose = new Howl({
+        src: audioTypes.map(type => `/sounds/jingles/lose.${type}`)
+      })
+    },
+
     fetchActions() {
       this.actions = this.tmpActions
     },
 
     battleStart() {
-      this.setMuted(true)
+      this.setMuted(this.isBgmMuted)
       this.bgm.play()
       this.isReady = true
     },
@@ -347,16 +359,11 @@ export default {
     toggleBgmPause() {
       this.isBgmMuted = !this.isBgmMuted
       this.setMuted(this.isBgmMuted)
+      window.localStorage.setItem(SOUND_ALLOWED_STORAGE_KEY, !this.isBgmMuted)
     },
 
     setMuted(bool) {
-      this.bgm.muted = bool
-      Array.from(Array(5).keys()).forEach(
-        num => (this.se[num + 1].muted = bool)
-      )
-      Object.keys(this.jingles).forEach(key => {
-        this.jingles[key].muted = bool
-      })
+      Howler.mute(bool)
     },
 
     onCountUpReady(instance) {

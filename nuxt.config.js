@@ -86,7 +86,14 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['ks-vue-scrollmagic', 'vue-cropper', 'web3', 'loom-js', 'lodash']
+    vendor: [
+      'ks-vue-scrollmagic',
+      'vue-cropper',
+      'web3',
+      'loom-js',
+      'lodash',
+      'howler'
+    ]
   },
   plugins: [
     '~/plugins/axios',
