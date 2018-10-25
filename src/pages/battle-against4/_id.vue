@@ -141,6 +141,7 @@
 
 <script>
 import _ from 'lodash'
+import { Howl } from 'howler'
 import ICountUp from 'vue-countup-v2'
 import scrollSnapPolyfill from '~/assets/scripts/scrollSnapPolyfill'
 import ProgressRing from '~/components/ProgressRing'
@@ -306,7 +307,15 @@ export default {
       this.setScrollSnap()
     }
 
-    this.bgm = this.$el.querySelector('.bgm')
+    this.bgm = new Howl({
+      src: [
+        '/sounds/bgm/MCH-1min_0821.mp3',
+        '/sounds/bgm/MCH-1min_0821.ogg',
+        '/sounds/bgm/MCH-1min_0821.wav'
+      ]
+    })
+
+    // this.bgm = this.$el.querySelector('.bgm')
     Array.from(Array(5).keys()).forEach(num => {
       this.$set(
         this.se,
