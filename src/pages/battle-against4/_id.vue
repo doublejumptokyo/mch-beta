@@ -127,16 +127,6 @@
             a(:href="`https://twitter.com/share?url=${currentUrl}&hashtags=MCH,MyCryptoHeroes`")
               fa-icon(:icon="['fab', 'twitter']" size="2x")
               span Twitter
-
-  audio.bgm(src="/sounds/bgm/MCH-1min_0821.mp3" loop muted)
-  audio.se.se-1(src="/sounds/se/1.mp3")
-  audio.se.se-2(src="/sounds/se/2.mp3")
-  audio.se.se-3(src="/sounds/se/3.mp3")
-  audio.se.se-4(src="/sounds/se/4.mp3")
-  audio.se.se-5(src="/sounds/se/5.mp3")
-  audio.jingles.jingles__win(src="/sounds/jingles/win.mp3")
-  audio.jingles.jingles__winLoop(src="/sounds/jingles/win-loop.mp3")
-  audio.jingles.jingles__lose(src="/sounds/jingles/lose.mp3")
 </template>
 
 <script>
