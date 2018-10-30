@@ -4,14 +4,14 @@
     img(:src="require('~/assets/images/keyvisual.png')")
   section.indexPage__section
     .update
+      p {{ $t('home.battleClose') }}
+      //- p
+      //-   a(href="https://medium.com/mycryptoheroes/") Thank you for cooperating beta testing! My Crypto Heroes will officially launch and start cloud sale on 30th Nov!
+  section.indexPage__section
+    .update
       nl2br(tag="p" :text="$t('battle.info.afterAggregatingTerm')")
       p
         a(href="https://medium.com/mycryptoheroes/beta-battle-ranked-match-result-e1deeada31db") [beta battle]バトルβランキング戦結果発表 / Beta Battle Ranked Match result
-  section.indexPage__section
-    .update
-      p {{ $t('home.update') }}
-      p
-        a(href="https://medium.com/mycryptoheroes/betabattle-update-schedule-7ca7db7600af") Update schedule
   section.indexPage__section
     .update
       p {{ $t('home.login') }}
