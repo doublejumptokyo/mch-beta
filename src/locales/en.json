@@ -64,7 +64,8 @@
     ],
     "update": "Currently only a part of battle beta is playable. For details of the function and future update schedule, please see below.",
     "login": "To play Beta Battle you need to log in to the Loom Network.",
-    "battleEnd": "[announcement] UTC Oct.21 Sun 6:00\nBeta battle ranked match has finished.\nThank you so much for your participation in the inadequate playing environment."
+    "battleEnd": "[announcement] UTC Oct.21 Sun 6:00\nBeta battle ranked match has finished.\nThank you so much for your participation in the inadequate playing environment.",
+    "battleClose": "Thank you for cooperating our beta battle test! My Crypto Heroes will be officially launched and start cloud sale on 30th Nov!"
   },
   "team": {
     "button": "This is my team !!"
