@@ -32,7 +32,7 @@
     "name": { "en": "First President", "ja": "1stプレジデント" },
     "description": { "en": "After own active skill, 30% INT increase to all allies's INT and AGI at a probability of 10%", "ja": "自分がActive時10%の確率で、味方全体のINT / AGIをINTの30％分アップ" },
     "iconFileName": "BUF_int.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1005,
@@ -60,14 +60,14 @@
     "name": { "en": "Swallow's Blade", "ja": "燕返し" },
     "description": { "en": "After own active skill, 10% INT increase own AGI", "ja": "自分がActive時、自分のAGIをINTの10%分アップ" },
     "iconFileName": "BUF_agi.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1010,
     "name": { "en": "Bloodless Capture", "ja": "無血開城" },
     "description": { "en": "After own active skill,  30% INT increase to all allies's PHY and INT at a probability of 10%", "ja": "自分がActive時10%の確率で、味方全員のPHY / INTをINTの30%分アップ" },
     "iconFileName": "BUF_phy.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1011,
@@ -81,7 +81,7 @@
     "name": { "en": "Edison Effect", "ja": "エジソン・エフェクト" },
     "description": { "en": "After own active skill, 30% INT increase to all allies's INT at a probability of 15%", "ja": "自分がActive時15%の確率で、味方全員のINTをINTの30%分アップ" },
     "iconFileName": "BUF_int.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1013,
@@ -109,7 +109,7 @@
     "name": { "en": "Wright Flyer", "ja": "ライトフライヤー号" },
     "description": { "en": "At time of battle commencement, 10% INT increase to all allies AGI", "ja": "バトル開始時、味方全員のAGIをINTの10%分アップ" },
     "iconFileName": "BUF_agi.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1033,
@@ -172,7 +172,7 @@
     "name": { "en": "Brave Protection", "ja": "ブレイブプロテクション" },
     "description": { "en": "20% INT increase own PHY", "ja": "自分のPHYをINTの20%分アップ" },
     "iconFileName": "DEBUF_phy.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 2009,
@@ -193,14 +193,14 @@
     "name": { "en": "Gladiator War", "ja": "剣闘士の反乱" },
     "description": { "en": "When own HP becomes <20% for the first time, 15% INT decrease to all enemies' INT", "ja": "初めてHP20%未満になった時、敵全員のINTをINTの15%分ダウン" },
     "iconFileName": "DEBUF_int.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 1037,
     "name": { "en": "One for all,All for one", "ja": "ワンフォーオール・オールフォーワン" },
     "description": { "en": "At time of battle commencement, 20% INT increase to all allies PHY and INT", "ja": "バトル開始時、味方全員のPHY / INTをINTの20%分アップ" },
     "iconFileName": "BUF_phy.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1038,
@@ -221,14 +221,14 @@
     "name": { "en": "Tighten your helmet strings", "ja": "緒を締めよ" },
     "description": { "en": "10% INT increase own PHY and INT", "ja": "自分のPHY / INTをINTの10%分アップ" },
     "iconFileName": "BUF_phy.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1008,
     "name": { "en": "Ode to Joy", "ja": "歓喜の歌" },
     "description": { "en": "When own HP becomes <50% for the first time,25% INT decrease to all enemies' PHY, INT and AGI", "ja": "初めてHP50%未満になった時、敵全員のPHY / INT / AGIをINTの25%分ダウン" },
     "iconFileName": "DEBUF_phy.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 2004,
@@ -270,28 +270,28 @@
     "name": { "en": "Blue Blessing", "ja": "ブルーブレッシング" },
     "description": { "en": "15% INT increase to front allies's INT and AGI", "ja": "先頭の味方のINT / AGIをINTの15％分アップ" },
     "iconFileName": "BUF_int.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 3004,
     "name": { "en": "Green Haste", "ja": "グリーンヘイスト" },
     "description": { "en": "15% INT increase to front allies's PHY and AGI", "ja": "先頭の味方のPHY / AGIをINTの15％分アップ" },
     "iconFileName": "BUF_phy.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 3005,
     "name": { "en": "Yellow Thunder", "ja": "イエローサンダー" },
     "description": { "en": "5% INT dicrease to front enemy's INT", "ja": "先頭の敵のINTをINTの5%分ダウン" },
     "iconFileName": "DEBUF_int.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 3006,
     "name": { "en": "Cyan Geyser", "ja": "シアンゲイザー" },
     "description": { "en": "5% INT dicrease to front enemy's PHY", "ja": "先頭の敵のPHYをINTの5%分ダウン" },
     "iconFileName": "DEBUF_phy.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 3007,
@@ -340,14 +340,14 @@
     "name": { "en": "1UP!", "ja": "1UP!" },
     "description": { "en": "10% INT increase to front allies's INT and AGI, PHY", "ja": "自分のPHY / INT / AGIをINTの10%分アップ" },
     "iconFileName": "BUF_phy.png",
-    "effectId": 13
+    "effectId": 4
   },
   {
     "id": 1039,
     "name": { "en": "Eye of the day", "ja": "アイ・オブ・ザ・デイ" },
     "description": { "en": "After own active skill,10% INT decrease to front enemy and 20-40% INT damege to own HP", "ja": "自分がActive時、先頭の敵のINTをINTの10%分ダウンし、自分にINTの20~40%分ダメージ" },
     "iconFileName": "DEBUF_int.png",
-    "effectId": 14
+    "effectId": 5
   },
   {
     "id": 1040,
