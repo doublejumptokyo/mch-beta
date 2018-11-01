@@ -1,0 +1,109 @@
+{
+  "label": "English",
+  "common": {
+    "meta": {
+      "title": "My Crypto Heroes | Beta Battle test",
+      "description": "‘My Crypto Heroes’(MCH) is Beta Battle test now. Heroes acquired through the Pre-sale can be used. You can get some prize! Beta tests will be carried out for each function sequentially."
+    },
+    "footer": {
+      "company": "Operating Company",
+      "terms": "Terms of Service"
+    }
+  },
+  "pages": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "team": "Team",
+    "battles": "Battle",
+    "dungeons": "Quest",
+    "market": "Market",
+    "help": "Help",
+    "terms": "Terms of Service"
+  },
+  "others": {
+    "other": "Others"
+  },
+  "home": {
+    "howTo": [
+      {
+        "title": "Form teams",
+        "body": [
+          {
+            "title": "Choosing team members",
+            "body": "Assemble a team using your heroes.\nYou can include up to 3 heroes in your team."
+          },
+          {
+            "title": "Choosing Extensions (Equipment)",
+            "body": "Heroes can wear up to 2 extensions.\nHeroes are strengthened when wearing equipment."
+          },
+          {
+            "title": "Rearrange Active Skills",
+            "body": "Heroes act using Active Skills during their turns. Active Skills are automatically used in top-down order.\nRearrange their order according to your battle plan."
+          }
+        ]
+      },
+      {
+        "title": "Participate in Battle",
+        "body": [
+          {
+            "title": "Choosing opponents",
+            "body": "Ranks are an indication of the opponent's strength.\nThe higher the enemy's rank, the greater the potential rewards!"
+          },
+          {
+            "title": "Battle!",
+            "body": "Battles are autonomously fought by your team.\nCheer on your heroes and watch over the battle progression!"
+          }
+        ]
+      }
+    ],
+    "notice": [
+      "The heroes and extensions provided are for Battle β Test only.",
+      "Heroes purchased in the pre-sale may be used in Battle β Test, however their status and skills will differ after the game is in service.",
+      "Rental heroes and extensions will be withdrawn after Battle β Test ends.",
+      "Data from Battle β Test will not be carried over after the game's release."
+    ],
+    "update": "Currently only a part of battle beta is playable. For details of the function and future update schedule, please see below.",
+    "login": "To play Beta Battle you need to log in to the Loom Network.",
+    "battleEnd": "[announcement] UTC Oct.21 Sun 6:00\nBeta battle ranked match has finished.\nThank you so much for your participation in the inadequate playing environment.",
+    "battleClose": "Thank you for cooperating our beta battle test! My Crypto Heroes will be officially launched and start cloud sale on 30th Nov!"
+  },
+  "team": {
+    "button": "This is my team !!"
+  },
+  "heroId": {
+    "edit": {
+      "warning": {
+        "title": "Art edit rules and notes on beta battle",
+        "list": [
+          "Images can be changed any number of times",
+          "The initial image is retained without being lost after art editing. You can undo by \"Unset\"",
+          "For edited images, only the display in MCH is changed. On external services such as opensea, the initial image is displayed even after editing.",
+          "Do not use pictures that infringe copyright or images that are against public order and morality.",
+          "Images uploaded with Art Edit System are managed decentralizedly using IPFS which is a distributed file system. ",
+          "In addition, please refer to Article 11 of the following Terms of Service for the attention of Art Usage Terms of Use."
+        ],
+        "footer": "* The above rules may be changed after beta battle."
+      }
+    }
+  },
+  "battle": {
+    "loading": {
+      "lead": "Loading ...",
+      "body": "If it takes more than 30 sec, please reload the page."
+    },
+    "info": {
+      "inRankingTerm": "Beta Battle Ranked Match has started!\nWe will decide the ranking based on the result of the battle which ended by UTC Oct.21 sun 6:00.\nPlease check the link below for details.",
+      "rankHow": "Defeat the team with this mark and rank up!",
+      "inAggregatingTerm": "Beta Battle Ranked Match has finished.\nThe ranking is being confirmed with the result of the battle which had ended at UTC Oct.21 sun 6:00.\nThe ranking will be announced at UTC Oct.22 mon 6:00.",
+      "afterAggregatingTerm": "Beta Battle Ranked Match has finished.\nPlease check the link below for the ranking result of UTC Oct.22 mon 6:00.",
+      "newRule": "One minute interval between each battle will be introduced from 1 hour before the end of ranked match. For details."
+    }
+  },
+  "userId": {
+    "reportButton": "Report User",
+    "mail": {
+      "subject": "{userName} {userAddress}",
+      "body": "User Name: {userName}\nLoomAdress: {userAddress}\n\nTo report this user's problem, just send us an email.\nIf you want to supplement the report, please describe the contents below.\n—————————————————\nSupplement:\n\n\n\n\n\n—————————————————"
+    }
+  }
+}

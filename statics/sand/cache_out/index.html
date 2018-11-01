@@ -1,6 +1,0 @@
-<script>
-Array.from(Array(window.localStorage.length).keys())
-  .map(index => window.localStorage.key(index))
-  .filter(key => key.startsWith('mch-beta-'))
-  .forEach(key => window.localStorage.removeItem(key))
-</script>
